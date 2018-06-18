@@ -1,0 +1,738 @@
+{
+    "1": [
+        {
+            "description": "Protocol version (=1)", 
+            "dtype": "<u1", 
+            "field_name": "version", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u1", 
+            "field_name": "command_type", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u4", 
+            "field_name": "time", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<f8", 
+            "field_name": "rt_clock", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u8", 
+            "field_name": "error_flags", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u8", 
+            "field_name": "debug_flags", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<f8", 
+            "field_name": "user_lat", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<f8", 
+            "field_name": "user_lon", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<i8", 
+            "field_name": "total_space", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<i8", 
+            "field_name": "free_space", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<i2", 
+            "field_name": "camera_record_time", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<i2", 
+            "field_name": "temp_bottom", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<i2", 
+            "field_name": "temp_water", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<i2", 
+            "field_name": "temp_top", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<i2", 
+            "field_name": "temp_cpu", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u1", 
+            "field_name": "lights_upper", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u1", 
+            "field_name": "lights_lower", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<i2", 
+            "field_name": "dive_time", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<i2", 
+            "field_name": "control_mode", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u2", 
+            "field_name": "pressure_top", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<i4", 
+            "field_name": "depth", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<i4", 
+            "field_name": "depth_reference", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<f4", 
+            "field_name": "heading_reference", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<f4", 
+            "field_name": "roll", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<f4", 
+            "field_name": "pitch", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<f4", 
+            "field_name": "yaw", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<i2", 
+            "field_name": "imucal_samples", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u2", 
+            "field_name": "battery_temp", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u2", 
+            "field_name": "battery_voltage", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<i4", 
+            "field_name": "battery_current", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<i4", 
+            "field_name": "battery_average_current", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u1", 
+            "field_name": "battery_state_of_charge_rel", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u2", 
+            "field_name": "battery_remaining_capacity", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u2", 
+            "field_name": "battery_full_charge_capacity", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u2", 
+            "field_name": "battery_run_time_to_empty", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u2", 
+            "field_name": "battery_avg_time_to_empty", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u2", 
+            "field_name": "battery_avg_time_to_full", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u2", 
+            "field_name": "battery_at_rate_time_to_full", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u2", 
+            "field_name": "battery_at_rate_time_to_empty", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u2", 
+            "field_name": "battery_charging_current", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u2", 
+            "field_name": "battery_charging_voltage", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u2", 
+            "field_name": "battery_status", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u2", 
+            "field_name": "battery_cell_voltage_1", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u2", 
+            "field_name": "battery_cell_voltage_2", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u2", 
+            "field_name": "battery_cell_voltage_3", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u2", 
+            "field_name": "battery_cell_voltage_4", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<i2", 
+            "field_name": "battery_cell_temperature_1", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<i2", 
+            "field_name": "battery_cell_temperature_2", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<i2", 
+            "field_name": "battery_cell_temperature_3", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<i2", 
+            "field_name": "battery_cell_temperature_4", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u1", 
+            "field_name": "battery_max_error", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u1", 
+            "field_name": "battery_state_of_charge_abs", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u2", 
+            "field_name": "battery_cycle_count", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u2", 
+            "field_name": "battery_design_capacity", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u2", 
+            "field_name": "battery_manufacture_date", 
+            "unit": ""
+        }, 
+        {
+            "description": "", 
+            "dtype": "<u2", 
+            "field_name": "battery_serial_number", 
+            "unit": ""
+        }
+    ], 
+    "2": [
+        {
+            "description": "Protocol version (=2)",
+            "dtype": "<u1", 
+            "field_name": "version", 
+            "unit": ""
+        }, 
+        {
+            "description": "Command type",
+            "dtype": "<u1", 
+            "field_name": "command_type", 
+            "unit": ""
+        }, 
+        {
+            "description": "Time", 
+            "dtype": "<u4", 
+            "field_name": "time", 
+            "unit": "ms"
+        }, 
+        {
+            "description": "Real-time clock", 
+            "dtype": "<f8", 
+            "field_name": "rt_clock", 
+            "unit": "s"
+        }, 
+        {
+            "description": "Error flags (bitmask)", 
+            "dtype": "<u8", 
+            "field_name": "error_flags", 
+            "unit": ""
+        }, 
+        {
+            "description": "Debug flags (bitmask)", 
+            "dtype": "<u8", 
+            "field_name": "debug_flags", 
+            "unit": ""
+        }, 
+        {
+            "description": "Latitude", 
+            "dtype": "<f8", 
+            "field_name": "user_lat", 
+            "unit": "dec °"
+        }, 
+        {
+            "description": "Longitude", 
+            "dtype": "<f8", 
+            "field_name": "user_lon", 
+            "unit": "dec °"
+        }, 
+        {
+            "description": "Total space on data partition", 
+            "dtype": "<i8", 
+            "field_name": "total_space", 
+            "unit": "bytes"
+        }, 
+        {
+            "description": "Free space on data partition", 
+            "dtype": "<i8", 
+            "field_name": "free_space", 
+            "unit": "bytes"
+        }, 
+        {
+            "description": "Record time (-1 if not recording)", 
+            "dtype": "<i2", 
+            "field_name": "camera_record_time", 
+            "unit": "s"
+        }, 
+        {
+            "description": "Bottom temperature", 
+            "dtype": "<i2", 
+            "field_name": "temp_bottom", 
+            "unit": "0.1°C"
+        }, 
+        {
+            "description": "Water temperature", 
+            "dtype": "<i2", 
+            "field_name": "temp_water", 
+            "unit": "0.1°C"
+        }, 
+        {
+            "description": "Top canister temperature", 
+            "dtype": "<i2", 
+            "field_name": "temp_top", 
+            "unit": "0.1°C"
+        }, 
+        {
+            "description": "cpu temperature", 
+            "dtype": "<i2", 
+            "field_name": "temp_cpu", 
+            "unit": "0.1°C"
+        }, 
+        {
+            "description": "Humidity in top canister", 
+            "dtype": "<i2", 
+            "field_name": "humidity_top", 
+            "unit": "0.1%"
+        }, 
+        {
+            "description": "Humidity in bottom canister", 
+            "dtype": "<i2", 
+            "field_name": "humidity_bottom", 
+            "unit": "0.1%"
+        }, 
+        {
+            "description": "Status upper lights (0..255)", 
+            "dtype": "<u1", 
+            "field_name": "lights_upper", 
+            "unit": ""
+        }, 
+        {
+            "description": "Status lower lights (0..255)", 
+            "dtype": "<u1", 
+            "field_name": "lights_lower", 
+            "unit": ""
+        }, 
+        {
+            "description": "Dive time (-1 if not diving)", 
+            "dtype": "<i2", 
+            "field_name": "dive_time", 
+            "unit": "s"
+        }, 
+        {
+            "description": "Control mode", 
+            "dtype": "<i2", 
+            "field_name": "control_mode", 
+            "unit": ""
+        }, 
+        {
+            "description": "Pressure in top canister", 
+            "dtype": "<u2", 
+            "field_name": "pressure_top", 
+            "unit": "mbar"
+        }, 
+        {
+            "description": "Depth", 
+            "dtype": "<i4", 
+            "field_name": "depth", 
+            "unit": "mm"
+        }, 
+        {
+            "description": "Depth reference", 
+            "dtype": "<i4", 
+            "field_name": "reference_depth", 
+            "unit": "mm"
+        }, 
+        {
+            "description": "Heading reference", 
+            "dtype": "<f4", 
+            "field_name": "reference_heading", 
+            "unit": ""
+        }, 
+        {
+            "description": "Surge reference", 
+            "dtype": "<f4", 
+            "field_name": "reference_surge", 
+            "unit": ""
+        }, 
+        {
+            "description": "Sway reference", 
+            "dtype": "<f4", 
+            "field_name": "reference_sway", 
+            "unit": ""
+        }, 
+        {
+            "description": "Heave reference", 
+            "dtype": "<f4", 
+            "field_name": "reference_heave", 
+            "unit": ""
+        }, 
+        {
+            "description": "Yaw reference", 
+            "dtype": "<f4", 
+            "field_name": "reference_yaw", 
+            "unit": ""
+        }, 
+        {
+            "description": "Surge control force", 
+            "dtype": "<f4", 
+            "field_name": "control_force_surge", 
+            "unit": ""
+        }, 
+        {
+            "description": "Sway control force", 
+            "dtype": "<f4", 
+            "field_name": "control_force_sway", 
+            "unit": ""
+        }, 
+        {
+            "description": "Heave control force", 
+            "dtype": "<f4", 
+            "field_name": "control_force_heave", 
+            "unit": ""
+        }, 
+        {
+            "description": "Yaw control force", 
+            "dtype": "<f4", 
+            "field_name": "control_force_yaw", 
+            "unit": ""
+        }, 
+        {
+            "description": "Roll", 
+            "dtype": "<f4", 
+            "field_name": "roll", 
+            "unit": ""
+        }, 
+        {
+            "description": "Pitch", 
+            "dtype": "<f4", 
+            "field_name": "pitch", 
+            "unit": ""
+        }, 
+        {
+            "description": "Yaw", 
+            "dtype": "<f4", 
+            "field_name": "yaw", 
+            "unit": ""
+        }, 
+        {
+            "description": "Numer of IMU calibration samples (-1 if not calibrating)", 
+            "dtype": "<i2", 
+            "field_name": "imucal_samples", 
+            "unit": ""
+        }, 
+        {
+            "description": "Battery temperature", 
+            "dtype": "<u2", 
+            "field_name": "battery_temp", 
+            "unit": "0.1°C"
+        }, 
+        {
+            "description": "Battery voltage", 
+            "dtype": "<u2", 
+            "field_name": "battery_voltage", 
+            "unit": "mV"
+        }, 
+        {
+            "description": "Battery current", 
+            "dtype": "<i4", 
+            "field_name": "battery_current", 
+            "unit": "mA"
+        }, 
+        {
+            "description": "Battery average current", 
+            "dtype": "<i4", 
+            "field_name": "battery_average_current", 
+            "unit": "mA"
+        }, 
+        {
+            "description": "Battery relative state of charge", 
+            "dtype": "<u1", 
+            "field_name": "battery_state_of_charge_rel", 
+            "unit": "%"
+        }, 
+        {
+            "description": "Remaining battery capacity", 
+            "dtype": "<u2", 
+            "field_name": "battery_remaining_capacity", 
+            "unit": "mAh"
+        }, 
+        {
+            "description": "Full charge battery capacity", 
+            "dtype": "<u2", 
+            "field_name": "battery_full_charge_capacity", 
+            "unit": "mAh"
+        }, 
+        {
+            "description": "Battery run time to empty", 
+            "dtype": "<u2", 
+            "field_name": "battery_run_time_to_empty", 
+            "unit": "min"
+        }, 
+        {
+            "description": "Battery average time to empty", 
+            "dtype": "<u2", 
+            "field_name": "battery_avg_time_to_empty", 
+            "unit": "min"
+        }, 
+        {
+            "description": "Battery average time to full", 
+            "dtype": "<u2", 
+            "field_name": "battery_avg_time_to_full", 
+            "unit": "min"
+        }, 
+        {
+            "description": "Battery at rate time to full", 
+            "dtype": "<u2", 
+            "field_name": "battery_at_rate_time_to_full", 
+            "unit": "min"
+        }, 
+        {
+            "description": "Battery at rate time to empty", 
+            "dtype": "<u2", 
+            "field_name": "battery_at_rate_time_to_empty", 
+            "unit": "min"
+        }, 
+        {
+            "description": "Battery charging current", 
+            "dtype": "<u2", 
+            "field_name": "battery_charging_current", 
+            "unit": "mA"
+        }, 
+        {
+            "description": "Battery charging voltage", 
+            "dtype": "<u2", 
+            "field_name": "battery_charging_voltage", 
+            "unit": "mV"
+        }, 
+        {
+            "description": "Battery status", 
+            "dtype": "<u2", 
+            "field_name": "battery_status", 
+            "unit": ""
+        }, 
+        {
+            "description": "Battery cell voltage 1", 
+            "dtype": "<u2", 
+            "field_name": "battery_cell_voltage_1", 
+            "unit": "mV"
+        }, 
+        {
+            "description": "Battery cell voltage 2", 
+            "dtype": "<u2", 
+            "field_name": "battery_cell_voltage_2", 
+            "unit": "mV"
+        }, 
+        {
+            "description": "Battery cell voltage 3", 
+            "dtype": "<u2", 
+            "field_name": "battery_cell_voltage_3", 
+            "unit": "mV"
+        }, 
+        {
+            "description": "Battery cell voltage 4", 
+            "dtype": "<u2", 
+            "field_name": "battery_cell_voltage_4", 
+            "unit": "mV"
+        }, 
+        {
+            "description": "Battery cell temperature 1", 
+            "dtype": "<i2", 
+            "field_name": "battery_cell_temperature_1", 
+            "unit": "0.1°C"
+        }, 
+        {
+            "description": "Battery cell temperature 2", 
+            "dtype": "<i2", 
+            "field_name": "battery_cell_temperature_2", 
+            "unit": "0.1°C"
+        }, 
+        {
+            "description": "Battery cell temperature 3", 
+            "dtype": "<i2", 
+            "field_name": "battery_cell_temperature_3", 
+            "unit": "0.1°C"
+        }, 
+        {
+            "description": "Battery cell temperature 4", 
+            "dtype": "<i2", 
+            "field_name": "battery_cell_temperature_4", 
+            "unit": "0.1°C"
+        }, 
+        {
+            "description": "Battery max error", 
+            "dtype": "<u1", 
+            "field_name": "battery_max_error", 
+            "unit": ""
+        }, 
+        {
+            "description": "Battery absolute state of charge", 
+            "dtype": "<u1", 
+            "field_name": "battery_state_of_charge_abs", 
+            "unit": ""
+        }, 
+        {
+            "description": "Battery cycle count", 
+            "dtype": "<u2", 
+            "field_name": "battery_cycle_count", 
+            "unit": ""
+        }, 
+        {
+            "description": "Battery design capacity", 
+            "dtype": "<u2", 
+            "field_name": "battery_design_capacity", 
+            "unit": ""
+        }, 
+        {
+            "description": "Battery manufacture date", 
+            "dtype": "<u4", 
+            "field_name": "battery_manufacture_date", 
+            "unit": ""
+        }, 
+        {
+            "description": "Battery serial number", 
+            "dtype": "<u2", 
+            "field_name": "battery_serial_number", 
+            "unit": ""
+        }
+    ]
+}
