@@ -1,1 +1,6 @@
+.idea
 .*.swp
+protocol.html
+Pipfile.lock
+__pycache__
+*.pyc
