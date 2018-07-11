@@ -86,6 +86,14 @@ class TestAppProtocol(unittest.TestCase):
             ap = AppProtocol()
             self.assertEqual(ap.unpack_data(data_packet), data)
 
+    def test_struct_unpack_data_dict_v2_t2(self):
+        data = (2, 2, 2)
+        data_dict = {'u1-2-v': 2, 'u1-2-t': 2, 'i1-2': 2}
+        data_packet = struct.pack("<BBb", *data)
+        with patch('builtins.open', mock_open(read_data=fake_json)):
+            ap = AppProtocol()
+            self.assertEqual(ap.unpack_data_dict(data_packet), data_dict)
+
     def test_struct_pack_v2_t2(self):
         data = (2, 2, 2)
         data_packet = struct.pack("<BBb", *data)
