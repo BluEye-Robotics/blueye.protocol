@@ -39,6 +39,11 @@ class AppProtocol:
         packet_type = data[1]
         return struct.unpack(self.get_struct_format(packet_type, version=version), data)
 
+    def unpack_data_dict(self, data):
+        version = data[0]
+        packet_type = data[1]
+        return dict(zip(self.get_field_names(packet_type), struct.unpack(self.get_struct_format(packet_type, version=version), data)))
+
     def pack_data(self, data):
         version = data[0]
         packet_type = data[1]
