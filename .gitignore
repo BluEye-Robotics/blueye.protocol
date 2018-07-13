@@ -4,4 +4,6 @@ protocol.html
 Pipfile.lock
 __pycache__
 *.pyc
-.vscode
+.vscode.coverage
+htmlcov
+.coverage

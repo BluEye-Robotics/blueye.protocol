@@ -32,7 +32,6 @@ class UdpClient:
             #info_test("Bind address")
         except socket.error as e:
             info_test(str(e))
-            info_test("Please ensure you are in the address range 192.168.1.x")
             return False
         return True
 
@@ -40,7 +39,7 @@ class UdpClient:
         data_raw, addr = self._sock.recvfrom(1024)
         return data_raw
 
-    def _get_data(self, packet_type=None, timeout=None):
+    def get_data(self, packet_type=None, timeout=None):
         start_time = time.time()
         while timeout is None or time.time() < start_time + timeout:
             raw_data = self._get_raw_data()

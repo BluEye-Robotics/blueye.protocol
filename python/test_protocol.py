@@ -1,60 +1,86 @@
 #!/usr/bin/env python3
 import unittest
 from p2_app_protocol import AppProtocol
+print(AppProtocol)
 from unittest.mock import *
 import struct
 
 fake_json = """
-{
-    "1": {
-        "1": [
-            {"description": "", "dtype": "<u1", "field_name": "u1-1-v", "unit": ""}, 
-            {"description": "", "dtype": "<u1", "field_name": "u1-1-t", "unit": ""}, 
-            {"description": "", "dtype": "<i1", "field_name": "i1-1", "unit": ""}, 
-            {"description": "", "dtype": "<u2", "field_name": "u2-1", "unit": ""}, 
-            {"description": "", "dtype": "<i2", "field_name": "i2-1", "unit": ""}, 
-            {"description": "", "dtype": "<u4", "field_name": "u4-1", "unit": ""}, 
-            {"description": "", "dtype": "<i4", "field_name": "i4-1", "unit": ""}, 
-            {"description": "", "dtype": "<u8", "field_name": "u8-1", "unit": ""}, 
-            {"description": "", "dtype": "<i8", "field_name": "i8-1", "unit": ""}, 
-            {"description": "", "dtype": "<f4", "field_name": "f4-1", "unit": ""}, 
-            {"description": "", "dtype": "<f8", "field_name": "f8-1", "unit": ""}
+[
+    {
+        "version": "1",
+        "messages": [
+            {
+                "name": "telemetry",
+                "message_type": "1",
+                "fields":[
+                    {"description": "", "dtype": "<u1", "field_name": "u1-1-v", "unit": ""}, 
+                    {"description": "", "dtype": "<u1", "field_name": "u1-1-t", "unit": ""}, 
+                    {"description": "", "dtype": "<i1", "field_name": "i1-1", "unit": ""}, 
+                    {"description": "", "dtype": "<u2", "field_name": "u2-1", "unit": ""}, 
+                    {"description": "", "dtype": "<i2", "field_name": "i2-1", "unit": ""}, 
+                    {"description": "", "dtype": "<u4", "field_name": "u4-1", "unit": ""}, 
+                    {"description": "", "dtype": "<i4", "field_name": "i4-1", "unit": ""}, 
+                    {"description": "", "dtype": "<u8", "field_name": "u8-1", "unit": ""}, 
+                    {"description": "", "dtype": "<i8", "field_name": "i8-1", "unit": ""}, 
+                    {"description": "", "dtype": "<f4", "field_name": "f4-1", "unit": ""}, 
+                    {"description": "", "dtype": "<f8", "field_name": "f8-1", "unit": ""}
+                ]
+            }
         ]
     },
-    "2": {
-        "1": [
-            {"description": "", "dtype": "<u1", "field_name": "u1-2-v", "unit": ""}, 
-            {"description": "", "dtype": "<u1", "field_name": "u1-2-t", "unit": ""}, 
-            {"description": "", "dtype": "<i1", "field_name": "i1-2", "unit": ""}, 
-            {"description": "", "dtype": "<u2", "field_name": "u2-2", "unit": ""}, 
-            {"description": "", "dtype": "<i2", "field_name": "i2-2", "unit": ""}, 
-            {"description": "", "dtype": "<u4", "field_name": "u4-2", "unit": ""}, 
-            {"description": "", "dtype": "<i4", "field_name": "i4-2", "unit": ""}, 
-            {"description": "", "dtype": "<u8", "field_name": "u8-2", "unit": ""}, 
-            {"description": "", "dtype": "<i8", "field_name": "i8-2", "unit": ""}, 
-            {"description": "", "dtype": "<f4", "field_name": "f4-2", "unit": ""}, 
-            {"description": "", "dtype": "<f8", "field_name": "f8-2-a", "unit": ""},
-            {"description": "", "dtype": "<f8", "field_name": "f8-2-b", "unit": ""}
-        ],
-        "2": [
-            {"description": "", "dtype": "<u1", "field_name": "u1-2-v", "unit": ""}, 
-            {"description": "", "dtype": "<u1", "field_name": "u1-2-t", "unit": ""}, 
-            {"description": "", "dtype": "<i1", "field_name": "i1-2", "unit": ""}
+    {
+        "version": "2",
+        "messages": [
+            {
+                "name": "telemetry",
+                "message_type": "1",
+                "fields":[
+                    {"description": "", "dtype": "<u1", "field_name": "u1-2-v", "unit": ""}, 
+                    {"description": "", "dtype": "<u1", "field_name": "u1-2-t", "unit": ""}, 
+                    {"description": "", "dtype": "<i1", "field_name": "i1-2", "unit": ""}, 
+                    {"description": "", "dtype": "<u2", "field_name": "u2-2", "unit": ""}, 
+                    {"description": "", "dtype": "<i2", "field_name": "i2-2", "unit": ""}, 
+                    {"description": "", "dtype": "<u4", "field_name": "u4-2", "unit": ""}, 
+                    {"description": "", "dtype": "<i4", "field_name": "i4-2", "unit": ""}, 
+                    {"description": "", "dtype": "<u8", "field_name": "u8-2", "unit": ""}, 
+                    {"description": "", "dtype": "<i8", "field_name": "i8-2", "unit": ""}, 
+                    {"description": "", "dtype": "<f4", "field_name": "f4-2", "unit": ""}, 
+                    {"description": "", "dtype": "<f8", "field_name": "f8-2-a", "unit": ""},
+                    {"description": "", "dtype": "<f8", "field_name": "f8-2-b", "unit": ""}
+                ]
+            },
+            {
+                "name": "telemetry",
+                "message_type": "2",
+                "fields":[
+                    {"description": "", "dtype": "<u1", "field_name": "u1-2-v", "unit": ""}, 
+                    {"description": "", "dtype": "<u1", "field_name": "u1-2-t", "unit": ""}, 
+                    {"description": "", "dtype": "<i1", "field_name": "i1-2", "unit": ""}
+                ]
+            }
         ]
     }
-}
+]
 """
 
 fake_json_endianess = """
-{
-    "1": {
-        "1": [
-            {"description": "", "dtype": "<u1", "field_name": "u1-1", "unit": ""}, 
-            {"description": "", "dtype": ">i1", "field_name": "i1-1", "unit": ""}, 
-            {"description": "", "dtype": "<u2", "field_name": "u2-1", "unit": ""} 
-        ]
+[
+    {
+        "version": "1",
+        "messages": [
+            {
+                "name": "telemetry",
+                "message_type": "1",
+                "fields":[
+                   {"description": "", "dtype": "<u1", "field_name": "u1-1", "unit": ""}, 
+                    {"description": "", "dtype": ">i1", "field_name": "i1-1", "unit": ""}, 
+                    {"description": "", "dtype": "<u2", "field_name": "u2-1", "unit": ""} 
+                ]
+            }
+        ]       
     }
-}"""
+]"""
 
 class TestAppProtocol(unittest.TestCase):
     def setUp(self):

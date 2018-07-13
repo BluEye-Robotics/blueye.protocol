@@ -9,35 +9,51 @@ import time
 
 
 fake_json = """
-{
-    "2": {
-        "1": [
-            {"description": "", "dtype": "<u1", "field_name": "u1-2-v", "unit": ""}, 
-            {"description": "", "dtype": "<u1", "field_name": "u1-2-t", "unit": ""}, 
-            {"description": "", "dtype": "<i1", "field_name": "i1-2", "unit": ""}, 
-            {"description": "", "dtype": "<u2", "field_name": "u2-2", "unit": ""}, 
-            {"description": "", "dtype": "<i2", "field_name": "i2-2", "unit": ""}, 
-            {"description": "", "dtype": "<u4", "field_name": "u4-2", "unit": ""}, 
-            {"description": "", "dtype": "<i4", "field_name": "i4-2", "unit": ""}, 
-            {"description": "", "dtype": "<u8", "field_name": "u8-2", "unit": ""}, 
-            {"description": "", "dtype": "<i8", "field_name": "i8-2", "unit": ""}, 
-            {"description": "", "dtype": "<f4", "field_name": "f4-2", "unit": ""}, 
-            {"description": "", "dtype": "<f8", "field_name": "f8-2-a", "unit": ""},
-            {"description": "", "dtype": "<f8", "field_name": "f8-2-b", "unit": ""}
-        ],
-        "2": [
-            {"description": "", "dtype": "<u1", "field_name": "u1-2-v", "unit": ""}, 
-            {"description": "", "dtype": "<u1", "field_name": "u1-2-t", "unit": ""}, 
-            {"description": "", "dtype": "<i1", "field_name": "i1-2", "unit": ""}
-        ],
-        "3": [
-            {"description": "", "dtype": "<u1", "field_name": "u1-2-v", "unit": ""}, 
-            {"description": "", "dtype": "<u1", "field_name": "u1-2-t", "unit": ""}, 
-            {"description": "", "dtype": "<i2", "field_name": "i1-2", "unit": ""}
+[ 
+    {
+        "version": "2",
+        "messages": [
+            {
+                "name": "telemetry",
+                "message_type": "1",
+                "fields":[
+                    {"description": "", "dtype": "<u1", "field_name": "u1-2-v", "unit": ""}, 
+                    {"description": "", "dtype": "<u1", "field_name": "u1-2-t", "unit": ""}, 
+                    {"description": "", "dtype": "<i1", "field_name": "i1-2", "unit": ""}, 
+                    {"description": "", "dtype": "<u2", "field_name": "u2-2", "unit": ""}, 
+                    {"description": "", "dtype": "<i2", "field_name": "i2-2", "unit": ""}, 
+                    {"description": "", "dtype": "<u4", "field_name": "u4-2", "unit": ""}, 
+                    {"description": "", "dtype": "<i4", "field_name": "i4-2", "unit": ""}, 
+                    {"description": "", "dtype": "<u8", "field_name": "u8-2", "unit": ""}, 
+                    {"description": "", "dtype": "<i8", "field_name": "i8-2", "unit": ""}, 
+                    {"description": "", "dtype": "<f4", "field_name": "f4-2", "unit": ""}, 
+                    {"description": "", "dtype": "<f8", "field_name": "f8-2-a", "unit": ""},
+                    {"description": "", "dtype": "<f8", "field_name": "f8-2-b", "unit": ""}
+                ]
+            },
+            {
+                "name": "telemetry",
+                "message_type": "2",
+                "fields":[
+                    {"description": "", "dtype": "<u1", "field_name": "u1-2-v", "unit": ""}, 
+                    {"description": "", "dtype": "<u1", "field_name": "u1-2-t", "unit": ""}, 
+                    {"description": "", "dtype": "<i1", "field_name": "i1-2", "unit": ""}
+                ]
+            },
+            {
+                "name": "telemetry",
+                "message_type": "3",
+                "fields":[
+                    {"description": "", "dtype": "<u1", "field_name": "u1-2-v", "unit": ""}, 
+                    {"description": "", "dtype": "<u1", "field_name": "u1-2-t", "unit": ""}, 
+                    {"description": "", "dtype": "<i2", "field_name": "i1-2", "unit": ""}
+                ]
+            }
         ]
     }
-}
+]
 """
+
 
 class UDPServer(threading.Thread):
     def __init__(self):
@@ -84,7 +100,7 @@ class TestUdpClient(unittest.TestCase):
         us = UDPServer()
         with patch('builtins.open', mock_open(read_data=fake_json)):
             uc = UdpClient()
-        data = uc._get_data()
+        data = uc.get_data()
         us.stop_thread()
         self.assertEqual(data, (2,2,2))
 
@@ -92,7 +108,7 @@ class TestUdpClient(unittest.TestCase):
         us = UDPServer()
         with patch('builtins.open', mock_open(read_data=fake_json)):
             uc = UdpClient()
-        data = uc._get_data(packet_type=3)
+        data = uc.get_data(packet_type=3)
         us.stop_thread()
         self.assertEqual(data, (2,3,3))
 

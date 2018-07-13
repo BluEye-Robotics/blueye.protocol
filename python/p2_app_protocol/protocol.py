@@ -11,7 +11,12 @@ class AppProtocol:
 
     def __init__(self):
         protocol_json_path = os.path.join(os.path.dirname(__file__), "data", "protocol.json")
-        self._jdata = json.loads(open(protocol_json_path).read())
+        jdata_raw = json.loads(open(protocol_json_path).read())
+        self._jdata = {}
+        for protocol_version_data in jdata_raw:
+            self._jdata[protocol_version_data['version']] = {}
+            for message in protocol_version_data['messages']:
+                self._jdata[protocol_version_data['version']][message['message_type']] = message['fields']
         self._last_version = sorted(self._jdata.keys())[-1]
 
     def get_json_data(self, packet_type, version=None):
