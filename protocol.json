@@ -7,7 +7,7 @@
                 "message_type": "1",
                 "fields":[
                     {
-                        "description": "Protocol version (=1)",
+                        "description": "Protocol version",
                         "dtype": "<u1",
                         "field_name": "version",
                         "unit": "",
@@ -349,14 +349,14 @@
         ]
     },
     {
-        "version": "1",
+        "version": "2",
         "messages": [
             {
                 "name": "telemetry",
-                "message_type": "2",
+                "message_type": "1",
                 "fields":[
                     {
-                        "description": "Protocol version (=2)",
+                        "description": "Protocol version",
                         "dtype": "<u1",
                         "field_name": "version",
                         "unit": "",
@@ -754,6 +754,74 @@
                         "unit": ""
                     }
               ]
+            },
+            {
+                "name": "compasscalibration",
+                "message_type": "2",
+                "fields":[
+                    {
+                        "description": "Protocol version",
+                        "dtype": "<u1",
+                        "field_name": "version",
+                        "unit": "",
+                        "init": "2"
+                    },
+                    {
+                        "description": "Command type",
+                        "dtype": "<u1",
+                        "field_name": "command_type",
+                        "unit": "",
+                        "init": "2"
+                    },
+                    {
+                        "description": "Active Status",
+                        "dtype": "<i1",
+                        "field_name": "active_status",
+                        "unit": ""
+                    },
+                    {
+                        "description": "Progress x up",
+                        "dtype": "<u1",
+                        "field_name": "progress_x_up",
+                        "unit": ""
+                    },
+                    {
+                        "description": "Progress x down",
+                        "dtype": "<u1",
+                        "field_name": "progress_x_down",
+                        "unit": ""
+                    },
+                    {
+                        "description": "Progress y up",
+                        "dtype": "<u1",
+                        "field_name": "progress_y_up",
+                        "unit": ""
+                    },
+                    {
+                        "description": "Progress y down",
+                        "dtype": "<u1",
+                        "field_name": "progress_y_down",
+                        "unit": ""
+                    },
+                    {
+                        "description": "Progress z up",
+                        "dtype": "<u1",
+                        "field_name": "progress_z_up",
+                        "unit": ""
+                    },
+                    {
+                        "description": "Progress z down",
+                        "dtype": "<u1",
+                        "field_name": "progress_z_down",
+                        "unit": ""
+                    },
+                    {
+                        "description": "Progress thruster",
+                        "dtype": "<u1",
+                        "field_name": "progress_thruster",
+                        "unit": ""
+                    }
+                ]
             }
         ]
     }
