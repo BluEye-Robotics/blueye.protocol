@@ -6,9 +6,10 @@ import struct
 import threading
 import socket
 import time
+import json
 
 
-fake_json = """
+fake_json = json.loads("""
 [ 
     {
         "version": "2",
@@ -52,7 +53,7 @@ fake_json = """
         ]
     }
 ]
-"""
+""")
 
 
 class UDPServer(threading.Thread):
@@ -90,24 +91,21 @@ class TestUdpClient(unittest.TestCase):
 
     def test_get_raw_data(self):
         us = UDPServer()
-        with patch('builtins.open', mock_open(read_data=fake_json)):
-            uc = UdpClient()
+        uc = UdpClient(protocol_description=fake_json)
         data = uc._get_raw_data()
         us.stop_thread()
         self.assertEqual(data, struct.pack("<BBb", 2,2,2))
 
     def test_get_data(self):
         us = UDPServer()
-        with patch('builtins.open', mock_open(read_data=fake_json)):
-            uc = UdpClient()
+        uc = UdpClient(protocol_description=fake_json)
         data = uc.get_data()
         us.stop_thread()
         self.assertEqual(data, (2,2,2))
 
     def test_get_data_t3(self):
         us = UDPServer()
-        with patch('builtins.open', mock_open(read_data=fake_json)):
-            uc = UdpClient()
+        uc = UdpClient(protocol_description=fake_json)
         data = uc.get_data(packet_type=3)
         us.stop_thread()
         self.assertEqual(data, (2,3,3))

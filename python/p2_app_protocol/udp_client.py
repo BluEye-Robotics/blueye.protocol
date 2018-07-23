@@ -12,7 +12,7 @@ from .protocol import AppProtocol
 info_test = print
 
 class UdpClient:
-    def __init__(self, port=2010):
+    def __init__(self, port=2010, protocol_description=None):
         self._port = port
         self._ip = "0.0.0.0"
         self._sock = None
@@ -20,7 +20,7 @@ class UdpClient:
         self._sock = socket.socket(socket.AF_INET,
                                    socket.SOCK_DGRAM)
         self._sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        self._ap = AppProtocol()
+        self._ap = AppProtocol(protocol_description)
         self.bind()
 
     def __del__(self):
