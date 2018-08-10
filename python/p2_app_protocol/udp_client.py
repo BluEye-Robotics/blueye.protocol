@@ -12,7 +12,7 @@ from .protocol import AppProtocol
 info_test = print
 
 class UdpClient:
-    def __init__(self, port=2010):
+    def __init__(self, port=2010, protocol_description=None):
         self._port = port
         self._ip = "0.0.0.0"
         self._sock = None
@@ -20,7 +20,7 @@ class UdpClient:
         self._sock = socket.socket(socket.AF_INET,
                                    socket.SOCK_DGRAM)
         self._sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        self._ap = AppProtocol()
+        self._ap = AppProtocol(protocol_description)
         self.bind()
 
     def __del__(self):
@@ -32,7 +32,6 @@ class UdpClient:
             #info_test("Bind address")
         except socket.error as e:
             info_test(str(e))
-            info_test("Please ensure you are in the address range 192.168.1.x")
             return False
         return True
 
@@ -40,7 +39,7 @@ class UdpClient:
         data_raw, addr = self._sock.recvfrom(1024)
         return data_raw
 
-    def _get_data(self, packet_type=None, timeout=None):
+    def get_data(self, packet_type=None, timeout=None):
         start_time = time.time()
         while timeout is None or time.time() < start_time + timeout:
             raw_data = self._get_raw_data()
