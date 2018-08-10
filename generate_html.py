@@ -68,5 +68,8 @@ doc += """</div>
 </html>
 """
 
+if not os.path.exists("html"):
+    os.makedirs("html")
+   
 with open(os.path.join("html", "protocol.html"), "w") as f:
     f.write(doc)
