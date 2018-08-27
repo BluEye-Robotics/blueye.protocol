@@ -2,19 +2,11 @@
 
 This repository provides the definition of the app protocol in form of a json file (protocol.json).
 
-To view the app protocol in your web browser you can compile it to a webpage using
+An html version of the protocol is found in the html folder.
+
+Important: This repository includes generated code. If protocol.json is changed, the compiled files need to be updated and later committed:
 ```
-./make_html.py
+./generate_all.sh
 ```
 
-Afterwards you can open the file protocol.html in your webbrowser.
-
-In OS X:
-```
-open protocol.html
-```
-
-In Linux:
-```
-gnome-open protocol.html
-```
+All changes need to be backwards-compatible.

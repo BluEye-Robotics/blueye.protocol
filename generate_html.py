@@ -45,6 +45,16 @@ for version in jdata:
           <tbody>
         """ % (ver + message['message_type'], ver, message['name'], ver + message['message_type'], show)
         for field in message["fields"]:
+            if 'flags' in field:
+                flags = "<br><table>"
+                for flag in field["flags"]:
+                    flags += "<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>" % (html.escape(flag['value']),
+                                               html.escape(flag['name']),
+                                               html.escape(flag['component']),
+                                               html.escape(flag['description']))
+                flags += "</table>"
+            else:
+                flags = ""
             doc += """    <tr>
               <th scope="row">%s</th>
               <td>%s</td>
@@ -53,7 +63,7 @@ for version in jdata:
             </tr>""" % (html.escape(field['field_name']),
                         html.escape(field['dtype']),
                         html.escape(field['unit']),
-                        html.escape(field['description']))
+                        html.escape(field['description']) + flags)
 
         doc += """ </tbody>
           </table>

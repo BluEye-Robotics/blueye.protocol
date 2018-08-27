@@ -1,7 +1,6 @@
 .idea
 .vscode
 .*.swp
-protocol.html
 Pipfile.lock
 __pycache__
 *.pyc
