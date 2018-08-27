@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import json
-import cgi
+import html
 import os
 jdata = json.loads(open("protocol.json").read())
 
@@ -50,10 +50,10 @@ for version in jdata:
               <td>%s</td>
               <td>%s</td>
               <td>%s</td>
-            </tr>""" % (cgi.escape(field['field_name']),
-                        cgi.escape(field['dtype']),
-                        cgi.escape(field['unit']),
-                        cgi.escape(field['description']))
+            </tr>""" % (html.escape(field['field_name']),
+                        html.escape(field['dtype']),
+                        html.escape(field['unit']),
+                        html.escape(field['description']))
 
         doc += """ </tbody>
           </table>
@@ -68,5 +68,8 @@ doc += """</div>
 </html>
 """
 
+if not os.path.exists("html"):
+    os.makedirs("html")
+   
 with open(os.path.join("html", "protocol.html"), "w") as f:
     f.write(doc)
