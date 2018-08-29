@@ -11,7 +11,7 @@ if "sdist" in sys.argv[1]:
     shutil.copy('../protocol.json', 'p2_app_protocol/data/protocol.json')
 
 setup(name='p2_app_protocol',
-      version='1.0.6',
+      version='1.0.7',
       author='Johannes Schrimpf',
       author_email='johannes.schrimpf@blueye.no',
       url='https://github.com/BluEye-Robotics/p2_app_protocol',
