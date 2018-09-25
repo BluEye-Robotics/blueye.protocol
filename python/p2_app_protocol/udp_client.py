@@ -48,24 +48,12 @@ class UdpClient:
                 return data
         return None
 
+    def get_data_dict(self, packet_type=None, timeout=None):
+        start_time = time.time()
+        while timeout is None or time.time() < start_time + timeout:
+            raw_data = self._get_raw_data()
+            data = self._ap.unpack_data_dict(raw_data)
+            if packet_type is None or data["command_type"] == packet_type:
+                return data
+        return None
 
-
-    """
-    def get_data(self, num_packets):
-        data = []
-        for n in range(num_packets):
-            data_raw, addr = self._sock.recvfrom(1024)
-            protocol_version = data_raw[0]
-            struct_str = get_struct_info(protocol_version)['struct_str']
-            struct_size = get_struct_info(protocol_version)['struct_size']
-            field_names = get_struct_info(protocol_version)['field_names']
-            info_test("received message with length %s" % len(data_raw))
-            if len(data_raw) != struct_size:
-                info_test("Wrong length - struct: %d data %d" % (struct_size, len(data_raw)))
-                return None
-            data.append(dict(zip(field_names, struct.unpack(struct_str, data_raw))))
-            for key in data[-1].keys():
-                print(key, data[-1][key])
-            print("\n")
-        return data
-    """

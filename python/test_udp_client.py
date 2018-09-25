@@ -110,6 +110,13 @@ class TestUdpClient(unittest.TestCase):
         us.stop_thread()
         self.assertEqual(data, (2,3,3))
 
+    def test_get_data_dict(self):
+        us = UDPServer()
+        uc = UdpClient(protocol_description=fake_json)
+        data = uc.get_data_dict()
+        us.stop_thread()
+        self.assertEqual(data, {'u1-2-v': 2, 'u1-2-t': 2, 'i1-2': 2})
+
 
 
 if __name__ == '__main__':
