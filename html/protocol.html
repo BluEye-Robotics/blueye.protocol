@@ -360,7 +360,7 @@
               <th scope="row">error_flags</th>
               <td>&lt;u8</td>
               <td></td>
-              <td>Error flags (bitmask)<br><table><tr><td>0x00000001</td><td>ERR_PMU_COMM_ACK</td><td>node_pmu</td><td>Did not receive ack from pmu</td></tr><tr><td>0x00000002</td><td>ERR_PMU_COMM_STREAM</td><td>node_pmu</td><td>Pmu streaming timeout</td></tr></table></td>
+              <td>Error flags (bitmask)<br><table><tr><td>0x00000001</td><td>ERR_PMU_COMM_ACK</td><td>pmu</td><td>Did not receive ack from pmu</td></tr><tr><td>0x00000002</td><td>ERR_PMU_COMM_STREAM</td><td>pmu</td><td>Pmu streaming timeout</td></tr><tr><td>0x00000004</td><td>ERR_DEPTH_READ</td><td>sensor_depth</td><td>Failed to read depth sensor</td></tr><tr><td>0x00000008</td><td>ERR_DEPTH_SPIKE</td><td>sensor_depth</td><td>Depth read spike detected</td></tr><tr><td>0x00000010</td><td>ERR_INNER_PRESSURE_READ</td><td>sensor_inner_pressure</td><td>Failed to read inner pressure sensor</td></tr><tr><td>0x00000020</td><td>ERR_INNER_PRESSURE_SPIKE</td><td>sensor_inner_pressure</td><td>Inner pressure read spike detected</td></tr></table></td>
             </tr>    <tr>
               <th scope="row">debug_flags</th>
               <td>&lt;u8</td>

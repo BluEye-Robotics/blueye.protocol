@@ -390,14 +390,38 @@
                             {
                                 "value": "0x00000001",
                                 "name": "ERR_PMU_COMM_ACK",
-                                "component": "node_pmu",
+                                "component": "pmu",
                                 "description": "Did not receive ack from pmu"
                             },
                             {
                                 "value": "0x00000002",
                                 "name": "ERR_PMU_COMM_STREAM",
-                                "component": "node_pmu",
+                                "component": "pmu",
                                 "description": "Pmu streaming timeout"
+                            },
+                            {
+                                "value": "0x00000004",
+                                "name": "ERR_DEPTH_READ",
+                                "component": "sensor_depth",
+                                "description": "Failed to read depth sensor"
+                            },
+                            {
+                                "value": "0x00000008",
+                                "name": "ERR_DEPTH_SPIKE",
+                                "component": "sensor_depth",
+                                "description": "Depth read spike detected"
+                            },
+                            {
+                                "value": "0x00000010",
+                                "name": "ERR_INNER_PRESSURE_READ",
+                                "component": "sensor_inner_pressure",
+                                "description": "Failed to read inner pressure sensor"
+                            },
+                            {
+                                "value": "0x00000020",
+                                "name": "ERR_INNER_PRESSURE_SPIKE",
+                                "component": "sensor_inner_pressure",
+                                "description": "Inner pressure read spike detected"
                             }
                         ]
                     },
