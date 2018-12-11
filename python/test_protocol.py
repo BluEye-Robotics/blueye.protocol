@@ -5,6 +5,7 @@ print(AppProtocol)
 from unittest.mock import *
 import struct
 import json
+import tempfile
 
 fake_data = json.loads("""
 [
@@ -83,6 +84,7 @@ fake_data_endianess = json.loads("""
     }
 ]""")
 
+
 class TestAppProtocol(unittest.TestCase):
     def setUp(self):
         pass
@@ -160,6 +162,18 @@ class TestAppProtocol(unittest.TestCase):
     def test_field_names_None_t1(self):
         ap = AppProtocol(fake_data)
         self.assertEqual(ap.get_field_names(1), ['u1-2-v', 'u1-2-t', 'i1-2', 'u2-2', 'i2-2', 'u4-2', 'i4-2', 'u8-2', 'i8-2', 'f4-2', 'f8-2-a', 'f8-2-b'])
+
+    def test_np_array_from_file(self):
+        data = (2, 1, 2, 3, 4, 5, 6, 7, 8, 9., 10., 11.,
+                2, 1, 12, 13, 14, 15, 16, 17, 18, 19., 20., 21.)
+        data_packet = struct.pack("<BBbHhIiQqfddBBbHhIiQqfdd", *data)
+        ap = AppProtocol(fake_data)
+        tmp = tempfile.mkstemp()[1]
+        with open(tmp, "wb") as f:
+            f.write(data_packet)
+        np_data = ap.np_array_from_file(tmp)
+        self.assertEqual(np_data["i8-2"].tolist(), [8, 18])
+        self.assertEqual([data[:12], data[12:]], np_data.tolist())
 
 
 if __name__ == '__main__':
