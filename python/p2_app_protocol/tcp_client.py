@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from __future__ import print_function
 
 __author__ = "Johannes Schrimpf"
 __copyright__ = "Copyright (C) 2017 Blueye Robotics AS"
