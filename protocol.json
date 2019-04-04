@@ -422,6 +422,12 @@
                                 "name": "ERR_INNER_PRESSURE_SPIKE",
                                 "component": "sensor_inner_pressure",
                                 "description": "Inner pressure read spike detected"
+                            },
+                            {
+                                "value": "0x00000040",
+                                "name": "ERR_COMPASS_CALIBRATION",
+                                "component": "compass",
+                                "description": "Invalid compass calibration"
                             }
                         ]
                     },
