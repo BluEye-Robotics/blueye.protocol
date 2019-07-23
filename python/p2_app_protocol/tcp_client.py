@@ -53,12 +53,12 @@ class TcpClient(threading.Thread):
         self._sock.send(msg)
 
     def ping(self):
-        self.send_msg(b"p")
-        data = self._sock.recv(1)
-        if not data == b"P":
-            print("Ping error")
-            return False
-        return True
+        if self.send_msg(b"p"):
+            data = self._sock.recv(1)
+            if not data == b"P":
+                print("Ping error")
+                return False
+            return True
 
     def send_light_cmd(self, light_command):
         self.send_msg(light_command.to_binary)
