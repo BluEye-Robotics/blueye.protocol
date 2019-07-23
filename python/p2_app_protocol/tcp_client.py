@@ -10,6 +10,7 @@ import socket
 import time
 import threading
 
+from drone_commands import LightCommand
 info_test = print
 
 class TcpClient(threading.Thread):
@@ -59,6 +60,8 @@ class TcpClient(threading.Thread):
             return False
         return True
 
+    def send_light_cmd(self, light_command):
+        self.send_msg(light_command.to_binary)
 
 
 if __name__ == "__main__":
