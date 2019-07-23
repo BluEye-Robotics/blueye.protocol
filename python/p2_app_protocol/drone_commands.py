@@ -2,7 +2,7 @@
 import struct
 from dataclasses import dataclass
 
-class BlueyeCommand:
+class PioneerCommand:
     @property
     def to_binary(self):
         # first byte is always a char containing the message type
@@ -10,7 +10,7 @@ class BlueyeCommand:
         return struct.pack(format_string, self._cmd_type.encode('utf-8'), *self._data)
 
 @dataclass
-class LightCommand(BlueyeCommand):
+class LightCommand(PioneerCommand):
     """
     brightness_upper: uint8 , 0 = lights off, 255 = max lights
     brightness_lower: uint8 , 0 = lights off, 255 = max lights
