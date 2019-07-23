@@ -40,11 +40,19 @@ class TcpClient(threading.Thread):
         self._stop_thread = True
         self.join()
 
-    def ping(self):
-        if self._sock is None:
-            return False
+    def send_msg(self, msg):
+        """Send a binary message to the drone
 
-        self._sock.send(b"p")
+        Args:
+            msg (bytes): The message to be sent
+        """
+        if self._sock is None:
+            print("Can not send message: No connection!")
+            return False
+        self._sock.send(msg)
+
+    def ping(self):
+        self.send_msg(b"p")
         data = self._sock.recv(1)
         if not data == b"P":
             print("Ping error")
