@@ -29,6 +29,7 @@ class TcpClient(threading.Thread):
 
     def run(self):
         while not self._stop_thread:
+            # keep drone from disconnecting by pinging
             self.ping()
             time.sleep(0.5)
 
