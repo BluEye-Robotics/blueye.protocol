@@ -23,6 +23,8 @@ class TcpClient(threading.Thread):
         self._stop_thread = False
         self.daemon = False
 
+        self.write_lock = threading.Lock()
+
     def __del__(self):
         if self._sock is not None:
             self._sock.close()
@@ -51,7 +53,8 @@ class TcpClient(threading.Thread):
         if self._sock is None:
             print("Can not send message: No connection!")
             return False
-        self._sock.send(msg)
+        with self.write_lock:
+            self._sock.send(msg)
 
     def ping(self):
         if self.send_msg(b"p"):
