@@ -30,3 +30,15 @@ class AutoDepthOffCommand(PioneerCommand):
         self._data = ()
         self._format_string = ''
         self._cmd_type = 'D'
+
+class AutoHeadingOnCommand(PioneerCommand):
+    def __init__(self):
+        self._data = ()
+        self._format_string = ''
+        self._cmd_type = 'h'
+
+class AutoHeadingOffCommand(PioneerCommand):
+    def __init__(self):
+        self._data = ()
+        self._format_string = ''
+        self._cmd_type = 'H'

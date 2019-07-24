@@ -10,7 +10,7 @@ import socket
 import time
 import threading
 
-from drone_commands import LightCommand, AutoDepthOnCommand, AutoDepthOffCommand
+from drone_commands import LightCommand, AutoDepthOnCommand, AutoDepthOffCommand, AutoHeadingOnCommand, AutoHeadingOffCommand
 info_test = print
 
 class TcpClient(threading.Thread):
@@ -76,6 +76,12 @@ class TcpClient(threading.Thread):
 
     def send_auto_depth_off_cmd(self, auto_depth_off_cmd):
         self.send_msg(auto_depth_off_cmd.to_binary)
+
+    def send_auto_heading_on_cmd(self, auto_heading_on_cmd):
+        self.send_msg(auto_heading_on_cmd.to_binary)
+
+    def send_auto_heading_off_cmd(self, auto_heading_off_cmd):
+        self.send_msg(auto_heading_off_cmd.to_binary)
 
 if __name__ == "__main__":
     tc = TcpClient()
