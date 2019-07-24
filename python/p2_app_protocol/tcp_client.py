@@ -67,21 +67,14 @@ class TcpClient(threading.Thread):
             print("Ping error")
             return False
         return True
-
-    def send_light_cmd(self, light_cmd):
-        self.send_msg(light_cmd.to_binary)
-
-    def send_auto_depth_on_cmd(self, auto_depth_on_cmd):
-        self.send_msg(auto_depth_on_cmd.to_binary)
-
-    def send_auto_depth_off_cmd(self, auto_depth_off_cmd):
-        self.send_msg(auto_depth_off_cmd.to_binary)
-
-    def send_auto_heading_on_cmd(self, auto_heading_on_cmd):
-        self.send_msg(auto_heading_on_cmd.to_binary)
-
-    def send_auto_heading_off_cmd(self, auto_heading_off_cmd):
-        self.send_msg(auto_heading_off_cmd.to_binary)
+    def send_cmd(self, cmd):
+        self.send_msg(cmd.to_binary)
+        print(f"sent {cmd.to_binary}")
+        if hasattr(cmd, 'expected_reply'):
+            reply = self._sock.recv(1)
+            print(f"Reply is {reply}")
+            if not reply == cmd.expected_reply:
+                raise Exception(f"Unexpected reply from drone, expected: {cmd.expected_reply}, but got: {reply}")
 
 if __name__ == "__main__":
     tc = TcpClient()
