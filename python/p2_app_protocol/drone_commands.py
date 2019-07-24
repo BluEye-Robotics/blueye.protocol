@@ -42,3 +42,10 @@ class AutoHeadingOffCommand(PioneerCommand):
         self._data = ()
         self._format_string = ''
         self._cmd_type = 'H'
+
+class PingCommand(PioneerCommand):
+    def __init__(self):
+        self._data = ()
+        self._format_string = ''
+        self._cmd_type = 'p'
+        self.expected_reply = b'P'

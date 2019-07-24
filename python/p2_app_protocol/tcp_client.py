@@ -10,7 +10,8 @@ import socket
 import time
 import threading
 
-from drone_commands import LightCommand, AutoDepthOnCommand, AutoDepthOffCommand, AutoHeadingOnCommand, AutoHeadingOffCommand
+
+from drone_commands import LightCommand, AutoDepthOnCommand, AutoDepthOffCommand, AutoHeadingOnCommand, AutoHeadingOffCommand, PingCommand
 info_test = print
 
 class TcpClient(threading.Thread):
@@ -32,7 +33,7 @@ class TcpClient(threading.Thread):
     def run(self):
         while not self._stop_thread:
             # keep drone from disconnecting by pinging
-            self.ping()
+            self.send_cmd(PingCommand())
             time.sleep(0.5)
 
     def connect(self):
@@ -56,17 +57,6 @@ class TcpClient(threading.Thread):
         with self.write_lock:
             self._sock.send(msg)
 
-    def ping(self):
-        if self._sock is None:
-            print("can not ping: No connection!")
-            return False
-        with self.write_lock:
-            self._sock.send(b"p")
-            data = self._sock.recv(1)
-        if not data == b"P":
-            print("Ping error")
-            return False
-        return True
     def send_cmd(self, cmd):
         self.send_msg(cmd.to_binary)
         print(f"sent {cmd.to_binary}")
