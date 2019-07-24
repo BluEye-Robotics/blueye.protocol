@@ -18,3 +18,15 @@ class LightCommand(PioneerCommand):
         self._format_string = 'BB'
         self._cmd_type = 'l'
 
+
+class AutoDepthOnCommand(PioneerCommand):
+    def __init__(self):
+        self._data = ()
+        self._format_string = ''
+        self._cmd_type = 'd'
+
+class AutoDepthOffCommand(PioneerCommand):
+    def __init__(self):
+        self._data = ()
+        self._format_string = ''
+        self._cmd_type = 'D'
