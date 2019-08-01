@@ -17,9 +17,9 @@ class TestAppProtocol(unittest.TestCase):
         from p2_app_protocol import protocol_data
 
     def test_protocol_data_hash(self):
-        from p2_app_protocol import _json_hash, _generator_hash 
-        self.assertEqual(_json_hash, md5(os.path.join("..", "protocol.json")))
-        self.assertEqual(_generator_hash, md5(os.path.join("..", "generate_python.py")))
+        from p2_app_protocol import _json_hash, _generator_hash
+        self.assertEqual(_json_hash, md5(os.path.join("../..", "protocol.json")))
+        self.assertEqual(_generator_hash, md5(os.path.join("../..", "generate_python.py")))
 
 
 if __name__ == '__main__':
