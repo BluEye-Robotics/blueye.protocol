@@ -9,10 +9,11 @@ __version__ = "1.0"
 import socket
 import time
 import threading
+from inflection import underscore
 
-
-from drone_commands import LightCommand, AutoDepthOnCommand, AutoDepthOffCommand, AutoHeadingOnCommand, AutoHeadingOffCommand, PingCommand
+from .drone_commands import PioneerCommand
 info_test = print
+
 
 class TcpClient(threading.Thread):
     def __init__(self, port=2011, ip="192.168.1.101"):
@@ -25,6 +26,23 @@ class TcpClient(threading.Thread):
         self.daemon = False
 
         self.write_lock = threading.Lock()
+        self.make_drone_commands()
+
+    def make_drone_commands(self):
+        """Make methods for sending drone commands from each message defined as a PioneerCommand subclass
+
+        Example:
+            tc = TcpClient()
+            tc.connect()
+            tc.auto_heading_on_command()
+
+        Inspect the available commands by looking in pioneer_commands.py or with dir(tc) in a python shell
+        """
+        command_list = list(PioneerCommand.get_commands())
+        print(f"Command list: {command_list}")
+        # make command name snake case
+        command_name = underscore(command_list[0].__name__)
+        setattr(TcpClient, command_name, lambda x: self.send_cmd(command_list[0]))
 
     def __del__(self):
         if self._sock is not None:
@@ -58,8 +76,8 @@ class TcpClient(threading.Thread):
             self._sock.send(msg)
 
     def send_cmd(self, cmd):
-        self.send_msg(cmd.to_binary)
         print(f"sent {cmd.to_binary}")
+        self.send_msg(cmd.to_binary())
         if hasattr(cmd, 'expected_reply'):
             reply = self._sock.recv(1)
             print(f"Reply is {reply}")
