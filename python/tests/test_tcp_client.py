@@ -16,9 +16,18 @@ def tcp_client(mocked_socket):
     ('auto_heading_on_command', b'h'),
     ('auto_heading_off_command', b'H'),
     ('auto_depth_on_command', b'd'),
-    ('auto_depth_off_command', b'D')
+    ('auto_depth_off_command', b'D'),
 ])
 def test_commands_produce_correct_message(tcp_client, function_name, expected_message):
     func = getattr(tcp_client, function_name)
     func()
     tcp_client._sock.send.assert_called_with(expected_message)
+
+@pytest.mark.parametrize('top_lights, bottom_lights, expected_reply', [
+    (0, 0, b'l\x00\x00'),
+    (50, 50, b'l\x32\x32'),
+    (255, 255, b'l\xFF\xFF')
+])
+def test_set_light_command_produces_correct_message(tcp_client, top_lights, bottom_lights, expected_reply):
+    tcp_client.set_light_command(top_lights, bottom_lights)
+    tcp_client._sock.send.assert_called_with(expected_reply)

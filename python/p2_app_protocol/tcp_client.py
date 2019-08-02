@@ -41,7 +41,9 @@ class TcpClient(threading.Thread):
         """
         for command in PioneerCommand.get_commands():
             command_name = underscore(command.__name__)
-            setattr(TcpClient, command_name, partial(self.send_cmd, command))
+            def send_command(cmd, *args):
+                self.send_msg(cmd.to_binary(*args))
+            setattr(TcpClient, command_name, partial(send_command, command))
 
     def __del__(self):
         if self._sock is not None:
