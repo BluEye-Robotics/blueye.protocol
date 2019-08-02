@@ -9,6 +9,7 @@ __version__ = "1.0"
 import socket
 import time
 import threading
+from functools import partial
 from inflection import underscore
 
 from .drone_commands import PioneerCommand
@@ -38,11 +39,9 @@ class TcpClient(threading.Thread):
 
         Inspect the available commands by looking in pioneer_commands.py or with dir(tc) in a python shell
         """
-        command_list = list(PioneerCommand.get_commands())
-        print(f"Command list: {command_list}")
-        # make command name snake case
-        command_name = underscore(command_list[0].__name__)
-        setattr(TcpClient, command_name, lambda x: self.send_cmd(command_list[0]))
+        for command in PioneerCommand.get_commands():
+            command_name = underscore(command.__name__)
+            setattr(TcpClient, command_name, partial(self.send_cmd, command))
 
     def __del__(self):
         if self._sock is not None:
@@ -73,10 +72,10 @@ class TcpClient(threading.Thread):
             print("Can not send message: No connection!")
             return False
         with self.write_lock:
+            print(f"Sent message: {msg}")
             self._sock.send(msg)
 
     def send_cmd(self, cmd):
-        print(f"sent {cmd.to_binary}")
         self.send_msg(cmd.to_binary())
         if hasattr(cmd, 'expected_reply'):
             reply = self._sock.recv(1)

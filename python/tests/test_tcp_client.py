@@ -12,6 +12,13 @@ def tcp_client(mocked_socket):
     tc.connect()
     yield tc
 
-def test_auto_heading_on_message(tcp_client):
-    tcp_client.auto_heading_on_command()
-    tcp_client._sock.send.assert_called_with(b'h')
+@pytest.mark.parametrize('function_name, expected_message', [
+    ('auto_heading_on_command', b'h'),
+    ('auto_heading_off_command', b'H'),
+    ('auto_depth_on_command', b'd'),
+    ('auto_depth_off_command', b'D')
+])
+def test_commands_produce_correct_message(tcp_client, function_name, expected_message):
+    func = getattr(tcp_client, function_name)
+    func()
+    tcp_client._sock.send.assert_called_with(expected_message)
