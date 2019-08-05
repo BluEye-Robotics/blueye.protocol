@@ -12,7 +12,6 @@ class AppProtocol:
                          "<f4": "f", "<f8": "d"}
 
     def __init__(self, protocol_definition=None):
-        protocol_json_path = os.path.join(os.path.dirname(__file__), "data", "protocol.json")
         self._jdata = {}
         if protocol_definition is None:
             protocol_definition = protocol_data
