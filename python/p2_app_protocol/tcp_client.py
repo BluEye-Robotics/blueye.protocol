@@ -11,9 +11,10 @@ import time
 import threading
 from functools import partial
 from inflection import underscore
+from inspect import getmembers, isfunction
 
-from .drone_commands import PioneerCommand
 info_test = print
+from . import message_methods
 
 
 class TcpClient(threading.Thread):
@@ -27,23 +28,7 @@ class TcpClient(threading.Thread):
         self.daemon = False
 
         self.write_lock = threading.Lock()
-        self.make_drone_commands()
-
-    def make_drone_commands(self):
-        """Make methods for sending drone commands from each message defined as a PioneerCommand subclass
-
-        Example:
-            tc = TcpClient()
-            tc.connect()
-            tc.auto_heading_on_command()
-
-        Inspect the available commands by looking in pioneer_commands.py or with dir(tc) in a python shell
-        """
-        for command in PioneerCommand.get_commands():
-            command_name = underscore(command.__name__)
-            def send_command(cmd, *args):
-                self.send_msg(cmd.to_binary(*args))
-            setattr(TcpClient, command_name, partial(send_command, command))
+        self.add_message_methods()
 
     def __del__(self):
         if self._sock is not None:
@@ -63,6 +48,13 @@ class TcpClient(threading.Thread):
     def stop(self):
         self._stop_thread = True
         self.join()
+
+    def add_message_methods(self):
+        """Dynamically add methods defined in message_methods.py to TcpClient class for sending commands
+        """
+        method_list = [func for func in getmembers(message_methods, isfunction)]
+        for method_name, method in method_list:
+            setattr(TcpClient, method_name, method)
 
     def send_msg(self, msg):
         """Send a binary message to the drone

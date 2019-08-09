@@ -13,10 +13,10 @@ def tcp_client(mocked_socket):
     yield tc
 
 @pytest.mark.parametrize('function_name, expected_message', [
-    ('auto_heading_on_command', b'h'),
-    ('auto_heading_off_command', b'H'),
-    ('auto_depth_on_command', b'd'),
-    ('auto_depth_off_command', b'D'),
+    ('auto_heading_on', b'h'),
+    ('auto_heading_off', b'H'),
+    ('auto_depth_on', b'd'),
+    ('auto_depth_off', b'D'),
 ])
 def test_commands_produce_correct_message(tcp_client, function_name, expected_message):
     func = getattr(tcp_client, function_name)
