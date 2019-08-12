@@ -14,10 +14,9 @@ from inflection import underscore
 from inspect import getmembers, isfunction
 
 info_test = print
-from . import message_methods
+from .tcp_protocol_class import TcpBaseClient
 
-
-class TcpClient(threading.Thread):
+class TcpClient(threading.Thread, TcpBaseClient):
     def __init__(self, port=2011, ip="192.168.1.101"):
         threading.Thread.__init__(self)
         self._ip = ip
@@ -28,7 +27,6 @@ class TcpClient(threading.Thread):
         self.daemon = False
 
         self.write_lock = threading.Lock()
-        self.add_message_methods()
 
     def __del__(self):
         if self._sock is not None:
@@ -48,13 +46,6 @@ class TcpClient(threading.Thread):
     def stop(self):
         self._stop_thread = True
         self.join()
-
-    def add_message_methods(self):
-        """Dynamically add methods defined in message_methods.py to TcpClient class for sending commands
-        """
-        method_list = [func for func in getmembers(message_methods, isfunction)]
-        for method_name, method in method_list:
-            setattr(TcpClient, method_name, method)
 
     def send_msg(self, msg):
         """Send a binary message to the drone

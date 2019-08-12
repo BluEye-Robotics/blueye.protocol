@@ -16,6 +16,20 @@
             {
                 "name": "auto_depth_off",
                 "command_type": "D"
+            },
+            {
+                "name": "set_lights",
+                "command_type": "l",
+                "fields":[
+                    {
+                        "field_name": "brightness_upper",
+                        "dtype": "<u1"
+                    },
+                    {
+                        "field_name": "brightness_lower",
+                        "dtype": "<u1"
+                    }
+                ]
             }
         ]
     }
