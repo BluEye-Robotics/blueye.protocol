@@ -35,13 +35,10 @@ def write_tcp_send_functions():
         for command in tcp_protocol["commands"]:
             template_context = command
             if 'fields' in command:
-                field_names_string = ""
                 format_string = ""
                 for field in command['fields']:
-                    field_names_string += f"{field['field_name']}, "
                     format_string += dtype_to_format_char(field['dtype'])
                 template_context['format_string'] = format_string
-                template_context['field_names_string'] = field_names_string
             python_command = TEMPLATE_ENVIRONMENT.get_template("send_command_function_template.py"
             ).render(command)
             f.write(python_command)
