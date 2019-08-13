@@ -1,13 +1,22 @@
 #!/usr/bin/env python3
 import pytest
-from p2_app_protocol import TcpClient
+
+@pytest.fixture(scope="session")
+def generate_tcp_protocol():
+    # This overwrites the current tcp_protocol_class.py
+    import sys
+    sys.path.append('../')
+    import generate_tcp_protocol
+    context = generate_tcp_protocol.Context(path='../')
+    generate_tcp_protocol.write_tcp_protocol(context)
 
 @pytest.fixture
 def mocked_socket(mocker):
     mocker.patch('socket.socket', autospec=True)
 
 @pytest.fixture
-def tcp_client(mocked_socket):
+def tcp_client(mocked_socket, generate_tcp_protocol):
+    from p2_app_protocol import TcpClient
     tc = TcpClient()
     tc.connect()
     yield tc
