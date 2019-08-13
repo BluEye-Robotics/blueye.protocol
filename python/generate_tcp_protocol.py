@@ -13,7 +13,7 @@ class Context:
     def __init__(self, path=os.path.dirname(os.path.abspath(__file__))):
         self.path = path
         self.module_path = os.path.join(path, "p2_app_protocol")
-        self.template_environment = Environment(autoescape=False, loader=FileSystemLoader(os.path.join(self.module_path, "templates")))
+        self.template_environment = Environment(autoescape=False, trim_blocks=True, lstrip_blocks=True, loader=FileSystemLoader(os.path.join(self.module_path, "templates")))
         self.output_file_path = os.path.join(self.module_path, "tcp_protocol_class.py")
         self.tcp_protocol = get_protocol(os.path.join(self.module_path, "tcp_protocol.json"))[0]
 
