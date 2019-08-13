@@ -14,9 +14,9 @@ from inflection import underscore
 from inspect import getmembers, isfunction
 
 info_test = print
-from .tcp_protocol_class import TcpBaseClient
+from .tcp_protocol_class import TcpCommands
 
-class TcpClient(threading.Thread, TcpBaseClient):
+class TcpClient(threading.Thread, TcpCommands):
     def __init__(self, port=2011, ip="192.168.1.101"):
         threading.Thread.__init__(self)
         self._ip = ip
