@@ -12,7 +12,7 @@ def generate_tcp_protocol():
 
 @pytest.fixture
 def mocked_socket(mocker):
-    mocker.patch('socket.socket', autospec=True)
+    return mocker.patch('socket.socket', autospec=True).return_value
 
 @pytest.fixture
 def tcp_client(mocked_socket, generate_tcp_protocol):
@@ -40,3 +40,14 @@ def test_commands_produce_correct_message(tcp_client, function_name, expected_me
 def test_set_light_command_produces_correct_message(tcp_client, top_lights, bottom_lights, expected_reply):
     tcp_client.set_lights(top_lights, bottom_lights)
     tcp_client._sock.send.assert_called_with(expected_reply)
+
+def test_ping_command_produces_correct_message(tcp_client, mocked_socket):
+    correct_reply = b'P'
+    mocked_socket.recv.return_value = correct_reply
+    tcp_client.ping()
+    tcp_client._sock.send.assert_called_with(b'p')
+
+def test_exception_raised_on_wrong_reply(tcp_client, mocked_socket):
+    mocked_socket.recv.return_value = "wrong reply"
+    with pytest.raises(ValueError):
+        tcp_client.ping()

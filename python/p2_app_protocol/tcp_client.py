@@ -35,7 +35,7 @@ class TcpClient(threading.Thread, TcpBaseClient):
     def run(self):
         while not self._stop_thread:
             # keep drone from disconnecting by pinging
-            self.send_cmd(PingCommand())
+            self.ping()
             time.sleep(0.5)
 
     def connect(self):
@@ -54,19 +54,20 @@ class TcpClient(threading.Thread, TcpBaseClient):
             msg (bytes): The message to be sent
         """
         if self._sock is None:
-            print("Can not send message: No connection!")
-            return False
+            raise(IOError("Can not send message: No connection!"))
         with self.write_lock:
             print(f"Sent message: {msg}")
             self._sock.send(msg)
 
-    def send_cmd(self, cmd):
-        self.send_msg(cmd.to_binary())
-        if hasattr(cmd, 'expected_reply'):
-            reply = self._sock.recv(1)
-            print(f"Reply is {reply}")
-            if not reply == cmd.expected_reply:
-                raise Exception(f"Unexpected reply from drone, expected: {cmd.expected_reply}, but got: {reply}")
+    def receive_msg(self):
+        reply = self._sock.recv(1)
+        print(f"Reply: {reply}")
+        return reply
+
+    def check_reply(self, reply, expected_reply):
+        if not reply == expected_reply:
+                raise ValueError(f"Unexpected reply from drone, expected: {expected_reply}, but got: {reply}")
+
 
 if __name__ == "__main__":
     tc = TcpClient()

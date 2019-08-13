@@ -30,6 +30,11 @@
                         "dtype": "<u1"
                     }
                 ]
+            },
+            {
+                "name": "ping",
+                "command_type": "p",
+                "expected_reply": "P"
             }
         ]
     }
