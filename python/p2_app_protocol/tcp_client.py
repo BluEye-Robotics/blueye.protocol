@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-from __future__ import print_function
 
 __author__ = "Johannes Schrimpf"
 __copyright__ = "Copyright (C) 2017 Blueye Robotics AS"
@@ -9,11 +8,7 @@ __version__ = "1.0"
 import socket
 import time
 import threading
-from functools import partial
-from inflection import underscore
-from inspect import getmembers, isfunction
 
-info_test = print
 from .tcp_protocol_class import TcpCommands
 
 class TcpClient(threading.Thread, TcpCommands):
