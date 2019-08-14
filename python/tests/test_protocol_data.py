@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import hashlib
 import os
-import unittest
+import pytest
 
 
 def md5(fname):
@@ -12,15 +12,12 @@ def md5(fname):
     return hash_md5.hexdigest()
 
 
-class TestAppProtocol(unittest.TestCase):
+class TestAppProtocol():
     def test_protocol_data_import(self):
         from p2_app_protocol import protocol_data
 
-    def test_protocol_data_hash(self):
+    def test_protocol_data_hash(self, request):
         from p2_app_protocol import _json_hash, _generator_hash
-        self.assertEqual(_json_hash, md5(os.path.join(".", "protocol.json")))
-        self.assertEqual(_generator_hash, md5(os.path.join(".", "generate_python.py")))
-
-
-if __name__ == '__main__':
-    unittest.main()
+        root_dir_path = request.fspath.dirname + "/../../"
+        assert(_json_hash, md5(os.path.join(root_dir_path, "protocol.json")))
+        assert(_generator_hash, md5(os.path.join(root_dir_path, "generate_python.py")))
