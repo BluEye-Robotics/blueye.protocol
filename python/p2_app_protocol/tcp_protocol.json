@@ -35,6 +35,14 @@
                 "name": "ping",
                 "command_type": "p",
                 "expected_reply": "P"
+            },
+            {
+                "name": "start_recording",
+                "command_type": "r"
+            },
+            {
+                "name": "stop_recording",
+                "command_type": "R"
             }
         ]
     }

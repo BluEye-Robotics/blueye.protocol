@@ -26,6 +26,8 @@ def tcp_client(mocked_socket, generate_tcp_protocol):
     ('auto_heading_off', b'H'),
     ('auto_depth_on', b'd'),
     ('auto_depth_off', b'D'),
+    ('start_recording', b'r'),
+    ('stop_recording', b'R')
 ])
 def test_commands_produce_correct_message(tcp_client, function_name, expected_message):
     func = getattr(tcp_client, function_name)

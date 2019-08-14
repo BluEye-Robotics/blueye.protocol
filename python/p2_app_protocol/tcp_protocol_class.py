@@ -53,3 +53,19 @@ class TcpCommands:
         except IOError:
             pass
 
+    def start_recording(self):
+        command_identifier = b'r'
+        msg = command_identifier
+        try:
+            self.send_msg(msg)
+        except IOError:
+            pass
+
+    def stop_recording(self):
+        command_identifier = b'R'
+        msg = command_identifier
+        try:
+            self.send_msg(msg)
+        except IOError:
+            pass
+
