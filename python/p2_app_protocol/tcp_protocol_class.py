@@ -64,46 +64,6 @@ class TcpCommands:
         except IOError:
             pass
 
-    def auto_heading_on(self):
-        """Send a auto_heading_on command over TCP
-        """
-        command_identifier = b'h'
-        msg = command_identifier
-        try:
-            self.send_msg(msg)
-        except IOError:
-            pass
-
-    def auto_heading_off(self):
-        """Send a auto_heading_off command over TCP
-        """
-        command_identifier = b'H'
-        msg = command_identifier
-        try:
-            self.send_msg(msg)
-        except IOError:
-            pass
-
-    def auto_depth_on(self):
-        """Send a auto_depth_on command over TCP
-        """
-        command_identifier = b'd'
-        msg = command_identifier
-        try:
-            self.send_msg(msg)
-        except IOError:
-            pass
-
-    def auto_depth_off(self):
-        """Send a auto_depth_off command over TCP
-        """
-        command_identifier = b'D'
-        msg = command_identifier
-        try:
-            self.send_msg(msg)
-        except IOError:
-            pass
-
     def set_lights(self, brightness_upper, brightness_lower):
         """Send a set_lights command over TCP
 
@@ -159,6 +119,46 @@ class TcpCommands:
         """Send a stop_recording command over TCP
         """
         command_identifier = b'R'
+        msg = command_identifier
+        try:
+            self.send_msg(msg)
+        except IOError:
+            pass
+
+    def auto_heading_on(self):
+        """Send a auto_heading_on command over TCP
+        """
+        command_identifier = b'h'
+        msg = command_identifier
+        try:
+            self.send_msg(msg)
+        except IOError:
+            pass
+
+    def auto_heading_off(self):
+        """Send a auto_heading_off command over TCP
+        """
+        command_identifier = b'H'
+        msg = command_identifier
+        try:
+            self.send_msg(msg)
+        except IOError:
+            pass
+
+    def auto_depth_on(self):
+        """Send a auto_depth_on command over TCP
+        """
+        command_identifier = b'd'
+        msg = command_identifier
+        try:
+            self.send_msg(msg)
+        except IOError:
+            pass
+
+    def auto_depth_off(self):
+        """Send a auto_depth_off command over TCP
+        """
+        command_identifier = b'D'
         msg = command_identifier
         try:
             self.send_msg(msg)

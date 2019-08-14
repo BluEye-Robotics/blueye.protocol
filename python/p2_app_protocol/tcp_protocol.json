@@ -44,22 +44,6 @@
                 ]
             },
             {
-                "name": "auto_heading_on",
-                "command_type": "h"
-            },
-            {
-                "name": "auto_heading_off",
-                "command_type": "H"
-            },
-            {
-                "name": "auto_depth_on",
-                "command_type": "d"
-            },
-            {
-                "name": "auto_depth_off",
-                "command_type": "D"
-            },
-            {
                 "name": "set_lights",
                 "command_type": "l",
                 "fields":[
@@ -89,6 +73,22 @@
             {
                 "name": "stop_recording",
                 "command_type": "R"
+            },
+            {
+                "name": "auto_heading_on",
+                "command_type": "h"
+            },
+            {
+                "name": "auto_heading_off",
+                "command_type": "H"
+            },
+            {
+                "name": "auto_depth_on",
+                "command_type": "d"
+            },
+            {
+                "name": "auto_depth_off",
+                "command_type": "D"
             }
         ]
     }
