@@ -36,7 +36,7 @@ def dtype_to_format_char(dtype):
 def write_tcp_command_class(context):
     with open(context.output_file_path, "w") as f:
         protocol_class = context.template_environment.get_template(
-            "protocol_class_template.py").render()
+            "protocol_class.template").render()
         f.write(protocol_class)
 
 
@@ -50,7 +50,7 @@ def write_tcp_send_functions(context):
                     format_string += dtype_to_format_char(field['dtype'])
                 template_context['format_string'] = format_string
             python_command = context.template_environment\
-                .get_template("send_command_function_template.py")\
+                .get_template("send_command_function.template")\
                 .render(command)
             f.write(python_command)
 
