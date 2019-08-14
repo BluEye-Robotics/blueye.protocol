@@ -45,7 +45,7 @@ class TcpClient(threading.Thread, TcpCommands):
             msg (bytes): The message to be sent
         """
         if self._sock is None:
-            raise(IOError("Can not send message: No connection!"))
+            raise SocketNotConnected
         with self.write_lock:
             self.logger.debug(f"Sent message: {msg}")
             self._sock.send(msg)
