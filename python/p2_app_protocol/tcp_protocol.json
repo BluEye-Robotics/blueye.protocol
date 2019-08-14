@@ -20,7 +20,7 @@
             {
                 "name": "set_lights",
                 "command_type": "l",
-                "fields":[
+                "fields": [
                     {
                         "field_name": "brightness_upper",
                         "dtype": "<u1"

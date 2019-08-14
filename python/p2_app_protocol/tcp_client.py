@@ -1,15 +1,10 @@
 #!/usr/bin/env python3
-
-__author__ = "Johannes Schrimpf"
-__copyright__ = "Copyright (C) 2017 Blueye Robotics AS"
-__license__ = "LGPL-3"
-__version__ = "1.0"
-
 import socket
-import time
 import threading
+import time
 
 from .tcp_protocol_class import TcpCommands
+
 
 class TcpClient(threading.Thread, TcpCommands):
     def __init__(self, port=2011, ip="192.168.1.101"):
@@ -61,7 +56,9 @@ class TcpClient(threading.Thread, TcpCommands):
 
     def check_reply(self, reply, expected_reply):
         if not reply == expected_reply:
-                raise ValueError(f"Unexpected reply from drone, expected: {expected_reply}, but got: {reply}")
+            raise ValueError(
+                f"Unexpected reply from drone, expected: {expected_reply}, " +
+                f"but got: {reply}")
 
 
 if __name__ == "__main__":

@@ -1,16 +1,13 @@
 #!/usr/bin/env python3
 from __future__ import print_function
 
-__author__ = "Johannes Schrimpf"
-__copyright__ = "Copyright (C) 2017 Blueye Robotics AS"
-__license__ = "LGPL-3"
-__version__ = "1.0"
-
 import socket
 import time
+
 from .protocol import AppProtocol
 
 info_test = print
+
 
 class UdpClient:
     def __init__(self, port=2010, protocol_description=None):
@@ -30,7 +27,7 @@ class UdpClient:
     def bind(self):
         try:
             self._sock.bind((self._ip, self._port))
-            #info_test("Bind address")
+            # info_test("Bind address")
         except socket.error as e:
             info_test(str(e))
             return False
@@ -57,4 +54,3 @@ class UdpClient:
             if packet_type is None or data["command_type"] == packet_type:
                 return data
         return None
-
