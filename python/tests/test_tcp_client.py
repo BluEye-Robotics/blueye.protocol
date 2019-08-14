@@ -42,7 +42,8 @@ def test_commands_produce_correct_message(tcp_client, function_name, expected_me
     (50, 50, b'l\x32\x32'),
     (255, 255, b'l\xFF\xFF')
 ])
-def test_set_light_command_produces_correct_message(tcp_client, top_lights, bottom_lights, expected_reply):
+def test_set_light_command_produces_correct_message(tcp_client, top_lights,
+                                                    bottom_lights, expected_reply):
     tcp_client.set_lights(top_lights, bottom_lights)
     tcp_client._sock.send.assert_called_with(expected_reply)
 

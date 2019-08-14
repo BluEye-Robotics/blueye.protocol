@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-import unittest
-import os
 import hashlib
+import os
+import unittest
 
 
 def md5(fname):

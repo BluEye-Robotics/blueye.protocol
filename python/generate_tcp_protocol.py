@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
-import os
 import json
-from jinja2 import FileSystemLoader, Environment
+import os
+
+from jinja2 import Environment, FileSystemLoader
 
 
 def get_protocol(protocol_path):
