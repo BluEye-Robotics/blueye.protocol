@@ -81,3 +81,29 @@ def test_motion_command_produces_correct_message(tcp_client, surge_input, sway_i
 def test_motion_command_raises_exception_when_input_out_of_range(tcp_client, out_of_range_input_arguments):
     with pytest.raises(ValueError):
         tcp_client.motion_input(*out_of_range_input_arguments)
+
+
+@pytest.mark.parametrize('in_range_input_arguments', [
+    [0, 0, 0, 0, 0, 0],
+    [1, 1, 1, 1, 1, 1],
+    [-1, -1, -1, -1, 0, 0]
+])
+def test_motion_commmand_does_not_raise_exception_when_input_arguments_are_in_range(tcp_client, in_range_input_arguments):
+    tcp_client.motion_input(*in_range_input_arguments)
+
+
+@pytest.mark.parametrize('out_of_range_input_arguments', [
+    [-10, -10],
+    [300, 300]
+])
+def test_light_command_raises_exception_when_input_out_of_range(tcp_client, out_of_range_input_arguments):
+    with pytest.raises(ValueError):
+        tcp_client.set_lights(*out_of_range_input_arguments)
+
+
+@pytest.mark.parametrize('in_range_input_arguments', [
+    [0, 0],
+    [255, 255]
+])
+def test_light_command_does_not_raise_exception_when_input_arguments_are_in_range(tcp_client, in_range_input_arguments):
+    tcp_client.set_lights(*in_range_input_arguments)

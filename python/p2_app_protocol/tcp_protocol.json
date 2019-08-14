@@ -62,14 +62,18 @@
             {
                 "name": "set_lights",
                 "command_type": "l",
-                "fields": [
+                "fields":[
                     {
                         "field_name": "brightness_upper",
-                        "dtype": "<u1"
+                        "dtype": "<u1",
+                        "upper_limit": 255,
+                        "lower_limit": 0
                     },
                     {
                         "field_name": "brightness_lower",
-                        "dtype": "<u1"
+                        "dtype": "<u1",
+                        "upper_limit": 255,
+                        "lower_limit": 0
                     }
                 ]
             },
