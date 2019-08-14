@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
+import logging
 import socket
 import threading
 import time
 
-from .tcp_protocol_class import TcpCommands
+from p2_app_protocol.tcp_protocol_class import TcpCommands
 
 
 class TcpClient(threading.Thread, TcpCommands):
@@ -15,7 +16,7 @@ class TcpClient(threading.Thread, TcpCommands):
         self._sock = None
         self._stop_thread = False
         self.daemon = False
-
+        self.logger = logging.getLogger()
         self.write_lock = threading.Lock()
 
     def __del__(self):
@@ -46,12 +47,12 @@ class TcpClient(threading.Thread, TcpCommands):
         if self._sock is None:
             raise(IOError("Can not send message: No connection!"))
         with self.write_lock:
-            print(f"Sent message: {msg}")
+            self.logger.debug(f"Sent message: {msg}")
             self._sock.send(msg)
 
     def receive_msg(self):
         reply = self._sock.recv(1)
-        print(f"Reply: {reply}")
+        self.logger.debug(f"Reply: {reply}")
         return reply
 
     def check_reply(self, reply, expected_reply):
@@ -62,6 +63,8 @@ class TcpClient(threading.Thread, TcpCommands):
 
 
 if __name__ == "__main__":
+    logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
+                        datefmt='%d-%b-%y %H:%M:%S', level=logging.DEBUG)
     tc = TcpClient()
     tc.start()
     tc.connect()
