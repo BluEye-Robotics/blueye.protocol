@@ -75,6 +75,18 @@
                 "command_type": "R"
             },
             {
+                "name": "start_compass_calibration",
+                "command_type": "i"
+            },
+            {
+                "name": "cancel_compass_calibration",
+                "command_type": "I"
+            },
+            {
+                "name": "save_compass_calibration",
+                "command_type": "c"
+            },
+            {
                 "name": "auto_heading_on",
                 "command_type": "h"
             },

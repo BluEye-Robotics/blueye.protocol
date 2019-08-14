@@ -36,7 +36,10 @@ def tcp_client(mocked_socket, mocked_logger, generate_tcp_protocol):
     ('auto_depth_on', b'd'),
     ('auto_depth_off', b'D'),
     ('start_recording', b'r'),
-    ('stop_recording', b'R')
+    ('stop_recording', b'R'),
+    ('start_compass_calibration', b'i'),
+    ('cancel_compass_calibration', b'I'),
+    ('save_compass_calibration', b'c')
 ])
 def test_commands_produce_correct_message(tcp_client, function_name, expected_message):
     func = getattr(tcp_client, function_name)

@@ -125,6 +125,36 @@ class TcpCommands:
         except IOError:
             pass
 
+    def start_compass_calibration(self):
+        """Send a start_compass_calibration command over TCP
+        """
+        command_identifier = b'i'
+        msg = command_identifier
+        try:
+            self.send_msg(msg)
+        except IOError:
+            pass
+
+    def cancel_compass_calibration(self):
+        """Send a cancel_compass_calibration command over TCP
+        """
+        command_identifier = b'I'
+        msg = command_identifier
+        try:
+            self.send_msg(msg)
+        except IOError:
+            pass
+
+    def save_compass_calibration(self):
+        """Send a save_compass_calibration command over TCP
+        """
+        command_identifier = b'c'
+        msg = command_identifier
+        try:
+            self.send_msg(msg)
+        except IOError:
+            pass
+
     def auto_heading_on(self):
         """Send a auto_heading_on command over TCP
         """
