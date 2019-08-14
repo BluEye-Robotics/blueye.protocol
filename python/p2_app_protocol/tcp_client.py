@@ -4,6 +4,7 @@ import socket
 import threading
 import time
 
+from p2_app_protocol.exceptions import SocketNotConnected, ResponseTimeout
 from p2_app_protocol.tcp_protocol_class import TcpCommands
 
 
@@ -31,6 +32,7 @@ class TcpClient(threading.Thread, TcpCommands):
 
     def connect(self):
         self._sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self._sock.settimeout(1.0)
         self._sock.connect((self._ip, self._port))
         self._sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
@@ -51,9 +53,13 @@ class TcpClient(threading.Thread, TcpCommands):
             self._sock.send(msg)
 
     def receive_msg(self):
-        reply = self._sock.recv(1)
-        self.logger.debug(f"Reply: {reply}")
-        return reply
+        try:
+            reply = self._sock.recv(1)
+            self.logger.debug(f"Reply: {reply}")
+            return reply
+        except socket.timeout as e:
+            self.logger.warn("Timed out while waiting for message reply")
+            raise ResponseTimeout from e
 
     def check_reply(self, reply, expected_reply):
         if not reply == expected_reply:
@@ -66,7 +72,7 @@ if __name__ == "__main__":
     logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
                         datefmt='%d-%b-%y %H:%M:%S', level=logging.DEBUG)
     tc = TcpClient()
-    tc.start()
     tc.connect()
+    tc.start()
     time.sleep(3)
     tc.stop()

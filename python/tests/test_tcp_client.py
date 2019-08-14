@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import pytest
+from p2_app_protocol.exceptions import ResponseTimeout
 
 
 @pytest.fixture(scope="session")
@@ -16,9 +17,15 @@ def mocked_socket(mocker):
 
 
 @pytest.fixture
-def tcp_client(mocked_socket, generate_tcp_protocol):
+def mocked_logger(mocker):
+    return mocker.patch("logging.Logger", autospec=True).return_value
+
+
+@pytest.fixture
+def tcp_client(mocked_socket, mocked_logger, generate_tcp_protocol):
     from p2_app_protocol import TcpClient
     tc = TcpClient()
+    tc.logger = mocked_logger
     tc.connect()
     yield tc
 
@@ -64,13 +71,15 @@ def test_exception_raised_on_wrong_reply(tcp_client, mocked_socket):
 @pytest.mark.parametrize('surge_input, sway_input, heave_input, yaw_input, slow_input, boost_input, expected_message', [
     (0, 0, 0, 0, 0, 0, b'j\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'),
     (1, 1, 1, 1, 1, 1, b'j\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?'),
-    (0.555, 0.555, 0.555, 0.555, 0.555, 0.555, b'j{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?')
+    (0.555, 0.555, 0.555, 0.555, 0.555, 0.555,
+     b'j{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?')
 
 ])
 def test_motion_command_produces_correct_message(tcp_client, surge_input, sway_input, heave_input, yaw_input, slow_input, boost_input, expected_message):
     tcp_client.motion_input(surge_input, sway_input, heave_input,
                             yaw_input, slow_input, boost_input)
     tcp_client._sock.send.assert_called_with(expected_message)
+
 
 @pytest.mark.parametrize('out_of_range_input_arguments', [
     [0, 0, 0, 0, 0, -1],
@@ -107,3 +116,13 @@ def test_light_command_raises_exception_when_input_out_of_range(tcp_client, out_
 ])
 def test_light_command_does_not_raise_exception_when_input_arguments_are_in_range(tcp_client, in_range_input_arguments):
     tcp_client.set_lights(*in_range_input_arguments)
+
+
+def test_receive_msg_warns_on_timeout(tcp_client):
+    def recv_that_times_out(*args):
+        import socket
+        raise socket.timeout
+    tcp_client._sock.recv = recv_that_times_out
+    with pytest.raises(ResponseTimeout):
+        tcp_client.receive_msg()
+    tcp_client.logger.warn.assert_called_once()
