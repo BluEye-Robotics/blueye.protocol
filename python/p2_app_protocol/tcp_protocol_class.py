@@ -3,6 +3,15 @@ import struct
 
 
 class TcpCommands:
+    def motion_input(self, surge_motion_input, sway_motion_input, heave_motion_input, yaw_motion_input, slow_input, boost_input):
+        command_identifier = b'j'
+        msg = command_identifier
+        msg += struct.pack('ffffff', surge_motion_input, sway_motion_input, heave_motion_input, yaw_motion_input, slow_input, boost_input)
+        try:
+            self.send_msg(msg)
+        except IOError:
+            pass
+
     def auto_heading_on(self):
         command_identifier = b'h'
         msg = command_identifier

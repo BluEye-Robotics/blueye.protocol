@@ -59,3 +59,15 @@ def test_exception_raised_on_wrong_reply(tcp_client, mocked_socket):
     mocked_socket.recv.return_value = "wrong reply"
     with pytest.raises(ValueError):
         tcp_client.ping()
+
+
+@pytest.mark.parametrize('surge_input, sway_input, heave_input, yaw_input, slow_input, boost_input, expected_message', [
+    (0, 0, 0, 0, 0, 0, b'j\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'),
+    (1, 1, 1, 1, 1, 1, b'j\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?'),
+    (-1, -1, -1, -1, -1, -1,
+     b'j\x00\x00\x80\xbf\x00\x00\x80\xbf\x00\x00\x80\xbf\x00\x00\x80\xbf\x00\x00\x80\xbf\x00\x00\x80\xbf')
+])
+def test_motion_command_produces_correct_message(tcp_client, surge_input, sway_input, heave_input, yaw_input, slow_input, boost_input, expected_message):
+    tcp_client.motion_input(surge_input, sway_input, heave_input,
+                            yaw_input, slow_input, boost_input)
+    tcp_client._sock.send.assert_called_with(expected_message)

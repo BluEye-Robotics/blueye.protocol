@@ -2,6 +2,36 @@
     {
         "commands": [
             {
+                "name": "motion_input",
+                "command_type": "j",
+                "fields":[
+                    {
+                        "field_name": "surge_motion_input",
+                        "dtype": "<f4"
+                    },
+                    {
+                        "field_name": "sway_motion_input",
+                        "dtype": "<f4"
+                    },
+                    {
+                        "field_name": "heave_motion_input",
+                        "dtype": "<f4"
+                    },
+                    {
+                        "field_name": "yaw_motion_input",
+                        "dtype": "<f4"
+                    },
+                    {
+                        "field_name": "slow_input",
+                        "dtype": "<f4"
+                    },
+                    {
+                        "field_name": "boost_input",
+                        "dtype": "<f4"
+                    }
+                ]
+            },
+            {
                 "name": "auto_heading_on",
                 "command_type": "h"
             },
