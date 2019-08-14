@@ -4,6 +4,48 @@ import struct
 
 class TcpCommands:
     def motion_input(self, surge_motion_input, sway_motion_input, heave_motion_input, yaw_motion_input, slow_input, boost_input):
+        if not -1 <= surge_motion_input <= 1:
+            raise ValueError(
+                "Input argument out of range:" +
+                " valid range for surge_motion_input is" +
+                " <{lower_limit}, {upper_limit}>".format(lower_limit=-1, upper_limit=1) +
+                " but got value: {name}".format(name=surge_motion_input))
+
+        if not -1 <= sway_motion_input <= 1:
+            raise ValueError(
+                "Input argument out of range:" +
+                " valid range for sway_motion_input is" +
+                " <{lower_limit}, {upper_limit}>".format(lower_limit=-1, upper_limit=1) +
+                " but got value: {name}".format(name=sway_motion_input))
+
+        if not -1 <= heave_motion_input <= 1:
+            raise ValueError(
+                "Input argument out of range:" +
+                " valid range for heave_motion_input is" +
+                " <{lower_limit}, {upper_limit}>".format(lower_limit=-1, upper_limit=1) +
+                " but got value: {name}".format(name=heave_motion_input))
+
+        if not -1 <= yaw_motion_input <= 1:
+            raise ValueError(
+                "Input argument out of range:" +
+                " valid range for yaw_motion_input is" +
+                " <{lower_limit}, {upper_limit}>".format(lower_limit=-1, upper_limit=1) +
+                " but got value: {name}".format(name=yaw_motion_input))
+
+        if not 0 <= slow_input <= 1:
+            raise ValueError(
+                "Input argument out of range:" +
+                " valid range for slow_input is" +
+                " <{lower_limit}, {upper_limit}>".format(lower_limit=0, upper_limit=1) +
+                " but got value: {name}".format(name=slow_input))
+
+        if not 0 <= boost_input <= 1:
+            raise ValueError(
+                "Input argument out of range:" +
+                " valid range for boost_input is" +
+                " <{lower_limit}, {upper_limit}>".format(lower_limit=0, upper_limit=1) +
+                " but got value: {name}".format(name=boost_input))
+
         command_identifier = b'j'
         msg = command_identifier
         msg += struct.pack('ffffff', surge_motion_input, sway_motion_input, heave_motion_input, yaw_motion_input, slow_input, boost_input)

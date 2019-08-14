@@ -7,27 +7,39 @@
                 "fields":[
                     {
                         "field_name": "surge_motion_input",
-                        "dtype": "<f4"
+                        "dtype": "<f4",
+                        "upper_limit": 1,
+                        "lower_limit": -1
                     },
                     {
                         "field_name": "sway_motion_input",
-                        "dtype": "<f4"
+                        "dtype": "<f4",
+                        "upper_limit": 1,
+                        "lower_limit": -1
                     },
                     {
                         "field_name": "heave_motion_input",
-                        "dtype": "<f4"
+                        "dtype": "<f4",
+                        "upper_limit": 1,
+                        "lower_limit": -1
                     },
                     {
                         "field_name": "yaw_motion_input",
-                        "dtype": "<f4"
+                        "dtype": "<f4",
+                        "upper_limit": 1,
+                        "lower_limit": -1
                     },
                     {
                         "field_name": "slow_input",
-                        "dtype": "<f4"
+                        "dtype": "<f4",
+                        "upper_limit": 1,
+                        "lower_limit": 0
                     },
                     {
                         "field_name": "boost_input",
-                        "dtype": "<f4"
+                        "dtype": "<f4",
+                        "upper_limit": 1,
+                        "lower_limit": 0
                     }
                 ]
             },
