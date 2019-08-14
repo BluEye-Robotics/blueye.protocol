@@ -4,10 +4,8 @@ import pytest
 @pytest.fixture(scope="session")
 def generate_tcp_protocol():
     # This overwrites the current tcp_protocol_class.py
-    import sys
-    sys.path.append('../')
     import generate_tcp_protocol
-    context = generate_tcp_protocol.Context(path='../')
+    context = generate_tcp_protocol.Context()
     generate_tcp_protocol.write_tcp_protocol(context)
 
 @pytest.fixture
