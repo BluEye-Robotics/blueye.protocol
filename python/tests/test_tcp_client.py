@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import pytest
-from p2_app_protocol.exceptions import ResponseTimeout, MismatchedReply
+import socket
+from p2_app_protocol.exceptions import ResponseTimeout, MismatchedReply, NoConnectionToDrone
 
 
 @pytest.fixture(scope="session")
@@ -165,3 +166,19 @@ def test_auto_depth_step_produces_correct_message(tcp_client, direction, expecte
 def test_auto_heading_step_produces_correct_message(tcp_client, direction, expected_message):
     tcp_client.auto_heading_step(direction)
     tcp_client._sock.send.assert_called_with(expected_message)
+
+
+def test_connect_logs_error_on_failure(tcp_client):
+    tcp_client._sock.connect.side_effect = socket.timeout
+    with pytest.raises(NoConnectionToDrone):
+        tcp_client.connect()
+    tcp_client.logger.error.assert_called_once()
+
+
+def test_connect_retries_on_failure(tcp_client, mocker):
+    tcp_client._sock.connect.side_effect = socket.timeout
+    # Resetting call count as connect is called when creating the mock
+    tcp_client._sock.connect.call_count = 0
+    with pytest.raises(NoConnectionToDrone):
+        tcp_client.connect(max_retries=3)
+    assert(tcp_client._sock.connect.call_count == 4)

@@ -18,3 +18,12 @@ class MismatchedReply(TCPClientException, ValueError):
         self.actual_reply = actual_reply
         TCPClientException.__init__(self, (f"Unexpected reply from drone, expected: " +
                                            f"{expected_reply}, but got: {actual_reply}"))
+
+
+class NoConnectionToDrone(TCPClientException):
+    """Raised if the TCP Client is unable to establish a connection to the drone"""
+
+    def __init__(self, ip, port):
+        self.ip = ip
+        self.port = port
+        TCPClientException.__init__(self, f"Unable to connect to drone at {ip}:{port}")

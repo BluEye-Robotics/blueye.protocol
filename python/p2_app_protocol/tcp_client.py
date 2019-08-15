@@ -4,7 +4,8 @@ import socket
 import threading
 import time
 
-from p2_app_protocol.exceptions import SocketNotConnected, ResponseTimeout, MismatchedReply
+from p2_app_protocol.exceptions import (MismatchedReply, NoConnectionToDrone,
+                                        ResponseTimeout, SocketNotConnected)
 from p2_app_protocol.tcp_protocol_class import TcpCommands
 
 
@@ -30,11 +31,23 @@ class TcpClient(threading.Thread, TcpCommands):
             self.ping()
             time.sleep(0.5)
 
-    def connect(self):
-        self._sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self._sock.settimeout(1.0)
-        self._sock.connect((self._ip, self._port))
-        self._sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    def connect(self, max_retries=0):
+        attempts = 0
+        while attempts <= max_retries:
+            try:
+                # Creating a new socket for each attempt, as a broken socket should not be reused.
+                self._sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                self._sock.settimeout(1.0)
+                self._sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                self._sock.connect(self._ip, self._port)
+            except socket.timeout:
+                self._sock.close()
+                attempts += 1
+                continue
+            break
+        else:
+            self.logger.error(f"Attempted {max_retries} times, but was unable to connect to drone.")
+            raise NoConnectionToDrone(self._ip, self._port)
 
     def stop(self):
         self._stop_thread = True
@@ -70,7 +83,7 @@ if __name__ == "__main__":
     logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
                         datefmt='%d-%b-%y %H:%M:%S', level=logging.DEBUG)
     tc = TcpClient()
-    tc.connect()
+    tc.connect(max_retries=3)
     tc.start()
     time.sleep(3)
     tc.stop()
