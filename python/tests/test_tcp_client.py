@@ -123,10 +123,7 @@ def test_light_command_does_not_raise_exception_when_input_arguments_are_in_rang
 
 
 def test_receive_msg_warns_on_timeout(tcp_client):
-    def recv_that_times_out(*args):
-        import socket
-        raise socket.timeout
-    tcp_client._sock.recv = recv_that_times_out
+    tcp_client._sock.recv.side_effect = socket.timeout
     with pytest.raises(ResponseTimeout):
         tcp_client.receive_msg()
     tcp_client.logger.warning.assert_called_once()
