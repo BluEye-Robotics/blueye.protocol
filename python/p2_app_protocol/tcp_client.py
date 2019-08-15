@@ -4,7 +4,7 @@ import socket
 import threading
 import time
 
-from p2_app_protocol.exceptions import SocketNotConnected, ResponseTimeout
+from p2_app_protocol.exceptions import SocketNotConnected, ResponseTimeout, MismatchedReply
 from p2_app_protocol.tcp_protocol_class import TcpCommands
 
 
@@ -63,9 +63,7 @@ class TcpClient(threading.Thread, TcpCommands):
 
     def check_reply(self, reply, expected_reply):
         if not reply == expected_reply:
-            raise ValueError(
-                f"Unexpected reply from drone, expected: {expected_reply}, " +
-                f"but got: {reply}")
+            raise MismatchedReply(expected_reply, reply)
 
 
 if __name__ == "__main__":

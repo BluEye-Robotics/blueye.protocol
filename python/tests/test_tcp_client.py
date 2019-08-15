@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import pytest
-from p2_app_protocol.exceptions import ResponseTimeout
+from p2_app_protocol.exceptions import ResponseTimeout, MismatchedReply
 
 
 @pytest.fixture(scope="session")
@@ -67,7 +67,7 @@ def test_ping_command_produces_correct_message(tcp_client, mocked_socket):
 
 def test_exception_raised_on_wrong_reply(tcp_client, mocked_socket):
     mocked_socket.recv.return_value = "wrong reply"
-    with pytest.raises(ValueError):
+    with pytest.raises(MismatchedReply):
         tcp_client.ping()
 
 
