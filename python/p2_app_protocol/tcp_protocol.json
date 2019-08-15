@@ -87,6 +87,22 @@
                 "command_type": "c"
             },
             {
+                "name": "user_geo_location",
+                "command_type": "g",
+                "fields": [
+                    {
+                        "field_name": "longitude",
+                        "dtype": "<f8",
+                        "description": "longitude that is included in the logf ile in degrees"
+                    },
+                    {
+                        "field_name": "latitude",
+                        "dtype": "<f8",
+                        "description": "latitude that is included in the log file in degrees"
+                    }
+                ]
+            },
+            {
                 "name": "auto_heading_on",
                 "command_type": "h"
             },

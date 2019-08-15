@@ -129,3 +129,12 @@ def test_receive_msg_warns_on_timeout(tcp_client):
     with pytest.raises(ResponseTimeout):
         tcp_client.receive_msg()
     tcp_client.logger.warn.assert_called_once()
+
+
+@pytest.mark.parametrize('latitude, longitude, expected_message', [
+    (0, 0, b'g\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'),
+    (10, 10, b'g\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00$@')
+])
+def test_user_geo_location_produces_correct_message(tcp_client, latitude, longitude, expected_message):
+    tcp_client.user_geo_location(latitude, longitude)
+    tcp_client._sock.send.assert_called_with(expected_message)

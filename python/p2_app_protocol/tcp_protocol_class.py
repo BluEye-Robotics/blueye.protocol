@@ -155,6 +155,21 @@ class TcpCommands:
         except IOError:
             pass
 
+    def user_geo_location(self, longitude, latitude):
+        """Send a user_geo_location command over TCP
+
+        Args:
+            longitude (numpy data type:<f8): 
+            latitude (numpy data type:<f8): 
+        """
+        command_identifier = b'g'
+        msg = command_identifier
+        msg += struct.pack('dd', longitude, latitude)
+        try:
+            self.send_msg(msg)
+        except IOError:
+            pass
+
     def auto_heading_on(self):
         """Send a auto_heading_on command over TCP
         """

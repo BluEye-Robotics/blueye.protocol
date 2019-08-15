@@ -4,11 +4,13 @@
 
         Args:
         {% for field in fields %}
-            {{field.field_name}} (numpy data type:{{field.dtype}}): valid range is <{{field.lower_limit}}, {{field.upper_limit}}>
+            {{field.field_name}} (numpy data type:{{field.dtype}}): {% if field.lower_limit is defined and  field.upper_limit is defined %}valid range is <{{field.lower_limit}}, {{field.upper_limit}}>{% endif %}
+
         {% endfor %}
         {% endif %}
         """
         {% for field in fields %}
+        {% if field.lower_limit is defined and field.upper_limit is defined %}
         if not {{field.lower_limit}} <= {{field.field_name}} <= {{field.upper_limit}}:
             raise ValueError(
                 "Input argument out of range:" +
@@ -16,6 +18,7 @@
                 " <{lower_limit}, {upper_limit}>".format(lower_limit={{field.lower_limit}}, upper_limit={{field.upper_limit}}) +
                 " but got value: {name}".format(name={{field.field_name}}))
 
+        {% endif %}
         {% endfor %}
         command_identifier = b'{{command_type}}'
         msg = command_identifier
