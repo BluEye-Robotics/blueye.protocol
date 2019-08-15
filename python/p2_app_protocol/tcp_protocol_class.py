@@ -224,3 +224,31 @@ class TcpCommands:
         except IOError:
             pass
 
+    def auto_depth_step(self, direction):
+        """Send a auto_depth_step command over TCP
+
+        Args:
+            direction (numpy data type:<i2): 
+        """
+        command_identifier = b'a'
+        msg = command_identifier
+        msg += struct.pack('h', direction)
+        try:
+            self.send_msg(msg)
+        except IOError:
+            pass
+
+    def auto_heading_step(self, direction):
+        """Send a auto_heading_step command over TCP
+
+        Args:
+            direction (numpy data type:<i2): 
+        """
+        command_identifier = b'A'
+        msg = command_identifier
+        msg += struct.pack('h', direction)
+        try:
+            self.send_msg(msg)
+        except IOError:
+            pass
+
