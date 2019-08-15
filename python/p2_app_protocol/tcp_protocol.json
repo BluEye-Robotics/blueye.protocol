@@ -161,6 +161,22 @@
                         "dtype": "<i4"
                     }
                ]
+            },
+            {
+                "name": "set_camera_parameter",
+                "command_type": "v",
+                "expected_reply": "a",
+                "fields": [
+                    {
+                        "field_name": "camera_parameter",
+                        "dtype": "<u1",
+                        "description": "a char that identifies the camera parameter to be set: 'e'= exposure, 'w'= white balance, 'h'= hue, 'b'= bitrate, 'r'= resolution, "
+                    },
+                    {
+                        "field_name": "parameter_value",
+                        "dtype": "<i4"
+                    }
+                ]
             }
         ]
     }

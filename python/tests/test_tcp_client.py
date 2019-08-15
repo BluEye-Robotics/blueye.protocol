@@ -190,3 +190,17 @@ def test_set_system_time_produces_correct_message(tcp_client, mocked_socket, sys
     mocked_socket.recv.return_value = correct_reply
     tcp_client.set_system_time(system_time)
     tcp_client._sock.send.assert_called_with(expected_message)
+
+
+@pytest.mark.parametrize('camera_parameter, parameter_value, expected_message', [
+    (ord('e'), 1000, b've\x00\x00\x00\xe8\x03\x00\x00'),
+    (ord('w'), 1000, b'vw\x00\x00\x00\xe8\x03\x00\x00'),
+    (ord('h'), 1000, b'vh\x00\x00\x00\xe8\x03\x00\x00'),
+    (ord('b'), 1000, b'vb\x00\x00\x00\xe8\x03\x00\x00'),
+    (ord('r'), 1000, b'vr\x00\x00\x00\xe8\x03\x00\x00')
+])
+def test_set_camera_parameter_produces_correct_message(tcp_client, mocked_socket, camera_parameter, parameter_value, expected_message):
+    correct_reply = b'a'
+    mocked_socket.recv.return_value = correct_reply
+    tcp_client.set_camera_parameter(camera_parameter, parameter_value)
+    tcp_client._sock.send.assert_called_with(expected_message)

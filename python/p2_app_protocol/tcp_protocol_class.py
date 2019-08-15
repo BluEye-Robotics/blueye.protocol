@@ -268,3 +268,20 @@ class TcpCommands:
         except IOError:
             pass
 
+    def set_camera_parameter(self, camera_parameter, parameter_value):
+        """Send a set_camera_parameter command over TCP
+
+        Args:
+            camera_parameter (numpy data type:<u1): 
+            parameter_value (numpy data type:<i4): 
+        """
+        command_identifier = b'v'
+        msg = command_identifier
+        msg += struct.pack('Bi', camera_parameter, parameter_value)
+        try:
+            self.send_msg(msg)
+            reply = self.receive_msg()
+            self.check_reply(reply, b'a')
+        except IOError:
+            pass
+
