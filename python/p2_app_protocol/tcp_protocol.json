@@ -103,6 +103,17 @@
                 ]
             },
             {
+                "name": "watchdog",
+                "command_type": "w",
+                "fields": [
+                    {
+                    "field_name": "connection_duration",
+                    "dtype": "<i2",
+                    "description": "time in seconds since connected to drone"
+                    }
+                ]
+            },
+            {
                 "name": "auto_heading_on",
                 "command_type": "h"
             },

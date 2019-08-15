@@ -170,6 +170,20 @@ class TcpCommands:
         except IOError:
             pass
 
+    def watchdog(self, connection_duration):
+        """Send a watchdog command over TCP
+
+        Args:
+            connection_duration (numpy data type:<i2): 
+        """
+        command_identifier = b'w'
+        msg = command_identifier
+        msg += struct.pack('h', connection_duration)
+        try:
+            self.send_msg(msg)
+        except IOError:
+            pass
+
     def auto_heading_on(self):
         """Send a auto_heading_on command over TCP
         """

@@ -138,3 +138,10 @@ def test_receive_msg_warns_on_timeout(tcp_client):
 def test_user_geo_location_produces_correct_message(tcp_client, latitude, longitude, expected_message):
     tcp_client.user_geo_location(latitude, longitude)
     tcp_client._sock.send.assert_called_with(expected_message)
+
+
+@pytest.mark.parametrize('connection_duration, expected_message', [
+    (1000, b'w\xe8\x03'),
+    (0, b'w\x00\x00')
+])
+def test_watchdog_produces_correct_message(tcp_client, connection_duration, expected_message):
