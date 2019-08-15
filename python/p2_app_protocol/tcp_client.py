@@ -10,7 +10,7 @@ from p2_app_protocol.tcp_protocol_class import TcpCommands
 
 
 class TcpClient(threading.Thread, TcpCommands):
-    def __init__(self, port=2011, ip="192.168.1.101"):
+    def __init__(self, port=2011, ip="192.168.1.101", maxConnectRetries=0):
         threading.Thread.__init__(self)
         self._ip = ip
         self._port = port
@@ -20,6 +20,8 @@ class TcpClient(threading.Thread, TcpCommands):
         self.daemon = False
         self.logger = logging.getLogger()
         self.write_lock = threading.Lock()
+        self.connect(maxConnectRetries)
+        self.start()
 
     def __del__(self):
         if self._sock is not None:
@@ -39,7 +41,7 @@ class TcpClient(threading.Thread, TcpCommands):
                 self._sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 self._sock.settimeout(1.0)
                 self._sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-                self._sock.connect(self._ip, self._port)
+                self._sock.connect((self._ip, self._port))
             except socket.timeout:
                 self._sock.close()
                 attempts += 1
@@ -82,8 +84,6 @@ class TcpClient(threading.Thread, TcpCommands):
 if __name__ == "__main__":
     logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
                         datefmt='%d-%b-%y %H:%M:%S', level=logging.DEBUG)
-    tc = TcpClient()
-    tc.connect(max_retries=3)
-    tc.start()
+    tc = TcpClient(maxConnectRetries=3)
     time.sleep(3)
     tc.stop()
