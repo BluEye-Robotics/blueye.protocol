@@ -128,7 +128,7 @@ def test_receive_msg_warns_on_timeout(tcp_client):
     tcp_client._sock.recv = recv_that_times_out
     with pytest.raises(ResponseTimeout):
         tcp_client.receive_msg()
-    tcp_client.logger.warn.assert_called_once()
+    tcp_client.logger.warning.assert_called_once()
 
 
 @pytest.mark.parametrize('latitude, longitude, expected_message', [

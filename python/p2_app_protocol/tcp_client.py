@@ -58,7 +58,7 @@ class TcpClient(threading.Thread, TcpCommands):
             self.logger.debug(f"Reply: {reply}")
             return reply
         except socket.timeout as e:
-            self.logger.warn("Timed out while waiting for message reply")
+            self.logger.warning("Timed out while waiting for message reply")
             raise ResponseTimeout from e
 
     def check_reply(self, reply, expected_reply):
