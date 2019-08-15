@@ -145,3 +145,5 @@ def test_user_geo_location_produces_correct_message(tcp_client, latitude, longit
     (0, b'w\x00\x00')
 ])
 def test_watchdog_produces_correct_message(tcp_client, connection_duration, expected_message):
+    tcp_client.watchdog(connection_duration)
+    tcp_client._sock.send.assert_called_with(expected_message)
