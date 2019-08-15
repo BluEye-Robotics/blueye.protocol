@@ -25,7 +25,8 @@ def mocked_logger(mocker):
 @pytest.fixture
 def tcp_client(mocked_socket, mocked_logger, generate_tcp_protocol):
     from p2_app_protocol import TcpClient
-    tc = TcpClient()
+    tc = TcpClient(autoConnect=False)
+    tc.connect()
     tc.logger = mocked_logger
     yield tc
 

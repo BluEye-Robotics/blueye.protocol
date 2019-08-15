@@ -10,7 +10,7 @@ from p2_app_protocol.tcp_protocol_class import TcpCommands
 
 
 class TcpClient(threading.Thread, TcpCommands):
-    def __init__(self, port=2011, ip="192.168.1.101", maxConnectRetries=0):
+    def __init__(self, port=2011, ip="192.168.1.101", maxConnectRetries=0, autoConnect=True):
         threading.Thread.__init__(self)
         self._ip = ip
         self._port = port
@@ -20,8 +20,9 @@ class TcpClient(threading.Thread, TcpCommands):
         self.daemon = False
         self.logger = logging.getLogger()
         self.write_lock = threading.Lock()
-        self.connect(maxConnectRetries)
-        self.start()
+        if autoConnect is True:
+            self.connect(maxConnectRetries)
+            self.start()
 
     def __del__(self):
         if self._sock is not None:
