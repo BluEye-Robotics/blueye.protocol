@@ -179,3 +179,14 @@ def test_connect_retries_on_failure(tcp_client, mocker):
     with pytest.raises(NoConnectionToDrone):
         tcp_client.connect(max_retries=3)
     assert(tcp_client._sock.connect.call_count == 4)
+
+
+@pytest.mark.parametrize('system_time, expected_message', [
+    (1500, b't\xdc\x05\x00\x00'),
+    (0, b't\x00\x00\x00\x00')
+])
+def test_set_system_time_produces_correct_message(tcp_client, mocked_socket, system_time, expected_message):
+    correct_reply = b'a'
+    mocked_socket.recv.return_value = correct_reply
+    tcp_client.set_system_time(system_time)
+    tcp_client._sock.send.assert_called_with(expected_message)

@@ -252,3 +252,19 @@ class TcpCommands:
         except IOError:
             pass
 
+    def set_system_time(self, unix_timestamp):
+        """Send a set_system_time command over TCP
+
+        Args:
+            unix_timestamp (numpy data type:<i4): 
+        """
+        command_identifier = b't'
+        msg = command_identifier
+        msg += struct.pack('i', unix_timestamp)
+        try:
+            self.send_msg(msg)
+            reply = self.receive_msg()
+            self.check_reply(reply, b'a')
+        except IOError:
+            pass
+

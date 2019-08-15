@@ -150,6 +150,17 @@
                         "description": "1 for up, -1 for down"
                     }
                 ]
+            },
+            {
+                "name": "set_system_time",
+                "command_type": "t",
+                "expected_reply": "a",
+                "fields": [
+                    {
+                        "field_name": "unix_timestamp",
+                        "dtype": "<i4"
+                    }
+               ]
             }
         ]
     }
