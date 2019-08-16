@@ -7,12 +7,12 @@ class TcpCommands:
         """Send a motion_input command over TCP
 
         Args:
-            surge_motion_input (numpy data type:<f4): valid range is <-1, 1>
-            sway_motion_input (numpy data type:<f4): valid range is <-1, 1>
-            heave_motion_input (numpy data type:<f4): valid range is <-1, 1>
-            yaw_motion_input (numpy data type:<f4): valid range is <-1, 1>
-            slow_input (numpy data type:<f4): valid range is <0, 1>
-            boost_input (numpy data type:<f4): valid range is <0, 1>
+            surge_motion_input (numpy data type:<f4): valid range is <-1. 1> 
+            sway_motion_input (numpy data type:<f4): valid range is <-1. 1> 
+            heave_motion_input (numpy data type:<f4): valid range is <-1. 1> 
+            yaw_motion_input (numpy data type:<f4): valid range is <-1. 1> 
+            slow_input (numpy data type:<f4): valid range is <0. 1> 
+            boost_input (numpy data type:<f4): valid range is <0. 1> 
         """
         if not -1 <= surge_motion_input <= 1:
             raise ValueError(
@@ -68,8 +68,8 @@ class TcpCommands:
         """Send a set_lights command over TCP
 
         Args:
-            brightness_upper (numpy data type:<u1): valid range is <0, 255>
-            brightness_lower (numpy data type:<u1): valid range is <0, 255>
+            brightness_upper (numpy data type:<u1): valid range is <0. 255> 
+            brightness_lower (numpy data type:<u1): valid range is <0. 255> 
         """
         if not 0 <= brightness_upper <= 255:
             raise ValueError(
@@ -159,8 +159,8 @@ class TcpCommands:
         """Send a user_geo_location command over TCP
 
         Args:
-            longitude (numpy data type:<f8):
-            latitude (numpy data type:<f8):
+            longitude (numpy data type:<f8): longitude that is included in the log file in degrees
+            latitude (numpy data type:<f8): latitude that is included in the log file in degrees
         """
         command_identifier = b'g'
         msg = command_identifier
@@ -174,7 +174,7 @@ class TcpCommands:
         """Send a watchdog command over TCP
 
         Args:
-            connection_duration (numpy data type:<i2):
+            connection_duration (numpy data type:<i2): time in seconds since connected to drone
         """
         command_identifier = b'w'
         msg = command_identifier
@@ -228,7 +228,7 @@ class TcpCommands:
         """Send a auto_depth_step command over TCP
 
         Args:
-            direction (numpy data type:<i2):
+            direction (numpy data type:<i2):  1 for up, -1 for down
         """
         command_identifier = b'a'
         msg = command_identifier
@@ -242,7 +242,7 @@ class TcpCommands:
         """Send a auto_heading_step command over TCP
 
         Args:
-            direction (numpy data type:<i2):
+            direction (numpy data type:<i2): 1 for up, -1 for down
         """
         command_identifier = b'A'
         msg = command_identifier
@@ -255,8 +255,10 @@ class TcpCommands:
     def set_system_time(self, unix_timestamp):
         """Send a set_system_time command over TCP
 
+        set the system time on the on-board computer
+
         Args:
-            unix_timestamp (numpy data type:<i4):
+            unix_timestamp (numpy data type:<i4): 
         """
         command_identifier = b't'
         msg = command_identifier
@@ -272,7 +274,7 @@ class TcpCommands:
         """Send a set_camera_exposure command over TCP
 
         Args:
-            exposure_value (numpy data type:<i4):
+            exposure_value (numpy data type:<i4): 
         """
         command_identifier = b've'
         msg = command_identifier
@@ -288,7 +290,7 @@ class TcpCommands:
         """Send a set_camera_whitebalance command over TCP
 
         Args:
-            whitebalance_value (numpy data type:<i4):
+            whitebalance_value (numpy data type:<i4): 
         """
         command_identifier = b'vw'
         msg = command_identifier
@@ -304,7 +306,7 @@ class TcpCommands:
         """Send a set_camera_hue command over TCP
 
         Args:
-            hue_value (numpy data type:<i4):
+            hue_value (numpy data type:<i4): 
         """
         command_identifier = b'vh'
         msg = command_identifier
@@ -320,7 +322,7 @@ class TcpCommands:
         """Send a set_camera_bitrate command over TCP
 
         Args:
-            bitrate_value (numpy data type:<i4):
+            bitrate_value (numpy data type:<i4): 
         """
         command_identifier = b'vb'
         msg = command_identifier
@@ -336,7 +338,7 @@ class TcpCommands:
         """Send a set_camera_framerate command over TCP
 
         Args:
-            framerate_value (numpy data type:<i4):
+            framerate_value (numpy data type:<i4): 
         """
         command_identifier = b'vf'
         msg = command_identifier
@@ -352,7 +354,7 @@ class TcpCommands:
         """Send a set_camera_resolution command over TCP
 
         Args:
-            resolution_value (numpy data type:<i4):
+            resolution_value (numpy data type:<i4): 
         """
         command_identifier = b'vr'
         msg = command_identifier

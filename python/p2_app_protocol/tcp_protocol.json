@@ -93,7 +93,7 @@
                     {
                         "field_name": "longitude",
                         "dtype": "<f8",
-                        "description": "longitude that is included in the logf ile in degrees"
+                        "description": "longitude that is included in the log file in degrees"
                     },
                     {
                         "field_name": "latitude",
@@ -154,6 +154,7 @@
             {
                 "name": "set_system_time",
                 "command_type": "t",
+                "description": "set the system time on the on-board computer",
                 "expected_reply": "a",
                 "fields": [
                     {
