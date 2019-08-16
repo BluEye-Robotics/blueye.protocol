@@ -159,8 +159,8 @@ class TcpCommands:
         """Send a user_geo_location command over TCP
 
         Args:
-            longitude (numpy data type:<f8): 
-            latitude (numpy data type:<f8): 
+            longitude (numpy data type:<f8):
+            latitude (numpy data type:<f8):
         """
         command_identifier = b'g'
         msg = command_identifier
@@ -174,7 +174,7 @@ class TcpCommands:
         """Send a watchdog command over TCP
 
         Args:
-            connection_duration (numpy data type:<i2): 
+            connection_duration (numpy data type:<i2):
         """
         command_identifier = b'w'
         msg = command_identifier
@@ -228,7 +228,7 @@ class TcpCommands:
         """Send a auto_depth_step command over TCP
 
         Args:
-            direction (numpy data type:<i2): 
+            direction (numpy data type:<i2):
         """
         command_identifier = b'a'
         msg = command_identifier
@@ -242,7 +242,7 @@ class TcpCommands:
         """Send a auto_heading_step command over TCP
 
         Args:
-            direction (numpy data type:<i2): 
+            direction (numpy data type:<i2):
         """
         command_identifier = b'A'
         msg = command_identifier
@@ -256,7 +256,7 @@ class TcpCommands:
         """Send a set_system_time command over TCP
 
         Args:
-            unix_timestamp (numpy data type:<i4): 
+            unix_timestamp (numpy data type:<i4):
         """
         command_identifier = b't'
         msg = command_identifier
