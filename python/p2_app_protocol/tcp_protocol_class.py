@@ -268,16 +268,79 @@ class TcpCommands:
         except IOError:
             pass
 
-    def set_camera_parameter(self, camera_parameter, parameter_value):
-        """Send a set_camera_parameter command over TCP
+    def set_camera_exposure(self, exposure_value):
+        """Send a set_camera_exposure command over TCP
 
         Args:
-            camera_parameter (numpy data type:<u1): 
-            parameter_value (numpy data type:<i4): 
+            exposure_value (numpy data type:<i4):
         """
-        command_identifier = b'v'
+        command_identifier = b've'
         msg = command_identifier
-        msg += struct.pack('Bi', camera_parameter, parameter_value)
+        msg += struct.pack('i', exposure_value)
+        try:
+            self.send_msg(msg)
+            reply = self.receive_msg()
+            self.check_reply(reply, b'a')
+        except IOError:
+            pass
+
+    def set_camera_whitebalance(self, whitebalance_value):
+        """Send a set_camera_whitebalance command over TCP
+
+        Args:
+            whitebalance_value (numpy data type:<i4):
+        """
+        command_identifier = b'vw'
+        msg = command_identifier
+        msg += struct.pack('i', whitebalance_value)
+        try:
+            self.send_msg(msg)
+            reply = self.receive_msg()
+            self.check_reply(reply, b'a')
+        except IOError:
+            pass
+
+    def set_camera_hue(self, hue_value):
+        """Send a set_camera_hue command over TCP
+
+        Args:
+            hue_value (numpy data type:<i4):
+        """
+        command_identifier = b'vh'
+        msg = command_identifier
+        msg += struct.pack('i', hue_value)
+        try:
+            self.send_msg(msg)
+            reply = self.receive_msg()
+            self.check_reply(reply, b'a')
+        except IOError:
+            pass
+
+    def set_camera_bitrate(self, bitrate_value):
+        """Send a set_camera_bitrate command over TCP
+
+        Args:
+            bitrate_value (numpy data type:<i4):
+        """
+        command_identifier = b'vb'
+        msg = command_identifier
+        msg += struct.pack('i', bitrate_value)
+        try:
+            self.send_msg(msg)
+            reply = self.receive_msg()
+            self.check_reply(reply, b'a')
+        except IOError:
+            pass
+
+    def set_camera_resolution(self, resolution_value):
+        """Send a set_camera_resolution command over TCP
+
+        Args:
+            resolution_value (numpy data type:<i4):
+        """
+        command_identifier = b'vr'
+        msg = command_identifier
+        msg += struct.pack('i', resolution_value)
         try:
             self.send_msg(msg)
             reply = self.receive_msg()

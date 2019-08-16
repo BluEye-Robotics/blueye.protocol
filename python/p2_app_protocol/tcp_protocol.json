@@ -163,17 +163,56 @@
                ]
             },
             {
-                "name": "set_camera_parameter",
-                "command_type": "v",
+                "name": "set_camera_exposure",
+                "command_type": "ve",
                 "expected_reply": "a",
                 "fields": [
                     {
-                        "field_name": "camera_parameter",
-                        "dtype": "<u1",
-                        "description": "a char that identifies the camera parameter to be set: 'e'= exposure, 'w'= white balance, 'h'= hue, 'b'= bitrate, 'r'= resolution, "
-                    },
+                        "field_name": "exposure_value",
+                        "dtype": "<i4"
+                    }
+                ]
+            },
+            {
+                "name": "set_camera_whitebalance",
+                "command_type": "vw",
+                "expected_reply": "a",
+                "fields": [
                     {
-                        "field_name": "parameter_value",
+                        "field_name": "whitebalance_value",
+                        "dtype": "<i4"
+                    }
+                ]
+            },
+            {
+                "name": "set_camera_hue",
+                "command_type": "vh",
+                "expected_reply": "a",
+                "fields": [
+                    {
+                        "field_name": "hue_value",
+                        "dtype": "<i4"
+                    }
+                ]
+            },
+            {
+                "name": "set_camera_bitrate",
+                "command_type": "vb",
+                "expected_reply": "a",
+                "fields": [
+                    {
+                        "field_name": "bitrate_value",
+                        "dtype": "<i4"
+                    }
+                ]
+            },
+            {
+                "name": "set_camera_resolution",
+                "command_type": "vr",
+                "expected_reply": "a",
+                "fields": [
+                    {
+                        "field_name": "resolution_value",
                         "dtype": "<i4"
                     }
                 ]
