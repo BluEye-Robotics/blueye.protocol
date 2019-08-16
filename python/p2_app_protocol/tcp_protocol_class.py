@@ -332,6 +332,22 @@ class TcpCommands:
         except IOError:
             pass
 
+    def set_camera_framerate(self, framerate_value):
+        """Send a set_camera_framerate command over TCP
+
+        Args:
+            framerate_value (numpy data type:<i4):
+        """
+        command_identifier = b'vf'
+        msg = command_identifier
+        msg += struct.pack('i', framerate_value)
+        try:
+            self.send_msg(msg)
+            reply = self.receive_msg()
+            self.check_reply(reply, b'a')
+        except IOError:
+            pass
+
     def set_camera_resolution(self, resolution_value):
         """Send a set_camera_resolution command over TCP
 

@@ -207,6 +207,17 @@
                 ]
             },
             {
+                "name": "set_camera_framerate",
+                "command_type": "vf",
+                "expected_reply": "a",
+                "fields": [
+                    {
+                        "field_name": "framerate_value",
+                        "dtype": "<i4"
+                    }
+                ]
+            },
+            {
                 "name": "set_camera_resolution",
                 "command_type": "vr",
                 "expected_reply": "a",

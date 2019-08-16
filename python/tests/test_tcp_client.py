@@ -197,6 +197,7 @@ def test_set_system_time_produces_correct_message(tcp_client, mocked_socket, sys
     ('set_camera_whitebalance', 1000, b'vw\xe8\x03\x00\x00'),
     ('set_camera_hue', 1000, b'vh\xe8\x03\x00\x00'),
     ('set_camera_bitrate', 1000, b'vb\xe8\x03\x00\x00'),
+    ('set_camera_framerate', 1000, b'vf\xe8\x03\x00\x00'),
     ('set_camera_resolution', 1000, b'vr\xe8\x03\x00\x00')
 ])
 def test_camera_setting_functions_produce_correct_messages(tcp_client, mocked_socket, camera_setting_function, parameter_value, expected_message):
