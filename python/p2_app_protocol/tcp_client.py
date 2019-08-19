@@ -68,9 +68,9 @@ class TcpClient(threading.Thread, TcpCommands):
             self.logger.debug(f"Sent message: {msg}")
             self._sock.send(msg)
 
-    def receive_msg(self):
+    def receive_msg(self, size=1):
         try:
-            reply = self._sock.recv(1)
+            reply = self._sock.recv(size)
             self.logger.debug(f"Reply: {reply}")
             return reply
         except socket.timeout as e:
