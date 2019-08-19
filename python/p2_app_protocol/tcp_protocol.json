@@ -228,6 +228,40 @@
                         "dtype": "<i4"
                     }
                 ]
+            },
+            {
+                "name": "get_camera_parameters",
+                "command_type": "Vv",
+                "returned_fields": [
+                    {
+                        "field_name": "parameter",
+                        "dtype": "<u1"
+                    },
+                    {
+                        "field_name": "camera_bitrate",
+                        "dtype": "<i4"
+                    },
+                    {
+                        "field_name": "camera_exposure",
+                        "dtype": "<i4"
+                    },
+                    {
+                        "field_name": "camera_whitebalance",
+                        "dtype": "<i4"
+                    },
+                    {
+                        "field_name": "camera_hue",
+                        "dtype": "<i4"
+                    },
+                    {
+                        "field_name": "camera_resolution",
+                        "dtype": "<i4"
+                    },
+                    {
+                        "field_name": "camera_framerate",
+                        "dtype": "<i4"
+                    }
+                ]
             }
         ]
     }

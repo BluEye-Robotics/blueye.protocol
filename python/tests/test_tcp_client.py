@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import pytest
 import socket
+import struct
 from p2_app_protocol.exceptions import ResponseTimeout, MismatchedReply, NoConnectionToDrone
 
 
@@ -15,6 +16,11 @@ def generate_tcp_protocol():
 @pytest.fixture
 def mocked_socket(mocker):
     return mocker.patch('socket.socket', autospec=True).return_value
+
+
+@pytest.fixture
+def mocked_struct(mocker):
+    mocker.patch('struct.unpack', autospec=True)
 
 
 @pytest.fixture
@@ -206,3 +212,8 @@ def test_camera_setting_functions_produce_correct_messages(tcp_client, mocked_so
     func = getattr(tcp_client, camera_setting_function)
     func(parameter_value)
     tcp_client._sock.send.assert_called_with(expected_message)
+
+
+def test_get_camera_parameters_produces_correct_message(tcp_client, mocked_socket, mocked_struct):
+    tcp_client.get_camera_parameters()
+    tcp_client._sock.send.assert_called_with(b'Vv')
