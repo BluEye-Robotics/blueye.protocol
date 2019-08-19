@@ -19,7 +19,7 @@ class TcpClient(threading.Thread, TcpCommands):
         self._stop_thread = False
         self.daemon = False
         self.logger = logging.getLogger()
-        self.write_lock = threading.Lock()
+        self.socket_lock = threading.Lock()
         if autoConnect is True:
             self.connect(maxConnectRetries)
             self.start()
@@ -64,7 +64,7 @@ class TcpClient(threading.Thread, TcpCommands):
         """
         if self._sock is None:
             raise SocketNotConnected
-        with self.write_lock:
+        with self.socket_lock:
             self.logger.debug(f"Sent message: {msg}")
             self._sock.send(msg)
 
