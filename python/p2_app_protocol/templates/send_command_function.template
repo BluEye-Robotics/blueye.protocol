@@ -8,7 +8,7 @@
 
         Args:
         {% for field in fields %}
-            {{field.field_name}} (numpy data type:{{field.dtype}}):{% if field.lower_limit is defined and  field.upper_limit is defined %} valid range is <{{field.lower_limit}}. {{field.upper_limit}}>{% endif %} {{field.description}}
+            {{field.field_name}} (numpy data type:{{field.dtype}}):{% if field.lower_limit is defined and  field.upper_limit is defined %} valid range is <{{field.lower_limit}}, {{field.upper_limit}}>{% endif %} {{field.description}}
         {% endfor %}
         {% endif %}
         """
