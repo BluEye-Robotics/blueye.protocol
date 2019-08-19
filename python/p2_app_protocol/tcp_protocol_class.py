@@ -59,10 +59,7 @@ class TcpCommands:
         command_identifier = b'j'
         msg = command_identifier
         msg += struct.pack('ffffff', surge_motion_input, sway_motion_input, heave_motion_input, yaw_motion_input, slow_input, boost_input)
-        try:
-            self.send_msg(msg)
-        except IOError:
-            pass
+        self.send_msg(msg)
 
     def set_lights(self, brightness_upper, brightness_lower):
         """Send a set_lights command over TCP
@@ -88,72 +85,51 @@ class TcpCommands:
         command_identifier = b'l'
         msg = command_identifier
         msg += struct.pack('BB', brightness_upper, brightness_lower)
-        try:
-            self.send_msg(msg)
-        except IOError:
-            pass
+        self.send_msg(msg)
 
     def ping(self):
         """Send a ping command over TCP
         """
         command_identifier = b'p'
         msg = command_identifier
-        try:
-            self.send_msg(msg)
-            reply = self.receive_msg()
-            self.check_reply(reply, b'P')
-        except IOError:
-            pass
+        self.send_msg(msg)
+        reply = self.receive_msg()
+        self.check_reply(reply, b'P')
 
     def start_recording(self):
         """Send a start_recording command over TCP
         """
         command_identifier = b'r'
         msg = command_identifier
-        try:
-            self.send_msg(msg)
-        except IOError:
-            pass
+        self.send_msg(msg)
 
     def stop_recording(self):
         """Send a stop_recording command over TCP
         """
         command_identifier = b'R'
         msg = command_identifier
-        try:
-            self.send_msg(msg)
-        except IOError:
-            pass
+        self.send_msg(msg)
 
     def start_compass_calibration(self):
         """Send a start_compass_calibration command over TCP
         """
         command_identifier = b'i'
         msg = command_identifier
-        try:
-            self.send_msg(msg)
-        except IOError:
-            pass
+        self.send_msg(msg)
 
     def cancel_compass_calibration(self):
         """Send a cancel_compass_calibration command over TCP
         """
         command_identifier = b'I'
         msg = command_identifier
-        try:
-            self.send_msg(msg)
-        except IOError:
-            pass
+        self.send_msg(msg)
 
     def save_compass_calibration(self):
         """Send a save_compass_calibration command over TCP
         """
         command_identifier = b'c'
         msg = command_identifier
-        try:
-            self.send_msg(msg)
-        except IOError:
-            pass
+        self.send_msg(msg)
 
     def user_geo_location(self, longitude, latitude):
         """Send a user_geo_location command over TCP
@@ -165,10 +141,7 @@ class TcpCommands:
         command_identifier = b'g'
         msg = command_identifier
         msg += struct.pack('dd', longitude, latitude)
-        try:
-            self.send_msg(msg)
-        except IOError:
-            pass
+        self.send_msg(msg)
 
     def watchdog(self, connection_duration):
         """Send a watchdog command over TCP
@@ -179,50 +152,35 @@ class TcpCommands:
         command_identifier = b'w'
         msg = command_identifier
         msg += struct.pack('h', connection_duration)
-        try:
-            self.send_msg(msg)
-        except IOError:
-            pass
+        self.send_msg(msg)
 
     def auto_heading_on(self):
         """Send a auto_heading_on command over TCP
         """
         command_identifier = b'h'
         msg = command_identifier
-        try:
-            self.send_msg(msg)
-        except IOError:
-            pass
+        self.send_msg(msg)
 
     def auto_heading_off(self):
         """Send a auto_heading_off command over TCP
         """
         command_identifier = b'H'
         msg = command_identifier
-        try:
-            self.send_msg(msg)
-        except IOError:
-            pass
+        self.send_msg(msg)
 
     def auto_depth_on(self):
         """Send a auto_depth_on command over TCP
         """
         command_identifier = b'd'
         msg = command_identifier
-        try:
-            self.send_msg(msg)
-        except IOError:
-            pass
+        self.send_msg(msg)
 
     def auto_depth_off(self):
         """Send a auto_depth_off command over TCP
         """
         command_identifier = b'D'
         msg = command_identifier
-        try:
-            self.send_msg(msg)
-        except IOError:
-            pass
+        self.send_msg(msg)
 
     def auto_depth_step(self, direction):
         """Send a auto_depth_step command over TCP
@@ -233,10 +191,7 @@ class TcpCommands:
         command_identifier = b'a'
         msg = command_identifier
         msg += struct.pack('h', direction)
-        try:
-            self.send_msg(msg)
-        except IOError:
-            pass
+        self.send_msg(msg)
 
     def auto_heading_step(self, direction):
         """Send a auto_heading_step command over TCP
@@ -247,10 +202,7 @@ class TcpCommands:
         command_identifier = b'A'
         msg = command_identifier
         msg += struct.pack('h', direction)
-        try:
-            self.send_msg(msg)
-        except IOError:
-            pass
+        self.send_msg(msg)
 
     def set_system_time(self, unix_timestamp):
         """Send a set_system_time command over TCP
@@ -263,12 +215,9 @@ class TcpCommands:
         command_identifier = b't'
         msg = command_identifier
         msg += struct.pack('i', unix_timestamp)
-        try:
-            self.send_msg(msg)
-            reply = self.receive_msg()
-            self.check_reply(reply, b'a')
-        except IOError:
-            pass
+        self.send_msg(msg)
+        reply = self.receive_msg()
+        self.check_reply(reply, b'a')
 
     def set_camera_exposure(self, exposure_value):
         """Send a set_camera_exposure command over TCP
@@ -279,12 +228,9 @@ class TcpCommands:
         command_identifier = b've'
         msg = command_identifier
         msg += struct.pack('i', exposure_value)
-        try:
-            self.send_msg(msg)
-            reply = self.receive_msg()
-            self.check_reply(reply, b'a')
-        except IOError:
-            pass
+        self.send_msg(msg)
+        reply = self.receive_msg()
+        self.check_reply(reply, b'a')
 
     def set_camera_whitebalance(self, whitebalance_value):
         """Send a set_camera_whitebalance command over TCP
@@ -295,12 +241,9 @@ class TcpCommands:
         command_identifier = b'vw'
         msg = command_identifier
         msg += struct.pack('i', whitebalance_value)
-        try:
-            self.send_msg(msg)
-            reply = self.receive_msg()
-            self.check_reply(reply, b'a')
-        except IOError:
-            pass
+        self.send_msg(msg)
+        reply = self.receive_msg()
+        self.check_reply(reply, b'a')
 
     def set_camera_hue(self, hue_value):
         """Send a set_camera_hue command over TCP
@@ -311,12 +254,9 @@ class TcpCommands:
         command_identifier = b'vh'
         msg = command_identifier
         msg += struct.pack('i', hue_value)
-        try:
-            self.send_msg(msg)
-            reply = self.receive_msg()
-            self.check_reply(reply, b'a')
-        except IOError:
-            pass
+        self.send_msg(msg)
+        reply = self.receive_msg()
+        self.check_reply(reply, b'a')
 
     def set_camera_bitrate(self, bitrate_value):
         """Send a set_camera_bitrate command over TCP
@@ -327,12 +267,9 @@ class TcpCommands:
         command_identifier = b'vb'
         msg = command_identifier
         msg += struct.pack('i', bitrate_value)
-        try:
-            self.send_msg(msg)
-            reply = self.receive_msg()
-            self.check_reply(reply, b'a')
-        except IOError:
-            pass
+        self.send_msg(msg)
+        reply = self.receive_msg()
+        self.check_reply(reply, b'a')
 
     def set_camera_framerate(self, framerate_value):
         """Send a set_camera_framerate command over TCP
@@ -343,12 +280,9 @@ class TcpCommands:
         command_identifier = b'vf'
         msg = command_identifier
         msg += struct.pack('i', framerate_value)
-        try:
-            self.send_msg(msg)
-            reply = self.receive_msg()
-            self.check_reply(reply, b'a')
-        except IOError:
-            pass
+        self.send_msg(msg)
+        reply = self.receive_msg()
+        self.check_reply(reply, b'a')
 
     def set_camera_resolution(self, resolution_value):
         """Send a set_camera_resolution command over TCP
@@ -359,10 +293,7 @@ class TcpCommands:
         command_identifier = b'vr'
         msg = command_identifier
         msg += struct.pack('i', resolution_value)
-        try:
-            self.send_msg(msg)
-            reply = self.receive_msg()
-            self.check_reply(reply, b'a')
-        except IOError:
-            pass
+        self.send_msg(msg)
+        reply = self.receive_msg()
+        self.check_reply(reply, b'a')
 
