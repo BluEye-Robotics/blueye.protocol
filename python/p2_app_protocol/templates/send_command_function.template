@@ -8,7 +8,14 @@
 
         Args:
         {% for field in fields %}
-            {{field.field_name}} (numpy data type:{{field.dtype}}):{% if field.lower_limit is defined and  field.upper_limit is defined %} valid range is <{{field.lower_limit}}, {{field.upper_limit}}>{% endif %} {{field.description}}
+            {{field.field_name}} (numpy data type:{{field.dtype}}){%if field.lower_limit is defined and  field.upper_limit is defined %}: valid range is <{{field.lower_limit}}, {{field.upper_limit}}>{% endif %} {{field.description}}
+        {% endfor %}
+        {% endif %}
+        {% if returned_fields is defined %}
+
+        Returns:
+        {% for returned_field in returned_fields %}
+            {{returned_field.field_name}} (numtyp data type:{{returned_field.dtype}})
         {% endfor %}
         {% endif %}
         """
@@ -28,9 +35,13 @@
         {% if format_string is defined %}
         msg += struct.pack('{{format_string}}'{% for field in fields %}, {{ field.field_name }}{% endfor %})
         {% endif %}
-        self.send_msg(msg)
         {% if expected_reply is defined %}
-        reply = self.receive_msg()
+        reply = self.send_and_receive(msg, expects_reply=True, receive_size=1)
         self.check_reply(reply, b'{{expected_reply}}')
+        {% elif returned_fields is defined %}
+        reply = self.send_and_receive(msg, expects_reply=True, receive_size={{read_size}})
+        return struct.unpack('{{return_format_string}}', reply)
+        {% else %}
+        self.send_and_receive(msg, expects_reply=False)
         {% endif %}
 {{'\n'}}

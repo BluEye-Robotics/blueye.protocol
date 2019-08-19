@@ -49,6 +49,14 @@ def write_tcp_send_functions(context):
                 for field in command['fields']:
                     format_string += dtype_to_format_char(field['dtype'])
                 template_context['format_string'] = format_string
+            if 'returned_fields' in command:
+                return_format_string = "<"
+                read_size = 0
+                for field in command['returned_fields']:
+                    return_format_string += dtype_to_format_char(field['dtype'])
+                    read_size += int(field['dtype'][2])  # get byte count from dtype of field
+                template_context['return_format_string'] = return_format_string
+                template_context['read_size'] = read_size
             python_command = context.template_environment\
                 .get_template("send_command_function.template")\
                 .render(command)
