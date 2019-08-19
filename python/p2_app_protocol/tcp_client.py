@@ -66,9 +66,8 @@ class TcpClient(threading.Thread, TcpCommands):
         """
         if self._sock is None:
             raise SocketNotConnected
-        with self.socket_lock:
-            self.logger.debug(f"Sent message: {msg}")
-            self._sock.send(msg)
+        self.logger.debug(f"Sent message: {msg}")
+        self._sock.send(msg)
 
     def receive_msg(self, size=1):
         try:
@@ -78,6 +77,14 @@ class TcpClient(threading.Thread, TcpCommands):
         except socket.timeout as e:
             self.logger.warning("Timed out while waiting for message reply")
             raise ResponseTimeout from e
+
+    def send_and_receive(self, msg, expects_reply=True, receive_size=1):
+        with self.socket_lock:
+            self.send_msg(msg)
+            if expects_reply:
+                reply = self.receive_msg(receive_size)
+                return reply
+            return 0
 
     def check_reply(self, reply, expected_reply):
         if not reply == expected_reply:
