@@ -170,7 +170,8 @@
                 "fields": [
                     {
                         "field_name": "exposure_value",
-                        "dtype": "<i4"
+                        "dtype": "<i4",
+                        "description": "1 = 1/1000th of a second, 5 = 1/200th of a second. Valid values are in the range <1, 5000>"
                     }
                 ]
             },
@@ -181,7 +182,8 @@
                 "fields": [
                     {
                         "field_name": "whitebalance_value",
-                        "dtype": "<i4"
+                        "dtype": "<i4",
+                        "description": "valid values are in the range <2800, 9300>"
                     }
                 ]
             },
@@ -192,7 +194,8 @@
                 "fields": [
                     {
                         "field_name": "hue_value",
-                        "dtype": "<i4"
+                        "dtype": "<i4",
+                        "description": "valid values are in the range <-40, 40>"
                     }
                 ]
             },
@@ -203,7 +206,8 @@
                 "fields": [
                     {
                         "field_name": "bitrate_value",
-                        "dtype": "<i4"
+                        "dtype": "<i4",
+                        "description": "set camera bitrate in bits. Valid values are in range <1 000 000, 16 000 000> "
                     }
                 ]
             },
@@ -214,7 +218,8 @@
                 "fields": [
                     {
                         "field_name": "framerate_value",
-                        "dtype": "<i4"
+                        "dtype": "<i4",
+                        "description": "valid values are 25 or 30"
                     }
                 ]
             },
@@ -225,7 +230,8 @@
                 "fields": [
                     {
                         "field_name": "resolution_value",
-                        "dtype": "<i4"
+                        "dtype": "<i4",
+                        "description": "valid values are 480, 720 or 1080"
                     }
                 ]
             },

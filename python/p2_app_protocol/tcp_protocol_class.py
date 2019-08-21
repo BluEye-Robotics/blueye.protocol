@@ -7,12 +7,12 @@ class TcpCommands:
         """Send a motion_input command over TCP
 
         Args:
-            surge_motion_input (numpy data type:<f4): valid range is <-1, 1>
-            sway_motion_input (numpy data type:<f4): valid range is <-1, 1>
-            heave_motion_input (numpy data type:<f4): valid range is <-1, 1>
-            yaw_motion_input (numpy data type:<f4): valid range is <-1, 1>
-            slow_input (numpy data type:<f4): valid range is <0, 1>
-            boost_input (numpy data type:<f4): valid range is <0, 1>
+            surge_motion_input (numpy data type:<f4): valid range is <-1, 1> 
+            sway_motion_input (numpy data type:<f4): valid range is <-1, 1> 
+            heave_motion_input (numpy data type:<f4): valid range is <-1, 1> 
+            yaw_motion_input (numpy data type:<f4): valid range is <-1, 1> 
+            slow_input (numpy data type:<f4): valid range is <0, 1> 
+            boost_input (numpy data type:<f4): valid range is <0, 1> 
         """
         if not -1 <= surge_motion_input <= 1:
             raise ValueError(
@@ -58,16 +58,15 @@ class TcpCommands:
 
         command_identifier = b'j'
         msg = command_identifier
-        msg += struct.pack('ffffff', surge_motion_input, sway_motion_input,
-                           heave_motion_input, yaw_motion_input, slow_input, boost_input)
+        msg += struct.pack('ffffff', surge_motion_input, sway_motion_input, heave_motion_input, yaw_motion_input, slow_input, boost_input)
         self.send_and_receive(msg, expects_reply=False)
 
     def set_lights(self, brightness_upper, brightness_lower):
         """Send a set_lights command over TCP
 
         Args:
-            brightness_upper (numpy data type:<u1): valid range is <0, 255>
-            brightness_lower (numpy data type:<u1): valid range is <0, 255>
+            brightness_upper (numpy data type:<u1): valid range is <0, 255> 
+            brightness_lower (numpy data type:<u1): valid range is <0, 255> 
         """
         if not 0 <= brightness_upper <= 255:
             raise ValueError(
@@ -135,8 +134,8 @@ class TcpCommands:
         """Send a user_geo_location command over TCP
 
         Args:
-            longitude (numpy data type:<f8) longitude that is included in the log file in degrees
-            latitude (numpy data type:<f8) latitude that is included in the log file in degrees
+            longitude (numpy data type:<f8): longitude that is included in the log file in degrees
+            latitude (numpy data type:<f8): latitude that is included in the log file in degrees
         """
         command_identifier = b'g'
         msg = command_identifier
@@ -147,7 +146,7 @@ class TcpCommands:
         """Send a watchdog command over TCP
 
         Args:
-            connection_duration (numpy data type:<i2) time in seconds since connected to drone
+            connection_duration (numpy data type:<i2): time in seconds since connected to drone
         """
         command_identifier = b'w'
         msg = command_identifier
@@ -186,7 +185,7 @@ class TcpCommands:
         """Send a auto_depth_step command over TCP
 
         Args:
-            direction (numpy data type:<i2)  1 for up, -1 for down
+            direction (numpy data type:<i2):  1 for up, -1 for down
         """
         command_identifier = b'a'
         msg = command_identifier
@@ -197,7 +196,7 @@ class TcpCommands:
         """Send a auto_heading_step command over TCP
 
         Args:
-            direction (numpy data type:<i2) 1 for up, -1 for down
+            direction (numpy data type:<i2): 1 for up, -1 for down
         """
         command_identifier = b'A'
         msg = command_identifier
@@ -210,7 +209,7 @@ class TcpCommands:
         set the system time on the on-board computer
 
         Args:
-            unix_timestamp (numpy data type:<i4)
+            unix_timestamp (numpy data type:<i4): 
         """
         command_identifier = b't'
         msg = command_identifier
@@ -222,7 +221,7 @@ class TcpCommands:
         """Send a set_camera_exposure command over TCP
 
         Args:
-            exposure_value (numpy data type:<i4)
+            exposure_value (numpy data type:<i4): 1 = 1/1000th of a second, 5 = 1/200th of a second. Valid values are in the range <1, 5000>
         """
         command_identifier = b've'
         msg = command_identifier
@@ -234,7 +233,7 @@ class TcpCommands:
         """Send a set_camera_whitebalance command over TCP
 
         Args:
-            whitebalance_value (numpy data type:<i4)
+            whitebalance_value (numpy data type:<i4): valid values are in the range <2800, 9300>
         """
         command_identifier = b'vw'
         msg = command_identifier
@@ -246,7 +245,7 @@ class TcpCommands:
         """Send a set_camera_hue command over TCP
 
         Args:
-            hue_value (numpy data type:<i4)
+            hue_value (numpy data type:<i4): valid values are in the range <-40, 40>
         """
         command_identifier = b'vh'
         msg = command_identifier
@@ -258,7 +257,7 @@ class TcpCommands:
         """Send a set_camera_bitrate command over TCP
 
         Args:
-            bitrate_value (numpy data type:<i4)
+            bitrate_value (numpy data type:<i4): set camera bitrate in bits. Valid values are in range <1 000 000, 16 000 000> 
         """
         command_identifier = b'vb'
         msg = command_identifier
@@ -270,7 +269,7 @@ class TcpCommands:
         """Send a set_camera_framerate command over TCP
 
         Args:
-            framerate_value (numpy data type:<i4)
+            framerate_value (numpy data type:<i4): valid values are 25 or 30
         """
         command_identifier = b'vf'
         msg = command_identifier
@@ -282,7 +281,7 @@ class TcpCommands:
         """Send a set_camera_resolution command over TCP
 
         Args:
-            resolution_value (numpy data type:<i4)
+            resolution_value (numpy data type:<i4): valid values are 480, 720 or 1080
         """
         command_identifier = b'vr'
         msg = command_identifier
@@ -306,3 +305,4 @@ class TcpCommands:
         msg = command_identifier
         reply = self.send_and_receive(msg, expects_reply=True, receive_size=25)
         return struct.unpack('<Biiiiii', reply)
+
