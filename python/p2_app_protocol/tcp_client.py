@@ -29,9 +29,11 @@ class TcpClient(threading.Thread, TcpCommands):
             self._sock.close()
 
     def run(self):
+        """
+        Keeps the TCP connection to the drone alive by sending watchdog commands.
+        """
         i = 0
         while not self._stop_thread:
-            # keep drone from disconnecting by pinging
             self.watchdog(i)
             i += 1
             time.sleep(1)
