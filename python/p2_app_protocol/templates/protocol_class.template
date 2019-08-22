@@ -1,2 +1,2 @@
 
-class {{protocol_name}}:{{'\n'}}
+class {{protocol_name}}(TcpClientBase):{{'\n'}}
