@@ -1,5 +1,247 @@
 [
     {
+        "version": "1",
+        "commands": [
+            {
+                "name": "motion_input",
+                "command_type": "j",
+                "fields":[
+                    {
+                        "field_name": "surge_motion_input",
+                        "dtype": "<f4",
+                        "upper_limit": 1,
+                        "lower_limit": -1
+                    },
+                    {
+                        "field_name": "sway_motion_input",
+                        "dtype": "<f4",
+                        "upper_limit": 1,
+                        "lower_limit": -1
+                    },
+                    {
+                        "field_name": "heave_motion_input",
+                        "dtype": "<f4",
+                        "upper_limit": 1,
+                        "lower_limit": -1
+                    },
+                    {
+                        "field_name": "yaw_motion_input",
+                        "dtype": "<f4",
+                        "upper_limit": 1,
+                        "lower_limit": -1
+                    },
+                    {
+                        "field_name": "slow_input",
+                        "dtype": "<f4",
+                        "upper_limit": 1,
+                        "lower_limit": 0
+                    },
+                    {
+                        "field_name": "boost_input",
+                        "dtype": "<f4",
+                        "upper_limit": 1,
+                        "lower_limit": 0
+                    }
+                ]
+            },
+            {
+                "name": "set_lights",
+                "command_type": "l",
+                "fields":[
+                    {
+                        "field_name": "brightness_upper",
+                        "dtype": "<u1",
+                        "upper_limit": 255,
+                        "lower_limit": 0
+                    },
+                    {
+                        "field_name": "brightness_lower",
+                        "dtype": "<u1",
+                        "upper_limit": 255,
+                        "lower_limit": 0
+                    }
+                ]
+            },
+            {
+                "name": "ping",
+                "command_type": "p",
+                "expected_reply": "P"
+            },
+            {
+                "name": "start_recording",
+                "command_type": "r"
+            },
+            {
+                "name": "stop_recording",
+                "command_type": "R"
+            },
+            {
+                "name": "start_compass_calibration",
+                "command_type": "i"
+            },
+            {
+                "name": "cancel_compass_calibration",
+                "command_type": "I"
+            },
+            {
+                "name": "save_compass_calibration",
+                "command_type": "c"
+            },
+            {
+                "name": "user_geo_location",
+                "command_type": "g",
+                "fields": [
+                    {
+                        "field_name": "longitude",
+                        "dtype": "<f8",
+                        "description": "longitude that is included in the log file in degrees"
+                    },
+                    {
+                        "field_name": "latitude",
+                        "dtype": "<f8",
+                        "description": "latitude that is included in the log file in degrees"
+                    }
+                ]
+            },
+            {
+                "name": "watchdog",
+                "command_type": "w",
+                "fields": [
+                    {
+                        "field_name": "connection_duration",
+                        "dtype": "<i2",
+                        "description": "time in seconds since connected to drone"
+                    }
+                ]
+            },
+            {
+                "name": "auto_heading_on",
+                "command_type": "h"
+            },
+            {
+                "name": "auto_heading_off",
+                "command_type": "H"
+            },
+            {
+                "name": "auto_depth_on",
+                "command_type": "d"
+            },
+            {
+                "name": "auto_depth_off",
+                "command_type": "D"
+            },
+            {
+                "name": "auto_depth_step",
+                "command_type": "a",
+                "fields": [
+                    {
+                        "field_name": "direction",
+                        "dtype": "<i2",
+                        "description": " 1 for up, -1 for down"
+                    }
+                ]
+            },
+            {
+                "name": "auto_heading_step",
+                "command_type": "A",
+                "fields": [
+                    {
+                        "field_name": "direction",
+                        "dtype": "<i2",
+                        "description": "1 for up, -1 for down"
+                    }
+                ]
+            },
+            {
+                "name": "set_system_time",
+                "command_type": "t",
+                "description": "set the system time on the on-board computer",
+                "expected_reply": "a",
+                "fields": [
+                    {
+                        "field_name": "unix_timestamp",
+                        "dtype": "<i4"
+                    }
+               ]
+            },
+            {
+                "name": "set_camera_exposure",
+                "command_type": "ve",
+                "expected_reply": "a",
+                "fields": [
+                    {
+                        "field_name": "exposure_value",
+                        "dtype": "<i4",
+                        "description": "1 = 1/1000th of a second, 5 = 1/200th of a second. Valid values are in the range <1, 5000>"
+                    }
+                ]
+            },
+            {
+                "name": "set_camera_whitebalance",
+                "command_type": "vw",
+                "expected_reply": "a",
+                "fields": [
+                    {
+                        "field_name": "whitebalance_value",
+                        "dtype": "<i4",
+                        "description": "valid values are in the range <2800, 9300>"
+                    }
+                ]
+            },
+            {
+                "name": "set_camera_hue",
+                "command_type": "vh",
+                "expected_reply": "a",
+                "fields": [
+                    {
+                        "field_name": "hue_value",
+                        "dtype": "<i4",
+                        "description": "valid values are in the range <-40, 40>"
+                    }
+                ]
+            },
+            {
+                "name": "set_camera_bitrate",
+                "command_type": "vb",
+                "expected_reply": "a",
+                "fields": [
+                    {
+                        "field_name": "bitrate_value",
+                        "dtype": "<i4",
+                        "description": "set camera bitrate in bits. Valid values are in range <1 000 000, 16 000 000> "
+                    }
+                ]
+            },
+            {
+                "name": "get_camera_parameters",
+                "command_type": "Vv",
+                "returned_fields": [
+                    {
+                        "field_name": "parameter",
+                        "dtype": "<u1"
+                    },
+                    {
+                        "field_name": "camera_bitrate",
+                        "dtype": "<i4"
+                    },
+                    {
+                        "field_name": "camera_exposure",
+                        "dtype": "<i4"
+                    },
+                    {
+                        "field_name": "camera_whitebalance",
+                        "dtype": "<i4"
+                    },
+                    {
+                        "field_name": "camera_hue",
+                        "dtype": "<i4"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "version": "2",
         "commands": [
             {
                 "name": "motion_input",

@@ -6,11 +6,11 @@ import time
 
 from p2_app_protocol.exceptions import (MismatchedReply, NoConnectionToDrone,
                                         ResponseTimeout, SocketNotConnected)
-from p2_app_protocol.tcp_protocol_class import TcpCommands
+from p2_app_protocol.tcp_protocol_class import TcpCommandsV2
 
 
-class TcpClient(threading.Thread, TcpCommands):
-    def __init__(self, port=2011, ip="192.168.1.101", maxConnectRetries=0, autoConnect=True):
+class TcpClient(threading.Thread, TcpCommandsV2):
+    def __init__(self, port=2011, ip="192.168.1.101", maxConnectRetries=0, autoConnect=True, protocol_version=None):
         threading.Thread.__init__(self)
         self._ip = ip
         self._port = port
