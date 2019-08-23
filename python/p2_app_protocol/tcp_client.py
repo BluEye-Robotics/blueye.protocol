@@ -10,7 +10,6 @@ from p2_app_protocol.exceptions import (MismatchedReply, NoConnectionToDrone,
 
 class TcpClientBase(threading.Thread):
     def __init__(self, port=2011, ip="192.168.1.101", maxConnectRetries=0, autoConnect=True):
-        print("Init was called in the ClientBase")
         threading.Thread.__init__(self)
         self._ip = ip
         self._port = port
