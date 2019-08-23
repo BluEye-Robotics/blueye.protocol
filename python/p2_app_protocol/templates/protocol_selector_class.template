@@ -1,0 +1,12 @@
+
+class TcpClient:
+    def __new__(self, protocol_version=None, *args, **kwargs):
+        if protocol_version == None:
+            return {{latest_protocol_version}}(*args, **kwargs)
+        {% for protocol_version in protocol_versions_list %}
+        elif protocol_version == {{loop.index}}:
+            return {{protocol_version}}(*args, **kwargs)
+        {% endfor %}
+        else:
+            raise ValueError(f"Unsupported protocol version: {protocol_version}")
+            
