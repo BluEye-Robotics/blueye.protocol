@@ -30,12 +30,30 @@ def mocked_logger(mocker):
 
 
 @pytest.fixture
-def tcp_client(mocked_socket, mocked_logger, generate_tcp_protocol):
+def tcp_client_v1(mocked_socket, mocked_logger, generate_tcp_protocol):
     from p2_app_protocol import TcpClient
-    tc = TcpClient(autoConnect=False)
+    tc = TcpClient(protocol_version=1, autoConnect=False)
     tc.connect()
     tc.logger = mocked_logger
     yield tc
+
+
+@pytest.fixture
+def tcp_client_v2(mocked_socket, mocked_logger, generate_tcp_protocol):
+    from p2_app_protocol import TcpClient
+    tc = TcpClient(protocol_version=2, autoConnect=False)
+    tc.connect()
+    tc.logger = mocked_logger
+    yield tc
+
+
+@pytest.fixture(params=['tcp_client_v1', 'tcp_client_v2'])
+def tcp_client(request):
+    """
+    TCP client fixture that parametrizes protocol version 1 and 2, tests that use this
+    fixture will be run with both protocol version 1 and 2
+    """
+    return request.getfixturevalue(request.param)
 
 
 @pytest.mark.parametrize('function_name, expected_message', [
@@ -203,16 +221,29 @@ def test_set_system_time_produces_correct_message(tcp_client, mocked_socket, sys
     ('set_camera_exposure', 1000, b've\xe8\x03\x00\x00'),
     ('set_camera_whitebalance', 1000, b'vw\xe8\x03\x00\x00'),
     ('set_camera_hue', 1000, b'vh\xe8\x03\x00\x00'),
-    ('set_camera_bitrate', 1000, b'vb\xe8\x03\x00\x00'),
+    ('set_camera_bitrate', 1000, b'vb\xe8\x03\x00\x00')
+])
+def test_camera_setting_functions_v1_produces_correct_messages(tcp_client_v1, mocked_socket, camera_setting_function, parameter_value, expected_message):
+    correct_reply = b'a'
+    mocked_socket.recv.return_value = correct_reply
+    func = getattr(tcp_client_v1, camera_setting_function)
+    func(parameter_value)
+    tcp_client_v1._sock.send.assert_called_with(expected_message)
+
+
+@pytest.mark.parametrize('camera_setting_function, parameter_value, expected_message', [
     ('set_camera_framerate', 1000, b'vf\xe8\x03\x00\x00'),
     ('set_camera_resolution', 1000, b'vr\xe8\x03\x00\x00')
 ])
-def test_camera_setting_functions_produce_correct_messages(tcp_client, mocked_socket, camera_setting_function, parameter_value, expected_message):
+def test_camera_setting_functions_v2_produce_correct_messages(tcp_client_v2, mocked_socket, camera_setting_function, parameter_value, expected_message):
+    """
+    Test that runs the camera setting functions introduced in the second tcp protocol version
+    """
     correct_reply = b'a'
     mocked_socket.recv.return_value = correct_reply
-    func = getattr(tcp_client, camera_setting_function)
+    func = getattr(tcp_client_v2, camera_setting_function)
     func(parameter_value)
-    tcp_client._sock.send.assert_called_with(expected_message)
+    tcp_client_v2._sock.send.assert_called_with(expected_message)
 
 
 def test_get_camera_parameters_produces_correct_message(tcp_client, mocked_socket, mocked_struct):
