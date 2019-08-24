@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "BlueyePioneerProtocol"
+name = "blueye.protocol"
 version = "1.1.0"
 description = "Python protocol definition for the Blueye Pioneer"
 authors = ["Sindre Hansen <sindre.hansen@blueye.no>",
@@ -16,6 +16,7 @@ Jinja2 = "^2.10"
 pytest = "^5.1"
 pytest-mock = "^1.10"
 numpy = "^1.17"
+invoke = "^1.3"
 
 [build-system]
 requires = ["poetry>=0.12"]
