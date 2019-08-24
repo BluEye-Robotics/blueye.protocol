@@ -1,4 +1,4 @@
-# p2_app_protocol
+# blueye.protocol
 
 This repository provides the definition of the app protocol in form of a json file (protocol.json).
 

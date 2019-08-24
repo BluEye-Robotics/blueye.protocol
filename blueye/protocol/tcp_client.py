@@ -4,7 +4,7 @@ import socket
 import threading
 import time
 
-from p2_app_protocol.exceptions import (MismatchedReply, NoConnectionToDrone,
+from blueye.protocol.exceptions import (MismatchedReply, NoConnectionToDrone,
                                         ResponseTimeout, SocketNotConnected)
 
 

@@ -14,10 +14,10 @@ def md5(fname):
 
 class TestAppProtocol():
     def test_protocol_data_import(self):
-        from p2_app_protocol import protocol_data
+        from blueye.protocol import protocol_data
 
     def test_protocol_data_hash(self, request):
-        from p2_app_protocol import _json_hash, _generator_hash
+        from blueye.protocol import _json_hash, _generator_hash
         root_dir_path = request.fspath.dirname + "/../../"
         assert(_json_hash, md5(os.path.join(root_dir_path, "protocol.json")))
         assert(_generator_hash, md5(os.path.join(root_dir_path, "generate_python.py")))

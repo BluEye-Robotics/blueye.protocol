@@ -2,16 +2,7 @@
 import pytest
 import socket
 import struct
-from p2_app_protocol.exceptions import ResponseTimeout, MismatchedReply, NoConnectionToDrone
-
-
-@pytest.fixture(scope="session")
-def generate_tcp_protocol():
-    """Overwrites the current tcp_protocol_class.py by running a template driven generator that reads the tcp_protocol.json
-    """
-    import generate_tcp_protocol
-    context = generate_tcp_protocol.Context()
-    generate_tcp_protocol.write_tcp_protocol(context)
+from blueye.protocol.exceptions import ResponseTimeout, MismatchedReply, NoConnectionToDrone
 
 
 @pytest.fixture
@@ -30,8 +21,8 @@ def mocked_logger(mocker):
 
 
 @pytest.fixture
-def tcp_client_v1(mocked_socket, mocked_logger, generate_tcp_protocol):
-    from p2_app_protocol import TcpClient
+def tcp_client_v1(mocked_socket, mocked_logger):
+    from blueye.protocol import TcpClient
     tc = TcpClient(protocol_version=1, autoConnect=False)
     tc.connect()
     tc.logger = mocked_logger
@@ -39,8 +30,8 @@ def tcp_client_v1(mocked_socket, mocked_logger, generate_tcp_protocol):
 
 
 @pytest.fixture
-def tcp_client_v2(mocked_socket, mocked_logger, generate_tcp_protocol):
-    from p2_app_protocol import TcpClient
+def tcp_client_v2(mocked_socket, mocked_logger):
+    from blueye.protocol import TcpClient
     tc = TcpClient(protocol_version=2, autoConnect=False)
     tc.connect()
     tc.logger = mocked_logger
