@@ -3,7 +3,7 @@ import os
 import struct
 import numpy as np
 
-from .protocol_data import protocol_data
+from .udp_protocol_dict import protocol_data
 
 
 class AppProtocol:
