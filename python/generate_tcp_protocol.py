@@ -44,7 +44,6 @@ def write_tcp_send_functions(context):
             protocol_name = 'TcpClientV' + protocol_version['version']
             protocol_selector_context['protocol_versions_list'].append(protocol_name)
             protocol_selector_context['latest_protocol_version'] = protocol_name
-            print(f"protocol selector context: {protocol_selector_context}")
             class_template_context['protocol_name'] = protocol_name
             protocol_class = context.template_environment.get_template(
                 "protocol_class.template").render(class_template_context)
