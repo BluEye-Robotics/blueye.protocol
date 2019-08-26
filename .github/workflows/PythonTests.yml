@@ -20,4 +20,4 @@ jobs:
     - name: Run tests
       uses: abatilo/actions-poetry@1.0.3
       with:
-        args: "run pytest"
+        args: "run invoke test"
