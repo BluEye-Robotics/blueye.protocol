@@ -1,7 +1,7 @@
 # blueye.protocol
 [![Test status](https://github.com/BluEye-Robotics/p2_app_protocol/workflows/PythonTests/badge.svg)](https://github.com/BluEye-Robotics/p2_app_protocol/actions)
 
-This repository provides the definition of the UDP and TCP drone-app protocol in the form of a two json files (udp_protocol.json, and tcp_protocol.json). Python code is generated based on the protocol definition for receiving UDP messages with telemetry from the drone and sending commands to the drone over TCP using the TCP client.
+This repository provides the definition of the UDP and TCP drone <--> app protocol in the form of two json files (`udp_protocol.json`, and `tcp_protocol.json`). Python code is generated based on the protocol definitions for receiving UDP messages with telemetry from the drone and sending commands to the drone over TCP.
 Poetry is used for dependency management and packaging.
 
 ## Setup python version and packages for development
@@ -41,8 +41,8 @@ poetry install
 ## Code generators
 Important: This repository includes generated code. If `udp_protocol.json` or `tcp_protocol.json` are changed, the two generated filed in `/blueye/protocol/` `tcp_protocol_class.py` and `udp_protocol_dict.py` need to be updated and later committed.
 
-The generated protocol files are updated using the generators in the `generators` folder. The generator are run when running the tests.
-```
+The generated protocol files are updated using the generators in the `generators` folder. The generators are run when running the tests.
+``` shell
 invoke test
 ```
 
