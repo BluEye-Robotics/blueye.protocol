@@ -255,5 +255,5 @@ def test_get_camera_parameters_produces_correct_message(tcp_client, mocked_socke
 
 def test_not_specifying_protocol_results_in_latest_protocol(mocked_socket, mocked_logger, generate_tcp_protocol):
     from p2_app_protocol import TcpClient
-    tc = TcpClient()
+    tc = TcpClient(autoConnect=False)
     assert(tc.protocol_version == 2)
