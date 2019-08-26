@@ -13,12 +13,12 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.7"
+numpy = "^1.17"
 
 [tool.poetry.dev-dependencies]
 Jinja2 = "^2.10"
 pytest = "^5.1"
 pytest-mock = "^1.10"
-numpy = "^1.17"
 invoke = "^1.3"
 pytest-cov = "^2.7"
 
