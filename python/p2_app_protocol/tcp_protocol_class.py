@@ -3,6 +3,7 @@ import struct
 from .tcp_client import TcpClientBase
 
 class TcpClientV1(TcpClientBase):
+    protocol_version = 1
     def motion_input(self, surge_motion_input, sway_motion_input, heave_motion_input, yaw_motion_input, slow_input, boost_input):
         """Send a motion_input command over TCP
 
@@ -282,6 +283,7 @@ class TcpClientV1(TcpClientBase):
 
 
 class TcpClientV2(TcpClientBase):
+    protocol_version = 2
     def motion_input(self, surge_motion_input, sway_motion_input, heave_motion_input, yaw_motion_input, slow_input, boost_input):
         """Send a motion_input command over TCP
 

@@ -1,2 +1,3 @@
 
-class {{protocol_name}}(TcpClientBase):{{'\n'}}
+class {{protocol_name}}(TcpClientBase):
+    protocol_version = {{version}}{{'\n'}}
