@@ -240,3 +240,9 @@ def test_camera_setting_functions_v2_produce_correct_messages(tcp_client_v2, moc
 def test_get_camera_parameters_produces_correct_message(tcp_client, mocked_socket, mocked_struct):
     tcp_client.get_camera_parameters()
     tcp_client._sock.send.assert_called_with(b'Vv')
+
+
+def test_not_specifying_protocol_results_in_latest_protocol(mocked_socket, mocked_logger):
+    from blueye.protocol import TcpClient
+    tc = TcpClient(autoConnect=False)
+    assert(tc.protocol_version == 2)
