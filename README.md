@@ -1,5 +1,5 @@
 # blueye.protocol
-[![Test status](https://github.com/BluEye-Robotics/p2_app_protocol/workflows/pythonpackage/badge.svg)](https://github.com/BluEye-Robotics/p2_app_protocol/actions)
+[![Test status](https://github.com/BluEye-Robotics/p2_app_protocol/workflows/PythonTests/badge.svg)](https://github.com/BluEye-Robotics/p2_app_protocol/actions)
 
 This repository provides the definition of the app protocol in form of a json file (protocol.json).
 
