@@ -1,0 +1,47 @@
+    def {{name}}(self{% for field in fields %}, {{ field.field_name }}{% endfor %}):
+        """Send a {{name}} command over TCP
+        {% if description is defined %}
+
+        {{description}}
+        {% endif %}
+        {% if fields is defined %}
+
+        Args:
+        {% for field in fields %}
+            {{field.field_name}} (numpy data type:{{field.dtype}}):{%if field.lower_limit is defined and  field.upper_limit is defined %} valid range is <{{field.lower_limit}}, {{field.upper_limit}}>{% endif %} {{field.description}}
+        {% endfor %}
+        {% endif %}
+        {% if returned_fields is defined %}
+
+        Returns:
+        {% for returned_field in returned_fields %}
+            {{returned_field.field_name}} (numtyp data type:{{returned_field.dtype}})
+        {% endfor %}
+        {% endif %}
+        """
+        {% for field in fields %}
+        {% if field.lower_limit is defined and field.upper_limit is defined %}
+        if not {{field.lower_limit}} <= {{field.field_name}} <= {{field.upper_limit}}:
+            raise ValueError(
+                "Input argument out of range:" +
+                " valid range for {{field.field_name}} is" +
+                " <{lower_limit}, {upper_limit}>".format(lower_limit={{field.lower_limit}}, upper_limit={{field.upper_limit}}) +
+                " but got value: {name}".format(name={{field.field_name}}))
+
+        {% endif %}
+        {% endfor %}
+        command_identifier = b'{{command_type}}'
+        msg = command_identifier
+        {% if format_string is defined %}
+        msg += struct.pack('{{format_string}}'{% for field in fields %}, {{ field.field_name }}{% endfor %})
+        {% endif %}
+        {% if expected_reply is defined %}
+        reply = self.send_and_receive(msg, expects_reply=True, receive_size=1)
+        self.check_reply(reply, b'{{expected_reply}}')
+        {% elif returned_fields is defined %}
+        reply = self.send_and_receive(msg, expects_reply=True, receive_size={{read_size}})
+        return struct.unpack('{{return_format_string}}', reply)
+        {% else %}
+        self.send_and_receive(msg, expects_reply=False)
+        {% endif %}
+{{'\n'}}

@@ -8,6 +8,10 @@ name = "pypi"
 [packages]
 coverage = "*"
 numpy = "*"
+pipfile = "*"
+pytest = "*"
+"jinja2" = "*"
+pytest-mock = "*"
 
 [requires]
 python_version = "3.7"

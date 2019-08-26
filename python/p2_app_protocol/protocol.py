@@ -12,14 +12,14 @@ class AppProtocol:
                          "<f4": "f", "<f8": "d"}
 
     def __init__(self, protocol_definition=None):
-        protocol_json_path = os.path.join(os.path.dirname(__file__), "data", "protocol.json")
         self._jdata = {}
         if protocol_definition is None:
             protocol_definition = protocol_data
         for protocol_version_data in protocol_definition:
             self._jdata[protocol_version_data['version']] = {}
             for message in protocol_version_data['messages']:
-                self._jdata[protocol_version_data['version']][message['message_type']] = message['fields']
+                self._jdata[protocol_version_data['version']
+                            ][message['message_type']] = message['fields']
         self._last_version = sorted(self._jdata.keys())[-1]
 
     def get_json_data(self, packet_type, version=None):
@@ -40,7 +40,9 @@ class AppProtocol:
         return [f['dtype'] for f in self.get_json_data(packet_type, version=version)]
 
     def get_struct_format(self, packet_type, version):
-        return "<" + "".join([self.STRUCT_CONVERSION[f] for f in self.get_numpy_field_dtypes(packet_type, version=version)])
+        conversion_list = [self.STRUCT_CONVERSION[f]
+                           for f in self.get_numpy_field_dtypes(packet_type, version=version)]
+        return "<" + "".join(conversion_list)
 
     def unpack_data(self, data):
         version = data[0]
