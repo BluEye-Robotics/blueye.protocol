@@ -40,14 +40,19 @@ def write_tcp_send_functions(context):
         f.write("from .tcp_client import TcpClientBase\n")
         protocol_selector_context = {'protocol_versions_list': []}
         for protocol_version in context.tcp_protocol:
-            class_template_context = protocol_version
+            # Store protocol versions and latest version for the class that selects versions
             protocol_name = 'TcpClientV' + protocol_version['version']
             protocol_selector_context['protocol_versions_list'].append(protocol_name)
             protocol_selector_context['latest_protocol_version'] = protocol_name
+
+            # Write the protocol version class
+            class_template_context = protocol_version
             class_template_context['protocol_name'] = protocol_name
             protocol_class = context.template_environment.get_template(
                 "protocol_class.template").render(class_template_context)
             f.write(protocol_class)
+
+            # Write the protocol commands of the version class
             for command in protocol_version["commands"]:
                 template_context = command
                 if 'fields' in command:
@@ -68,6 +73,7 @@ def write_tcp_send_functions(context):
                     .render(template_context)
                 f.write(python_command)
 
+        # Write the class that selects protocol version
         protocol_selector_class = context.template_environment.get_template(
             "protocol_selector_class.template").render(protocol_selector_context)
         f.write(protocol_selector_class)
