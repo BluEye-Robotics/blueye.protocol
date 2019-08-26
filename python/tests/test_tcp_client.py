@@ -7,7 +7,9 @@ from p2_app_protocol.exceptions import ResponseTimeout, MismatchedReply, NoConne
 
 @pytest.fixture(scope="session")
 def generate_tcp_protocol():
-    """Overwrites the current tcp_protocol_class.py by running a template driven generator that reads the tcp_protocol.json
+    """
+    Generate TCP protocol functions from definitions in tcp_protocol.json and write them to
+    tcp_protocol_class.py
     """
     import generate_tcp_protocol
     context = generate_tcp_protocol.Context()
