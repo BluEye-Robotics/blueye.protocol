@@ -7,6 +7,9 @@ authors = ["Sindre Hansen <sindre.hansen@blueye.no>",
            "Aksel Lenes <aksel.lenes@blueye.no>",
           ]
 license = "LGPL-3.0"
+packages = [
+    { include = "blueye" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.7"
