@@ -9,3 +9,4 @@ htmlcov
 .coverage
 .pytest_cache
 .python-version
+*.egg-info

@@ -15,14 +15,14 @@ def get_protocol(protocol_path):
 class Context:
     def __init__(self, path=os.path.dirname(os.path.abspath(__file__))):
         self.path = path
-        self.module_path = os.path.join(path, "p2_app_protocol")
-        template_path = os.path.join(self.module_path, "templates")
+        self.module_path = os.path.join(path, "../blueye/protocol")
+        template_path = os.path.join(path, "templates")
         self.template_environment = Environment(autoescape=False,
                                                 trim_blocks=True,
                                                 lstrip_blocks=True,
                                                 loader=FileSystemLoader(template_path))
         self.output_file_path = os.path.join(self.module_path, "tcp_protocol_class.py")
-        json_path = os.path.join(self.module_path, "tcp_protocol.json")
+        json_path = os.path.join(path, "..", "tcp_protocol.json")
         self.tcp_protocol = get_protocol(json_path)
 
 

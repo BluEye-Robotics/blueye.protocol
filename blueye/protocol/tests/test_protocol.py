@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from unittest.mock import *
 
-from p2_app_protocol import AppProtocol
+from blueye.protocol import AppProtocol
 
 print(AppProtocol)
 

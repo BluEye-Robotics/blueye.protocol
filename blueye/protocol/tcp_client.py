@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-
 import logging
 import socket
 import threading
 import time
 
-from p2_app_protocol.exceptions import (MismatchedReply, NoConnectionToDrone,
+from blueye.protocol.exceptions import (MismatchedReply, NoConnectionToDrone,
                                         ResponseTimeout, SocketNotConnected)
 
 
@@ -94,8 +93,9 @@ class TcpClientBase(threading.Thread):
 
 
 if __name__ == "__main__":
+    import blueye.protocol
     logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
                         datefmt='%d-%b-%y %H:%M:%S', level=logging.DEBUG)
-    tc = TcpClient(maxConnectRetries=3)
+    tc = blueye.protocol.TcpClient(maxConnectRetries=3)
     time.sleep(3)
     tc.stop()

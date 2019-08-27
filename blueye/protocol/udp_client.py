@@ -4,7 +4,7 @@ from __future__ import print_function
 import socket
 import time
 
-from .protocol import AppProtocol
+from blueye.protocol import AppProtocol
 
 info_test = print
 

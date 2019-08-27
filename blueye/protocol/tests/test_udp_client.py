@@ -7,7 +7,7 @@ import time
 import unittest
 from unittest.mock import *
 
-from p2_app_protocol import UdpClient
+from blueye.protocol import UdpClient
 
 fake_json = json.loads("""
 [
