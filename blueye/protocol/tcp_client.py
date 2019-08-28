@@ -15,7 +15,7 @@ class TcpClientBase(threading.Thread):
         self._port = port
 
         self._sock = None
-        self._stop_thread = False
+        self._exit_flag = threading.Event()
         self.daemon = False
         self.logger = logging.getLogger()
         self.socket_lock = threading.Lock()
@@ -32,10 +32,10 @@ class TcpClientBase(threading.Thread):
         Keeps the TCP connection to the drone alive by sending watchdog commands.
         """
         i = 0
-        while not self._stop_thread:
+        WATCHDOG_DELAY = 1
+        while not self._exit_flag.wait(timeout=WATCHDOG_DELAY):
             self.watchdog(i)
             i += 1
-            time.sleep(1)
 
     def connect(self, max_retries=0):
         attempts = 0
@@ -56,7 +56,7 @@ class TcpClientBase(threading.Thread):
             raise NoConnectionToDrone(self._ip, self._port)
 
     def stop(self):
-        self._stop_thread = True
+        self._exit_flag.set()
         self.join()
 
     def send_msg(self, msg):
