@@ -14,18 +14,17 @@ class TcpClientBase(threading.Thread):
         self._ip = ip
         self._port = port
 
-        self._sock = None
-        self._exit_flag = threading.Event()
-        self.daemon = False
         self.logger = logging.getLogger()
+
+        self._sock = None
         self.socket_lock = threading.Lock()
+
+        self._exit_flag = threading.Event()
+        self.daemon = True
+
         if autoConnect is True:
             self.connect(maxConnectRetries)
             self.start()
-
-    def __del__(self):
-        if self._sock is not None:
-            self._sock.close()
 
     def run(self):
         """
@@ -57,7 +56,6 @@ class TcpClientBase(threading.Thread):
 
     def stop(self):
         self._exit_flag.set()
-        self.join()
 
     def send_msg(self, msg):
         """Send a binary message to the drone
