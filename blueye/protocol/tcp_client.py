@@ -9,6 +9,10 @@ from blueye.protocol.exceptions import (MismatchedReply, NoConnectionToDrone,
 
 
 class TcpClientBase(threading.Thread):
+    """A TcpClient for communicating with the Blueye Pioneer drone
+
+    """
+
     def __init__(self, port=2011, ip="192.168.1.101", maxConnectRetries=0, autoConnect=True):
         threading.Thread.__init__(self)
         self._ip = ip
@@ -27,8 +31,7 @@ class TcpClientBase(threading.Thread):
             self.start()
 
     def run(self):
-        """
-        Keeps the TCP connection to the drone alive by sending watchdog commands.
+        """Keep the TCP connection to the drone alive by sending watchdog commands.
         """
         i = 0
         WATCHDOG_DELAY = 1
@@ -37,6 +40,8 @@ class TcpClientBase(threading.Thread):
             i += 1
 
     def connect(self, max_retries=0):
+        """Connect the TcpClient to the drone
+        """
         attempts = 0
         while attempts <= max_retries:
             try:
@@ -55,6 +60,8 @@ class TcpClientBase(threading.Thread):
             raise NoConnectionToDrone(self._ip, self._port)
 
     def stop(self):
+        """Stop the watchdog thread started by run()
+        """
         self._exit_flag.set()
 
     def send_msg(self, msg):
@@ -69,6 +76,14 @@ class TcpClientBase(threading.Thread):
         self._sock.send(msg)
 
     def receive_msg(self, size=1):
+        """Receive a binary message from the drone
+
+        Args:
+           receive_size (int): The expected byte count of the reply
+
+        Returns:
+            reply (bytes): The reply from the drone
+        """
         try:
             reply = self._sock.recv(size)
             self.logger.debug(f"Reply: {reply}")
@@ -78,6 +93,20 @@ class TcpClientBase(threading.Thread):
             raise ResponseTimeout from e
 
     def send_and_receive(self, msg, expects_reply=True, receive_size=1):
+        """Send a binary message and return the drones reply
+
+        Messages that have a reply in the form of data or a ack from the drone
+        should be sent using this method to ensure messages send are correctly
+        matched up to their replies
+
+        Args:
+            msg (bytes): The message to be sent
+            expects_reply (bool): True if the message has a expected reply
+            receive_size (int): The byte count of the expected reply
+
+        Returns:
+            reply (bytes): The reply from the drone
+        """
         with self.socket_lock:
             self.send_msg(msg)
             if expects_reply:
@@ -86,6 +115,12 @@ class TcpClientBase(threading.Thread):
             return 0
 
     def check_reply(self, reply, expected_reply):
+        """ Check that reply matched expected reply, raise exception if not
+
+        Args:
+            reply (str): The reply from the drone
+            expected_reply (str): The expected reply from the drone
+        """
         if not reply == expected_reply:
             raise MismatchedReply(expected_reply, reply)
 
