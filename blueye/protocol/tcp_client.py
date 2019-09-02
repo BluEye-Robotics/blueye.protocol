@@ -16,6 +16,16 @@ class TcpClientBase(threading.Thread):
     top level class TcpClient.
 
     TcpClientBase -> TcpclientV1(or other protocol versions) -> TcpClient.
+
+    Example:
+    >>> import blueye.protocol
+    >>> import logging
+    >>> logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S', level=logging.WARNING)
+    >>> # use logging level DEBUG to see sent and received messages
+    >>> tc = blueye.protocol.TcpClient(maxConnectRetries=3)
+    >>> tc.set_lights(10, 10)
+    >>> time.sleep(3)
+    >>> tc.set_lights(0, 0)
     """
 
     def __init__(self, port=2011, ip="192.168.1.101", maxConnectRetries=0, autoConnect=True):
@@ -131,9 +141,5 @@ class TcpClientBase(threading.Thread):
 
 
 if __name__ == "__main__":
-    import blueye.protocol
-    logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
-                        datefmt='%d-%b-%y %H:%M:%S', level=logging.DEBUG)
-    tc = blueye.protocol.TcpClient(maxConnectRetries=3)
-    time.sleep(3)
-    tc.stop()
+    import doctest
+    doctest.testmod()  # test examples in docstrings if module run as main
