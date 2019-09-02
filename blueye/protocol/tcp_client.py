@@ -9,8 +9,13 @@ from blueye.protocol.exceptions import (MismatchedReply, NoConnectionToDrone,
 
 
 class TcpClientBase(threading.Thread):
-    """A TcpClient for communicating with the Blueye Pioneer drone
+    """A base level TcpClient for communicating with the Blueye Pioneer
 
+    TcpClientBase should not be instantiated on its own. Instead protocol version classes inherit the functionality from
+    TcpClientBase, and the combined functionality of a protocol version class and TcpClientBase are exposed in the
+    top level class TcpClient.
+
+    TcpClientBase -> TcpclientV1(or other protocol versions) -> TcpClient.
     """
 
     def __init__(self, port=2011, ip="192.168.1.101", maxConnectRetries=0, autoConnect=True):
