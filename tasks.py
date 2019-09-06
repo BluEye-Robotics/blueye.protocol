@@ -22,4 +22,4 @@ def generate_udp(context):
 
 @task(pre=[generate_tcp, generate_udp])
 def test(context):
-    context.run("pytest blueye/protocol/tests")
+    context.run("pytest tests")
