@@ -17,6 +17,7 @@ class TcpClientBase(threading.Thread):
 
     TcpClientBase -> TcpclientV1(or other protocol versions) -> TcpClient.
 
+    Example of how to connect to a drone, and toggle the lights
     Example:
     >>> import blueye.protocol
     >>> import logging
