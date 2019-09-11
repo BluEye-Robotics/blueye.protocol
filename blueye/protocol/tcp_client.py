@@ -56,6 +56,9 @@ class TcpClientBase(threading.Thread):
 
     def connect(self, max_retries=0):
         """Connect the TcpClient to the drone
+
+        Args:
+            max_retries(int): Make max_retries attempt at connecting to the drone before failing
         """
         attempts = 0
         while attempts <= max_retries:
