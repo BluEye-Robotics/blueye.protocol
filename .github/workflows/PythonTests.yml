@@ -9,6 +9,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+      with:
+        submodules: true
+        token: ${{ secrets.GIT_TOKEN }}
     - name: Set up Python 3.7
       uses: actions/setup-python@v1
       with:
