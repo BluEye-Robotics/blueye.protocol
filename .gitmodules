@@ -1,0 +1,3 @@
+[submodule "ProtocolDefinitions"]
+	path = ProtocolDefinitions
+	url = git@github.com:BluEye-Robotics/ProtocolDefinitions.git
