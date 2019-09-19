@@ -19,6 +19,8 @@ class TestAppProtocol():
     def test_protocol_data_hash(self, request):
         from blueye.protocol import _json_hash, _generator_hash
         root_dir_path = request.fspath.dirname + "/../"
-        assert(_json_hash == md5(os.path.join(root_dir_path, "udp_protocol.json")))
+        assert(_json_hash == md5(os.path.join(root_dir_path,
+                                              "ProtocolDefinitions",
+                                              "udp_protocol.json")))
         assert(_generator_hash == md5(os.path.join(
             root_dir_path, "generators", "generate_udp_protocol.py")))
