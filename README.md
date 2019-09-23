@@ -68,8 +68,3 @@ Or directly using pytest.
 ``` shell
 pytest
 ```
-
-All changes need to be backwards-compatible.
-
-**Important:
-Make sure to update meta-blueye but also the the Yocto SDK after protocol changes, otherwise cross compilation might fail and will not be compatible.**
