@@ -68,3 +68,14 @@ Or directly using pytest.
 ``` shell
 pytest
 ```
+
+### `setup.py`
+Since bitbake doesn't have support for pyproject.toml files yet, we need to include a
+`setup.py` file to specify the dependencies needed. There's an invoke task for
+generating the file that can be run with
+``` shell
+invoke generate-setup-py
+```
+
+**Be sure to run this script and commit the `setup.py` file when the dependencies have
+changed.**
