@@ -8,7 +8,7 @@ package_data = \
 {'': ['*']}
 
 install_requires = \
-['numpy>=1.17,<2.0', 'setuptools==40.8.0']
+['numpy>=1.17,<2.0', 'setuptools>=40']
 
 setup_kwargs = {
     'name': 'blueye.protocol',
