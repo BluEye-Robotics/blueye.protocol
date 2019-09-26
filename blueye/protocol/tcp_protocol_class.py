@@ -276,7 +276,7 @@ class TcpClientV1(TcpClientBase):
             camera_whitebalance (numtyp data type:<i4)
             camera_hue (numtyp data type:<i4)
         """
-        command_identifier = b'Vv'
+        command_identifier = b'Va'
         msg = command_identifier
         reply = self.send_and_receive(msg, expects_reply=True, receive_size=17)
         return struct.unpack('<Biiii', reply)
@@ -582,7 +582,7 @@ class TcpClientV2(TcpClientBase):
             camera_resolution (numtyp data type:<i4)
             camera_framerate (numtyp data type:<i4)
         """
-        command_identifier = b'Vv'
+        command_identifier = b'Va'
         msg = command_identifier
         reply = self.send_and_receive(msg, expects_reply=True, receive_size=25)
         return struct.unpack('<Biiiiii', reply)
