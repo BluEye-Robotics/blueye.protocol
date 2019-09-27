@@ -100,33 +100,9 @@ def test_exception_raised_on_wrong_reply(tcp_client, mocked_socket):
 @pytest.mark.parametrize(
     "surge_input, sway_input, heave_input, yaw_input, slow_input, boost_input, expected_message",
     [
-        (
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            b"j\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00",
-        ),
-        (
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            b"j\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?",
-        ),
-        (
-            0.555,
-            0.555,
-            0.555,
-            0.555,
-            0.555,
-            0.555,
-            b"j{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?",
-        ),
+        (0, 0, 0, 0, 0, 0, b"j\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"),
+        (1, 1, 1, 1, 1, 1, b"j\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?"),
+        (0.555, 0.555, 0.555, 0.555, 0.555, 0.555, b"j{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?"),
     ],
 )
 def test_motion_command_produces_correct_message(
