@@ -1,8 +1,16 @@
 # blueye.protocol
 [![Tests](https://github.com/BluEye-Robotics/blueye.protocol/workflows/PythonTests/badge.svg)](https://github.com/BluEye-Robotics/blueye.protocol/actions)
 
-This repository provides the definition of the UDP and TCP drone <--> app protocol in the form of two json files (`udp_protocol.json`, and `tcp_protocol.json`). Python code is generated based on the protocol definitions for receiving UDP messages with telemetry from the drone and sending commands to the drone over TCP.
-Poetry is used for dependency management and packaging.
+This repository contains a python library that defines how to communicate with the
+Blueye Pioneer. The Blueye Pioneer is an underwater drone made by Blueye Robotics, see
+[blueyerobotics.com](https://blueyerobotics.com) for more information.
+
+The protocol itself is defined in two json files, one for UDP and one for TCP. These are
+stored as a submodule in this repository, and the python code is generated from these
+definitions.
+
+This package requires Python 3.7 or newer.
+
 
 ## Installation
 ```shell
@@ -11,12 +19,24 @@ pip install blueye.protocol
 
 ## Development
 
-### Setup python version and packages for development
-Install poetry, for more instructions see the [poetry repo](https://github.com/sdispater/poetry)
+### Install poetry
+We use Poetry for package management, install it like this
 
 ``` shell
 curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
 ```
+
+for more instructions see the [Poetry repository](https://github.com/sdispater/poetry).
+
+### Install the necessary Python version
+We require Python v3.7 or newer, and many operating systems package an older version of
+Python the easiest (for Linux/OS X) is to use pyenv. Pyenv manages multiple Python
+versions in parallel for you.
+
+The instructions below are for Linux (Ubuntu), but pyenv exist both for
+[macOS](https://github.com/pyenv/pyenv#homebrew-on-macos) and
+[Windows](https://github.com/pyenv-win/pyenv-win) and the instructions should be fairly
+similar.
 
 Install pyenv, for more instructions see the [pyenv-installer](https://github.com/pyenv/pyenv-installer)
 
@@ -36,34 +56,44 @@ Then build python with pyenv
 pyenv install 3.7.4
 ```
 
-Create a virtual environment, and activate it
+### Create a virtual environment and install the dependencies
+Using a virtual environment is not strictly necessary, but it greatly simplifies the
+development of Python packages.
+
+Since we already have pyenv installed we'll use it to create a virtual environment,
+
 ``` shell
 pyenv virtualenv 3.7.4 blueye_protocol
 pyenv activate blueye_protocol
 ```
 
-Install the python packages needed by the using poetry in the projects root directory
+Now we're ready to install the python packages needed, by running poetry in the
+projects root directory
 
 ``` shell
 poetry install
 ```
 
 ### Code generators
-Important: This repository includes generated code. If `udp_protocol.json` or `tcp_protocol.json` are changed, the two generated filed in `/blueye/protocol/` `tcp_protocol_class.py` and `udp_protocol_dict.py` need to be updated and later committed.
-
-The generated protocol files are updated using the generators in the `generators` folder. They can be run with `invoke generate_udp` or `invoke generate_tcp`. The generators are run automatically before testing with.
+**Important**: This repository includes generated code. If the protocol definitions are
+changed the generated files need to be updated and committed.
+The generated protocol files are updated using the generators in the `generators`
+folder. They can be run with `invoke generate_udp` or `invoke generate_tcp`.
+The generators are run automatically before testing with.
 
 ``` shell
 invoke test
 ```
 
 ### Tests
-Test for the TCP client are written using pytest. Test for UDP client are written using unittest. All tests are run using pytest. The tests can be run using invoke.
+Test for the TCP client are written using pytest. Test for UDP client are written using
+unittest. All tests are run using pytest. The tests can be run using invoke (to ensure
+that the protocol files are updated)
 
 ``` shell
 invoke test
 ```
-Or directly using pytest.
+or directly using pytest (if you don't want to generate the definitions)
 
 ``` shell
 pytest
