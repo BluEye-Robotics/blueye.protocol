@@ -11,6 +11,7 @@ definitions.
 
 This package requires Python 3.7 or newer.
 
+The `blueye.protocol` packages main use is in the [`blueye.sdk`](https://github.com/BluEye-Robotics/blueye.sdk). The SDK implements a layer of convenience on top of the TCP and UDP clients found here in `blueye.protocol`, to make interacting with the Pioneer easier. If you want to use the Pioneer in a programming project you should use the [`blueye.sdk`](https://github.com/BluEye-Robotics/blueye.sdk) package, not `blueye.protocol` directly.
 
 ## Installation
 ```shell
