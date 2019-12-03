@@ -498,6 +498,15 @@ class TcpClientV2(TcpClientBase):
         reply = self.send_and_receive(msg, expects_reply=True, receive_size=1)
         self.check_reply(reply, b'a')
 
+    def take_still_picture(self):
+        """Send a take_still_picture command over TCP
+
+        Takes a still picture and stores it locally on the drone.
+        """
+        command_identifier = b's'
+        msg = command_identifier
+        self.send_and_receive(msg, expects_reply=False)
+
     def set_camera_exposure(self, exposure_value):
         """Send a set_camera_exposure command over TCP
 
