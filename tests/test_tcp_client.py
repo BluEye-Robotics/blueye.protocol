@@ -73,6 +73,11 @@ def test_commands_produce_correct_message(tcp_client, function_name, expected_me
     tcp_client._sock.send.assert_called_with(expected_message)
 
 
+def test_take_still_picture_produces_correct_message(tcp_client_v2):
+    tcp_client_v2.take_still_picture()
+    tcp_client_v2._sock.send.assert_called_with(b"s")
+
+
 @pytest.mark.parametrize(
     "top_lights, bottom_lights, expected_message",
     [(0, 0, b"l\x00\x00"), (50, 50, b"l\x32\x32"), (255, 255, b"l\xFF\xFF")],
