@@ -303,3 +303,12 @@ def test_not_specifying_protocol_results_in_latest_protocol(
 
     tc = TcpClient(autoConnect=False)
     assert tc.protocol_version == 2
+
+
+@pytest.mark.parametrize("density, expected_message", [(0, b"W\x00\x00"), (1000, b"W\xe8\x03")])
+def test_set_water_density_produces_correct_message(tcp_client_v2,
+                                                    mocked_socket,
+                                                    density,
+                                                    expected_message):
+    tcp_client_v2.set_water_density(density)
+    tcp_client_v2._sock.send.assert_called_with(expected_message)
