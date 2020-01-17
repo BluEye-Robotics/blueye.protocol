@@ -501,10 +501,12 @@ class TcpClientV2(TcpClientBase):
     def set_water_density(self, water_density):
         """Send a set_water_density command over TCP
 
+        Set the water density for improved accuracy of the depth sensor.
+
         Args:
             water_density (numpy data type:<i2): water density in grams per liter
         """
-        command_identifier = b'p'
+        command_identifier = b'W'
         msg = command_identifier
         msg += struct.pack('h', water_density)
         self.send_and_receive(msg, expects_reply=False)
