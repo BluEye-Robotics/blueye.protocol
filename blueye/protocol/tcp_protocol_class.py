@@ -498,6 +498,19 @@ class TcpClientV2(TcpClientBase):
         reply = self.send_and_receive(msg, expects_reply=True, receive_size=1)
         self.check_reply(reply, b'a')
 
+    def set_water_density(self, water_density):
+        """Send a set_water_density command over TCP
+
+        Set the water density for improved accuracy of the depth sensor.
+
+        Args:
+            water_density (numpy data type:<i2): water density in grams per liter
+        """
+        command_identifier = b'W'
+        msg = command_identifier
+        msg += struct.pack('h', water_density)
+        self.send_and_receive(msg, expects_reply=False)
+
     def take_still_picture(self):
         """Send a take_still_picture command over TCP
 
