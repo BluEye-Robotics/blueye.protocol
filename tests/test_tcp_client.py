@@ -103,11 +103,66 @@ def test_exception_raised_on_wrong_reply(tcp_client, mocked_socket):
 
 
 @pytest.mark.parametrize(
+    "surge_input, sway_input, heave_input, yaw_input, slow_input, boost_input, tilt_speed_input, expected_message",
+    [
+        (0, 0, 0, 0, 0, 0, 0, b'J\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'),
+        (1, 1, 1, 1, 1, 1, 1, b'J\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?'),
+        (0.555, 0.555, 0.555, 0.555, 0.555, 0.555, 0.555,
+         b'J{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?'),
+    ],
+)
+def test_motion_tilt_command_produces_correct_message(
+    tcp_client_v2,
+    surge_input,
+    sway_input,
+    heave_input,
+    yaw_input,
+    slow_input,
+    boost_input,
+    tilt_speed_input,
+    expected_message,
+):
+    tcp_client_v2.motion_input_tilt(
+        surge_input, sway_input, heave_input, yaw_input, slow_input, boost_input, tilt_speed_input
+    )
+    tcp_client_v2._sock.send.assert_called_with(expected_message)
+
+
+@pytest.mark.parametrize(
+    "out_of_range_input_arguments",
+    [
+        [0, 0, 0, 0, 0, -1, 0],
+        [0, 0, 0, 0, 100, 0, 0],
+        [100, 0, 0, 0, 0, 0, 0],
+        [100, 0, 0, 0, 100, 0, 0],
+        [0, 0, 0, 0, 0, 0, -100],
+        [0, 0, 0, 0, 0, 0, 100],
+    ],
+)
+def test_motion_tilt_command_raises_exception_when_input_out_of_range(
+    tcp_client_v2, out_of_range_input_arguments
+):
+    with pytest.raises(ValueError):
+        tcp_client_v2.motion_input_tilt(*out_of_range_input_arguments)
+
+
+@pytest.mark.parametrize(
+    "in_range_input_arguments",
+    [[0, 0, 0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 1, 1], [-1, -1, -1, -1, 0, 0, -1]],
+)
+def test_motion_tilt_commmand_does_not_raise_exception_when_input_arguments_are_in_range(
+    tcp_client_v2, in_range_input_arguments
+):
+    tcp_client_v2.motion_input_tilt(*in_range_input_arguments)
+
+
+@pytest.mark.parametrize(
     "surge_input, sway_input, heave_input, yaw_input, slow_input, boost_input, expected_message",
     [
         (0, 0, 0, 0, 0, 0, b"j\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"),
         (1, 1, 1, 1, 1, 1, b"j\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?"),
-        (0.555, 0.555, 0.555, 0.555, 0.555, 0.555, b"j{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?"),
+        (0.555, 0.555, 0.555, 0.555, 0.555, 0.555,
+         b"j{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?"),
     ],
 )
 def test_motion_command_produces_correct_message(
