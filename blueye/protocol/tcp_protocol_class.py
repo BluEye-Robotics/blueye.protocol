@@ -342,6 +342,72 @@ class TcpClientV2(TcpClientBase):
         msg += struct.pack('ffffff', surge_motion_input, sway_motion_input, heave_motion_input, yaw_motion_input, slow_input, boost_input)
         self.send_and_receive(msg, expects_reply=False)
 
+    def motion_input_tilt(self, surge_motion_input, sway_motion_input, heave_motion_input, yaw_motion_input, slow_input, boost_input, tilt_speed_input):
+        """Send a motion_input_tilt command over TCP
+
+        Args:
+            surge_motion_input (numpy data type:<f4): valid range is <-1, 1> 
+            sway_motion_input (numpy data type:<f4): valid range is <-1, 1> 
+            heave_motion_input (numpy data type:<f4): valid range is <-1, 1> 
+            yaw_motion_input (numpy data type:<f4): valid range is <-1, 1> 
+            slow_input (numpy data type:<f4): valid range is <0, 1> 
+            boost_input (numpy data type:<f4): valid range is <0, 1> 
+            tilt_speed_input (numpy data type:<f4): valid range is <-1, 1> Speed input for the camera tilt angle. 1 for max up, -1 for max down, 0 for stop.
+        """
+        if not -1 <= surge_motion_input <= 1:
+            raise ValueError(
+                "Input argument out of range:" +
+                " valid range for surge_motion_input is" +
+                " <{lower_limit}, {upper_limit}>".format(lower_limit=-1, upper_limit=1) +
+                " but got value: {name}".format(name=surge_motion_input))
+
+        if not -1 <= sway_motion_input <= 1:
+            raise ValueError(
+                "Input argument out of range:" +
+                " valid range for sway_motion_input is" +
+                " <{lower_limit}, {upper_limit}>".format(lower_limit=-1, upper_limit=1) +
+                " but got value: {name}".format(name=sway_motion_input))
+
+        if not -1 <= heave_motion_input <= 1:
+            raise ValueError(
+                "Input argument out of range:" +
+                " valid range for heave_motion_input is" +
+                " <{lower_limit}, {upper_limit}>".format(lower_limit=-1, upper_limit=1) +
+                " but got value: {name}".format(name=heave_motion_input))
+
+        if not -1 <= yaw_motion_input <= 1:
+            raise ValueError(
+                "Input argument out of range:" +
+                " valid range for yaw_motion_input is" +
+                " <{lower_limit}, {upper_limit}>".format(lower_limit=-1, upper_limit=1) +
+                " but got value: {name}".format(name=yaw_motion_input))
+
+        if not 0 <= slow_input <= 1:
+            raise ValueError(
+                "Input argument out of range:" +
+                " valid range for slow_input is" +
+                " <{lower_limit}, {upper_limit}>".format(lower_limit=0, upper_limit=1) +
+                " but got value: {name}".format(name=slow_input))
+
+        if not 0 <= boost_input <= 1:
+            raise ValueError(
+                "Input argument out of range:" +
+                " valid range for boost_input is" +
+                " <{lower_limit}, {upper_limit}>".format(lower_limit=0, upper_limit=1) +
+                " but got value: {name}".format(name=boost_input))
+
+        if not -1 <= tilt_speed_input <= 1:
+            raise ValueError(
+                "Input argument out of range:" +
+                " valid range for tilt_speed_input is" +
+                " <{lower_limit}, {upper_limit}>".format(lower_limit=-1, upper_limit=1) +
+                " but got value: {name}".format(name=tilt_speed_input))
+
+        command_identifier = b'J'
+        msg = command_identifier
+        msg += struct.pack('fffffff', surge_motion_input, sway_motion_input, heave_motion_input, yaw_motion_input, slow_input, boost_input, tilt_speed_input)
+        self.send_and_receive(msg, expects_reply=False)
+
     def set_lights(self, brightness_upper, brightness_lower):
         """Send a set_lights command over TCP
 
