@@ -792,6 +792,15 @@ class TcpClientV2(TcpClientBase):
         msg = command_identifier
         self.send_and_receive(msg, expects_reply=False)
 
+    def toggle_tilt_stabilization(self):
+        """Send a toggle_tilt_stabilization command over TCP
+
+        Toggle active tilt stabilization on or off
+        """
+        command_identifier = b'S'
+        msg = command_identifier
+        self.send_and_receive(msg, expects_reply=False)
+
     def set_camera_exposure(self, exposure_value):
         """Send a set_camera_exposure command over TCP
 
