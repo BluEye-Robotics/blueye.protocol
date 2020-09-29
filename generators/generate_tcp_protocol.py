@@ -29,7 +29,7 @@ class Context:
 def dtype_to_format_char(dtype):
     STRUCT_CONVERSION = {"<u1": "B", "<i1": "b", "<u2": "H", "<i2": "h",
                          "<u4": "I", "<i4": "i", "<u8": "Q", "<i8": "q",
-                         "<f4": "f", "<f8": "d"}
+                         "<f4": "f", "<f8": "d", "<u1[64]": "64s"}
     return STRUCT_CONVERSION[dtype]
 
 
@@ -65,7 +65,11 @@ def write_tcp_send_functions(context):
                     read_size = 0
                     for field in command['returned_fields']:
                         return_format_string += dtype_to_format_char(field['dtype'])
-                        read_size += int(field['dtype'][2])  # get byte count from dtype of field
+                        if field["dtype"] == "<u1[64]":
+                            read_size += 64
+                        else:
+                            # get byte count from dtype of field
+                            read_size += int(field['dtype'][2])
                     template_context['return_format_string'] = return_format_string
                     template_context['read_size'] = read_size
                 python_command = context.template_environment\
