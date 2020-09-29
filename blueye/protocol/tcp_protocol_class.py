@@ -650,7 +650,7 @@ class TcpClientV2(TcpClientBase):
         """Send a set_camera_resolution command over TCP
 
         Args:
-            resolution_value (numpy data type:<i4): valid values are 480, 720 or 1080
+            resolution_value (numpy data type:<i4): valid values are 720 or 1080
         """
         command_identifier = b'vr'
         msg = command_identifier
