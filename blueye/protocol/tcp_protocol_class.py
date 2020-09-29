@@ -456,6 +456,212 @@ class TcpClientV2(TcpClientBase):
         msg = command_identifier
         self.send_and_receive(msg, expects_reply=False)
 
+    def set_overlay_temperature_enabled(self, overlay_temperature_enabled):
+        """Send a set_overlay_temperature_enabled command over TCP
+
+        Args:
+            overlay_temperature_enabled (numpy data type:<u1): 1 is true, 0 is false
+        """
+        command_identifier = b'ot'
+        msg = command_identifier
+        msg += struct.pack('B', overlay_temperature_enabled)
+        reply = self.send_and_receive(msg, expects_reply=True, receive_size=1)
+        self.check_reply(reply, b'a')
+
+    def set_overlay_depth_enabled(self, overlay_depth_enabled):
+        """Send a set_overlay_depth_enabled command over TCP
+
+        Args:
+            overlay_depth_enabled (numpy data type:<u1): 1 is true, 0 is false
+        """
+        command_identifier = b'od'
+        msg = command_identifier
+        msg += struct.pack('B', overlay_depth_enabled)
+        reply = self.send_and_receive(msg, expects_reply=True, receive_size=1)
+        self.check_reply(reply, b'a')
+
+    def set_overlay_heading_enabled(self, overlay_heading_enabled):
+        """Send a set_overlay_heading_enabled command over TCP
+
+        Args:
+            overlay_heading_enabled (numpy data type:<u1): 1 is true, 0 is false
+        """
+        command_identifier = b'oh'
+        msg = command_identifier
+        msg += struct.pack('B', overlay_heading_enabled)
+        reply = self.send_and_receive(msg, expects_reply=True, receive_size=1)
+        self.check_reply(reply, b'a')
+
+    def set_overlay_tilt_enabled(self, overlay_tilt_enabled):
+        """Send a set_overlay_tilt_enabled command over TCP
+
+        Args:
+            overlay_tilt_enabled (numpy data type:<u1): 1 is true, 0 is false
+        """
+        command_identifier = b'ol'
+        msg = command_identifier
+        msg += struct.pack('B', overlay_tilt_enabled)
+        reply = self.send_and_receive(msg, expects_reply=True, receive_size=1)
+        self.check_reply(reply, b'a')
+
+    def set_overlay_date_enabled(self, overlay_date_enabled):
+        """Send a set_overlay_date_enabled command over TCP
+
+        Args:
+            overlay_date_enabled (numpy data type:<u1): 1 is true, 0 is false
+        """
+        command_identifier = b'oa'
+        msg = command_identifier
+        msg += struct.pack('B', overlay_date_enabled)
+        reply = self.send_and_receive(msg, expects_reply=True, receive_size=1)
+        self.check_reply(reply, b'a')
+
+    def set_overlay_logo_index(self, overlay_logo_index):
+        """Send a set_overlay_logo_index command over TCP
+
+        Args:
+            overlay_logo_index (numpy data type:<i4): enum { NONE = 0, DEFAULT = 1, CUSTOM = 2 }
+        """
+        command_identifier = b'oD'
+        msg = command_identifier
+        msg += struct.pack('i', overlay_logo_index)
+        reply = self.send_and_receive(msg, expects_reply=True, receive_size=1)
+        self.check_reply(reply, b'a')
+
+    def set_overlay_depth_unit(self, overlay_depth_unit):
+        """Send a set_overlay_depth_unit command over TCP
+
+        Args:
+            overlay_depth_unit (numpy data type:<i4): enum { METERS = 0, FEET = 1 }
+        """
+        command_identifier = b'oD'
+        msg = command_identifier
+        msg += struct.pack('i', overlay_depth_unit)
+        reply = self.send_and_receive(msg, expects_reply=True, receive_size=1)
+        self.check_reply(reply, b'a')
+
+    def set_overlay_temperature_unit(self, overlay_temperature_unit):
+        """Send a set_overlay_temperature_unit command over TCP
+
+        Args:
+            overlay_temperature_unit (numpy data type:<i4): enum { CELSIUS = 0, FAHRENHEIT = 1 }
+        """
+        command_identifier = b'oT'
+        msg = command_identifier
+        msg += struct.pack('i', overlay_temperature_unit)
+        reply = self.send_and_receive(msg, expects_reply=True, receive_size=1)
+        self.check_reply(reply, b'a')
+
+    def set_overlay_tz_offset(self, overlay_tz_offset):
+        """Send a set_overlay_tz_offset command over TCP
+
+        Args:
+            overlay_tz_offset (numpy data type:<i4): time zone offset in minutes
+        """
+        command_identifier = b'oz'
+        msg = command_identifier
+        msg += struct.pack('i', overlay_tz_offset)
+        reply = self.send_and_receive(msg, expects_reply=True, receive_size=1)
+        self.check_reply(reply, b'a')
+
+    def set_overlay_margin_width(self, overlay_margin_width):
+        """Send a set_overlay_margin_width command over TCP
+
+        Args:
+            overlay_margin_width (numpy data type:<i4): margin width in pixels
+        """
+        command_identifier = b'ow'
+        msg = command_identifier
+        msg += struct.pack('i', overlay_margin_width)
+        reply = self.send_and_receive(msg, expects_reply=True, receive_size=1)
+        self.check_reply(reply, b'a')
+
+    def set_overlay_margin_height(self, overlay_margin_height):
+        """Send a set_overlay_margin_height command over TCP
+
+        Args:
+            overlay_margin_height (numpy data type:<i4): margin height in pixels
+        """
+        command_identifier = b'oH'
+        msg = command_identifier
+        msg += struct.pack('i', overlay_margin_height)
+        reply = self.send_and_receive(msg, expects_reply=True, receive_size=1)
+        self.check_reply(reply, b'a')
+
+    def set_overlay_font_size(self, overlay_font_size):
+        """Send a set_overlay_font_size command over TCP
+
+        Args:
+            overlay_font_size (numpy data type:<i4): choose from: { 15, 20, 25, 30, 35, 40 }
+        """
+        command_identifier = b'of'
+        msg = command_identifier
+        msg += struct.pack('i', overlay_font_size)
+        reply = self.send_and_receive(msg, expects_reply=True, receive_size=1)
+        self.check_reply(reply, b'a')
+
+    def set_overlay_title(self, overlay_title):
+        """Send a set_overlay_title command over TCP
+
+        Args:
+            overlay_title (numpy data type:<u1[64]): Null terminated ascii string padded to 64 characters
+        """
+        command_identifier = b'oi'
+        msg = command_identifier
+        msg += struct.pack('64s', overlay_title)
+        reply = self.send_and_receive(msg, expects_reply=True, receive_size=1)
+        self.check_reply(reply, b'a')
+
+    def set_overlay_subtitle(self, overlay_subtitle):
+        """Send a set_overlay_subtitle command over TCP
+
+        Args:
+            overlay_subtitle (numpy data type:<u1[64]): Null terminated ascii string padded to 64 characters
+        """
+        command_identifier = b'os'
+        msg = command_identifier
+        msg += struct.pack('64s', overlay_subtitle)
+        reply = self.send_and_receive(msg, expects_reply=True, receive_size=1)
+        self.check_reply(reply, b'a')
+
+    def set_overlay_date_format(self, overlay_date_format):
+        """Send a set_overlay_date_format command over TCP
+
+        Args:
+            overlay_date_format (numpy data type:<u1[64]): Null terminated ascii string padded to 64 characters
+        """
+        command_identifier = b'oA'
+        msg = command_identifier
+        msg += struct.pack('64s', overlay_date_format)
+        reply = self.send_and_receive(msg, expects_reply=True, receive_size=1)
+        self.check_reply(reply, b'a')
+
+    def get_overlay_parameters(self):
+        """Send a get_overlay_parameters command over TCP
+
+        Returns:
+            parameter (numtyp data type:<u1)
+            temperature_enabled (numtyp data type:<u1)
+            depth_enabled (numtyp data type:<u1)
+            heading_enabled (numtyp data type:<u1)
+            tilt_enabled (numtyp data type:<u1)
+            date_enabled (numtyp data type:<u1)
+            logo_index (numtyp data type:<i4)
+            depth_unit (numtyp data type:<i4)
+            temperature_unit (numtyp data type:<i4)
+            tz_offset (numtyp data type:<i4)
+            margin_width (numtyp data type:<i4)
+            margin_height (numtyp data type:<i4)
+            font_size (numtyp data type:<i4)
+            title (numtyp data type:<u1[64])
+            subtitle (numtyp data type:<u1[64])
+            date_format (numtyp data type:<u1[64])
+        """
+        command_identifier = b'Oa'
+        msg = command_identifier
+        reply = self.send_and_receive(msg, expects_reply=True, receive_size=226)
+        return struct.unpack('<BBBBBBiiiiiii64s64s64s', reply)
+
     def start_compass_calibration(self):
         """Send a start_compass_calibration command over TCP
         """
