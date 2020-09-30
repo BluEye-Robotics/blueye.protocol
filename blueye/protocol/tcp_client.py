@@ -11,18 +11,15 @@ from blueye.protocol.exceptions import (MismatchedReply, NoConnectionToDrone,
 class TcpClientBase(threading.Thread):
     """A base level TcpClient for communicating with the Blueye Pioneer
 
-    TcpClientBase should not be instantiated on its own. Instead protocol version classes inherit the functionality from
-    TcpClientBase, and the combined functionality of a protocol version class and TcpClientBase are exposed in the
-    top level class TcpClient.
+    TcpClientBase should not be instantiated on its own. Instead protocol version classes inherit
+    the functionality from TcpClientBase, and the combined functionality of a protocol version
+    class and TcpClientBase are exposed in the top level class TcpClient.
 
     TcpClientBase -> TcpclientV1(or other protocol versions) -> TcpClient.
 
     Example of how to connect to a drone, and toggle the lights
     Example:
     >>> import blueye.protocol
-    >>> import logging
-    >>> logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S', level=logging.WARNING)
-    >>> # use logging level DEBUG to see sent and received messages
     >>> tc = blueye.protocol.TcpClient(maxConnectRetries=3)
     >>> tc.set_lights(10, 10)
     >>> time.sleep(3)
