@@ -83,7 +83,9 @@ class TcpClientBase(threading.Thread):
                 continue
             break
         else:
-            self.logger.error(f"Attempted {max_retries} times, but was unable to connect to drone.")
+            self.logger.error(
+                f"Attempted {attempts} time{'' if attempts == 1 else 's'}, "
+                "but was unable to connect to drone.")
             raise NoConnectionToDrone(self._ip, self._port)
 
     def stop(self):
