@@ -115,7 +115,7 @@ class TcpClientBase(threading.Thread):
         """
         try:
             reply = self._sock.recv(size)
-            self.logger.debug(f"Reply: {reply}")
+            self.logger.debug(f"Received message: {reply}")
             return reply
         except socket.timeout as e:
             self.logger.warning("Timed out while waiting for message reply")
