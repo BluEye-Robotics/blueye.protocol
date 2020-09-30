@@ -29,12 +29,23 @@ class TcpClientBase(threading.Thread):
     >>> tc.set_lights(0, 0)
     """
 
-    def __init__(self, port=2011, ip="192.168.1.101", maxConnectRetries=0, autoConnect=True):
+    def __init__(
+        self,
+        port=2011,
+        ip="192.168.1.101",
+        maxConnectRetries=0,
+        autoConnect=True,
+        logger=None,
+    ):
         threading.Thread.__init__(self)
         self._ip = ip
         self._port = port
 
-        self.logger = logging.getLogger()
+        if logger is None:
+            # If no logger has been passed we'll use the module logger
+            self.logger = logging.getLogger(__name__)
+        else:
+            self.logger = logger
 
         self._sock = None
         self.socket_lock = threading.Lock()
