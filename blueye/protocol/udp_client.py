@@ -1,19 +1,25 @@
 #!/usr/bin/env python3
 from __future__ import print_function
 
+import logging
 import socket
 import time
 import platform
 
 from blueye.protocol import AppProtocol
 
-info_test = print
-
 
 class UdpClient:
-    def __init__(self, port=2010, protocol_description=None):
+    def __init__(self, port=2010, protocol_description=None, logger=None):
         self._port = port
         self._ip = "0.0.0.0"
+
+        if logger is None:
+            # If no logger has been passed we'll use the module logger
+            self.logger = logging.getLogger(__name__)
+        else:
+            self.logger = logger
+
         self._sock = None
 
         self._sock = socket.socket(socket.AF_INET,
@@ -29,16 +35,12 @@ class UdpClient:
         self.bind()
 
     def __del__(self):
+        self.logger.debug("Closing UDP socket")
         self._sock.close()
 
     def bind(self):
-        try:
-            self._sock.bind((self._ip, self._port))
-            # info_test("Bind address")
-        except socket.error as e:
-            info_test(str(e))
-            return False
-        return True
+        self.logger.debug(f"Binding UDP socket to {self._ip}:{self._port}")
+        self._sock.bind((self._ip, self._port))
 
     def _get_raw_data(self):
         data_raw, addr = self._sock.recvfrom(1024)
