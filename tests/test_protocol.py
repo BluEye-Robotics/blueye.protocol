@@ -7,8 +7,6 @@ from unittest.mock import *
 
 from blueye.protocol import AppProtocol
 
-print(AppProtocol)
-
 fake_data = json.loads("""
 [
     {
