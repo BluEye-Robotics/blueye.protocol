@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import os
+import gzip
 import struct
 import numpy as np
 
@@ -56,11 +56,12 @@ class AppProtocol:
         return dict(zip(self.get_field_names(packet_type), struct.unpack(struct_format, data)))
 
     def np_array_from_file(self, abspath):
-        with open(abspath, 'rb') as f:
-            version, packet_type = f.read(2)
-        dtype = list(zip(self.get_field_names(packet_type, version=version),
-                         self.get_numpy_field_dtypes(packet_type, version=version)))
-        return np.fromfile(abspath, dtype=dtype)
+        open_ = gzip.open if abspath.endswith(".gz") else open
+        with open_(abspath, 'rb') as bin_file:
+            version, packet_type = bin_file.peek(2)[:2]
+            dtype = list(zip(self.get_field_names(packet_type, version=version),
+                             self.get_numpy_field_dtypes(packet_type, version=version)))
+            return np.frombuffer(bin_file.read(), dtype=dtype)
 
     def pack_data(self, data):
         version = data[0]
