@@ -1,0 +1,5 @@
+[flake8]
+ignore = C901, E226, W504
+max-line-length = 100
+exclude = tests/* setup.py
+max-complexity = 10
