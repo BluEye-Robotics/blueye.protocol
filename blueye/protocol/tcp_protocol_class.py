@@ -2,21 +2,18 @@
 import struct
 from .tcp_client import TcpClientBase
 
-
 class TcpClientV1(TcpClientBase):
     protocol_version = 1
-
-    def motion_input(self, surge_motion_input, sway_motion_input, heave_motion_input,
-                     yaw_motion_input, slow_input, boost_input):
+    def motion_input(self, surge_motion_input, sway_motion_input, heave_motion_input, yaw_motion_input, slow_input, boost_input):
         """Send a motion_input command over TCP
 
         Args:
-            surge_motion_input (numpy data type:<f4): valid range is <-1, 1>
-            sway_motion_input (numpy data type:<f4): valid range is <-1, 1>
-            heave_motion_input (numpy data type:<f4): valid range is <-1, 1>
-            yaw_motion_input (numpy data type:<f4): valid range is <-1, 1>
-            slow_input (numpy data type:<f4): valid range is <0, 1>
-            boost_input (numpy data type:<f4): valid range is <0, 1>
+            surge_motion_input (numpy data type:<f4): valid range is <-1, 1> 
+            sway_motion_input (numpy data type:<f4): valid range is <-1, 1> 
+            heave_motion_input (numpy data type:<f4): valid range is <-1, 1> 
+            yaw_motion_input (numpy data type:<f4): valid range is <-1, 1> 
+            slow_input (numpy data type:<f4): valid range is <0, 1> 
+            boost_input (numpy data type:<f4): valid range is <0, 1> 
         """
         if not -1 <= surge_motion_input <= 1:
             raise ValueError(
@@ -62,16 +59,15 @@ class TcpClientV1(TcpClientBase):
 
         command_identifier = b'j'
         msg = command_identifier
-        msg += struct.pack('ffffff', surge_motion_input, sway_motion_input, heave_motion_input,
-                           yaw_motion_input, slow_input, boost_input)
+        msg += struct.pack('ffffff', surge_motion_input, sway_motion_input, heave_motion_input, yaw_motion_input, slow_input, boost_input)
         self.send_and_receive(msg, expects_reply=False)
 
     def set_lights(self, brightness_upper, brightness_lower):
         """Send a set_lights command over TCP
 
         Args:
-            brightness_upper (numpy data type:<u1): valid range is <0, 255>
-            brightness_lower (numpy data type:<u1): valid range is <0, 255>
+            brightness_upper (numpy data type:<u1): valid range is <0, 255> 
+            brightness_lower (numpy data type:<u1): valid range is <0, 255> 
         """
         if not 0 <= brightness_upper <= 255:
             raise ValueError(
@@ -214,7 +210,7 @@ class TcpClientV1(TcpClientBase):
         set the system time on the on-board computer
 
         Args:
-            unix_timestamp (numpy data type:<i4):
+            unix_timestamp (numpy data type:<i4): 
         """
         command_identifier = b't'
         msg = command_identifier
@@ -226,8 +222,7 @@ class TcpClientV1(TcpClientBase):
         """Send a set_camera_exposure command over TCP
 
         Args:
-            exposure_value (numpy data type:<i4): 1 = 1/1000th of a second, 5 = 1/200th of a second.
-                Valid values are in the range <1, 5000>
+            exposure_value (numpy data type:<i4): 1 = 1/1000th of a second, 5 = 1/200th of a second. Valid values are in the range <1, 5000>
         """
         command_identifier = b've'
         msg = command_identifier
@@ -263,8 +258,7 @@ class TcpClientV1(TcpClientBase):
         """Send a set_camera_bitrate command over TCP
 
         Args:
-            bitrate_value (numpy data type:<i4): set camera bitrate in bits. Valid values are in
-                range <1 000 000, 16 000 000>
+            bitrate_value (numpy data type:<i4): set camera bitrate in bits. Valid values are in range <1 000 000, 16 000 000> 
         """
         command_identifier = b'vb'
         msg = command_identifier
@@ -290,18 +284,16 @@ class TcpClientV1(TcpClientBase):
 
 class TcpClientV2(TcpClientBase):
     protocol_version = 2
-
-    def motion_input(self, surge_motion_input, sway_motion_input, heave_motion_input,
-                     yaw_motion_input, slow_input, boost_input):
+    def motion_input(self, surge_motion_input, sway_motion_input, heave_motion_input, yaw_motion_input, slow_input, boost_input):
         """Send a motion_input command over TCP
 
         Args:
-            surge_motion_input (numpy data type:<f4): valid range is <-1, 1>
-            sway_motion_input (numpy data type:<f4): valid range is <-1, 1>
-            heave_motion_input (numpy data type:<f4): valid range is <-1, 1>
-            yaw_motion_input (numpy data type:<f4): valid range is <-1, 1>
-            slow_input (numpy data type:<f4): valid range is <0, 1>
-            boost_input (numpy data type:<f4): valid range is <0, 1>
+            surge_motion_input (numpy data type:<f4): valid range is <-1, 1> 
+            sway_motion_input (numpy data type:<f4): valid range is <-1, 1> 
+            heave_motion_input (numpy data type:<f4): valid range is <-1, 1> 
+            yaw_motion_input (numpy data type:<f4): valid range is <-1, 1> 
+            slow_input (numpy data type:<f4): valid range is <0, 1> 
+            boost_input (numpy data type:<f4): valid range is <0, 1> 
         """
         if not -1 <= surge_motion_input <= 1:
             raise ValueError(
@@ -347,23 +339,20 @@ class TcpClientV2(TcpClientBase):
 
         command_identifier = b'j'
         msg = command_identifier
-        msg += struct.pack('ffffff', surge_motion_input, sway_motion_input, heave_motion_input,
-                           yaw_motion_input, slow_input, boost_input)
+        msg += struct.pack('ffffff', surge_motion_input, sway_motion_input, heave_motion_input, yaw_motion_input, slow_input, boost_input)
         self.send_and_receive(msg, expects_reply=False)
 
-    def motion_input_tilt(self, surge_motion_input, sway_motion_input, heave_motion_input,
-                          yaw_motion_input, slow_input, boost_input, tilt_speed_input):
+    def motion_input_tilt(self, surge_motion_input, sway_motion_input, heave_motion_input, yaw_motion_input, slow_input, boost_input, tilt_speed_input):
         """Send a motion_input_tilt command over TCP
 
         Args:
-            surge_motion_input (numpy data type:<f4): valid range is <-1, 1>
-            sway_motion_input (numpy data type:<f4): valid range is <-1, 1>
-            heave_motion_input (numpy data type:<f4): valid range is <-1, 1>
-            yaw_motion_input (numpy data type:<f4): valid range is <-1, 1>
-            slow_input (numpy data type:<f4): valid range is <0, 1>
-            boost_input (numpy data type:<f4): valid range is <0, 1>
-            tilt_speed_input (numpy data type:<f4): valid range is <-1, 1> Speed input for the
-                camera tilt angle. 1 for max up, -1 for max down, 0 for stop.
+            surge_motion_input (numpy data type:<f4): valid range is <-1, 1> 
+            sway_motion_input (numpy data type:<f4): valid range is <-1, 1> 
+            heave_motion_input (numpy data type:<f4): valid range is <-1, 1> 
+            yaw_motion_input (numpy data type:<f4): valid range is <-1, 1> 
+            slow_input (numpy data type:<f4): valid range is <0, 1> 
+            boost_input (numpy data type:<f4): valid range is <0, 1> 
+            tilt_speed_input (numpy data type:<f4): valid range is <-1, 1> Speed input for the camera tilt angle. 1 for max up, -1 for max down, 0 for stop.
         """
         if not -1 <= surge_motion_input <= 1:
             raise ValueError(
@@ -416,16 +405,15 @@ class TcpClientV2(TcpClientBase):
 
         command_identifier = b'J'
         msg = command_identifier
-        msg += struct.pack('fffffff', surge_motion_input, sway_motion_input, heave_motion_input,
-                           yaw_motion_input, slow_input, boost_input, tilt_speed_input)
+        msg += struct.pack('fffffff', surge_motion_input, sway_motion_input, heave_motion_input, yaw_motion_input, slow_input, boost_input, tilt_speed_input)
         self.send_and_receive(msg, expects_reply=False)
 
     def set_lights(self, brightness_upper, brightness_lower):
         """Send a set_lights command over TCP
 
         Args:
-            brightness_upper (numpy data type:<u1): valid range is <0, 255>
-            brightness_lower (numpy data type:<u1): valid range is <0, 255>
+            brightness_upper (numpy data type:<u1): valid range is <0, 255> 
+            brightness_lower (numpy data type:<u1): valid range is <0, 255> 
         """
         if not 0 <= brightness_upper <= 255:
             raise ValueError(
@@ -616,8 +604,7 @@ class TcpClientV2(TcpClientBase):
         """Send a set_overlay_title command over TCP
 
         Args:
-            overlay_title (numpy data type:<u1[64]): Null terminated ascii string padded to 64
-                characters
+            overlay_title (numpy data type:<u1[64]): Null terminated ascii string padded to 64 characters
         """
         command_identifier = b'oi'
         msg = command_identifier
@@ -629,8 +616,7 @@ class TcpClientV2(TcpClientBase):
         """Send a set_overlay_subtitle command over TCP
 
         Args:
-            overlay_subtitle (numpy data type:<u1[64]): Null terminated ascii string padded to 64
-                characters
+            overlay_subtitle (numpy data type:<u1[64]): Null terminated ascii string padded to 64 characters
         """
         command_identifier = b'os'
         msg = command_identifier
@@ -642,8 +628,7 @@ class TcpClientV2(TcpClientBase):
         """Send a set_overlay_date_format command over TCP
 
         Args:
-            overlay_date_format (numpy data type:<u1[64]): Null terminated ascii string padded to 64
-                characters
+            overlay_date_format (numpy data type:<u1[64]): Null terminated ascii string padded to 64 characters
         """
         command_identifier = b'oA'
         msg = command_identifier
@@ -777,7 +762,7 @@ class TcpClientV2(TcpClientBase):
         set the system time on the on-board computer
 
         Args:
-            unix_timestamp (numpy data type:<i4):
+            unix_timestamp (numpy data type:<i4): 
         """
         command_identifier = b't'
         msg = command_identifier
@@ -820,8 +805,7 @@ class TcpClientV2(TcpClientBase):
         """Send a set_camera_exposure command over TCP
 
         Args:
-            exposure_value (numpy data type:<i4): 1 = 1/1000th of a second, 5 = 1/200th of a second.
-                Valid values are in the range <1, 5000>
+            exposure_value (numpy data type:<i4): 1 = 1/1000th of a second, 5 = 1/200th of a second. Valid values are in the range <1, 5000>
         """
         command_identifier = b've'
         msg = command_identifier
@@ -857,8 +841,7 @@ class TcpClientV2(TcpClientBase):
         """Send a set_camera_bitrate command over TCP
 
         Args:
-            bitrate_value (numpy data type:<i4): set camera bitrate in bits. Valid values are in
-                range <1 000 000, 16 000 000>
+            bitrate_value (numpy data type:<i4): set camera bitrate in bits. Valid values are in range <1 000 000, 16 000 000> 
         """
         command_identifier = b'vb'
         msg = command_identifier
@@ -909,8 +892,8 @@ class TcpClientV2(TcpClientBase):
 
 
 class TcpClient:
-    def __new__(cls, protocol_version=None, *args, **kwargs):
-        if protocol_version is None:
+    def __new__(self, protocol_version=None, *args, **kwargs):
+        if protocol_version == None:
             return TcpClientV2(*args, **kwargs)
         elif protocol_version == 1:
             return TcpClientV1(*args, **kwargs)
@@ -918,3 +901,4 @@ class TcpClient:
             return TcpClientV2(*args, **kwargs)
         else:
             raise ValueError(f"Unsupported protocol version: {protocol_version}")
+            
