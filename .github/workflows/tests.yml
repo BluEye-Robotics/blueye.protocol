@@ -25,3 +25,5 @@ jobs:
       run: poetry install
     - name: Run tests
       run: poetry run invoke test
+    - name: Run style checker
+      run: poetry run flake8
