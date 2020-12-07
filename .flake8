@@ -1,5 +1,5 @@
 [flake8]
 ignore = C901, E226, W504
 max-line-length = 100
-exclude = tests/* setup.py
+exclude = tests/* setup.py generators/generate_udp_protocol.py
 max-complexity = 10
