@@ -16,7 +16,7 @@ class MismatchedReply(TCPClientException, ValueError):
     def __init__(self, expected_reply, actual_reply):
         self.expected_reply = expected_reply
         self.actual_reply = actual_reply
-        TCPClientException.__init__(self, (f"Unexpected reply from drone, expected: " +
+        TCPClientException.__init__(self, ("Unexpected reply from drone, expected: " +
                                            f"{expected_reply}, but got: {actual_reply}"))
 
 
