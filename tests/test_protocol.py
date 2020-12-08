@@ -198,6 +198,14 @@ class TestAppProtocol(unittest.TestCase):
         self.assertEqual(np_data["i8-2"].tolist(), [8, 18])
         self.assertEqual([data[:12], data[12:]], np_data.tolist())
 
+    def test_np_array_from_empty_file(self):
+        ap = AppProtocol(fake_data)
+        tmp = tempfile.mkstemp()[1]
+        with open(tmp, "wb") as f:
+            pass
+        np_data = ap.np_array_from_file(tmp)
+        self.assertIsNone(np_data)
+
 
 if __name__ == '__main__':
     unittest.main()

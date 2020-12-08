@@ -58,7 +58,10 @@ class AppProtocol:
     def np_array_from_file(self, abspath):
         open_ = gzip.open if abspath.endswith(".gz") else open
         with open_(abspath, 'rb') as bin_file:
-            version, packet_type = bin_file.peek(2)[:2]
+            try:
+                version, packet_type = bin_file.peek(2)[:2]
+            except ValueError:
+                return None
             dtype = list(zip(self.get_field_names(packet_type, version=version),
                              self.get_numpy_field_dtypes(packet_type, version=version)))
             return np.frombuffer(bin_file.read(), dtype=dtype)
