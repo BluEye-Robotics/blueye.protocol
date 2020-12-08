@@ -85,7 +85,7 @@ poetry install
 **Important**: This repository includes generated code. If the protocol definitions are
 changed the generated files need to be updated and committed.
 The generated protocol files are updated using the generators in the `generators`
-folder. They can be run with `invoke generate_udp` or `invoke generate_tcp`.
+folder. They can be run with `invoke generate-udp` or `invoke generate-tcp`.
 The generators are run automatically before testing with.
 
 ``` shell
