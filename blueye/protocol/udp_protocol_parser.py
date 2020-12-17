@@ -67,9 +67,9 @@ class AppProtocol:
             data = bin_file.read()
             row_len = struct.calcsize(self.get_struct_format(packet_type, version=version))
             # Calculate how many full rows are in the file
-            n_rows = int(len(data)/row_len)
+            n_rows = int(len(data) / row_len)
             # Truncate after last full row if there is corrupt data
-            data = data[:(n_rows*row_len)]
+            data = data[:(n_rows * row_len)]
             return np.frombuffer(data, dtype=dtype)
 
     def pack_data(self, data):
