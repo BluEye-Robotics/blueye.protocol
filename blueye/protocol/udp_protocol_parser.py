@@ -64,7 +64,11 @@ class AppProtocol:
                 return None
             dtype = list(zip(self.get_field_names(packet_type, version=version),
                              self.get_numpy_field_dtypes(packet_type, version=version)))
-            return np.frombuffer(bin_file.read(), dtype=dtype)
+            data = bin_file.read()
+            # Truncate if there is corrupt data
+            row_len = struct.calcsize(self.get_struct_format(packet_type, version=version))
+            data = data[:(int(len(data)/row_len)*row_len)]
+            return np.frombuffer(data, dtype=dtype)
 
     def pack_data(self, data):
         version = data[0]
