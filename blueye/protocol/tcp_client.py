@@ -20,22 +20,29 @@ class TcpClientBase(threading.Thread):
     Example:
     >>> import time
     >>> import blueye.protocol
-    >>> import logging
-    >>> logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
-                            datefmt='%d-%b-%y %H:%M:%S', level=logging.WARNING)
-    >>> # use logging level DEBUG to see sent and received messages
     >>> tc = blueye.protocol.TcpClient(maxConnectRetries=3)
     >>> tc.set_lights(10, 10)
     >>> time.sleep(3)
     >>> tc.set_lights(0, 0)
     """
 
-    def __init__(self, port=2011, ip="192.168.1.101", maxConnectRetries=0, autoConnect=True):
+    def __init__(
+        self,
+        port=2011,
+        ip="192.168.1.101",
+        maxConnectRetries=0,
+        autoConnect=True,
+        logger=None,
+    ):
         threading.Thread.__init__(self)
         self._ip = ip
         self._port = port
 
-        self.logger = logging.getLogger()
+        if logger is None:
+            # If no logger has been passed we'll use the module logger
+            self.logger = logging.getLogger(__name__)
+        else:
+            self.logger = logger
 
         self._sock = None
         self.socket_lock = threading.Lock()
@@ -76,7 +83,9 @@ class TcpClientBase(threading.Thread):
                 continue
             break
         else:
-            self.logger.error(f"Attempted {max_retries} times, but was unable to connect to drone.")
+            self.logger.error(
+                f"Attempted {attempts} time{'' if attempts == 1 else 's'}, "
+                "but was unable to connect to drone.")
             raise NoConnectionToDrone(self._ip, self._port)
 
     def stop(self):
@@ -106,7 +115,7 @@ class TcpClientBase(threading.Thread):
         """
         try:
             reply = self._sock.recv(size)
-            self.logger.debug(f"Reply: {reply}")
+            self.logger.debug(f"Received message: {reply}")
             return reply
         except socket.timeout as e:
             self.logger.warning("Timed out while waiting for message reply")
