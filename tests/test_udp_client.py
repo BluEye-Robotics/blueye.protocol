@@ -9,6 +9,8 @@ from unittest.mock import *
 
 from blueye.protocol import UdpClient
 
+UDP_PORT = 32011
+
 fake_json = json.loads("""
 [
     {
@@ -62,7 +64,7 @@ class UDPServer(threading.Thread):
         self.daemon = True
         self._stop_loop = False
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self._addr = ("127.0.0.1", 2010)
+        self._addr = ("127.0.0.1", UDP_PORT)
         self._msg2 = struct.pack("<BBb", 2, 2, 2)
         self._msg3 = struct.pack("<BBh", 2, 3, 3)
         self.start()
@@ -91,28 +93,28 @@ class TestUdpClient(unittest.TestCase):
 
     def test_get_raw_data(self):
         us = UDPServer()
-        uc = UdpClient(protocol_description=fake_json)
+        uc = UdpClient(protocol_description=fake_json, port=UDP_PORT)
         data = uc._get_raw_data()
         us.stop_thread()
         self.assertEqual(data, struct.pack("<BBb", 2, 2, 2))
 
     def test_get_data(self):
         us = UDPServer()
-        uc = UdpClient(protocol_description=fake_json)
+        uc = UdpClient(protocol_description=fake_json, port=UDP_PORT)
         data = uc.get_data()
         us.stop_thread()
         self.assertEqual(data, (2, 2, 2))
 
     def test_get_data_t3(self):
         us = UDPServer()
-        uc = UdpClient(protocol_description=fake_json)
+        uc = UdpClient(protocol_description=fake_json, port=UDP_PORT)
         data = uc.get_data(packet_type=3)
         us.stop_thread()
         self.assertEqual(data, (2, 3, 3))
 
     def test_get_data_dict(self):
         us = UDPServer()
-        uc = UdpClient(protocol_description=fake_json)
+        uc = UdpClient(protocol_description=fake_json, port=UDP_PORT)
         data = uc.get_data_dict()
         us.stop_thread()
         self.assertEqual(data, {'u1-2-v': 2, 'u1-2-t': 2, 'i1-2': 2})

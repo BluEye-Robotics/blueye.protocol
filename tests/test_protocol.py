@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import gzip
 import json
 import struct
 import tempfile
@@ -182,6 +183,26 @@ class TestAppProtocol(unittest.TestCase):
         np_data = ap.np_array_from_file(tmp)
         self.assertEqual(np_data["i8-2"].tolist(), [8, 18])
         self.assertEqual([data[:12], data[12:]], np_data.tolist())
+
+    def test_np_array_from_gz_file(self):
+        data = (2, 1, 2, 3, 4, 5, 6, 7, 8, 9., 10., 11.,
+                2, 1, 12, 13, 14, 15, 16, 17, 18, 19., 20., 21.)
+        data_packet = struct.pack("<BBbHhIiQqfddBBbHhIiQqfdd", *data)
+        ap = AppProtocol(fake_data)
+        tmp = tempfile.mkstemp(suffix=".gz")[1]
+        with gzip.open(tmp, "wb") as f:
+            f.write(data_packet)
+        np_data = ap.np_array_from_file(tmp)
+        self.assertEqual(np_data["i8-2"].tolist(), [8, 18])
+        self.assertEqual([data[:12], data[12:]], np_data.tolist())
+
+    def test_np_array_from_empty_file(self):
+        ap = AppProtocol(fake_data)
+        tmp = tempfile.mkstemp()[1]
+        with open(tmp, "wb") as f:
+            pass
+        np_data = ap.np_array_from_file(tmp)
+        self.assertIsNone(np_data)
 
 
 if __name__ == '__main__':

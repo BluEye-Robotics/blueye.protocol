@@ -2,7 +2,6 @@
 import logging
 import socket
 import threading
-import time
 
 from blueye.protocol.exceptions import (MismatchedReply, NoConnectionToDrone,
                                         ResponseTimeout, SocketNotConnected)
@@ -19,6 +18,7 @@ class TcpClientBase(threading.Thread):
 
     Example of how to connect to a drone, and toggle the lights
     Example:
+    >>> import time
     >>> import blueye.protocol
     >>> tc = blueye.protocol.TcpClient(maxConnectRetries=3)
     >>> tc.set_lights(10, 10)
