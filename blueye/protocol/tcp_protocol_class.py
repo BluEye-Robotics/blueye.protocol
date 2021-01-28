@@ -522,7 +522,7 @@ class TcpClientV2(TcpClientBase):
         Args:
             overlay_logo_index (numpy data type:<i4): enum { NONE = 0, DEFAULT = 1, CUSTOM = 2 }
         """
-        command_identifier = b'oD'
+        command_identifier = b'oo'
         msg = command_identifier
         msg += struct.pack('i', overlay_logo_index)
         reply = self.send_and_receive(msg, expects_reply=True, receive_size=1)
@@ -889,6 +889,32 @@ class TcpClientV2(TcpClientBase):
         msg = command_identifier
         reply = self.send_and_receive(msg, expects_reply=True, receive_size=25)
         return struct.unpack('<Biiiiii', reply)
+
+    def set_gripper_velocities(self, gripping_velocity, rotational_velocity):
+        """Send a set_gripper_velocities command over TCP
+
+        Args:
+            gripping_velocity (numpy data type:<f4): valid range is <-1, 1> The opening/closing velocity of the gripper. Positive values for opening, negative for closing
+            rotational_velocity (numpy data type:<f4): valid range is <-1, 1> The rotational velocity of the gripper. Positive values for clockwise, negative for counter-clockwise
+        """
+        if not -1 <= gripping_velocity <= 1:
+            raise ValueError(
+                "Input argument out of range:" +
+                " valid range for gripping_velocity is" +
+                " <{lower_limit}, {upper_limit}>".format(lower_limit=-1, upper_limit=1) +
+                " but got value: {name}".format(name=gripping_velocity))
+
+        if not -1 <= rotational_velocity <= 1:
+            raise ValueError(
+                "Input argument out of range:" +
+                " valid range for rotational_velocity is" +
+                " <{lower_limit}, {upper_limit}>".format(lower_limit=-1, upper_limit=1) +
+                " but got value: {name}".format(name=rotational_velocity))
+
+        command_identifier = b'G'
+        msg = command_identifier
+        msg += struct.pack('ff', gripping_velocity, rotational_velocity)
+        self.send_and_receive(msg, expects_reply=False)
 
 
 class TcpClient:
