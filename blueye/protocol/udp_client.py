@@ -9,9 +9,10 @@ from blueye.protocol import AppProtocol
 
 
 class UdpClient:
-    def __init__(self, port=2010, protocol_description=None, logger=None):
+    def __init__(self, port=2010, protocol_description=None, logger=None, drone_ip="192.168.1.101"):
         self._port = port
         self._ip = "0.0.0.0"
+        self._drone_ip = drone_ip
 
         if logger is None:
             # If no logger has been passed we'll use the module logger
@@ -42,8 +43,10 @@ class UdpClient:
         self._sock.bind((self._ip, self._port))
 
     def _get_raw_data(self):
-        data_raw, addr = self._sock.recvfrom(1024)
-        return data_raw
+        while True:
+            data_raw, addr = self._sock.recvfrom(1024)
+            if addr[0] == self._drone_ip:
+                return data_raw
 
     def get_data(self, packet_type=None, timeout=None):
         start_time = time.time()
