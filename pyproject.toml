@@ -19,7 +19,7 @@ keywords = ["Blueye", "Pioneer", "Robotics", "Protocol"]
 python = "^3.7"
 numpy = "^1.17"
 setuptools = ">=40"
-timeout-decorator = "^0.5.0"
+pytest-timeout = "^1.4.2"
 
 [tool.poetry.dev-dependencies]
 Jinja2 = "^2.10"

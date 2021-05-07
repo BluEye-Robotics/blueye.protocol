@@ -5,7 +5,7 @@ import struct
 import threading
 import time
 import unittest
-import timeout_decorator
+import pytest
 from unittest.mock import *
 
 from blueye.protocol import UdpClient
@@ -92,7 +92,7 @@ class TestUdpClient(unittest.TestCase):
     def setUp(self):
         pass
 
-    @timeout_decorator.timeout(1)
+    @pytest.mark.timeout(1)
     def test_get_raw_data(self):
         us = UDPServer()
         uc = UdpClient(protocol_description=fake_json, port=UDP_PORT, drone_ip="127.0.0.1")
@@ -100,7 +100,7 @@ class TestUdpClient(unittest.TestCase):
         us.stop_thread()
         self.assertEqual(data, struct.pack("<BBb", 2, 2, 2))
 
-    @timeout_decorator.timeout(1)
+    @pytest.mark.timeout(1)
     def test_get_data(self):
         us = UDPServer()
         uc = UdpClient(protocol_description=fake_json, port=UDP_PORT, drone_ip="127.0.0.1")
@@ -108,7 +108,7 @@ class TestUdpClient(unittest.TestCase):
         us.stop_thread()
         self.assertEqual(data, (2, 2, 2))
 
-    @timeout_decorator.timeout(1)
+    @pytest.mark.timeout(1)
     def test_get_data_t3(self):
         us = UDPServer()
         uc = UdpClient(protocol_description=fake_json, port=UDP_PORT, drone_ip="127.0.0.1")
@@ -116,7 +116,7 @@ class TestUdpClient(unittest.TestCase):
         us.stop_thread()
         self.assertEqual(data, (2, 3, 3))
 
-    @timeout_decorator.timeout(1)
+    @pytest.mark.timeout(1)
     def test_get_data_dict(self):
         us = UDPServer()
         uc = UdpClient(protocol_description=fake_json, port=UDP_PORT, drone_ip="127.0.0.1")
