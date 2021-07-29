@@ -56,7 +56,7 @@ class UdpClient:
             try:
                 data = self._ap.unpack_data(raw_data)
             except UnknownUDPPacketTypeError:
-                self.logger.warning(f"UDP packet type unknown. Please update the SDK")
+                self.logger.warning("UDP packet type unknown. Please update the SDK")
                 continue
             if packet_type is None or data[1] == packet_type:
                 return data
@@ -69,7 +69,7 @@ class UdpClient:
             try:
                 data = self._ap.unpack_data_dict(raw_data)
             except UnknownUDPPacketTypeError:
-                self.logger.warning(f"UDP packet type unknown. Please update the SDK")
+                self.logger.warning("UDP packet type unknown. Please update the SDK")
                 continue
             if packet_type is None or data["command_type"] == packet_type:
                 return data
