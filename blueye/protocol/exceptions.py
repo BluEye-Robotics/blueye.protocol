@@ -27,3 +27,11 @@ class NoConnectionToDrone(TCPClientException):
         self.ip = ip
         self.port = port
         TCPClientException.__init__(self, f"Unable to connect to drone at {ip}:{port}")
+
+
+class UnknownUDPVersionError(Exception):
+    """Raised if the UDP parser does not know the version of the UDP packet"""
+
+
+class UnknownUDPPacketTypeError(Exception):
+    """Raised if the UDP parser does not know the type of the UDP packet"""

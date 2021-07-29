@@ -7,6 +7,8 @@ import unittest
 from unittest.mock import *
 
 from blueye.protocol import AppProtocol
+from blueye.protocol.exceptions import UnknownUDPVersionError, UnknownUDPPacketTypeError
+
 
 fake_data = json.loads("""
 [
@@ -142,11 +144,11 @@ class TestAppProtocol(unittest.TestCase):
 
     def test_protocol_version_exception(self):
         ap = AppProtocol(fake_data)
-        self.assertRaises(Exception, ap.get_json_data, 1, 0)
+        self.assertRaises(UnknownUDPVersionError, ap.get_json_data, 1, 0)
 
     def test_protocol_packet_type_exception(self):
         ap = AppProtocol(fake_data)
-        self.assertRaises(Exception, ap.get_json_data, 0, 1)
+        self.assertRaises(UnknownUDPPacketTypeError, ap.get_json_data, 0, 1)
 
     def test_nptypes(self):
         ap = AppProtocol(fake_data)

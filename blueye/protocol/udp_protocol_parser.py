@@ -4,6 +4,7 @@ import struct
 import numpy as np
 
 from .udp_protocol_dict import protocol_data
+from blueye.protocol.exceptions import UnknownUDPVersionError, UnknownUDPPacketTypeError
 
 
 class AppProtocol:
@@ -25,13 +26,20 @@ class AppProtocol:
     def get_json_data(self, packet_type, version=None):
         if version is None:
             version = self._last_version
+
         try:
-            data = self._jdata[str(version)][str(packet_type)]
+            packet_types = self._jdata[str(version)]
         except KeyError:
-            raise Exception("Version or packet type not present")
-        if len([f['dtype'] for f in data if f['dtype'][0] != "<"]) > 0:
+            raise UnknownUDPVersionError
+
+        try:
+            packet_type = packet_types[str(packet_type)]
+        except KeyError:
+            raise UnknownUDPPacketTypeError
+
+        if len([f['dtype'] for f in packet_type if f['dtype'][0] != "<"]) > 0:
             raise ValueError("Endianess not supported")
-        return data
+        return packet_type
 
     def get_field_names(self, packet_type, version=None):
         return [f['field_name'] for f in self.get_json_data(packet_type, version=version)]

@@ -6,6 +6,7 @@ import time
 import platform
 
 from blueye.protocol import AppProtocol
+from blueye.protocol.exceptions import UnknownUDPPacketTypeError
 
 
 class UdpClient:
@@ -52,7 +53,11 @@ class UdpClient:
         start_time = time.time()
         while timeout is None or time.time() < start_time + timeout:
             raw_data = self._get_raw_data()
-            data = self._ap.unpack_data(raw_data)
+            try:
+                data = self._ap.unpack_data(raw_data)
+            except UnknownUDPPacketTypeError:
+                self.logger.warning(f"UDP packet type unknown. Please update the SDK")
+                continue
             if packet_type is None or data[1] == packet_type:
                 return data
         return None
@@ -61,7 +66,11 @@ class UdpClient:
         start_time = time.time()
         while timeout is None or time.time() < start_time + timeout:
             raw_data = self._get_raw_data()
-            data = self._ap.unpack_data_dict(raw_data)
+            try:
+                data = self._ap.unpack_data_dict(raw_data)
+            except UnknownUDPPacketTypeError:
+                self.logger.warning(f"UDP packet type unknown. Please update the SDK")
+                continue
             if packet_type is None or data["command_type"] == packet_type:
                 return data
         return None
