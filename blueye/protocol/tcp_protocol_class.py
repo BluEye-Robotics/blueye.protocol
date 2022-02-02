@@ -182,28 +182,6 @@ class TcpClientV1(TcpClientBase):
         msg = command_identifier
         self.send_and_receive(msg, expects_reply=False)
 
-    def auto_depth_step(self, direction):
-        """Send a auto_depth_step command over TCP
-
-        Args:
-            direction (numpy data type:<i2):  1 for up, -1 for down
-        """
-        command_identifier = b'a'
-        msg = command_identifier
-        msg += struct.pack('h', direction)
-        self.send_and_receive(msg, expects_reply=False)
-
-    def auto_heading_step(self, direction):
-        """Send a auto_heading_step command over TCP
-
-        Args:
-            direction (numpy data type:<i2): 1 for up, -1 for down
-        """
-        command_identifier = b'A'
-        msg = command_identifier
-        msg += struct.pack('h', direction)
-        self.send_and_receive(msg, expects_reply=False)
-
     def set_system_time(self, unix_timestamp):
         """Send a set_system_time command over TCP
 
@@ -604,7 +582,7 @@ class TcpClientV2(TcpClientBase):
         """Send a set_overlay_title command over TCP
 
         Args:
-            overlay_title (numpy data type:<u1[64]): Null terminated ascii string padded to 64 characters
+            overlay_title (numpy data type:<u1[64]): Null terminated utf8 string padded to 64 characters. Only utf8 characters representable in latin1 will be rendered correctly.
         """
         command_identifier = b'oi'
         msg = command_identifier
@@ -616,7 +594,7 @@ class TcpClientV2(TcpClientBase):
         """Send a set_overlay_subtitle command over TCP
 
         Args:
-            overlay_subtitle (numpy data type:<u1[64]): Null terminated ascii string padded to 64 characters
+            overlay_subtitle (numpy data type:<u1[64]): Null terminated utf8 string padded to 64 characters. Only utf8 characters representable in latin1 will be rendered correctly.
         """
         command_identifier = b'os'
         msg = command_identifier
@@ -628,7 +606,7 @@ class TcpClientV2(TcpClientBase):
         """Send a set_overlay_date_format command over TCP
 
         Args:
-            overlay_date_format (numpy data type:<u1[64]): Null terminated ascii string padded to 64 characters
+            overlay_date_format (numpy data type:<u1[64]): Null terminated utf8 string padded to 64 characters. Only utf8 characters representable in latin1 will be rendered correctly.
         """
         command_identifier = b'oA'
         msg = command_identifier
@@ -762,11 +740,11 @@ class TcpClientV2(TcpClientBase):
         set the system time on the on-board computer
 
         Args:
-            unix_timestamp (numpy data type:<i4): 
+            unix_timestamp (numpy data type:<u4): 
         """
         command_identifier = b't'
         msg = command_identifier
-        msg += struct.pack('i', unix_timestamp)
+        msg += struct.pack('I', unix_timestamp)
         reply = self.send_and_receive(msg, expects_reply=True, receive_size=1)
         self.check_reply(reply, b'a')
 
@@ -914,6 +892,17 @@ class TcpClientV2(TcpClientBase):
         command_identifier = b'G'
         msg = command_identifier
         msg += struct.pack('ff', gripping_velocity, rotational_velocity)
+        self.send_and_receive(msg, expects_reply=False)
+
+    def set_thickness_gauge_sound_veloctiy(self, sound_velocity):
+        """Send a set_thickness_gauge_sound_veloctiy command over TCP
+
+        Args:
+            sound_velocity (numpy data type:<i2): Sound velocity used for thickness calculation [m/s]
+        """
+        command_identifier = b'C'
+        msg = command_identifier
+        msg += struct.pack('h', sound_velocity)
         self.send_and_receive(msg, expects_reply=False)
 
 
