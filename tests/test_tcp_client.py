@@ -257,20 +257,20 @@ def test_watchdog_produces_correct_message(
     "direction, expected_message", [(-1, b"a\xff\xff"), (1, b"a\x01\x00")]
 )
 def test_auto_depth_step_produces_correct_message(
-    tcp_client, direction, expected_message
+    tcp_client_v2, direction, expected_message
 ):
-    tcp_client.auto_depth_step(direction)
-    tcp_client._sock.send.assert_called_with(expected_message)
+    tcp_client_v2.auto_depth_step(direction)
+    tcp_client_v2._sock.send.assert_called_with(expected_message)
 
 
 @pytest.mark.parametrize(
     "direction, expected_message", [(-1, b"A\xff\xff"), (1, b"A\x01\x00")]
 )
 def test_auto_heading_step_produces_correct_message(
-    tcp_client, direction, expected_message
+    tcp_client_v2, direction, expected_message
 ):
-    tcp_client.auto_heading_step(direction)
-    tcp_client._sock.send.assert_called_with(expected_message)
+    tcp_client_v2.auto_heading_step(direction)
+    tcp_client_v2._sock.send.assert_called_with(expected_message)
 
 
 def test_connect_logs_error_on_failure(tcp_client):

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "blueye.protocol"
-version = "1.4.0"
+version = "1.5.0"
 description = "Python protocol definition for the Blueye Pioneer"
 authors = ["Sindre Hansen <sindre.hansen@blueye.no>",
            "Johannes Schrimpf <johannes.schrimpf@blueye.no>",
@@ -23,11 +23,11 @@ setuptools = ">=40"
 pytest-timeout = "^1.4.2"
 
 [tool.poetry.dev-dependencies]
-Jinja2 = "^2.10"
-pytest = "^5.1"
-pytest-mock = "^1.10"
-invoke = "^1.3"
-pytest-cov = "^2.7"
+Jinja2 = "^3.0"
+pytest = "^6.2.5"
+pytest-mock = "^1.10.4"
+invoke = "^1.6"
+pytest-cov = "^3.0"
 toml = "^0.10.0"
 flake8 = "^3.8.4"
 
