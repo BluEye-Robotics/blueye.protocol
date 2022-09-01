@@ -8,7 +8,7 @@ import unittest
 import pytest
 from unittest.mock import *
 
-from blueye.protocol import UdpClient
+from blueye.legacyprotocol import UdpClient
 
 UDP_PORT = 32011
 
