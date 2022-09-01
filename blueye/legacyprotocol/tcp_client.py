@@ -4,7 +4,7 @@ import socket
 import threading
 
 from blueye.legacyprotocol.exceptions import (MismatchedReply, NoConnectionToDrone,
-                                        ResponseTimeout, SocketNotConnected)
+                                              ResponseTimeout, SocketNotConnected)
 
 
 class TcpClientBase(threading.Thread):
