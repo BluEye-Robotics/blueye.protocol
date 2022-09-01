@@ -9,7 +9,7 @@ The protocol itself is defined in two json files, one for UDP and one for TCP. T
 stored as a submodule in this repository, and the python code is generated from these
 definitions.
 
-This package requires Python 3.7 or newer.
+This package requires Python 3.8 or newer.
 
 The `blueye.protocol` package's main use is in the
 [`blueye.sdk`](https://github.com/BluEye-Robotics/blueye.sdk). The SDK implements a
@@ -36,7 +36,7 @@ curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.p
 for more instructions see the [Poetry repository](https://github.com/sdispater/poetry).
 
 ### Install the necessary Python version
-We require Python v3.7 or newer, and many operating systems package an older version of
+We require Python v3.8 or newer, and many operating systems package an older version of
 Python the easiest (for Linux/OS X) is to use pyenv. Pyenv manages multiple Python
 versions in parallel for you.
 
@@ -60,7 +60,7 @@ xz-utils tk-dev libffi-dev liblzma-dev python-openssl
 ```
 Then build python with pyenv
 ``` shell
-pyenv install 3.7.4
+pyenv install 3.10.6
 ```
 
 ### Create a virtual environment and install the dependencies
@@ -70,7 +70,7 @@ development of Python packages.
 Since we already have pyenv installed we'll use it to create a virtual environment,
 
 ``` shell
-pyenv virtualenv 3.7.4 blueye_protocol
+pyenv virtualenv 3.10.6 blueye_protocol
 pyenv activate blueye_protocol
 ```
 
