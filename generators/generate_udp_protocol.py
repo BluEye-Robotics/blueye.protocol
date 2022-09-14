@@ -27,5 +27,5 @@ _generator_hash = "{generator_script_md5}"
 protocol_data = {str(data)}
 
 """
-    with open(os.path.join("blueye", "protocol", "udp_protocol_dict.py"), "w") as f:
+    with open(os.path.join("blueye", "legacyprotocol", "udp_protocol_dict.py"), "w") as f:
         f.write(data_file)

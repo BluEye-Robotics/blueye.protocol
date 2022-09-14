@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "blueye.protocol"
-version = "1.5.0"
-description = "Python protocol definition for the Blueye Pioneer"
+name = "blueye.legacyprotocol"
+version = "2.0.0"
+description = "Legacy Python protocol definition for the Blueye drones"
 authors = ["Sindre Hansen <sindre.hansen@blueye.no>",
            "Johannes Schrimpf <johannes.schrimpf@blueye.no>",
            "Aksel Lenes <aksel.lenes@blueye.no>",
@@ -12,13 +12,13 @@ packages = [
     { include = "blueye" },
 ]
 readme = "README.md"
-repository="https://github.com/blueye-robotics/blueye.protocol"
+repository="https://github.com/blueye-robotics/blueye.legacyprotocol"
 homepage ="https://www.blueyerobotics.com"
 keywords = ["Blueye", "Pioneer", "Robotics", "Protocol"]
 
 [tool.poetry.dependencies]
-python = "^3.7"
-numpy = "^1.17"
+python = "^3.8"
+numpy = "^1.23"
 setuptools = ">=40"
 pytest-timeout = "^1.4.2"
 

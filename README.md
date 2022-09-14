@@ -1,6 +1,19 @@
-# blueye.protocol
-[![Tests](https://github.com/BluEye-Robotics/blueye.protocol/workflows/PythonTests/badge.svg)](https://github.com/BluEye-Robotics/blueye.protocol/actions)
+# blueye.legacyprotocol
+[![Tests](https://github.com/BluEye-Robotics/blueye.legacyprotocol/workflows/PythonTests/badge.svg)](https://github.com/BluEye-Robotics/blueye.legacyprotocol/actions)
 
+## Deprecation notice
+As of Blunux version 3.0 all Blueye drones will stop using the old TCP/UDP based
+protocol, and instead move to a new protocol based on
+[Protobuf](https://developers.google.com/protocol-buffers/) messages passed
+over a [ZeroMQ](https://zeromq.org/) layer. The protobuf based protocol is
+auto-generated from the
+[ProtocolDefinitions repository](https://github.com/BluEye-Robotics/ProtocolDefinitions)
+and published to the `blueye.protocol` package on
+[PyPI](https://pypi.org/project/blueye.protocol/). This means that any package
+that (for some reason) need the old protocol will have to update its dependency
+from `blueye.protocol` to `blueye.legacyprotocol`.
+
+## About
 This repository contains a python library that defines how to communicate with the
 Blueye Pioneer. The Blueye Pioneer is an underwater drone made by Blueye Robotics, see
 [blueyerobotics.com](https://blueyerobotics.com) for more information.
@@ -9,9 +22,9 @@ The protocol itself is defined in two json files, one for UDP and one for TCP. T
 stored as a submodule in this repository, and the python code is generated from these
 definitions.
 
-This package requires Python 3.7 or newer.
+This package requires Python 3.8 or newer.
 
-The `blueye.protocol` package's main use is in the
+The `blueye.legacyprotocol` package's main use is in the
 [`blueye.sdk`](https://github.com/BluEye-Robotics/blueye.sdk). The SDK implements a
 layer of convenience on top of the TCP and UDP clients found here in `blueye.protocol`,
 to make interacting with the Pioneer easier. If you want to interact with the Pioneer in
@@ -36,7 +49,7 @@ curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.p
 for more instructions see the [Poetry repository](https://github.com/sdispater/poetry).
 
 ### Install the necessary Python version
-We require Python v3.7 or newer, and many operating systems package an older version of
+We require Python v3.8 or newer, and many operating systems package an older version of
 Python the easiest (for Linux/OS X) is to use pyenv. Pyenv manages multiple Python
 versions in parallel for you.
 
@@ -60,7 +73,7 @@ xz-utils tk-dev libffi-dev liblzma-dev python-openssl
 ```
 Then build python with pyenv
 ``` shell
-pyenv install 3.7.4
+pyenv install 3.10.6
 ```
 
 ### Create a virtual environment and install the dependencies
@@ -70,7 +83,7 @@ development of Python packages.
 Since we already have pyenv installed we'll use it to create a virtual environment,
 
 ``` shell
-pyenv virtualenv 3.7.4 blueye_protocol
+pyenv virtualenv 3.10.6 blueye_protocol
 pyenv activate blueye_protocol
 ```
 

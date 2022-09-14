@@ -4,7 +4,7 @@ import struct
 import numpy as np
 
 from .udp_protocol_dict import protocol_data
-from blueye.protocol.exceptions import UnknownUDPVersionError, UnknownUDPPacketTypeError
+from blueye.legacyprotocol.exceptions import UnknownUDPVersionError, UnknownUDPPacketTypeError
 
 
 class AppProtocol:
