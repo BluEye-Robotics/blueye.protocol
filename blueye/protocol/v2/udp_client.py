@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 
 import logging
+import platform
 import socket
 import time
-import platform
 
-from blueye.protocol import AppProtocol
 from blueye.protocol.exceptions import UnknownUDPPacketTypeError
+
+from .udp_protocol_parser import AppProtocol
 
 
 class UdpClient:
