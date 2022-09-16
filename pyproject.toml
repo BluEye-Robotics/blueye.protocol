@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "blueye.protocol"
-description = "Python protocol definition for the Blueye Pioneer"
-version = "2.0.0"
+description = "Python protocol definition for the Blueye drones"
+version = "4.0.0"
 authors = ["Sindre Hansen <sindre.hansen@blueye.no>",
            "Johannes Schrimpf <johannes.schrimpf@blueye.no>",
            "Aksel Lenes <aksel.lenes@blueye.no>",
@@ -14,7 +14,7 @@ packages = [
 readme = "README.md"
 repository="https://github.com/blueye-robotics/blueye.protocol"
 homepage ="https://www.blueyerobotics.com"
-keywords = ["Blueye", "Pioneer", "Robotics", "Protocol"]
+keywords = ["Blueye", "Robotics", "Protocol"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
