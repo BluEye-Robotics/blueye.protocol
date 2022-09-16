@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "blueye.legacyprotocol"
+name = "blueye.protocol"
+description = "Python protocol definition for the Blueye Pioneer"
 version = "2.0.0"
-description = "Legacy Python protocol definition for the Blueye drones"
 authors = ["Sindre Hansen <sindre.hansen@blueye.no>",
            "Johannes Schrimpf <johannes.schrimpf@blueye.no>",
            "Aksel Lenes <aksel.lenes@blueye.no>",
@@ -12,7 +12,7 @@ packages = [
     { include = "blueye" },
 ]
 readme = "README.md"
-repository="https://github.com/blueye-robotics/blueye.legacyprotocol"
+repository="https://github.com/blueye-robotics/blueye.protocol"
 homepage ="https://www.blueyerobotics.com"
 keywords = ["Blueye", "Pioneer", "Robotics", "Protocol"]
 

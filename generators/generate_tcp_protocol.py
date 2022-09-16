@@ -15,7 +15,7 @@ def get_protocol(protocol_path):
 class Context:
     def __init__(self, path=os.path.dirname(os.path.abspath(__file__))):
         self.path = path
-        self.module_path = os.path.join(path, "../blueye/legacyprotocol")
+        self.module_path = os.path.join(path, "../blueye/protocol")
         template_path = os.path.join(path, "templates")
         self.template_environment = Environment(autoescape=False,
                                                 trim_blocks=True,

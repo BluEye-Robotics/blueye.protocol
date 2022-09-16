@@ -2,7 +2,7 @@
 import pytest
 import socket
 import struct
-from blueye.legacyprotocol.exceptions import (
+from blueye.protocol.exceptions import (
     ResponseTimeout,
     MismatchedReply,
     NoConnectionToDrone,
@@ -26,7 +26,7 @@ def mocked_logger(mocker):
 
 @pytest.fixture
 def tcp_client_v1(mocked_socket, mocked_logger):
-    from blueye.legacyprotocol import TcpClient
+    from blueye.protocol import TcpClient
 
     tc = TcpClient(protocol_version=1, autoConnect=False)
     tc.connect()
@@ -36,7 +36,7 @@ def tcp_client_v1(mocked_socket, mocked_logger):
 
 @pytest.fixture
 def tcp_client_v2(mocked_socket, mocked_logger):
-    from blueye.legacyprotocol import TcpClient
+    from blueye.protocol import TcpClient
 
     tc = TcpClient(protocol_version=2, autoConnect=False)
     tc.connect()
@@ -359,7 +359,7 @@ def test_get_camera_parameters_produces_correct_message(
 def test_not_specifying_protocol_results_in_latest_protocol(
     mocked_socket, mocked_logger
 ):
-    from blueye.legacyprotocol import TcpClient
+    from blueye.protocol import TcpClient
 
     tc = TcpClient(autoConnect=False)
     assert tc.protocol_version == 2

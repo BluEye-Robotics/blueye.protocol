@@ -5,8 +5,8 @@ import socket
 import time
 import platform
 
-from blueye.legacyprotocol import AppProtocol
-from blueye.legacyprotocol.exceptions import UnknownUDPPacketTypeError
+from blueye.protocol import AppProtocol
+from blueye.protocol.exceptions import UnknownUDPPacketTypeError
 
 
 class UdpClient:
