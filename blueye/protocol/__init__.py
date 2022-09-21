@@ -7,6 +7,14 @@ from .v2.udp_protocol_dict import (  # noqa F401
 )
 from .v2.udp_protocol_parser import AppProtocol  # noqa F401
 from .v3 import *  # noqa F401
+from .v3 import (
+    BatteryBq40Z50,
+    BatteryBq40Z50Tel,
+    CpuTemperature,
+    CpuTemperatureTel,
+    PilotGpsPositionCtrl,
+    PilotGpsPositionTel,
+)
 
 
 # The following definitions are needed to circumvent an issue with how
