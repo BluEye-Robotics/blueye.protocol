@@ -21,6 +21,7 @@ python = "^3.8"
 numpy = "^1.23"
 setuptools = ">=40"
 pytest-timeout = "^1.4.2"
+betterproto = "^2.0.0b5"
 
 [tool.poetry.dev-dependencies]
 Jinja2 = "^3.0"
@@ -30,6 +31,7 @@ invoke = "^1.6"
 pytest-cov = "^3.0"
 toml = "^0.10.0"
 flake8 = "^3.8.4"
+betterproto = {extras = ["compiler"], version = "^2.0.0b5"}
 
 [build-system]
 requires = ["poetry>=1.0.0"]
