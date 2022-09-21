@@ -1117,6 +1117,29 @@ class ConnectClientRep(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class DisconnectClientReq(betterproto.Message):
+    """
+    * Disconnect a client from the drone. This request will remove the client
+    from the list of connected clients. It allows clients to disconnect
+    instantly, without waiting for a watchdog to clear the client in control,
+    or promote a new client to be in control.
+    """
+
+    client_id: int = betterproto.uint32_field(1)
+
+
+@dataclass(eq=False, repr=False)
+class DisconnectClientRep(betterproto.Message):
+    """
+    * Response after disconnecting a client from the drone. Contains
+    information about which clients are connected and in control.
+    """
+
+    client_id_in_control: int = betterproto.uint32_field(1)
+    connected_clients: List["ConnectedClient"] = betterproto.message_field(2)
+
+
+@dataclass(eq=False, repr=False)
 class AttitudeTel(betterproto.Message):
     """* Receive the current attitude of the drone."""
 
