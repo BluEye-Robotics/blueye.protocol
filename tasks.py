@@ -1,5 +1,5 @@
-from invoke import task
 import toml
+from invoke import task
 
 
 @task
@@ -19,6 +19,19 @@ def generate_udp(context):
     """
     import generators.generate_udp_protocol
     generators.generate_udp_protocol.generate()
+
+
+@task
+def generate_proto(context):
+    """
+    Generate the Protobuf based protocol
+    """
+    context.run(
+        "protoc \
+            --proto_path ProtocolDefinitions/protobuf_definitions/ \
+            --python_betterproto_out=build \
+            ProtocolDefinitions/protobuf_definitions/*.proto")
+    context.run("cp -r build/blueye/protocol/__init__.py blueye/protocol/v3/")
 
 
 @task(pre=[generate_tcp, generate_udp])
