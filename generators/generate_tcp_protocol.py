@@ -22,7 +22,7 @@ class Context:
                                                 lstrip_blocks=True,
                                                 loader=FileSystemLoader(template_path))
         self.output_file_path = os.path.join(self.module_path, "tcp_protocol_class.py")
-        json_path = os.path.join(path, "..", "..", "ProtocolDefinitions", "tcp_protocol.json")
+        json_path = os.path.join(path, "..", "ProtocolDefinitions", "tcp_protocol.json")
         self.tcp_protocol = get_protocol(json_path)
 
 
