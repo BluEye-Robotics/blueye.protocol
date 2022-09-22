@@ -100,6 +100,8 @@ from .req_rep import (
     ConnectClientRep,
     DisconnectClientReq,
     DisconnectClientRep,
+    GetBatteryReq,
+    GetBatteryRep,
 )
 from .control import (
     MotionInputCtrl,
@@ -244,6 +246,8 @@ __all__ = (
     'ConnectClientRep',
     'DisconnectClientReq',
     'DisconnectClientRep',
+    'GetBatteryReq',
+    'GetBatteryRep',
     'MotionInputCtrl',
     'TiltVelocityCtrl',
     'LightsCtrl',

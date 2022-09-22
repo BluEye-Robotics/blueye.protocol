@@ -42,6 +42,8 @@ __protobuf__ = proto.module(
         'ConnectClientRep',
         'DisconnectClientReq',
         'DisconnectClientRep',
+        'GetBatteryReq',
+        'GetBatteryRep',
     },
 )
 
@@ -290,6 +292,27 @@ class DisconnectClientRep(proto.Message):
 
     connected_clients = proto.RepeatedField(proto.MESSAGE, number=2,
         message=message_formats.ConnectedClient,
+    )
+
+
+class GetBatteryReq(proto.Message):
+    r"""Request essential battery information.
+    Can be used to instantly get battery information,
+    instead of having to wait for the BatteryTel message to be
+    received.
+    """
+
+
+class GetBatteryRep(proto.Message):
+    r"""Response with essential battery information.
+
+    Attributes:
+        battery (blueye.protocol.types.Battery):
+            Essential battery information.
+    """
+
+    battery = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.Battery,
     )
 
 

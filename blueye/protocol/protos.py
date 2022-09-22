@@ -106,6 +106,8 @@ from .types.req_rep import ConnectClientRep
 from .types.req_rep import ConnectClientReq
 from .types.req_rep import DisconnectClientRep
 from .types.req_rep import DisconnectClientReq
+from .types.req_rep import GetBatteryRep
+from .types.req_rep import GetBatteryReq
 from .types.req_rep import GetCameraParametersRep
 from .types.req_rep import GetCameraParametersReq
 from .types.req_rep import GetOverlayParametersRep
@@ -210,6 +212,8 @@ __all__ = (
     'ForwardDistance',
     'ForwardDistanceTel',
     'Framerate',
+    'GetBatteryRep',
+    'GetBatteryReq',
     'GetCameraParametersRep',
     'GetCameraParametersReq',
     'GetOverlayParametersRep',

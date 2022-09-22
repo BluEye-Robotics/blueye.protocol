@@ -208,11 +208,11 @@ class RecordStateTel(proto.Message):
 
 
 class BatteryTel(proto.Message):
-    r"""
+    r"""Receive essential information about the battery status.
 
     Attributes:
         battery (blueye.protocol.types.Battery):
-
+            Essential battery information.
     """
 
     battery = proto.Field(proto.MESSAGE, number=1,
@@ -221,11 +221,12 @@ class BatteryTel(proto.Message):
 
 
 class BatteryBQ40Z50Tel(proto.Message):
-    r"""
+    r"""Receive detailed information about a battery using the
+    BQ40Z50 battery management system.
 
     Attributes:
         battery (blueye.protocol.types.BatteryBQ40Z50):
-
+            Detailed battery information.
     """
 
     battery = proto.Field(proto.MESSAGE, number=1,
