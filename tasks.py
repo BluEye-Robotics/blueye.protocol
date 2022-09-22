@@ -1,5 +1,16 @@
+from pathlib import Path
+
 import toml
 from invoke import task
+
+
+def get_project_root_path() -> Path:
+    """Get the projet root path
+
+    The tasks.py file (this file) always resides in the root of the project,
+    therefore we can use it as a reference
+    """
+    return Path(__file__).parent
 
 
 @task
@@ -26,12 +37,18 @@ def generate_proto(context):
     """
     Generate the Protobuf based protocol
     """
-    context.run(
-        "protoc \
-            --proto_path ProtocolDefinitions/protobuf_definitions/ \
-            --python_betterproto_out=build \
-            ProtocolDefinitions/protobuf_definitions/*.proto")
-    context.run("cp -r build/blueye/protocol/__init__.py blueye/protocol/v3/")
+    with context.cd(get_project_root_path()):
+        context.run("rm -rf build && mkdir -p build")
+        context.run(
+            "docker run \
+            --mount type=bind,source=$(pwd)/ProtocolDefinitions/protobuf_definitions/,destination=/in/ \
+            --mount type=bind,source=$(pwd)/build/,destination=/out/ \
+            --rm \
+            --user $UID \
+            gcr.io/gapic-images/gapic-generator-python:v0.40" # noqa F501
+        )
+        context.run("cp -r build/blueye/protocol/types blueye/protocol/")
+        context.run("cp -r build/blueye/protocol/__init__.py blueye/protocol/protos.py")
 
 
 @task(pre=[generate_tcp, generate_udp])
