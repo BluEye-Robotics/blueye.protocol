@@ -2,16 +2,13 @@
 from setuptools import setup
 
 packages = \
-['blueye', 'blueye.protocol', 'blueye.protocol.v2', 'blueye.protocol.v3']
+['blueye', 'blueye.protocol', 'blueye.protocol.types', 'blueye.protocol.v2']
 
 package_data = \
 {'': ['*']}
 
 install_requires = \
-['betterproto>=2.0.0b5,<3.0.0',
- 'numpy>=1.23,<2.0',
- 'pytest-timeout>=1.4.2,<2.0.0',
- 'setuptools>=40']
+['numpy>=1.23,<2.0', 'proto-plus>=1.22.1,<2.0.0', 'setuptools>=40']
 
 setup_kwargs = {
     'name': 'blueye.protocol',
