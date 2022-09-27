@@ -1,0 +1,39 @@
+name: Update protocol
+
+on: [repository_dispatch]
+
+jobs:
+  Update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+          token: ${{ secrets.GIT_TOKEN }}
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Install Poetry
+        uses: abatilo/actions-poetry@v2.1.6
+        with:
+          poetry-version: 1.2.0
+      - name: Install dependencies
+        run: poetry install
+      - name: Update ProtocolDefinitions
+        working-directory: ProtocolDefinitions
+        run: git fetch && git checkout ${{ github.event.client_payload.sha }}
+      - name: Generate UDP protocol
+        run: poetry run invoke generate-udp
+      - name: Generate TCP protocol
+        run: poetry run invoke generate-tcp
+      - name: Generate Protobuf protocol
+        run: poetry run invoke generate-proto
+      - name: Generate setup.py
+        run: poetry run invoke generate-setup-py
+      - name: Add & Commit
+        uses: EndBug/add-and-commit@v9.1.0
+        with:
+          add: "blueye ProtocolDefinitions setup.py"
+          message: "Update ProtocolDefinitions"
+          default_author: github_actions
