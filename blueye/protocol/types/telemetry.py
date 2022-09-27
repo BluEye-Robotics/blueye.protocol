@@ -30,6 +30,7 @@ __protobuf__ = proto.module(
         'PositionEstimateTel',
         'DepthTel',
         'ReferenceTel',
+        'ControlForceTel',
         'ControllerHealthTel',
         'LightsTel',
         'GuestPortLightsTel',
@@ -139,6 +140,19 @@ class ReferenceTel(proto.Message):
 
     reference = proto.Field(proto.MESSAGE, number=1,
         message=message_formats.Reference,
+    )
+
+
+class ControlForceTel(proto.Message):
+    r"""
+
+    Attributes:
+        control_force (blueye.protocol.types.ControlForce):
+
+    """
+
+    control_force = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.ControlForce,
     )
 
 

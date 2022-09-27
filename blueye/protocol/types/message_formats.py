@@ -69,6 +69,7 @@ __protobuf__ = proto.module(
         'PositionEstimate',
         'Depth',
         'Reference',
+        'ControlForce',
         'ControllerHealth',
         'DiveTime',
         'RecordOn',
@@ -1119,6 +1120,32 @@ class Reference(proto.Message):
     heading = proto.Field(proto.FLOAT, number=6)
 
     altitude = proto.Field(proto.FLOAT, number=7)
+
+
+class ControlForce(proto.Message):
+    r"""-
+
+    Control Force is used for showing the requested control force in
+    each direction in Newtons.
+
+    Attributes:
+        surge (float):
+            Force in surge
+        sway (float):
+            Force in sway
+        heave (float):
+            Force in heave
+        yaw (float):
+            Moment in yaw
+    """
+
+    surge = proto.Field(proto.FLOAT, number=1)
+
+    sway = proto.Field(proto.FLOAT, number=2)
+
+    heave = proto.Field(proto.FLOAT, number=3)
+
+    yaw = proto.Field(proto.FLOAT, number=4)
 
 
 class ControllerHealth(proto.Message):

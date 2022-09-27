@@ -55,6 +55,7 @@ from .types.message_formats import CanisterTemperature
 from .types.message_formats import ClientInfo
 from .types.message_formats import ConnectedClient
 from .types.message_formats import ConnectionDuration
+from .types.message_formats import ControlForce
 from .types.message_formats import ControlMode
 from .types.message_formats import ControllerHealth
 from .types.message_formats import CpProbe
@@ -131,6 +132,7 @@ from .types.telemetry import CalibrationStateTel
 from .types.telemetry import CanisterHumidityTel
 from .types.telemetry import CanisterTemperatureTel
 from .types.telemetry import ConnectedClientsTel
+from .types.telemetry import ControlForceTel
 from .types.telemetry import ControlModeTel
 from .types.telemetry import ControllerHealthTel
 from .types.telemetry import CpProbeTel
@@ -188,6 +190,8 @@ __all__ = (
     'ConnectedClient',
     'ConnectedClientsTel',
     'ConnectionDuration',
+    'ControlForce',
+    'ControlForceTel',
     'ControlMode',
     'ControlModeTel',
     'ControllerHealth',
