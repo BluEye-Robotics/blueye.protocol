@@ -36,6 +36,9 @@ def generate_udp(context):
 def generate_proto(context):
     """
     Generate the Protobuf based protocol
+
+    Uses the gapic-generator-python docker container, and therefore requires the user to have docker
+    installed.
     """
     with context.cd(get_project_root_path()):
         context.run("rm -rf build && mkdir -p build")
