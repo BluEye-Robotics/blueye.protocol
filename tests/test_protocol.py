@@ -6,8 +6,8 @@ import tempfile
 import unittest
 from unittest.mock import *
 
-from blueye.legacyprotocol import AppProtocol
-from blueye.legacyprotocol.exceptions import UnknownUDPVersionError, UnknownUDPPacketTypeError
+from blueye.protocol import AppProtocol
+from blueye.protocol.exceptions import UnknownUDPVersionError, UnknownUDPPacketTypeError
 
 
 fake_data = json.loads("""
