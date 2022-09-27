@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "blueye.protocol"
 description = "Python protocol definition for the Blueye drones"
-version = "4.0.0"
+version = "2.0.0"
 authors = ["Sindre Hansen <sindre.hansen@blueye.no>",
            "Johannes Schrimpf <johannes.schrimpf@blueye.no>",
            "Aksel Lenes <aksel.lenes@blueye.no>",
