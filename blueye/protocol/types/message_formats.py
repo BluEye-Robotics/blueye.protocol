@@ -666,18 +666,14 @@ class CanisterTemperature(proto.Message):
 
     Canister temperature.
 
-    Temperature measured in the top and bottom canister of the drone.
+    Temperature measured in the top or bottom canister of the drone.
 
     Attributes:
-        top (float):
-            Temperature in °C
-        bottom (float):
+        temperature (float):
             Temperature in °C
     """
 
-    top = proto.Field(proto.FLOAT, number=1)
-
-    bottom = proto.Field(proto.FLOAT, number=2)
+    temperature = proto.Field(proto.FLOAT, number=3)
 
 
 class CanisterHumidity(proto.Message):
@@ -685,16 +681,14 @@ class CanisterHumidity(proto.Message):
 
     Canister humidity.
 
+    Humidity measured in the top or bottom canister of the drone.
+
     Attributes:
-        top (float):
-            Air humidity in %
-        bottom (float):
+        humidity (float):
             Air humidity in %
     """
 
-    top = proto.Field(proto.FLOAT, number=1)
-
-    bottom = proto.Field(proto.FLOAT, number=2)
+    humidity = proto.Field(proto.FLOAT, number=3)
 
 
 class Battery(proto.Message):

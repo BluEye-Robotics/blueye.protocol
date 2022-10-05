@@ -129,8 +129,10 @@ from .types.telemetry import BatteryBQ40Z50Tel
 from .types.telemetry import BatteryTel
 from .types.telemetry import CPUTemperatureTel
 from .types.telemetry import CalibrationStateTel
-from .types.telemetry import CanisterHumidityTel
-from .types.telemetry import CanisterTemperatureTel
+from .types.telemetry import CanisterBottomHumidityTel
+from .types.telemetry import CanisterBottomTemperatureTel
+from .types.telemetry import CanisterTopHumidityTel
+from .types.telemetry import CanisterTopTemperatureTel
 from .types.telemetry import ConnectedClientsTel
 from .types.telemetry import ControlForceTel
 from .types.telemetry import ControlModeTel
@@ -180,10 +182,12 @@ __all__ = (
     'Camera',
     'CameraParameters',
     'CancelCalibrationCtrl',
+    'CanisterBottomHumidityTel',
+    'CanisterBottomTemperatureTel',
     'CanisterHumidity',
-    'CanisterHumidityTel',
     'CanisterTemperature',
-    'CanisterTemperatureTel',
+    'CanisterTopHumidityTel',
+    'CanisterTopTemperatureTel',
     'ClientInfo',
     'ConnectClientRep',
     'ConnectClientReq',
