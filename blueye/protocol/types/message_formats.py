@@ -347,13 +347,13 @@ class Lights(proto.Message):
 class LatLongPosition(proto.Message):
     r"""-
 
-    Latitude and longitude position in WGS 84 format.
+    Latitude and longitude position in WGS 84 decimal degrees format.
 
     Attributes:
         latitude (float):
-            Latitude
+            Latitude (°)
         longitude (float):
-            Longitude
+            Longitude (°)
     """
 
     latitude = proto.Field(proto.DOUBLE, number=1)
@@ -368,7 +368,7 @@ class ConnectionDuration(proto.Message):
 
     Attributes:
         value (int):
-            time in seconds since connected to drone
+            time since connected to drone (s)
     """
 
     value = proto.Field(proto.INT32, number=1)
@@ -580,11 +580,11 @@ class RecordState(proto.Message):
         main_is_recording (bool):
             If the main camera is recording
         main_seconds (int):
-            Main record time in seconds
+            Main record time (s)
         guestport_is_recording (bool):
             If the guestport camera is recording
         guestport_seconds (int):
-            Guestport record time in seconds
+            Guestport record time (s)
     """
 
     main_is_recording = proto.Field(proto.BOOL, number=1)
@@ -606,7 +606,7 @@ class WaterDensity(proto.Message):
 
     Attributes:
         value (float):
-            Salinity in kg/l
+            Salinity (kg/l)
     """
 
     value = proto.Field(proto.FLOAT, number=1)
@@ -642,7 +642,7 @@ class WaterTemperature(proto.Message):
 
     Attributes:
         value (float):
-            Water temperature in °C
+            Water temperature (°C)
     """
 
     value = proto.Field(proto.FLOAT, number=1)
@@ -655,7 +655,7 @@ class CPUTemperature(proto.Message):
 
     Attributes:
         value (float):
-            CPU temperature in °C
+            CPU temperature (°C)
     """
 
     value = proto.Field(proto.FLOAT, number=1)
@@ -670,7 +670,7 @@ class CanisterTemperature(proto.Message):
 
     Attributes:
         temperature (float):
-            Temperature in °C
+            Temperature (°C)
     """
 
     temperature = proto.Field(proto.FLOAT, number=3)
@@ -685,7 +685,7 @@ class CanisterHumidity(proto.Message):
 
     Attributes:
         humidity (float):
-            Air humidity in %
+            Air humidity (%)
     """
 
     humidity = proto.Field(proto.FLOAT, number=3)
@@ -698,11 +698,11 @@ class Battery(proto.Message):
 
     Attributes:
         voltage (float):
-            Battery voltage in V
+            Battery voltage (V)
         level (float):
             Battery level (0..1)
         temperature (float):
-            Battery temperature in °C
+            Battery temperature (°C)
     """
 
     voltage = proto.Field(proto.FLOAT, number=1)
@@ -728,36 +728,35 @@ class BatteryBQ40Z50(proto.Message):
         status (blueye.protocol.types.BatteryBQ40Z50.BatteryStatus):
             Battery status flags
         current (float):
-            Current in A
+            Current (A)
         average_current (float):
-            Average current in A
+            Average current (A)
         relative_state_of_charge (float):
             Relative state of charge (0..1)
         absolute_state_of_charge (float):
             Absolute state of charge (0..1)
         remaining_capacity (float):
-            Remaining capacity in Ah
+            Remaining capacity (Ah)
         full_charge_capacity (float):
-            Full charge capacity in Ah
+            Full charge capacity (Ah)
         runtime_to_empty (int):
-            Runtime to empty in seconds
+            Runtime to empty (s)
         average_time_to_empty (int):
-            Average time to empty in seconds
+            Average time to empty (s)
         average_time_to_full (int):
-            Average time to full in seconds
+            Average time to full (s)
         time_to_full_at_current_rate (int):
-            Time to fully charged at current rate in
-            seconds
+            Time to fully charged at current rate (s)
         time_to_empty_at_current_rate (int):
-            Time to empty at current rate in seconds
+            Time to empty at current rate (s)
         charging_current (float):
-            Charging current in A
+            Charging current (A)
         charging_voltage (float):
-            Charging voltage in V
+            Charging voltage (V)
         cycle_count (int):
             Number of charging cycles
         design_capacity (float):
-            Design capacity in Ah
+            Design capacity (Ah)
         manufacture_date (google.protobuf.timestamp_pb2.Timestamp):
             Manufacture date
         serial_number (int):
@@ -776,15 +775,15 @@ class BatteryBQ40Z50(proto.Message):
 
         Attributes:
             total (float):
-                Battery pack voltage level in V
+                Battery pack voltage level (V)
             cell_1 (float):
-                Cell 1 voltage level in V
+                Cell 1 voltage level (V)
             cell_2 (float):
-                Vell 2 voltage level in V
+                Vell 2 voltage level (V)
             cell_3 (float):
-                Cell 3 voltage level in V
+                Cell 3 voltage level (V)
             cell_4 (float):
-                Cell 4 voltage level in V
+                Cell 4 voltage level (V)
         """
 
         total = proto.Field(proto.FLOAT, number=1)
@@ -804,15 +803,15 @@ class BatteryBQ40Z50(proto.Message):
 
         Attributes:
             average (float):
-                Average temperature accross cells in °C
+                Average temperature accross cells (°C)
             cell_1 (float):
-                Cell 1 temperature in °C
+                Cell 1 temperature (°C)
             cell_2 (float):
-                Cell 2 temperature in °C
+                Cell 2 temperature (°C)
             cell_3 (float):
-                Cell 3 temperature in °C
+                Cell 3 temperature (°C)
             cell_4 (float):
-                Cell 4 temperature in °C
+                Cell 4 temperature (°C)
         """
 
         average = proto.Field(proto.FLOAT, number=1)
@@ -955,11 +954,11 @@ class Attitude(proto.Message):
 
     Attributes:
         roll (float):
-            Roll angle (-180..180)
+            Roll angle (-180°..180°)
         pitch (float):
-            Pitch angle (-180..180)
+            Pitch angle (-180°..180°)
         yaw (float):
-            Yaw angle (-180..180)
+            Yaw angle (-180°..180°)
     """
 
     roll = proto.Field(proto.FLOAT, number=1)
@@ -976,7 +975,7 @@ class Altitude(proto.Message):
 
     Attributes:
         value (float):
-            Drone altitude over seabed in m
+            Drone altitude over seabed (m)
         is_valid (bool):
             If altitude is valid or not
     """
@@ -994,7 +993,7 @@ class ForwardDistance(proto.Message):
 
     Attributes:
         value (float):
-            Distance in front of drone in m
+            Distance in front of drone (m)
         is_valid (bool):
             If distance reading is valid or not
     """
@@ -1071,7 +1070,7 @@ class Depth(proto.Message):
 
     Attributes:
         value (float):
-            Drone depth below surface in m
+            Drone depth below surface (m)
     """
 
     value = proto.Field(proto.FLOAT, number=1)
@@ -1086,19 +1085,20 @@ class Reference(proto.Message):
 
     Attributes:
         surge (float):
-            Reference from joystick surge input
+            Reference from joystick surge input (0..1)
         sway (float):
-            Reference from joystick sway input
+            Reference from joystick sway input (0..1)
         heave (float):
-            Reference from joystick heave input
+            Reference from joystick heave input (0..1)
         yaw (float):
-            Reference from joystick yaw input
+            Reference from joystick yaw input (0..1)
         depth (float):
-            Reference drone depth below surface in m
+            Reference drone depth below surface (m)
         heading (float):
-            Reference used in auto heading mode
+            Reference used in auto heading mode, gyro
+            based (°)
         altitude (float):
-            Reference used in auto altitude mode
+            Reference used in auto altitude mode (m)
     """
 
     surge = proto.Field(proto.FLOAT, number=1)
@@ -1124,13 +1124,13 @@ class ControlForce(proto.Message):
 
     Attributes:
         surge (float):
-            Force in surge
+            Force in surge (N)
         sway (float):
-            Force in sway
+            Force in sway (N)
         heave (float):
-            Force in heave
+            Force in heave (N)
         yaw (float):
-            Moment in yaw
+            Moment in yaw (Nm)
     """
 
     surge = proto.Field(proto.FLOAT, number=1)
@@ -1150,11 +1150,11 @@ class ControllerHealth(proto.Message):
 
     Attributes:
         depth_error (float):
-            Depth error in meters
+            Depth error in meters (m)
         depth_health (float):
             Depth controller load (0..1)
         heading_error (float):
-            Heading error in degrees
+            Heading error in degrees (°)
         heading_health (float):
             Heading controller load (0..1)
     """
@@ -1209,9 +1209,9 @@ class StorageSpace(proto.Message):
 
     Attributes:
         total_space (int):
-            Total bytes of storage space
+            Total bytes of storage space (B)
         free_space (int):
-            Available bytes of storage space
+            Available bytes of storage space (B)
     """
 
     total_space = proto.Field(proto.INT64, number=1)
@@ -1287,11 +1287,11 @@ class IperfStatus(proto.Message):
 
     Attributes:
         sent (float):
-            Transfer rate from drone to Surface Unit in
-            Mbit/s
+            Transfer rate from drone to Surface Unit
+            (Mbit/s)
         received (float):
-            Transfer rate from Surface Unit to drone in
-            Mbit/s
+            Transfer rate from Surface Unit to drone
+            (Mbit/s)
     """
 
     sent = proto.Field(proto.FLOAT, number=1)
@@ -1325,7 +1325,7 @@ class TiltAngle(proto.Message):
 
     Attributes:
         value (float):
-            Tilt angle in degrees °
+            Tilt angle (°)
     """
 
     value = proto.Field(proto.FLOAT, number=1)
@@ -1338,8 +1338,8 @@ class TiltVelocity(proto.Message):
 
     Attributes:
         value (float):
-            Relative angular velocity of tilt (-1 to 1,
-            negative means down and positive means up)
+            Relative angular velocity of tilt (-1..1),
+            negative means down and positive means up
     """
 
     value = proto.Field(proto.FLOAT, number=1)
@@ -1580,20 +1580,19 @@ class CameraParameters(proto.Message):
 
     Attributes:
         h264_bitrate (int):
-            Bitrate of the h264 stream
+            Bitrate of the h264 stream (bit/sec)
         mjpg_bitrate (int):
             Bitrate of the MJPG stream used for still
-            pictures
+            pictures (bit/sec)
         exposure (int):
-            Shutter speed in 10000/th second (-1 for
-            automatic exposure)
+            Shutter speed (1/10000 \* s), -1 for automatic exposure
         white_balance (int):
-            White balance temperature in range 2800..9300
-            (-1 for automatic white balance)
+            White balance temperature (2800..9300), -1
+            for automatic white balance
         hue (int):
-            Hue in range -40..40 (0 as default)
+            Hue (-40..40), 0 as default
         gain (float):
-            Iso gain in range 0.0-1.0
+            Iso gain (0..1)
         resolution (blueye.protocol.types.Resolution):
             Stream, recording and image resolution
         framerate (blueye.protocol.types.Framerate):
@@ -1669,11 +1668,11 @@ class OverlayParameters(proto.Message):
             Which unit should be used for thickness:
             Millimeters or Inches
         timezone_offset (int):
-            Timezone offset from UTC
+            Timezone offset from UTC (min)
         margin_width (int):
-            Horizontal margins of text elements
+            Horizontal margins of text elements (px)
         margin_height (int):
-            Vertical margins of text elements
+            Vertical margins of text elements (px)
         font_size (blueye.protocol.types.FontSize):
             Font size of text elements
         title (str):
@@ -1683,10 +1682,8 @@ class OverlayParameters(proto.Message):
         date_format (str):
             Posix strftime format string for time stamp
         shading (float):
-            -
-
-            Pixel intensity to subtract from text background (range is
-            0.0-1.0), (0 is transparent and 1 is black)
+            Pixel intensity to subtract from text
+            background (0..1), 0: transparent, 1: black
     """
 
     temperature_enabled = proto.Field(proto.BOOL, number=1)
@@ -1778,7 +1775,7 @@ class GuestPortDevice(proto.Message):
         serial_number (str):
             Serial number
         depth_rating (float):
-            Depth rating in meters
+            Depth rating (m)
         required_blunux_version (str):
             Required Blunux version (x.y.z)
     """
@@ -1873,7 +1870,7 @@ class ThicknessGauge(proto.Message):
             Indicating the quality of the reading when
             invalid (0-3)
         sound_velocity (int):
-            Speed of sound in the steel member
+            Speed of sound in the steel member (m/s)
         is_measurement_valid (bool):
             Indicating if the measurement is valid
     """
@@ -1894,7 +1891,7 @@ class CpProbe(proto.Message):
 
     Attributes:
         measurement (float):
-            Potential measurement in V
+            Potential measurement (V)
         is_measurement_valid (bool):
             Indicating if the measurement is valid
     """
