@@ -81,6 +81,7 @@ from .message_formats import (
     ThicknessUnit,
     FontSize,
     GuestPortDeviceID,
+    GuestPortNumber,
     NavigationSensorID,
     GuestPortError,
 )
@@ -239,6 +240,7 @@ __all__ = (
     'ThicknessUnit',
     'FontSize',
     'GuestPortDeviceID',
+    'GuestPortNumber',
     'NavigationSensorID',
     'GuestPortError',
     'AttitudeTel',

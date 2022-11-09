@@ -36,6 +36,7 @@ __protobuf__ = proto.module(
         'ThicknessUnit',
         'FontSize',
         'GuestPortDeviceID',
+        'GuestPortNumber',
         'NavigationSensorID',
         'GuestPortError',
         'BinlogRecord',
@@ -233,6 +234,17 @@ class GuestPortDeviceID(proto.Enum):
     GUEST_PORT_DEVICE_ID_NORTEK_NUCLEUS_1000 = 21
     GUEST_PORT_DEVICE_ID_BLUEYE_SERVO_GENERIC = 22
     GUEST_PORT_DEVICE_ID_BLUEYE_SERVO_MULTIBEAM = 23
+
+
+class GuestPortNumber(proto.Enum):
+    r"""-
+
+    GuestPort number.
+    """
+    GUEST_PORT_NUMBER_UNSPECIFIED = 0
+    GUEST_PORT_NUMBER_PORT_1 = 1
+    GUEST_PORT_NUMBER_PORT_2 = 2
+    GUEST_PORT_NUMBER_PORT_3 = 3
 
 
 class NavigationSensorID(proto.Enum):
@@ -1824,6 +1836,8 @@ class GuestPortConnectorInfo(proto.Message):
             List of devices on this connector
         error (blueye.protocol.types.GuestPortError):
             Guest port error
+        guest_port_number (blueye.protocol.types.GuestPortNumber):
+            Guest port the connector is connected to
     """
 
     device_list = proto.Field(proto.MESSAGE, number=1, oneof='connected_device',
@@ -1832,6 +1846,10 @@ class GuestPortConnectorInfo(proto.Message):
 
     error = proto.Field(proto.ENUM, number=2, oneof='connected_device',
         enum='GuestPortError',
+    )
+
+    guest_port_number = proto.Field(proto.ENUM, number=3,
+        enum='GuestPortNumber',
     )
 
 
@@ -1913,13 +1931,15 @@ class GenericServo(proto.Message):
     Attributes:
         value (float):
             Servo value (0..1)
-        serial (str):
-            Serial number of the servo
+        guest_port_number (blueye.protocol.types.GuestPortNumber):
+            Guest port the servo is on
     """
 
     value = proto.Field(proto.FLOAT, number=1)
 
-    serial = proto.Field(proto.STRING, number=2)
+    guest_port_number = proto.Field(proto.ENUM, number=2,
+        enum='GuestPortNumber',
+    )
 
 
 class MultibeamServo(proto.Message):

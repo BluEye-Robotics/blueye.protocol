@@ -77,6 +77,7 @@ from .types.message_formats import GuestPortDeviceID
 from .types.message_formats import GuestPortDeviceList
 from .types.message_formats import GuestPortError
 from .types.message_formats import GuestPortInfo
+from .types.message_formats import GuestPortNumber
 from .types.message_formats import IperfStatus
 from .types.message_formats import LatLongPosition
 from .types.message_formats import Lights
@@ -244,6 +245,7 @@ __all__ = (
     'GuestPortError',
     'GuestPortInfo',
     'GuestPortLightsTel',
+    'GuestPortNumber',
     'GuestportLightsCtrl',
     'IperfStatus',
     'IperfTel',
