@@ -90,6 +90,8 @@ __protobuf__ = proto.module(
         'GuestPortInfo',
         'ThicknessGauge',
         'CpProbe',
+        'GenericServo',
+        'MultibeamServo',
     },
 )
 
@@ -229,6 +231,8 @@ class GuestPortDeviceID(proto.Enum):
     GUEST_PORT_DEVICE_ID_OCEAN_TOOLS_DIGICP = 19
     GUEST_PORT_DEVICE_ID_TRITECH_GEMINI_720IK = 20
     GUEST_PORT_DEVICE_ID_NORTEK_NUCLEUS_1000 = 21
+    GUEST_PORT_DEVICE_ID_BLUEYE_SERVO_GENERIC = 22
+    GUEST_PORT_DEVICE_ID_BLUEYE_SERVO_MULTIBEAM = 23
 
 
 class NavigationSensorID(proto.Enum):
@@ -1899,6 +1903,36 @@ class CpProbe(proto.Message):
     measurement = proto.Field(proto.FLOAT, number=1)
 
     is_measurement_valid = proto.Field(proto.BOOL, number=2)
+
+
+class GenericServo(proto.Message):
+    r"""-
+
+    Servo message used to represent the angle of the servo.
+
+    Attributes:
+        value (float):
+            Servo value (0..1)
+        serial (str):
+            Serial number of the servo
+    """
+
+    value = proto.Field(proto.FLOAT, number=1)
+
+    serial = proto.Field(proto.STRING, number=2)
+
+
+class MultibeamServo(proto.Message):
+    r"""-
+
+    Servo message used to represent the angle of the servo.
+
+    Attributes:
+        angle (float):
+            Servo degrees (-30..30)
+    """
+
+    angle = proto.Field(proto.FLOAT, number=1)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

@@ -47,6 +47,8 @@ __protobuf__ = proto.module(
         'PingerConfigurationCtrl',
         'SystemTimeCtrl',
         'GripperCtrl',
+        'GenericServoCtrl',
+        'MultibeamServoCtrl',
     },
 )
 
@@ -361,6 +363,36 @@ class GripperCtrl(proto.Message):
 
     gripper_velocities = proto.Field(proto.MESSAGE, number=1,
         message=message_formats.GripperVelocities,
+    )
+
+
+class GenericServoCtrl(proto.Message):
+    r"""-
+
+    Issue a command to set a generic servo value.
+
+    Attributes:
+        servo (blueye.protocol.types.GenericServo):
+            Message with the desired servo value.
+    """
+
+    servo = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.GenericServo,
+    )
+
+
+class MultibeamServoCtrl(proto.Message):
+    r"""-
+
+    Issue a command to set multibeam servo angle.
+
+    Attributes:
+        servo (blueye.protocol.types.MultibeamServo):
+            Message with the desired servo angle.
+    """
+
+    servo = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.MultibeamServo,
     )
 
 

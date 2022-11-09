@@ -59,6 +59,8 @@ __protobuf__ = proto.module(
         'ThicknessGaugeTel',
         'CpProbeTel',
         'ConnectedClientsTel',
+        'GenericServoTel',
+        'MultibeamServoTel',
     },
 )
 
@@ -542,6 +544,36 @@ class ConnectedClientsTel(proto.Message):
 
     connected_clients = proto.RepeatedField(proto.MESSAGE, number=2,
         message=message_formats.ConnectedClient,
+    )
+
+
+class GenericServoTel(proto.Message):
+    r"""-
+
+    State of a generic servo
+
+    Attributes:
+        servo (blueye.protocol.types.GenericServo):
+            Servo state
+    """
+
+    servo = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.GenericServo,
+    )
+
+
+class MultibeamServoTel(proto.Message):
+    r"""-
+
+    State of the servo installed in the multibeam
+
+    Attributes:
+        servo (blueye.protocol.types.MultibeamServo):
+            Multibeam servo state
+    """
+
+    servo = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.MultibeamServo,
     )
 
 

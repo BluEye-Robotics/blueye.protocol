@@ -20,10 +20,12 @@ from .types.control import AutoDepthCtrl
 from .types.control import AutoHeadingCtrl
 from .types.control import CancelCalibrationCtrl
 from .types.control import FinishCalibrationCtrl
+from .types.control import GenericServoCtrl
 from .types.control import GripperCtrl
 from .types.control import GuestportLightsCtrl
 from .types.control import LightsCtrl
 from .types.control import MotionInputCtrl
+from .types.control import MultibeamServoCtrl
 from .types.control import PilotGPSPositionCtrl
 from .types.control import PingerConfigurationCtrl
 from .types.control import RecordCtrl
@@ -67,6 +69,7 @@ from .types.message_formats import ErrorFlags
 from .types.message_formats import FontSize
 from .types.message_formats import ForwardDistance
 from .types.message_formats import Framerate
+from .types.message_formats import GenericServo
 from .types.message_formats import GripperVelocities
 from .types.message_formats import GuestPortConnectorInfo
 from .types.message_formats import GuestPortDevice
@@ -80,6 +83,7 @@ from .types.message_formats import Lights
 from .types.message_formats import LogoType
 from .types.message_formats import Model
 from .types.message_formats import MotionInput
+from .types.message_formats import MultibeamServo
 from .types.message_formats import NStreamers
 from .types.message_formats import NavigationSensorID
 from .types.message_formats import NavigationSensorStatus
@@ -145,9 +149,11 @@ from .types.telemetry import DroneInfoTel
 from .types.telemetry import DroneTimeTel
 from .types.telemetry import ErrorFlagsTel
 from .types.telemetry import ForwardDistanceTel
+from .types.telemetry import GenericServoTel
 from .types.telemetry import GuestPortLightsTel
 from .types.telemetry import IperfTel
 from .types.telemetry import LightsTel
+from .types.telemetry import MultibeamServoTel
 from .types.telemetry import NStreamersTel
 from .types.telemetry import PilotGPSPositionTel
 from .types.telemetry import PositionEstimateTel
@@ -220,6 +226,9 @@ __all__ = (
     'ForwardDistance',
     'ForwardDistanceTel',
     'Framerate',
+    'GenericServo',
+    'GenericServoCtrl',
+    'GenericServoTel',
     'GetBatteryRep',
     'GetBatteryReq',
     'GetCameraParametersRep',
@@ -246,6 +255,9 @@ __all__ = (
     'Model',
     'MotionInput',
     'MotionInputCtrl',
+    'MultibeamServo',
+    'MultibeamServoCtrl',
+    'MultibeamServoTel',
     'NStreamers',
     'NStreamersTel',
     'NavigationSensorID',
