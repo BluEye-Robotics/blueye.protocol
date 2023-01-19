@@ -1511,6 +1511,14 @@ class ErrorFlags(proto.Message):
             Error reading GP current
         gp_current (bool):
             Max GP current exceeded
+        gp1_bat_current (bool):
+            Max battery current exceeded on GP1
+        gp2_bat_current (bool):
+            Max battery current exceeded on GP2
+        gp3_bat_current (bool):
+            Max battery current exceeded on GP3
+        gp_20v_current (bool):
+            Max 20V current exceeded on GP
     """
 
     pmu_comm_ack = proto.Field(proto.BOOL, number=1)
@@ -1588,6 +1596,14 @@ class ErrorFlags(proto.Message):
     gp_current_read = proto.Field(proto.BOOL, number=37)
 
     gp_current = proto.Field(proto.BOOL, number=38)
+
+    gp1_bat_current = proto.Field(proto.BOOL, number=39)
+
+    gp2_bat_current = proto.Field(proto.BOOL, number=40)
+
+    gp3_bat_current = proto.Field(proto.BOOL, number=41)
+
+    gp_20v_current = proto.Field(proto.BOOL, number=42)
 
 
 class CameraParameters(proto.Message):
