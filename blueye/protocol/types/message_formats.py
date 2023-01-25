@@ -93,6 +93,7 @@ __protobuf__ = proto.module(
         'CpProbe',
         'GenericServo',
         'MultibeamServo',
+        'GuestPortCurrent',
     },
 )
 
@@ -1970,6 +1971,31 @@ class MultibeamServo(proto.Message):
     """
 
     angle = proto.Field(proto.FLOAT, number=1)
+
+
+class GuestPortCurrent(proto.Message):
+    r"""-
+
+    GuestPort current readings.
+
+    Attributes:
+        gp1_bat (float):
+            Current on GP1 battery voltage (A)
+        gp2_bat (float):
+            Current on GP2 battery voltage (A)
+        gp3_bat (float):
+            Current on GP3 battery voltage (A)
+        gp_20v (float):
+            Current on common 20V supply (A)
+    """
+
+    gp1_bat = proto.Field(proto.DOUBLE, number=1)
+
+    gp2_bat = proto.Field(proto.DOUBLE, number=2)
+
+    gp3_bat = proto.Field(proto.DOUBLE, number=3)
+
+    gp_20v = proto.Field(proto.DOUBLE, number=4)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

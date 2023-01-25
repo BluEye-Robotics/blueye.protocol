@@ -70,6 +70,7 @@ from .message_formats import (
     CpProbe,
     GenericServo,
     MultibeamServo,
+    GuestPortCurrent,
     Model,
     PressureSensorType,
     Resolution,
@@ -172,6 +173,7 @@ from .telemetry import (
     ConnectedClientsTel,
     GenericServoTel,
     MultibeamServoTel,
+    GuestPortCurrentTel,
 )
 
 __all__ = (
@@ -229,6 +231,7 @@ __all__ = (
     'CpProbe',
     'GenericServo',
     'MultibeamServo',
+    'GuestPortCurrent',
     'Model',
     'PressureSensorType',
     'Resolution',
@@ -325,4 +328,5 @@ __all__ = (
     'ConnectedClientsTel',
     'GenericServoTel',
     'MultibeamServoTel',
+    'GuestPortCurrentTel',
 )

@@ -61,6 +61,7 @@ __protobuf__ = proto.module(
         'ConnectedClientsTel',
         'GenericServoTel',
         'MultibeamServoTel',
+        'GuestPortCurrentTel',
     },
 )
 
@@ -574,6 +575,21 @@ class MultibeamServoTel(proto.Message):
 
     servo = proto.Field(proto.MESSAGE, number=1,
         message=message_formats.MultibeamServo,
+    )
+
+
+class GuestPortCurrentTel(proto.Message):
+    r"""-
+
+    GuestPort current readings
+
+    Attributes:
+        current (blueye.protocol.types.GuestPortCurrent):
+
+    """
+
+    current = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.GuestPortCurrent,
     )
 
 

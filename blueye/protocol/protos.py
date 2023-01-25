@@ -72,6 +72,7 @@ from .types.message_formats import Framerate
 from .types.message_formats import GenericServo
 from .types.message_formats import GripperVelocities
 from .types.message_formats import GuestPortConnectorInfo
+from .types.message_formats import GuestPortCurrent
 from .types.message_formats import GuestPortDevice
 from .types.message_formats import GuestPortDeviceID
 from .types.message_formats import GuestPortDeviceList
@@ -151,6 +152,7 @@ from .types.telemetry import DroneTimeTel
 from .types.telemetry import ErrorFlagsTel
 from .types.telemetry import ForwardDistanceTel
 from .types.telemetry import GenericServoTel
+from .types.telemetry import GuestPortCurrentTel
 from .types.telemetry import GuestPortLightsTel
 from .types.telemetry import IperfTel
 from .types.telemetry import LightsTel
@@ -239,6 +241,8 @@ __all__ = (
     'GripperCtrl',
     'GripperVelocities',
     'GuestPortConnectorInfo',
+    'GuestPortCurrent',
+    'GuestPortCurrentTel',
     'GuestPortDevice',
     'GuestPortDeviceID',
     'GuestPortDeviceList',
