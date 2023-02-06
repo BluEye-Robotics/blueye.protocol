@@ -112,6 +112,8 @@ from .control import (
     GripperCtrl,
     GenericServoCtrl,
     MultibeamServoCtrl,
+    DeactivateGuestPortsCtrl,
+    ActivateGuestPortsCtrl,
 )
 from .req_rep import (
     SetOverlayParametersReq,
@@ -271,6 +273,8 @@ __all__ = (
     'GripperCtrl',
     'GenericServoCtrl',
     'MultibeamServoCtrl',
+    'DeactivateGuestPortsCtrl',
+    'ActivateGuestPortsCtrl',
     'SetOverlayParametersReq',
     'SetOverlayParametersRep',
     'GetOverlayParametersReq',

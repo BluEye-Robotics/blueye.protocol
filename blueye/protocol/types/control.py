@@ -49,6 +49,8 @@ __protobuf__ = proto.module(
         'GripperCtrl',
         'GenericServoCtrl',
         'MultibeamServoCtrl',
+        'DeactivateGuestPortsCtrl',
+        'ActivateGuestPortsCtrl',
     },
 )
 
@@ -394,6 +396,20 @@ class MultibeamServoCtrl(proto.Message):
     servo = proto.Field(proto.MESSAGE, number=1,
         message=message_formats.MultibeamServo,
     )
+
+
+class DeactivateGuestPortsCtrl(proto.Message):
+    r"""-
+
+    Deactivate the guest port power
+    """
+
+
+class ActivateGuestPortsCtrl(proto.Message):
+    r"""-
+
+    Activated the guest port power
+    """
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

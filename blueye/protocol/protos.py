@@ -15,10 +15,12 @@
 # limitations under the License.
 #
 
+from .types.control import ActivateGuestPortsCtrl
 from .types.control import AutoAltitudeCtrl
 from .types.control import AutoDepthCtrl
 from .types.control import AutoHeadingCtrl
 from .types.control import CancelCalibrationCtrl
+from .types.control import DeactivateGuestPortsCtrl
 from .types.control import FinishCalibrationCtrl
 from .types.control import GenericServoCtrl
 from .types.control import GripperCtrl
@@ -170,6 +172,7 @@ from .types.telemetry import WaterTemperatureTel
 
 
 __all__ = (
+    'ActivateGuestPortsCtrl',
     'Altitude',
     'AltitudeTel',
     'Attitude',
@@ -212,6 +215,7 @@ __all__ = (
     'CpProbe',
     'CpProbeTel',
     'DataStorageSpaceTel',
+    'DeactivateGuestPortsCtrl',
     'Depth',
     'DepthTel',
     'DepthUnit',
