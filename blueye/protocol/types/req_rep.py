@@ -44,6 +44,8 @@ __protobuf__ = proto.module(
         'DisconnectClientRep',
         'GetBatteryReq',
         'GetBatteryRep',
+        'SetPubFrequencyReq',
+        'SetPubFrequencyRep',
     },
 )
 
@@ -314,6 +316,33 @@ class GetBatteryRep(proto.Message):
     battery = proto.Field(proto.MESSAGE, number=1,
         message=message_formats.Battery,
     )
+
+
+class SetPubFrequencyReq(proto.Message):
+    r"""Request to update the publish frequency
+
+    Attributes:
+        message_type (str):
+            Fully specified message name.
+        frequency (float):
+            Publish frequency (max 100 Hz).
+    """
+
+    message_type = proto.Field(proto.STRING, number=1)
+
+    frequency = proto.Field(proto.FLOAT, number=2)
+
+
+class SetPubFrequencyRep(proto.Message):
+    r"""Response aftrer updating publish frequency
+
+    Attributes:
+        success (bool):
+            True if message name valid and frequency
+            successfully updated.
+    """
+
+    success = proto.Field(proto.BOOL, number=1)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

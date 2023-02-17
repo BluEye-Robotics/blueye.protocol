@@ -136,6 +136,8 @@ from .req_rep import (
     DisconnectClientRep,
     GetBatteryReq,
     GetBatteryRep,
+    SetPubFrequencyReq,
+    SetPubFrequencyRep,
 )
 from .telemetry import (
     AttitudeTel,
@@ -295,6 +297,8 @@ __all__ = (
     'DisconnectClientRep',
     'GetBatteryReq',
     'GetBatteryRep',
+    'SetPubFrequencyReq',
+    'SetPubFrequencyRep',
     'AttitudeTel',
     'AltitudeTel',
     'ForwardDistanceTel',

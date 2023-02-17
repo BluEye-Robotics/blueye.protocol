@@ -127,6 +127,8 @@ from .types.req_rep import SetCameraParametersRep
 from .types.req_rep import SetCameraParametersReq
 from .types.req_rep import SetOverlayParametersRep
 from .types.req_rep import SetOverlayParametersReq
+from .types.req_rep import SetPubFrequencyRep
+from .types.req_rep import SetPubFrequencyReq
 from .types.req_rep import SetThicknessGaugeParametersRep
 from .types.req_rep import SetThicknessGaugeParametersReq
 from .types.req_rep import SyncTimeRep
@@ -295,6 +297,8 @@ __all__ = (
     'SetCameraParametersReq',
     'SetOverlayParametersRep',
     'SetOverlayParametersReq',
+    'SetPubFrequencyRep',
+    'SetPubFrequencyReq',
     'SetThicknessGaugeParametersRep',
     'SetThicknessGaugeParametersReq',
     'StartCalibrationCtrl',
