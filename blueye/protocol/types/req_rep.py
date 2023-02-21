@@ -323,7 +323,7 @@ class SetPubFrequencyReq(proto.Message):
 
     Attributes:
         message_type (str):
-            Fully specified message name.
+            Message name, f. ex. "AttitudeTel".
         frequency (float):
             Publish frequency (max 100 Hz).
     """
