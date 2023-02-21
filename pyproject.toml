@@ -33,6 +33,9 @@ toml = "^0.10.0"
 flake8 = "^3.8.4"
 packaging ="^23.0"
 
+[tool.poetry.build]
+generate-setup-file = true
+
 [build-system]
 requires = ["poetry>=1.3.0"]
 build-backend = "poetry.masonry.api"
