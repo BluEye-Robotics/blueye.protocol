@@ -2,6 +2,7 @@ from pathlib import Path
 
 import toml
 from invoke import task
+from packaging.utils import canonicalize_name
 
 
 def get_project_root_path() -> Path:
@@ -19,6 +20,7 @@ def generate_tcp(context):
     Generate TCP protocol
     """
     import generators.generate_tcp_protocol
+
     protocol_context = generators.generate_tcp_protocol.Context()
     generators.generate_tcp_protocol.write_tcp_protocol(protocol_context)
 
@@ -29,6 +31,7 @@ def generate_udp(context):
     Generate UDP protocol
     """
     import generators.generate_udp_protocol
+
     generators.generate_udp_protocol.generate()
 
 
@@ -48,7 +51,7 @@ def generate_proto(context):
             --mount type=bind,source=$(pwd)/build/,destination=/out/ \
             --rm \
             --user $UID \
-            gcr.io/gapic-images/gapic-generator-python:v0.40" # noqa F501
+            gcr.io/gapic-images/gapic-generator-python:v0.40"  # noqa F501
         )
         context.run("cp -r build/blueye/protocol/types blueye/protocol/")
         context.run("cp -r build/blueye/protocol/__init__.py blueye/protocol/protos.py")
@@ -65,6 +68,9 @@ def generate_setup_py(context):
     pyproject = toml.load("pyproject.toml")
     package_name = pyproject["tool"]["poetry"]["name"]
     package_version = pyproject["tool"]["poetry"]["version"]
+    canonicalized_name = canonicalize_name(package_name)
+    distribution_name = canonicalized_name.replace("-", "_")
     context.run(
-        f'tar --extract --file=dist/{package_name}-{package_version}.tar.gz ' +
-        '--no-anchored "setup.py" --strip-components 1')
+        f"tar --extract --file=dist/{distribution_name}-{package_version}.tar.gz "
+        + '--no-anchored "setup.py" --strip-components 1'
+    )
