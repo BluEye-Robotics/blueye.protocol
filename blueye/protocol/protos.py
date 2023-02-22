@@ -81,6 +81,7 @@ from .types.message_formats import GuestPortDeviceList
 from .types.message_formats import GuestPortError
 from .types.message_formats import GuestPortInfo
 from .types.message_formats import GuestPortNumber
+from .types.message_formats import Imu
 from .types.message_formats import IperfStatus
 from .types.message_formats import LatLongPosition
 from .types.message_formats import Lights
@@ -108,6 +109,7 @@ from .types.message_formats import ThicknessUnit
 from .types.message_formats import TiltAngle
 from .types.message_formats import TiltStabilizationState
 from .types.message_formats import TiltVelocity
+from .types.message_formats import Vector3
 from .types.message_formats import WaterDensity
 from .types.message_formats import WaterTemperature
 from .types.message_formats import WeatherVaningState
@@ -138,6 +140,7 @@ from .types.telemetry import AttitudeTel
 from .types.telemetry import BatteryBQ40Z50Tel
 from .types.telemetry import BatteryTel
 from .types.telemetry import CPUTemperatureTel
+from .types.telemetry import CalibratedImuTel
 from .types.telemetry import CalibrationStateTel
 from .types.telemetry import CanisterBottomHumidityTel
 from .types.telemetry import CanisterBottomTemperatureTel
@@ -158,6 +161,8 @@ from .types.telemetry import ForwardDistanceTel
 from .types.telemetry import GenericServoTel
 from .types.telemetry import GuestPortCurrentTel
 from .types.telemetry import GuestPortLightsTel
+from .types.telemetry import Imu1Tel
+from .types.telemetry import Imu2Tel
 from .types.telemetry import IperfTel
 from .types.telemetry import LightsTel
 from .types.telemetry import MultibeamServoTel
@@ -191,6 +196,7 @@ __all__ = (
     'BatteryTel',
     'CPUTemperature',
     'CPUTemperatureTel',
+    'CalibratedImuTel',
     'CalibrationState',
     'CalibrationStateTel',
     'Camera',
@@ -257,6 +263,9 @@ __all__ = (
     'GuestPortLightsTel',
     'GuestPortNumber',
     'GuestportLightsCtrl',
+    'Imu',
+    'Imu1Tel',
+    'Imu2Tel',
     'IperfStatus',
     'IperfTel',
     'LatLongPosition',
@@ -321,6 +330,7 @@ __all__ = (
     'TiltStabilizationTel',
     'TiltVelocity',
     'TiltVelocityCtrl',
+    'Vector3',
     'VideoStorageSpaceTel',
     'WatchdogCtrl',
     'WaterDensity',

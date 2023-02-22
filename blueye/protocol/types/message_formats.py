@@ -94,6 +94,8 @@ __protobuf__ = proto.module(
         'GenericServo',
         'MultibeamServo',
         'GuestPortCurrent',
+        'Vector3',
+        'Imu',
     },
 )
 
@@ -1997,6 +1999,58 @@ class GuestPortCurrent(proto.Message):
     gp3_bat = proto.Field(proto.DOUBLE, number=3)
 
     gp_20v = proto.Field(proto.DOUBLE, number=4)
+
+
+class Vector3(proto.Message):
+    r"""-
+
+    Vector with 3 elements
+
+    Attributes:
+        x (float):
+            x-component
+        y (float):
+            y-component
+        z (float):
+            z-component
+    """
+
+    x = proto.Field(proto.DOUBLE, number=1)
+
+    y = proto.Field(proto.DOUBLE, number=2)
+
+    z = proto.Field(proto.DOUBLE, number=3)
+
+
+class Imu(proto.Message):
+    r"""-
+
+    Imu data
+
+    Attributes:
+        accelerometer (blueye.protocol.types.Vector3):
+            Acceleration (g)
+        gyroscope (blueye.protocol.types.Vector3):
+            Angular velocity (rad/s)
+        magnetometer (blueye.protocol.types.Vector3):
+            Magnetic field (μT)
+        temperature (float):
+            Temperature (°C)
+    """
+
+    accelerometer = proto.Field(proto.MESSAGE, number=1,
+        message='Vector3',
+    )
+
+    gyroscope = proto.Field(proto.MESSAGE, number=2,
+        message='Vector3',
+    )
+
+    magnetometer = proto.Field(proto.MESSAGE, number=3,
+        message='Vector3',
+    )
+
+    temperature = proto.Field(proto.FLOAT, number=4)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

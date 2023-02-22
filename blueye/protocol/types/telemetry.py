@@ -62,6 +62,9 @@ __protobuf__ = proto.module(
         'GenericServoTel',
         'MultibeamServoTel',
         'GuestPortCurrentTel',
+        'CalibratedImuTel',
+        'Imu1Tel',
+        'Imu2Tel',
     },
 )
 
@@ -590,6 +593,51 @@ class GuestPortCurrentTel(proto.Message):
 
     current = proto.Field(proto.MESSAGE, number=1,
         message=message_formats.GuestPortCurrent,
+    )
+
+
+class CalibratedImuTel(proto.Message):
+    r"""-
+
+    Calibrated IMU data
+
+    Attributes:
+        imu (blueye.protocol.types.Imu):
+
+    """
+
+    imu = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.Imu,
+    )
+
+
+class Imu1Tel(proto.Message):
+    r"""-
+
+    Raw IMU data from IMU 1
+
+    Attributes:
+        imu (blueye.protocol.types.Imu):
+
+    """
+
+    imu = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.Imu,
+    )
+
+
+class Imu2Tel(proto.Message):
+    r"""-
+
+    Raw IMU data from IMU 2
+
+    Attributes:
+        imu (blueye.protocol.types.Imu):
+
+    """
+
+    imu = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.Imu,
     )
 
 
