@@ -2025,7 +2025,9 @@ class Vector3(proto.Message):
 class Imu(proto.Message):
     r"""-
 
-    Imu data
+    Imu data in drone body frame
+
+    x - forward y - right z - down
 
     Attributes:
         accelerometer (blueye.protocol.types.Vector3):
