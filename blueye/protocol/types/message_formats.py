@@ -25,6 +25,7 @@ from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 __protobuf__ = proto.module(
     package='blueye.protocol',
     manifest={
+        'HeadingSource',
         'Model',
         'PressureSensorType',
         'Resolution',
@@ -68,6 +69,7 @@ __protobuf__ = proto.module(
         'Altitude',
         'ForwardDistance',
         'PositionEstimate',
+        'ResetPositionSettings',
         'Depth',
         'Reference',
         'ControlForce',
@@ -98,6 +100,16 @@ __protobuf__ = proto.module(
         'Imu',
     },
 )
+
+
+class HeadingSource(proto.Enum):
+    r"""-
+
+    Heading source used during reset of the position estimate.
+    """
+    HEADING_SOURCE_UNSPECIFIED = 0
+    HEADING_SOURCE_DRONE_COMPASS = 1
+    HEADING_SOURCE_DUE_NORTH = 2
 
 
 class Model(proto.Enum):
@@ -1081,6 +1093,22 @@ class PositionEstimate(proto.Message):
 
     navigation_sensors = proto.RepeatedField(proto.MESSAGE, number=11,
         message='NavigationSensorStatus',
+    )
+
+
+class ResetPositionSettings(proto.Message):
+    r"""-
+
+    ResetPositionSettings used during reset of the position estimate.
+
+    Attributes:
+        heading_source_during_reset (blueye.protocol.types.HeadingSource):
+            Option to use the drone compass or due North
+            as heading during reset
+    """
+
+    heading_source_during_reset = proto.Field(proto.ENUM, number=1,
+        enum='HeadingSource',
     )
 
 

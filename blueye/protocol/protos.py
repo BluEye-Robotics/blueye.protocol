@@ -81,6 +81,7 @@ from .types.message_formats import GuestPortDeviceList
 from .types.message_formats import GuestPortError
 from .types.message_formats import GuestPortInfo
 from .types.message_formats import GuestPortNumber
+from .types.message_formats import HeadingSource
 from .types.message_formats import Imu
 from .types.message_formats import IperfStatus
 from .types.message_formats import LatLongPosition
@@ -99,6 +100,7 @@ from .types.message_formats import PressureSensorType
 from .types.message_formats import RecordOn
 from .types.message_formats import RecordState
 from .types.message_formats import Reference
+from .types.message_formats import ResetPositionSettings
 from .types.message_formats import Resolution
 from .types.message_formats import StationKeepingState
 from .types.message_formats import StorageSpace
@@ -263,6 +265,7 @@ __all__ = (
     'GuestPortLightsTel',
     'GuestPortNumber',
     'GuestportLightsCtrl',
+    'HeadingSource',
     'Imu',
     'Imu1Tel',
     'Imu2Tel',
@@ -301,6 +304,7 @@ __all__ = (
     'ReferenceTel',
     'ResetOdometerCtrl',
     'ResetPositionCtrl',
+    'ResetPositionSettings',
     'Resolution',
     'SetCameraParametersRep',
     'SetCameraParametersReq',

@@ -282,7 +282,15 @@ class ResetPositionCtrl(proto.Message):
     r"""-
 
     Issue a command to reset the position estimate.
+
+    Attributes:
+        settings (blueye.protocol.types.ResetPositionSettings):
+            Reset settings.
     """
+
+    settings = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.ResetPositionSettings,
+    )
 
 
 class ResetOdometerCtrl(proto.Message):
