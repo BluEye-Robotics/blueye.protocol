@@ -109,7 +109,7 @@ class HeadingSource(proto.Enum):
     """
     HEADING_SOURCE_UNSPECIFIED = 0
     HEADING_SOURCE_DRONE_COMPASS = 1
-    HEADING_SOURCE_DUE_NORTH = 2
+    HEADING_SOURCE_MANUAL_INPUT = 2
 
 
 class Model(proto.Enum):
@@ -1105,11 +1105,15 @@ class ResetPositionSettings(proto.Message):
         heading_source_during_reset (blueye.protocol.types.HeadingSource):
             Option to use the drone compass or due North
             as heading during reset
+        manual_heading (float):
+            Heading in degrees (0-359)
     """
 
     heading_source_during_reset = proto.Field(proto.ENUM, number=1,
         enum='HeadingSource',
     )
+
+    manual_heading = proto.Field(proto.FLOAT, number=2)
 
 
 class Depth(proto.Message):
