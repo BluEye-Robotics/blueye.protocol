@@ -87,6 +87,7 @@ from .types.message_formats import IperfStatus
 from .types.message_formats import LatLongPosition
 from .types.message_formats import Lights
 from .types.message_formats import LogoType
+from .types.message_formats import MedusaSpectrometerData
 from .types.message_formats import Model
 from .types.message_formats import MotionInput
 from .types.message_formats import MultibeamServo
@@ -167,6 +168,7 @@ from .types.telemetry import Imu1Tel
 from .types.telemetry import Imu2Tel
 from .types.telemetry import IperfTel
 from .types.telemetry import LightsTel
+from .types.telemetry import MedusaSpectrometerDataTel
 from .types.telemetry import MultibeamServoTel
 from .types.telemetry import NStreamersTel
 from .types.telemetry import PilotGPSPositionTel
@@ -276,6 +278,8 @@ __all__ = (
     'LightsCtrl',
     'LightsTel',
     'LogoType',
+    'MedusaSpectrometerData',
+    'MedusaSpectrometerDataTel',
     'Model',
     'MotionInput',
     'MotionInputCtrl',

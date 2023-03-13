@@ -65,6 +65,7 @@ __protobuf__ = proto.module(
         'CalibratedImuTel',
         'Imu1Tel',
         'Imu2Tel',
+        'MedusaSpectrometerDataTel',
     },
 )
 
@@ -638,6 +639,21 @@ class Imu2Tel(proto.Message):
 
     imu = proto.Field(proto.MESSAGE, number=1,
         message=message_formats.Imu,
+    )
+
+
+class MedusaSpectrometerDataTel(proto.Message):
+    r"""-
+
+    Medusa gamma ray sensor spectrometer data
+
+    Attributes:
+        data (blueye.protocol.types.MedusaSpectrometerData):
+
+    """
+
+    data = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.MedusaSpectrometerData,
     )
 
 

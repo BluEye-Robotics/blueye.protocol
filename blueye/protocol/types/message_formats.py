@@ -98,6 +98,7 @@ __protobuf__ = proto.module(
         'GuestPortCurrent',
         'Vector3',
         'Imu',
+        'MedusaSpectrometerData',
     },
 )
 
@@ -251,6 +252,7 @@ class GuestPortDeviceID(proto.Enum):
     GUEST_PORT_DEVICE_ID_BLUEYE_MULTIBEAM_SERVO = 23
     GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_DETACHABLE_NEWTON = 24
     GUEST_PORT_DEVICE_ID_INSITU_AQUA_TROLL_500 = 25
+    GUEST_PORT_DEVICE_ID_MEDUSA_RADIOMETRICS_MS_100 = 26
 
 
 class GuestPortNumber(proto.Enum):
@@ -2085,6 +2087,36 @@ class Imu(proto.Message):
     )
 
     temperature = proto.Field(proto.FLOAT, number=4)
+
+
+class MedusaSpectrometerData(proto.Message):
+    r"""-
+
+    Medusa gamma ray sensor spectrometer data
+
+    Attributes:
+        realtime (float):
+            Time the sensor actually measured (s)
+        livetime (float):
+            Time the measurement took (s)
+        total (int):
+            Total counts inside the spectrum
+        countrate (int):
+            Counts per second inside the spectrum
+            (rounded)
+        cosmics (int):
+            Detected counts above the last channel
+    """
+
+    realtime = proto.Field(proto.FLOAT, number=1)
+
+    livetime = proto.Field(proto.FLOAT, number=2)
+
+    total = proto.Field(proto.UINT32, number=3)
+
+    countrate = proto.Field(proto.UINT32, number=4)
+
+    cosmics = proto.Field(proto.UINT32, number=5)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))
