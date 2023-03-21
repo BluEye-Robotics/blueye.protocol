@@ -25,6 +25,7 @@ from .types.control import FinishCalibrationCtrl
 from .types.control import GenericServoCtrl
 from .types.control import GripperCtrl
 from .types.control import GuestportLightsCtrl
+from .types.control import LaserCtrl
 from .types.control import LightsCtrl
 from .types.control import MotionInputCtrl
 from .types.control import MultibeamServoCtrl
@@ -84,6 +85,7 @@ from .types.message_formats import GuestPortNumber
 from .types.message_formats import HeadingSource
 from .types.message_formats import Imu
 from .types.message_formats import IperfStatus
+from .types.message_formats import Laser
 from .types.message_formats import LatLongPosition
 from .types.message_formats import Lights
 from .types.message_formats import LogoType
@@ -167,6 +169,7 @@ from .types.telemetry import GuestPortLightsTel
 from .types.telemetry import Imu1Tel
 from .types.telemetry import Imu2Tel
 from .types.telemetry import IperfTel
+from .types.telemetry import LaserTel
 from .types.telemetry import LightsTel
 from .types.telemetry import MedusaSpectrometerDataTel
 from .types.telemetry import MultibeamServoTel
@@ -273,6 +276,9 @@ __all__ = (
     'Imu2Tel',
     'IperfStatus',
     'IperfTel',
+    'Laser',
+    'LaserCtrl',
+    'LaserTel',
     'LatLongPosition',
     'Lights',
     'LightsCtrl',

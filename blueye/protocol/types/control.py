@@ -28,6 +28,7 @@ __protobuf__ = proto.module(
         'TiltVelocityCtrl',
         'LightsCtrl',
         'GuestportLightsCtrl',
+        'LaserCtrl',
         'PilotGPSPositionCtrl',
         'WatchdogCtrl',
         'RecordCtrl',
@@ -115,6 +116,21 @@ class GuestportLightsCtrl(proto.Message):
 
     lights = proto.Field(proto.MESSAGE, number=1,
         message=message_formats.Lights,
+    )
+
+
+class LaserCtrl(proto.Message):
+    r"""-
+
+    Issue a command to set the laser intensity.
+
+    Attributes:
+        laser (blueye.protocol.types.Laser):
+            Message with the desired laser intensity.
+    """
+
+    laser = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.Laser,
     )
 
 

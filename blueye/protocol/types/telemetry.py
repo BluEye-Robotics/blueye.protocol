@@ -34,6 +34,7 @@ __protobuf__ = proto.module(
         'ControllerHealthTel',
         'LightsTel',
         'GuestPortLightsTel',
+        'LaserTel',
         'PilotGPSPositionTel',
         'RecordStateTel',
         'BatteryTel',
@@ -179,7 +180,9 @@ class ControllerHealthTel(proto.Message):
 
 
 class LightsTel(proto.Message):
-    r"""
+    r"""-
+
+    Receive the status of the main lights of the drone.
 
     Attributes:
         lights (blueye.protocol.types.Lights):
@@ -192,7 +195,9 @@ class LightsTel(proto.Message):
 
 
 class GuestPortLightsTel(proto.Message):
-    r"""
+    r"""-
+
+    Receive the status of any guest port lights connected to the drone.
 
     Attributes:
         lights (blueye.protocol.types.Lights):
@@ -201,6 +206,21 @@ class GuestPortLightsTel(proto.Message):
 
     lights = proto.Field(proto.MESSAGE, number=1,
         message=message_formats.Lights,
+    )
+
+
+class LaserTel(proto.Message):
+    r"""-
+
+    Receive the status of any lasers connected to the drone.
+
+    Attributes:
+        laser (blueye.protocol.types.Laser):
+
+    """
+
+    laser = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.Laser,
     )
 
 

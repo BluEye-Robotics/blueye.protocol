@@ -43,6 +43,7 @@ __protobuf__ = proto.module(
         'BinlogRecord',
         'MotionInput',
         'Lights',
+        'Laser',
         'LatLongPosition',
         'ConnectionDuration',
         'AutoHeadingState',
@@ -253,6 +254,8 @@ class GuestPortDeviceID(proto.Enum):
     GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_DETACHABLE_NEWTON = 24
     GUEST_PORT_DEVICE_ID_INSITU_AQUA_TROLL_500 = 25
     GUEST_PORT_DEVICE_ID_MEDUSA_RADIOMETRICS_MS_100 = 26
+    GUEST_PORT_DEVICE_ID_LASER_TOOLS_SEA_BEAM = 27
+    GUEST_PORT_DEVICE_ID_SPOT_X_LASER_SCALERS = 28
 
 
 class GuestPortNumber(proto.Enum):
@@ -374,6 +377,23 @@ class Lights(proto.Message):
     Attributes:
         value (float):
             Light intensity (0..1)
+    """
+
+    value = proto.Field(proto.FLOAT, number=1)
+
+
+class Laser(proto.Message):
+    r"""-
+
+    Laser message used to represent the intensity of connected laser.
+
+    If the laser does not support dimming but only on and off, a value
+    of 0 turns the laser off, and any value above 0 turns the laser on.
+
+    Attributes:
+        value (float):
+            Laser intensity, any value above 0 turns the
+            laser on (0..1)
     """
 
     value = proto.Field(proto.FLOAT, number=1)
