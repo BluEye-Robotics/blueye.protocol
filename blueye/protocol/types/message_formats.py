@@ -26,6 +26,7 @@ __protobuf__ = proto.module(
     package='blueye.protocol',
     manifest={
         'HeadingSource',
+        'ResetCoordinateSource',
         'Model',
         'PressureSensorType',
         'Resolution',
@@ -112,6 +113,13 @@ class HeadingSource(proto.Enum):
     HEADING_SOURCE_UNSPECIFIED = 0
     HEADING_SOURCE_DRONE_COMPASS = 1
     HEADING_SOURCE_MANUAL_INPUT = 2
+
+
+class ResetCoordinateSource(proto.Enum):
+    r""""""
+    RESET_COORDINATE_SOURCE_UNSPECIFIED = 0
+    RESET_COORDINATE_SOURCE_DEVICE_GPS = 1
+    RESET_COORDINATE_SOURCE_MANUAL = 2
 
 
 class Model(proto.Enum):
@@ -1129,6 +1137,11 @@ class ResetPositionSettings(proto.Message):
             as heading during reset
         manual_heading (float):
             Heading in degrees (0-359)
+        reset_coordinate_source (blueye.protocol.types.ResetCoordinateSource):
+            Option to use the device GPS or a manual
+            coordinate.
+        reset_coordinate (blueye.protocol.types.LatLongPosition):
+            Reset coordinate in decimal degrees
     """
 
     heading_source_during_reset = proto.Field(proto.ENUM, number=1,
@@ -1136,6 +1149,14 @@ class ResetPositionSettings(proto.Message):
     )
 
     manual_heading = proto.Field(proto.FLOAT, number=2)
+
+    reset_coordinate_source = proto.Field(proto.ENUM, number=3,
+        enum='ResetCoordinateSource',
+    )
+
+    reset_coordinate = proto.Field(proto.MESSAGE, number=4,
+        message='LatLongPosition',
+    )
 
 
 class Depth(proto.Message):

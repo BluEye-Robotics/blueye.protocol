@@ -103,6 +103,7 @@ from .types.message_formats import PressureSensorType
 from .types.message_formats import RecordOn
 from .types.message_formats import RecordState
 from .types.message_formats import Reference
+from .types.message_formats import ResetCoordinateSource
 from .types.message_formats import ResetPositionSettings
 from .types.message_formats import Resolution
 from .types.message_formats import StationKeepingState
@@ -312,6 +313,7 @@ __all__ = (
     'RecordStateTel',
     'Reference',
     'ReferenceTel',
+    'ResetCoordinateSource',
     'ResetOdometerCtrl',
     'ResetPositionCtrl',
     'ResetPositionSettings',
