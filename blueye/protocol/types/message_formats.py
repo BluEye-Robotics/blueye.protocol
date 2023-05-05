@@ -2136,6 +2136,10 @@ class MedusaSpectrometerData(proto.Message):
     Medusa gamma ray sensor spectrometer data
 
     Attributes:
+        drone_time (google.protobuf.timestamp_pb2.Timestamp):
+            Time stamp when the data is received
+        sensor_time (google.protobuf.timestamp_pb2.Timestamp):
+            Time stamp the sensor reports
         realtime (float):
             Time the sensor actually measured (s)
         livetime (float):
@@ -2148,6 +2152,14 @@ class MedusaSpectrometerData(proto.Message):
         cosmics (int):
             Detected counts above the last channel
     """
+
+    drone_time = proto.Field(proto.MESSAGE, number=6,
+        message=timestamp.Timestamp,
+    )
+
+    sensor_time = proto.Field(proto.MESSAGE, number=7,
+        message=timestamp.Timestamp,
+    )
 
     realtime = proto.Field(proto.FLOAT, number=1)
 
