@@ -58,5 +58,15 @@ generating the file that can be run with
 invoke generate-setup-py
 ```
 
+If you are running MacOS, you need to install gnu-tar
+``` shell
+brew install gnu-tar
+```
+
+and then run the follwing line before the invoke command:
+``` shell
+PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
+```
+
 **Be sure to run this script and commit the `setup.py` file when the dependencies have
 changed.**
