@@ -52,6 +52,7 @@ __protobuf__ = proto.module(
         'MultibeamServoCtrl',
         'DeactivateGuestPortsCtrl',
         'ActivateGuestPortsCtrl',
+        'RestartGuestPortsCtrl',
     },
 )
 
@@ -434,6 +435,22 @@ class ActivateGuestPortsCtrl(proto.Message):
 
     Activated the guest port power
     """
+
+
+class RestartGuestPortsCtrl(proto.Message):
+    r"""-
+
+    Restart the guest ports by turning power on and off
+
+    Attributes:
+        restart_info (blueye.protocol.types.GuestPortRestartInfo):
+            Message with information about how long to
+            keep the guest ports off.
+    """
+
+    restart_info = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.GuestPortRestartInfo,
+    )
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

@@ -34,6 +34,7 @@ from .types.control import PingerConfigurationCtrl
 from .types.control import RecordCtrl
 from .types.control import ResetOdometerCtrl
 from .types.control import ResetPositionCtrl
+from .types.control import RestartGuestPortsCtrl
 from .types.control import StartCalibrationCtrl
 from .types.control import StationKeepingCtrl
 from .types.control import SystemTimeCtrl
@@ -82,6 +83,7 @@ from .types.message_formats import GuestPortDeviceList
 from .types.message_formats import GuestPortError
 from .types.message_formats import GuestPortInfo
 from .types.message_formats import GuestPortNumber
+from .types.message_formats import GuestPortRestartInfo
 from .types.message_formats import HeadingSource
 from .types.message_formats import Imu
 from .types.message_formats import IperfStatus
@@ -270,6 +272,7 @@ __all__ = (
     'GuestPortInfo',
     'GuestPortLightsTel',
     'GuestPortNumber',
+    'GuestPortRestartInfo',
     'GuestportLightsCtrl',
     'HeadingSource',
     'Imu',
@@ -318,6 +321,7 @@ __all__ = (
     'ResetPositionCtrl',
     'ResetPositionSettings',
     'Resolution',
+    'RestartGuestPortsCtrl',
     'SetCameraParametersRep',
     'SetCameraParametersReq',
     'SetOverlayParametersRep',

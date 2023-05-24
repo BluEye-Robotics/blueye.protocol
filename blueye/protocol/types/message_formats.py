@@ -93,6 +93,7 @@ __protobuf__ = proto.module(
         'GuestPortDeviceList',
         'GuestPortConnectorInfo',
         'GuestPortInfo',
+        'GuestPortRestartInfo',
         'ThicknessGauge',
         'CpProbe',
         'GenericServo',
@@ -264,6 +265,8 @@ class GuestPortDeviceID(proto.Enum):
     GUEST_PORT_DEVICE_ID_MEDUSA_RADIOMETRICS_MS100 = 26
     GUEST_PORT_DEVICE_ID_LASER_TOOLS_SEA_BEAM = 27
     GUEST_PORT_DEVICE_ID_SPOT_X_LASER_SCALERS = 28
+    GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_M1200D = 29
+    GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_M3000D = 30
 
 
 class GuestPortNumber(proto.Enum):
@@ -1974,6 +1977,19 @@ class GuestPortInfo(proto.Message):
     gp3 = proto.Field(proto.MESSAGE, number=3,
         message='GuestPortConnectorInfo',
     )
+
+
+class GuestPortRestartInfo(proto.Message):
+    r"""-
+
+    GuestPort restart information.
+
+    Attributes:
+        power_off_duration (float):
+            Duration to keep the guest ports off (s)
+    """
+
+    power_off_duration = proto.Field(proto.DOUBLE, number=1)
 
 
 class ThicknessGauge(proto.Message):
