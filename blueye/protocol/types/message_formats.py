@@ -1768,6 +1768,8 @@ class OverlayParameters(proto.Message):
             If altitude should be included
         cp_probe_enabled (bool):
             If cp-probe should be included
+        medusa_enabled (bool):
+            If medusa measurement should be included
         drone_location_enabled (bool):
             If the drone location coordinates should be
             included
@@ -1818,6 +1820,8 @@ class OverlayParameters(proto.Message):
     altitude_enabled = proto.Field(proto.BOOL, number=21)
 
     cp_probe_enabled = proto.Field(proto.BOOL, number=22)
+
+    medusa_enabled = proto.Field(proto.BOOL, number=24)
 
     drone_location_enabled = proto.Field(proto.BOOL, number=23)
 
