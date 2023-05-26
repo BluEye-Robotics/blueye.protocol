@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "blueye.protocol"
 description = "Python protocol definition for the Blueye drones"
-version = "2.1.0"
+version = "2.2.0"
 authors = ["Sindre Hansen <sindre.hansen@blueye.no>",
            "Johannes Schrimpf <johannes.schrimpf@blueye.no>",
            "Aksel Lenes <aksel.lenes@blueye.no>",
@@ -27,7 +27,7 @@ Jinja2 = "^3.0"
 pytest = "^6.2.5"
 pytest-mock = "^1.10.4"
 pytest-timeout = "^1.4.2"
-invoke = "^1.6"
+invoke = "^2.1.1"
 pytest-cov = "^3.0"
 toml = "^0.10.0"
 flake8 = "^3.8.4"
