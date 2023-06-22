@@ -72,7 +72,10 @@ class AppProtocol:
                 return None
             dtype = list(zip(self.get_field_names(packet_type, version=version),
                              self.get_numpy_field_dtypes(packet_type, version=version)))
-            data = bin_file.read()
+            try:
+                data = bin_file.read()
+            except EOFError:
+                return None
             row_len = struct.calcsize(self.get_struct_format(packet_type, version=version))
             # Calculate how many full rows are in the file
             n_rows = int(len(data) / row_len)
