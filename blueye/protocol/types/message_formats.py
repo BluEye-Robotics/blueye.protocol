@@ -1449,7 +1449,7 @@ class DroneInfo(proto.Message):
 
     Information about the drone.
 
-    This message contains serial numbers and version informattion for
+    This message contains serial numbers and version information for
     internal components in the drone. Primarily used for diagnostics, or
     to determine the origin of a logfile.
 

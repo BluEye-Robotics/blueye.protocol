@@ -15,6 +15,18 @@
 # limitations under the License.
 #
 
+from .types.aquatroll import AquaTrollDevice
+from .types.aquatroll import AquaTrollParameter
+from .types.aquatroll import AquaTrollParameterBlock
+from .types.aquatroll import AquaTrollProbeMetadata
+from .types.aquatroll import AquaTrollQuality
+from .types.aquatroll import AquaTrollSensor
+from .types.aquatroll import AquaTrollSensorMetadata
+from .types.aquatroll import AquaTrollSensorMetadataArray
+from .types.aquatroll import AquaTrollSensorParameters
+from .types.aquatroll import AquaTrollSensorParametersArray
+from .types.aquatroll import AquaTrollType
+from .types.aquatroll import AquaTrollUnit
 from .types.control import ActivateGuestPortsCtrl
 from .types.control import AutoAltitudeCtrl
 from .types.control import AutoDepthCtrl
@@ -131,8 +143,12 @@ from .types.req_rep import GetCameraParametersRep
 from .types.req_rep import GetCameraParametersReq
 from .types.req_rep import GetOverlayParametersRep
 from .types.req_rep import GetOverlayParametersReq
+from .types.req_rep import GetTelemetryRep
+from .types.req_rep import GetTelemetryReq
 from .types.req_rep import PingRep
 from .types.req_rep import PingReq
+from .types.req_rep import SetAquaTrollParameterUnitRep
+from .types.req_rep import SetAquaTrollParameterUnitReq
 from .types.req_rep import SetCameraParametersRep
 from .types.req_rep import SetCameraParametersReq
 from .types.req_rep import SetOverlayParametersRep
@@ -144,6 +160,9 @@ from .types.req_rep import SetThicknessGaugeParametersReq
 from .types.req_rep import SyncTimeRep
 from .types.req_rep import SyncTimeReq
 from .types.telemetry import AltitudeTel
+from .types.telemetry import AquaTrollProbeMetadataTel
+from .types.telemetry import AquaTrollSensorMetadataTel
+from .types.telemetry import AquaTrollSensorParametersTel
 from .types.telemetry import AttitudeTel
 from .types.telemetry import BatteryBQ40Z50Tel
 from .types.telemetry import BatteryTel
@@ -192,6 +211,20 @@ __all__ = (
     'ActivateGuestPortsCtrl',
     'Altitude',
     'AltitudeTel',
+    'AquaTrollDevice',
+    'AquaTrollParameter',
+    'AquaTrollProbeMetadata',
+    'AquaTrollProbeMetadataTel',
+    'AquaTrollQuality',
+    'AquaTrollSensor',
+    'AquaTrollSensorMetadata',
+    'AquaTrollSensorMetadataArray',
+    'AquaTrollSensorMetadataTel',
+    'AquaTrollSensorParameters',
+    'AquaTrollSensorParametersArray',
+    'AquaTrollSensorParametersTel',
+    'AquaTrollType',
+    'AquaTrollUnit',
     'Attitude',
     'AttitudeTel',
     'AutoAltitudeCtrl',
@@ -204,6 +237,7 @@ __all__ = (
     'BatteryBQ40Z50',
     'BatteryBQ40Z50Tel',
     'BatteryTel',
+    'BinlogRecord',
     'CPUTemperature',
     'CPUTemperatureTel',
     'CalibratedImuTel',
@@ -260,6 +294,8 @@ __all__ = (
     'GetCameraParametersReq',
     'GetOverlayParametersRep',
     'GetOverlayParametersReq',
+    'GetTelemetryRep',
+    'GetTelemetryReq',
     'GripperCtrl',
     'GripperVelocities',
     'GuestPortConnectorInfo',
@@ -322,6 +358,8 @@ __all__ = (
     'ResetPositionSettings',
     'Resolution',
     'RestartGuestPortsCtrl',
+    'SetAquaTrollParameterUnitRep',
+    'SetAquaTrollParameterUnitReq',
     'SetCameraParametersRep',
     'SetCameraParametersReq',
     'SetOverlayParametersRep',
@@ -359,5 +397,5 @@ __all__ = (
     'WaterTemperatureTel',
     'WeatherVaningCtrl',
     'WeatherVaningState',
-'BinlogRecord',
+'AquaTrollParameterBlock',
 )

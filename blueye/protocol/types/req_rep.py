@@ -18,7 +18,9 @@
 import proto  # type: ignore
 
 
+from blueye.protocol.types import aquatroll
 from blueye.protocol.types import message_formats
+from google.protobuf import any_pb2 as gp_any  # type: ignore
 
 
 __protobuf__ = proto.module(
@@ -46,6 +48,10 @@ __protobuf__ = proto.module(
         'GetBatteryRep',
         'SetPubFrequencyReq',
         'SetPubFrequencyRep',
+        'GetTelemetryReq',
+        'GetTelemetryRep',
+        'SetAquaTrollParameterUnitReq',
+        'SetAquaTrollParameterUnitRep',
     },
 )
 
@@ -298,15 +304,19 @@ class DisconnectClientRep(proto.Message):
 
 
 class GetBatteryReq(proto.Message):
-    r"""Request essential battery information.
-    Can be used to instantly get battery information,
-    instead of having to wait for the BatteryTel message to be
-    received.
+    r"""-
+
+    Request essential battery information.
+
+    Can be used to instantly get battery information, instead of having
+    to wait for the BatteryTel message to be received.
     """
 
 
 class GetBatteryRep(proto.Message):
-    r"""Response with essential battery information.
+    r"""-
+
+    Response with essential battery information.
 
     Attributes:
         battery (blueye.protocol.types.Battery):
@@ -319,7 +329,9 @@ class GetBatteryRep(proto.Message):
 
 
 class SetPubFrequencyReq(proto.Message):
-    r"""Request to update the publish frequency
+    r"""-
+
+    Request to update the publish frequency
 
     Attributes:
         message_type (str):
@@ -334,12 +346,84 @@ class SetPubFrequencyReq(proto.Message):
 
 
 class SetPubFrequencyRep(proto.Message):
-    r"""Response aftrer updating publish frequency
+    r"""-
+
+    Response after updating publish frequency
 
     Attributes:
         success (bool):
             True if message name valid and frequency
             successfully updated.
+    """
+
+    success = proto.Field(proto.BOOL, number=1)
+
+
+class GetTelemetryReq(proto.Message):
+    r"""-
+
+    Request to get latest telemetry data
+
+    Attributes:
+        message_type (str):
+            Message name, f. ex. "AttitudeTel".
+    """
+
+    message_type = proto.Field(proto.STRING, number=1)
+
+
+class GetTelemetryRep(proto.Message):
+    r"""-
+
+    Response with latest telemetry
+
+    Attributes:
+        payload (google.protobuf.any_pb2.Any):
+            True if message name valid and frequency
+            successfully updated.
+    """
+
+    payload = proto.Field(proto.MESSAGE, number=1,
+        message=gp_any.Any,
+    )
+
+
+class SetAquaTrollParameterUnitReq(proto.Message):
+    r"""-
+
+    Request to set an In-Situ Aqua Troll parameter unit
+
+    Attributes:
+        sensor_id (blueye.protocol.types.AquaTrollSensor):
+            Sensor id, f. ex. "SENSOR_CONDUCTIVITY_SENSOR".
+        parameter_id (blueye.protocol.types.AquaTrollParameter):
+            Parameter name, f. ex. "PARAMETER_TEMPERATURE".
+        unit_id (blueye.protocol.types.AquaTrollUnit):
+            Unit, f. ex. "UNIT_TEMP_CELSIUS".
+    """
+
+    sensor_id = proto.Field(proto.ENUM, number=1,
+        enum=aquatroll.AquaTrollSensor,
+    )
+
+    parameter_id = proto.Field(proto.ENUM, number=2,
+        enum=aquatroll.AquaTrollParameter,
+    )
+
+    unit_id = proto.Field(proto.ENUM, number=3,
+        enum=aquatroll.AquaTrollUnit,
+    )
+
+
+class SetAquaTrollParameterUnitRep(proto.Message):
+    r"""-
+
+    Response after setting the In-Situ Aqua Troll parameter unit
+
+    Attributes:
+        success (bool):
+            True if sensor and parameter id valid and
+            unit successfully updated.
     """
 
     success = proto.Field(proto.BOOL, number=1)

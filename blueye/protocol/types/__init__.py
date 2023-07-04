@@ -15,6 +15,20 @@
 # limitations under the License.
 #
 
+from .aquatroll import (
+    AquaTrollParameterBlock,
+    AquaTrollSensorMetadata,
+    AquaTrollSensorMetadataArray,
+    AquaTrollProbeMetadata,
+    AquaTrollSensorParameters,
+    AquaTrollSensorParametersArray,
+    AquaTrollType,
+    AquaTrollDevice,
+    AquaTrollQuality,
+    AquaTrollParameter,
+    AquaTrollUnit,
+    AquaTrollSensor,
+)
 from .message_formats import (
     BinlogRecord,
     MotionInput,
@@ -130,6 +144,9 @@ from .telemetry import (
     ControlModeTel,
     ThicknessGaugeTel,
     CpProbeTel,
+    AquaTrollProbeMetadataTel,
+    AquaTrollSensorMetadataTel,
+    AquaTrollSensorParametersTel,
     ConnectedClientsTel,
     GenericServoTel,
     MultibeamServoTel,
@@ -162,6 +179,10 @@ from .req_rep import (
     GetBatteryRep,
     SetPubFrequencyReq,
     SetPubFrequencyRep,
+    GetTelemetryReq,
+    GetTelemetryRep,
+    SetAquaTrollParameterUnitReq,
+    SetAquaTrollParameterUnitRep,
 )
 from .control import (
     MotionInputCtrl,
@@ -196,6 +217,18 @@ from .control import (
 )
 
 __all__ = (
+    'AquaTrollParameterBlock',
+    'AquaTrollSensorMetadata',
+    'AquaTrollSensorMetadataArray',
+    'AquaTrollProbeMetadata',
+    'AquaTrollSensorParameters',
+    'AquaTrollSensorParametersArray',
+    'AquaTrollType',
+    'AquaTrollDevice',
+    'AquaTrollQuality',
+    'AquaTrollParameter',
+    'AquaTrollUnit',
+    'AquaTrollSensor',
     'BinlogRecord',
     'MotionInput',
     'Lights',
@@ -308,6 +341,9 @@ __all__ = (
     'ControlModeTel',
     'ThicknessGaugeTel',
     'CpProbeTel',
+    'AquaTrollProbeMetadataTel',
+    'AquaTrollSensorMetadataTel',
+    'AquaTrollSensorParametersTel',
     'ConnectedClientsTel',
     'GenericServoTel',
     'MultibeamServoTel',
@@ -338,6 +374,10 @@ __all__ = (
     'GetBatteryRep',
     'SetPubFrequencyReq',
     'SetPubFrequencyRep',
+    'GetTelemetryReq',
+    'GetTelemetryRep',
+    'SetAquaTrollParameterUnitReq',
+    'SetAquaTrollParameterUnitRep',
     'MotionInputCtrl',
     'TiltVelocityCtrl',
     'LightsCtrl',

@@ -18,6 +18,7 @@
 import proto  # type: ignore
 
 
+from blueye.protocol.types import aquatroll
 from blueye.protocol.types import message_formats
 
 
@@ -59,6 +60,9 @@ __protobuf__ = proto.module(
         'ControlModeTel',
         'ThicknessGaugeTel',
         'CpProbeTel',
+        'AquaTrollProbeMetadataTel',
+        'AquaTrollSensorMetadataTel',
+        'AquaTrollSensorParametersTel',
         'ConnectedClientsTel',
         'GenericServoTel',
         'MultibeamServoTel',
@@ -550,6 +554,51 @@ class CpProbeTel(proto.Message):
 
     cp_probe = proto.Field(proto.MESSAGE, number=1,
         message=message_formats.CpProbe,
+    )
+
+
+class AquaTrollProbeMetadataTel(proto.Message):
+    r"""-
+
+    Metadata from the In-Situ Aqua Troll probe's common registers
+
+    Attributes:
+        probe (blueye.protocol.types.AquaTrollProbeMetadata):
+            AquaTroll message containing sensor array.
+    """
+
+    probe = proto.Field(proto.MESSAGE, number=1,
+        message=aquatroll.AquaTrollProbeMetadata,
+    )
+
+
+class AquaTrollSensorMetadataTel(proto.Message):
+    r"""-
+
+    Metadata from a single sensor from In-Situ Aqua Troll probe
+
+    Attributes:
+        sensors (blueye.protocol.types.AquaTrollSensorMetadataArray):
+            AquaTroll message containing sensor array.
+    """
+
+    sensors = proto.Field(proto.MESSAGE, number=1,
+        message=aquatroll.AquaTrollSensorMetadataArray,
+    )
+
+
+class AquaTrollSensorParametersTel(proto.Message):
+    r"""-
+
+    Single sensor from In-Situ Aqua Troll probe
+
+    Attributes:
+        sensors (blueye.protocol.types.AquaTrollSensorParametersArray):
+            AquaTroll message containing parameter array.
+    """
+
+    sensors = proto.Field(proto.MESSAGE, number=1,
+        message=aquatroll.AquaTrollSensorParametersArray,
     )
 
 
