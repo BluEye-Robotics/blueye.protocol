@@ -379,8 +379,8 @@ class GetTelemetryRep(proto.Message):
 
     Attributes:
         payload (google.protobuf.any_pb2.Any):
-            True if message name valid and frequency
-            successfully updated.
+            The latest telemetry data, empty if no data
+            available.
     """
 
     payload = proto.Field(proto.MESSAGE, number=1,
