@@ -801,6 +801,8 @@ class BatteryBQ40Z50(proto.Message):
             Relative state of charge (0..1)
         absolute_state_of_charge (float):
             Absolute state of charge (0..1)
+        calculated_state_of_charge (float):
+            Calculated state of charge (0..1)
         remaining_capacity (float):
             Remaining capacity (Ah)
         full_charge_capacity (float):
@@ -811,10 +813,6 @@ class BatteryBQ40Z50(proto.Message):
             Average time to empty (s)
         average_time_to_full (int):
             Average time to full (s)
-        time_to_full_at_current_rate (int):
-            Time to fully charged at current rate (s)
-        time_to_empty_at_current_rate (int):
-            Time to empty at current rate (s)
         charging_current (float):
             Charging current (A)
         charging_voltage (float):
@@ -978,6 +976,8 @@ class BatteryBQ40Z50(proto.Message):
 
     absolute_state_of_charge = proto.Field(proto.FLOAT, number=9)
 
+    calculated_state_of_charge = proto.Field(proto.FLOAT, number=26)
+
     remaining_capacity = proto.Field(proto.FLOAT, number=10)
 
     full_charge_capacity = proto.Field(proto.FLOAT, number=11)
@@ -987,10 +987,6 @@ class BatteryBQ40Z50(proto.Message):
     average_time_to_empty = proto.Field(proto.UINT32, number=13)
 
     average_time_to_full = proto.Field(proto.UINT32, number=14)
-
-    time_to_full_at_current_rate = proto.Field(proto.UINT32, number=15)
-
-    time_to_empty_at_current_rate = proto.Field(proto.UINT32, number=16)
 
     charging_current = proto.Field(proto.FLOAT, number=17)
 
