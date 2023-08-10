@@ -18,6 +18,7 @@
 import proto  # type: ignore
 
 
+from blueye.protocol.types import aquatroll
 from blueye.protocol.types import message_formats
 
 
@@ -53,6 +54,8 @@ __protobuf__ = proto.module(
         'DeactivateGuestPortsCtrl',
         'ActivateGuestPortsCtrl',
         'RestartGuestPortsCtrl',
+        'SetAquaTrollParameterUnitCtrl',
+        'SetAquaTrollConnectionStatusCtrl',
     },
 )
 
@@ -450,6 +453,38 @@ class RestartGuestPortsCtrl(proto.Message):
 
     restart_info = proto.Field(proto.MESSAGE, number=1,
         message=message_formats.GuestPortRestartInfo,
+    )
+
+
+class SetAquaTrollParameterUnitCtrl(proto.Message):
+    r"""-
+
+    Request to set an In-Situ Aqua Troll parameter unit
+
+    Attributes:
+        parameter_info (blueye.protocol.types.SetAquaTrollParameterUnit):
+            Message with information about which
+            parameter to set and the unit to set it to.
+    """
+
+    parameter_info = proto.Field(proto.MESSAGE, number=1,
+        message=aquatroll.SetAquaTrollParameterUnit,
+    )
+
+
+class SetAquaTrollConnectionStatusCtrl(proto.Message):
+    r"""-
+
+    Request to change the In-Situ Aqua Troll connection status
+
+    Attributes:
+        connection_status (blueye.protocol.types.SetAquaTrollConnectionStatus):
+            Message with information about which
+            parameter to set and the unit to set it to.
+    """
+
+    connection_status = proto.Field(proto.MESSAGE, number=1,
+        message=aquatroll.SetAquaTrollConnectionStatus,
     )
 
 

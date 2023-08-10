@@ -16,6 +16,7 @@
 #
 
 from .types.aquatroll import AquaTrollDevice
+from .types.aquatroll import AquaTrollDeviceStatus
 from .types.aquatroll import AquaTrollParameter
 from .types.aquatroll import AquaTrollParameterBlock
 from .types.aquatroll import AquaTrollProbeMetadata
@@ -25,8 +26,11 @@ from .types.aquatroll import AquaTrollSensorMetadata
 from .types.aquatroll import AquaTrollSensorMetadataArray
 from .types.aquatroll import AquaTrollSensorParameters
 from .types.aquatroll import AquaTrollSensorParametersArray
-from .types.aquatroll import AquaTrollType
+from .types.aquatroll import AquaTrollSensorStatus
 from .types.aquatroll import AquaTrollUnit
+from .types.aquatroll import SetAquaTrollConnectionStatus
+from .types.aquatroll import SetAquaTrollParameterUnit
+from .types.aquatroll import Type
 from .types.control import ActivateGuestPortsCtrl
 from .types.control import AutoAltitudeCtrl
 from .types.control import AutoDepthCtrl
@@ -47,6 +51,8 @@ from .types.control import RecordCtrl
 from .types.control import ResetOdometerCtrl
 from .types.control import ResetPositionCtrl
 from .types.control import RestartGuestPortsCtrl
+from .types.control import SetAquaTrollConnectionStatusCtrl
+from .types.control import SetAquaTrollParameterUnitCtrl
 from .types.control import StartCalibrationCtrl
 from .types.control import StationKeepingCtrl
 from .types.control import SystemTimeCtrl
@@ -147,8 +153,6 @@ from .types.req_rep import GetTelemetryRep
 from .types.req_rep import GetTelemetryReq
 from .types.req_rep import PingRep
 from .types.req_rep import PingReq
-from .types.req_rep import SetAquaTrollParameterUnitRep
-from .types.req_rep import SetAquaTrollParameterUnitReq
 from .types.req_rep import SetCameraParametersRep
 from .types.req_rep import SetCameraParametersReq
 from .types.req_rep import SetOverlayParametersRep
@@ -212,6 +216,7 @@ __all__ = (
     'Altitude',
     'AltitudeTel',
     'AquaTrollDevice',
+    'AquaTrollDeviceStatus',
     'AquaTrollParameter',
     'AquaTrollProbeMetadata',
     'AquaTrollProbeMetadataTel',
@@ -223,7 +228,7 @@ __all__ = (
     'AquaTrollSensorParameters',
     'AquaTrollSensorParametersArray',
     'AquaTrollSensorParametersTel',
-    'AquaTrollType',
+    'AquaTrollSensorStatus',
     'AquaTrollUnit',
     'Attitude',
     'AttitudeTel',
@@ -358,8 +363,10 @@ __all__ = (
     'ResetPositionSettings',
     'Resolution',
     'RestartGuestPortsCtrl',
-    'SetAquaTrollParameterUnitRep',
-    'SetAquaTrollParameterUnitReq',
+    'SetAquaTrollConnectionStatus',
+    'SetAquaTrollConnectionStatusCtrl',
+    'SetAquaTrollParameterUnit',
+    'SetAquaTrollParameterUnitCtrl',
     'SetCameraParametersRep',
     'SetCameraParametersReq',
     'SetOverlayParametersRep',
@@ -388,6 +395,7 @@ __all__ = (
     'TiltStabilizationTel',
     'TiltVelocity',
     'TiltVelocityCtrl',
+    'Type',
     'Vector3',
     'VideoStorageSpaceTel',
     'WatchdogCtrl',

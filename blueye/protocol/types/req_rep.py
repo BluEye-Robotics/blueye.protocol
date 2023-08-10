@@ -18,7 +18,6 @@
 import proto  # type: ignore
 
 
-from blueye.protocol.types import aquatroll
 from blueye.protocol.types import message_formats
 from google.protobuf import any_pb2 as gp_any  # type: ignore
 
@@ -50,8 +49,6 @@ __protobuf__ = proto.module(
         'SetPubFrequencyRep',
         'GetTelemetryReq',
         'GetTelemetryRep',
-        'SetAquaTrollParameterUnitReq',
-        'SetAquaTrollParameterUnitRep',
     },
 )
 
@@ -386,47 +383,6 @@ class GetTelemetryRep(proto.Message):
     payload = proto.Field(proto.MESSAGE, number=1,
         message=gp_any.Any,
     )
-
-
-class SetAquaTrollParameterUnitReq(proto.Message):
-    r"""-
-
-    Request to set an In-Situ Aqua Troll parameter unit
-
-    Attributes:
-        sensor_id (blueye.protocol.types.AquaTrollSensor):
-            Sensor id, f. ex. "SENSOR_CONDUCTIVITY_SENSOR".
-        parameter_id (blueye.protocol.types.AquaTrollParameter):
-            Parameter name, f. ex. "PARAMETER_TEMPERATURE".
-        unit_id (blueye.protocol.types.AquaTrollUnit):
-            Unit, f. ex. "UNIT_TEMP_CELSIUS".
-    """
-
-    sensor_id = proto.Field(proto.ENUM, number=1,
-        enum=aquatroll.AquaTrollSensor,
-    )
-
-    parameter_id = proto.Field(proto.ENUM, number=2,
-        enum=aquatroll.AquaTrollParameter,
-    )
-
-    unit_id = proto.Field(proto.ENUM, number=3,
-        enum=aquatroll.AquaTrollUnit,
-    )
-
-
-class SetAquaTrollParameterUnitRep(proto.Message):
-    r"""-
-
-    Response after setting the In-Situ Aqua Troll parameter unit
-
-    Attributes:
-        success (bool):
-            True if sensor and parameter id valid and
-            unit successfully updated.
-    """
-
-    success = proto.Field(proto.BOOL, number=1)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

@@ -24,37 +24,41 @@ from google.protobuf import timestamp_pb2 as gp_timestamp  # type: ignore
 __protobuf__ = proto.module(
     package='blueye.protocol',
     manifest={
-        'AquaTrollType',
+        'Type',
         'AquaTrollDevice',
         'AquaTrollQuality',
         'AquaTrollParameter',
         'AquaTrollUnit',
         'AquaTrollSensor',
+        'AquaTrollSensorStatus',
+        'AquaTrollDeviceStatus',
         'AquaTrollParameterBlock',
         'AquaTrollSensorMetadata',
         'AquaTrollSensorMetadataArray',
         'AquaTrollProbeMetadata',
         'AquaTrollSensorParameters',
         'AquaTrollSensorParametersArray',
+        'SetAquaTrollParameterUnit',
+        'SetAquaTrollConnectionStatus',
     },
 )
 
 
-class AquaTrollType(proto.Enum):
+class Type(proto.Enum):
     r"""-
 
-    Aqua Troll Type IDs
+    Type IDs
     """
-    AQUA_TROLL_TYPE_UNSPECIFIED = 0
-    AQUA_TROLL_TYPE_SHORT = 1
-    AQUA_TROLL_TYPE_UNSIGNED_SHORT = 2
-    AQUA_TROLL_TYPE_LONG = 3
-    AQUA_TROLL_TYPE_UNSIGNED_LONG = 4
-    AQUA_TROLL_TYPE_FLOAT = 5
-    AQUA_TROLL_TYPE_DOUBLE = 6
-    AQUA_TROLL_TYPE_CHARACTER = 7
-    AQUA_TROLL_TYPE_STRING = 8
-    AQUA_TROLL_TYPE_TIME = 9
+    TYPE_UNSPECIFIED = 0
+    TYPE_SHORT = 1
+    TYPE_UNSIGNED_SHORT = 2
+    TYPE_LONG = 3
+    TYPE_UNSIGNED_LONG = 4
+    TYPE_FLOAT = 5
+    TYPE_DOUBLE = 6
+    TYPE_CHARACTER = 7
+    TYPE_STRING = 8
+    TYPE_TIME = 9
 
 
 class AquaTrollDevice(proto.Enum):
@@ -85,7 +89,10 @@ class AquaTrollDevice(proto.Enum):
 
 
 class AquaTrollQuality(proto.Enum):
-    r"""protolint:disable ENUM_FIELD_NAMES_ZERO_VALUE_END_WITH"""
+    r"""-
+
+    Aqua Troll Quality IDs
+    """
     AQUA_TROLL_QUALITY_NORMAL = 0
     AQUA_TROLL_QUALITY_USER_CAL_EXPIRED = 1
     AQUA_TROLL_QUALITY_FACTORY_CAL_EXPIRED = 2
@@ -318,6 +325,41 @@ class AquaTrollSensor(proto.Enum):
     AQUA_TROLL_SENSOR_PROBE_PARAMETERS = 79
 
 
+class AquaTrollSensorStatus(proto.Enum):
+    r"""-
+
+    Aqua Troll Sensor Status IDs
+    """
+    AQUA_TROLL_SENSOR_STATUS_SENSOR_HIGH_ALARM = 0
+    AQUA_TROLL_SENSOR_STATUS_SENSOR_HIGH_WARNING = 1
+    AQUA_TROLL_SENSOR_STATUS_SENSOR_LOW_WARNING = 2
+    AQUA_TROLL_SENSOR_STATUS_SENSOR_LOW_ALARM = 3
+    AQUA_TROLL_SENSOR_STATUS_SENSOR_CALIBRATION_WARNING = 4
+    AQUA_TROLL_SENSOR_STATUS_SENSOR_MALFUNCTION = 5
+    AQUA_TROLL_SENSOR_STATUS_SENSOR_MODE_BIT_1 = 8
+    AQUA_TROLL_SENSOR_STATUS_SENSOR_MODE_BIT_2 = 9
+
+
+class AquaTrollDeviceStatus(proto.Enum):
+    r"""-
+
+    Aqua Troll Device Status IDs
+    """
+    AQUA_TROLL_DEVICE_STATUS_SENSOR_HIGH_ALARM = 0
+    AQUA_TROLL_DEVICE_STATUS_SENSOR_HIGH_WARNING = 1
+    AQUA_TROLL_DEVICE_STATUS_SENSOR_LOW_WARNING = 2
+    AQUA_TROLL_DEVICE_STATUS_SENSOR_LOW_ALARM = 3
+    AQUA_TROLL_DEVICE_STATUS_SENSOR_CALIBRATION_WARNING = 4
+    AQUA_TROLL_DEVICE_STATUS_SENSOR_MALFUNCTION = 5
+    AQUA_TROLL_DEVICE_STATUS_POWER_MANAGEMENT_DISABLED = 8
+    AQUA_TROLL_DEVICE_STATUS_DEVICE_OFF_LINE = 9
+    AQUA_TROLL_DEVICE_STATUS_DEVICE_HARDWARE_RESET_OCCURRED = 10
+    AQUA_TROLL_DEVICE_STATUS_DEVICE_MALFUNCTION = 11
+    AQUA_TROLL_DEVICE_STATUS_NO_EXTERNAL_POWER = 12
+    AQUA_TROLL_DEVICE_STATUS_LOW_BATTERY = 13
+    AQUA_TROLL_DEVICE_STATUS_LOW_MEMORY = 14
+
+
 class AquaTrollParameterBlock(proto.Message):
     r"""-
 
@@ -332,7 +374,7 @@ class AquaTrollParameterBlock(proto.Message):
 
         units_id (blueye.protocol.types.AquaTrollUnit):
 
-        data_quality_id (blueye.protocol.types.AquaTrollQuality):
+        data_quality_ids (Sequence[blueye.protocol.types.AquaTrollQuality]):
 
         off_line_sentinel_value (float):
 
@@ -350,7 +392,7 @@ class AquaTrollParameterBlock(proto.Message):
         enum='AquaTrollUnit',
     )
 
-    data_quality_id = proto.Field(proto.ENUM, number=4,
+    data_quality_ids = proto.RepeatedField(proto.ENUM, number=7,
         enum='AquaTrollQuality',
     )
 
@@ -378,7 +420,7 @@ class AquaTrollSensorMetadata(proto.Message):
 
         sensor_serial_number (int):
 
-        sensor_status (int):
+        sensor_status_flags (Sequence[blueye.protocol.types.AquaTrollSensorStatus]):
 
         last_factory_calibration (google.protobuf.timestamp_pb2.Timestamp):
 
@@ -428,7 +470,9 @@ class AquaTrollSensorMetadata(proto.Message):
 
     sensor_serial_number = proto.Field(proto.UINT32, number=3)
 
-    sensor_status = proto.Field(proto.UINT32, number=4)
+    sensor_status_flags = proto.RepeatedField(proto.ENUM, number=23,
+        enum='AquaTrollSensorStatus',
+    )
 
     last_factory_calibration = proto.Field(proto.MESSAGE, number=5,
         message=gp_timestamp.Timestamp,
@@ -502,6 +546,8 @@ class AquaTrollProbeMetadata(proto.Message):
     Attributes:
         timestamp (google.protobuf.timestamp_pb2.Timestamp):
 
+        status (bool):
+
         register_map_template_version (int):
 
         device_id (blueye.protocol.types.AquaTrollDevice):
@@ -536,7 +582,7 @@ class AquaTrollProbeMetadata(proto.Message):
 
         current_time_utc (google.protobuf.timestamp_pb2.Timestamp):
 
-        device_status (int):
+        device_status_flags (Sequence[blueye.protocol.types.AquaTrollDeviceStatus]):
 
         used_battery_ticks (int):
 
@@ -549,6 +595,8 @@ class AquaTrollProbeMetadata(proto.Message):
     timestamp = proto.Field(proto.MESSAGE, number=1,
         message=gp_timestamp.Timestamp,
     )
+
+    status = proto.Field(proto.BOOL, number=24)
 
     register_map_template_version = proto.Field(proto.UINT32, number=2)
 
@@ -592,7 +640,9 @@ class AquaTrollProbeMetadata(proto.Message):
         message=gp_timestamp.Timestamp,
     )
 
-    device_status = proto.Field(proto.UINT32, number=19)
+    device_status_flags = proto.RepeatedField(proto.ENUM, number=23,
+        enum='AquaTrollDeviceStatus',
+    )
 
     used_battery_ticks = proto.Field(proto.UINT32, number=20)
 
@@ -639,6 +689,46 @@ class AquaTrollSensorParametersArray(proto.Message):
     sensors = proto.RepeatedField(proto.MESSAGE, number=2,
         message='AquaTrollSensorParameters',
     )
+
+
+class SetAquaTrollParameterUnit(proto.Message):
+    r"""-
+
+    Request to set an In-Situ Aqua Troll parameter unit
+
+    Attributes:
+        sensor_id (blueye.protocol.types.AquaTrollSensor):
+            Sensor id, f. ex. "SENSOR_CONDUCTIVITY_SENSOR".
+        parameter_id (blueye.protocol.types.AquaTrollParameter):
+            Parameter name, f. ex. "PARAMETER_TEMPERATURE".
+        unit_id (blueye.protocol.types.AquaTrollUnit):
+            Unit, f. ex. "UNIT_TEMP_CELSIUS".
+    """
+
+    sensor_id = proto.Field(proto.ENUM, number=1,
+        enum='AquaTrollSensor',
+    )
+
+    parameter_id = proto.Field(proto.ENUM, number=2,
+        enum='AquaTrollParameter',
+    )
+
+    unit_id = proto.Field(proto.ENUM, number=3,
+        enum='AquaTrollUnit',
+    )
+
+
+class SetAquaTrollConnectionStatus(proto.Message):
+    r"""-
+
+    Request to change the In-Situ Aqua Troll connection status
+
+    Attributes:
+        connected (bool):
+            True to connect, false to disconnect
+    """
+
+    connected = proto.Field(proto.BOOL, number=1)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

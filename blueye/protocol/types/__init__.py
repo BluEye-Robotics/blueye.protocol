@@ -22,12 +22,16 @@ from .aquatroll import (
     AquaTrollProbeMetadata,
     AquaTrollSensorParameters,
     AquaTrollSensorParametersArray,
-    AquaTrollType,
+    SetAquaTrollParameterUnit,
+    SetAquaTrollConnectionStatus,
+    Type,
     AquaTrollDevice,
     AquaTrollQuality,
     AquaTrollParameter,
     AquaTrollUnit,
     AquaTrollSensor,
+    AquaTrollSensorStatus,
+    AquaTrollDeviceStatus,
 )
 from .message_formats import (
     BinlogRecord,
@@ -181,8 +185,6 @@ from .req_rep import (
     SetPubFrequencyRep,
     GetTelemetryReq,
     GetTelemetryRep,
-    SetAquaTrollParameterUnitReq,
-    SetAquaTrollParameterUnitRep,
 )
 from .control import (
     MotionInputCtrl,
@@ -214,6 +216,8 @@ from .control import (
     DeactivateGuestPortsCtrl,
     ActivateGuestPortsCtrl,
     RestartGuestPortsCtrl,
+    SetAquaTrollParameterUnitCtrl,
+    SetAquaTrollConnectionStatusCtrl,
 )
 
 __all__ = (
@@ -223,12 +227,16 @@ __all__ = (
     'AquaTrollProbeMetadata',
     'AquaTrollSensorParameters',
     'AquaTrollSensorParametersArray',
-    'AquaTrollType',
+    'SetAquaTrollParameterUnit',
+    'SetAquaTrollConnectionStatus',
+    'Type',
     'AquaTrollDevice',
     'AquaTrollQuality',
     'AquaTrollParameter',
     'AquaTrollUnit',
     'AquaTrollSensor',
+    'AquaTrollSensorStatus',
+    'AquaTrollDeviceStatus',
     'BinlogRecord',
     'MotionInput',
     'Lights',
@@ -376,8 +384,6 @@ __all__ = (
     'SetPubFrequencyRep',
     'GetTelemetryReq',
     'GetTelemetryRep',
-    'SetAquaTrollParameterUnitReq',
-    'SetAquaTrollParameterUnitRep',
     'MotionInputCtrl',
     'TiltVelocityCtrl',
     'LightsCtrl',
@@ -407,4 +413,6 @@ __all__ = (
     'DeactivateGuestPortsCtrl',
     'ActivateGuestPortsCtrl',
     'RestartGuestPortsCtrl',
+    'SetAquaTrollParameterUnitCtrl',
+    'SetAquaTrollConnectionStatusCtrl',
 )
