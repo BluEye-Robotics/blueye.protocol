@@ -45,10 +45,7 @@ __protobuf__ = proto.module(
 
 
 class Type(proto.Enum):
-    r"""-
-
-    Type IDs
-    """
+    r"""Type IDs"""
     TYPE_UNSPECIFIED = 0
     TYPE_SHORT = 1
     TYPE_UNSIGNED_SHORT = 2
@@ -62,10 +59,7 @@ class Type(proto.Enum):
 
 
 class AquaTrollDevice(proto.Enum):
-    r"""-
-
-    Aqua Troll Device IDs
-    """
+    r"""Aqua Troll Device IDs"""
     AQUA_TROLL_DEVICE_UNSPECIFIED = 0
     AQUA_TROLL_DEVICE_LEVEL_TROLL_500 = 1
     AQUA_TROLL_DEVICE_LEVEL_TROLL_700 = 2
@@ -89,10 +83,7 @@ class AquaTrollDevice(proto.Enum):
 
 
 class AquaTrollQuality(proto.Enum):
-    r"""-
-
-    Aqua Troll Quality IDs
-    """
+    r"""Aqua Troll Quality IDs"""
     AQUA_TROLL_QUALITY_NORMAL = 0
     AQUA_TROLL_QUALITY_USER_CAL_EXPIRED = 1
     AQUA_TROLL_QUALITY_FACTORY_CAL_EXPIRED = 2
@@ -104,10 +95,7 @@ class AquaTrollQuality(proto.Enum):
 
 
 class AquaTrollParameter(proto.Enum):
-    r"""-
-
-    Aqua Troll Parameter IDs
-    """
+    r"""Aqua Troll Parameter IDs"""
     AQUA_TROLL_PARAMETER_UNSPECIFIED = 0
     AQUA_TROLL_PARAMETER_TEMPERATURE = 1
     AQUA_TROLL_PARAMETER_PRESSURE = 2
@@ -169,10 +157,7 @@ class AquaTrollParameter(proto.Enum):
 
 
 class AquaTrollUnit(proto.Enum):
-    r"""-
-
-    Aqua Troll Unit IDs
-    """
+    r"""Aqua Troll Unit IDs"""
     AQUA_TROLL_UNIT_UNSPECIFIED = 0
     AQUA_TROLL_UNIT_TEMP_CELSIUS = 1
     AQUA_TROLL_UNIT_TEMP_FARENHEIT = 2
@@ -260,10 +245,7 @@ class AquaTrollUnit(proto.Enum):
 
 
 class AquaTrollSensor(proto.Enum):
-    r"""-
-
-    Aqua Troll Sensor IDs
-    """
+    r"""Aqua Troll Sensor IDs"""
     AQUA_TROLL_SENSOR_UNSPECIFIED = 0
     AQUA_TROLL_SENSOR_TEMPERATURE = 1
     AQUA_TROLL_SENSOR_S5_PSI_FULL_SCALE_GAUGE_PRESSURE_WITH_LEVEL_AND_TEMPERATURE = 2
@@ -326,10 +308,7 @@ class AquaTrollSensor(proto.Enum):
 
 
 class AquaTrollSensorStatus(proto.Enum):
-    r"""-
-
-    Aqua Troll Sensor Status IDs
-    """
+    r"""Aqua Troll Sensor Status IDs"""
     AQUA_TROLL_SENSOR_STATUS_SENSOR_HIGH_ALARM = 0
     AQUA_TROLL_SENSOR_STATUS_SENSOR_HIGH_WARNING = 1
     AQUA_TROLL_SENSOR_STATUS_SENSOR_LOW_WARNING = 2
@@ -341,10 +320,7 @@ class AquaTrollSensorStatus(proto.Enum):
 
 
 class AquaTrollDeviceStatus(proto.Enum):
-    r"""-
-
-    Aqua Troll Device Status IDs
-    """
+    r"""Aqua Troll Device Status IDs"""
     AQUA_TROLL_DEVICE_STATUS_SENSOR_HIGH_ALARM = 0
     AQUA_TROLL_DEVICE_STATUS_SENSOR_HIGH_WARNING = 1
     AQUA_TROLL_DEVICE_STATUS_SENSOR_LOW_WARNING = 2
@@ -361,9 +337,7 @@ class AquaTrollDeviceStatus(proto.Enum):
 
 
 class AquaTrollParameterBlock(proto.Message):
-    r"""-
-
-    In-Situ Parameter Block
+    r"""In-Situ Parameter Block
 
     Up to NUMBER_OF_SENSOR_PARAMETERS blocks may be part of a sensor
 
@@ -404,12 +378,8 @@ class AquaTrollParameterBlock(proto.Message):
 
 
 class AquaTrollSensorMetadata(proto.Message):
-    r"""-
-
-    In-Situ AquaTroll 500 sensor metadata
-
+    r"""In-Situ AquaTroll 500 sensor metadata
     (Mostly) static information about a connected sensor.
-
     Refer to Section 7 Sensor Common Registers in the In-Situ Modbus
     Communication Protocol
 
@@ -692,9 +662,7 @@ class AquaTrollSensorParametersArray(proto.Message):
 
 
 class SetAquaTrollParameterUnit(proto.Message):
-    r"""-
-
-    Request to set an In-Situ Aqua Troll parameter unit
+    r"""Request to set an In-Situ Aqua Troll parameter unit
 
     Attributes:
         sensor_id (blueye.protocol.types.AquaTrollSensor):
@@ -719,9 +687,7 @@ class SetAquaTrollParameterUnit(proto.Message):
 
 
 class SetAquaTrollConnectionStatus(proto.Message):
-    r"""-
-
-    Request to change the In-Situ Aqua Troll connection status
+    r"""Request to change the In-Situ Aqua Troll connection status
 
     Attributes:
         connected (bool):

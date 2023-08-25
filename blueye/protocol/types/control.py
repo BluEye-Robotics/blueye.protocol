@@ -61,10 +61,8 @@ __protobuf__ = proto.module(
 
 
 class MotionInputCtrl(proto.Message):
-    r"""-
-
-    Issue a command to move the drone in the surge, sway, heave, or yaw
-    direction.
+    r"""Issue a command to move the drone in the surge, sway, heave,
+    or yaw direction.
 
     Attributes:
         motion_input (blueye.protocol.types.MotionInput):
@@ -78,9 +76,7 @@ class MotionInputCtrl(proto.Message):
 
 
 class TiltVelocityCtrl(proto.Message):
-    r"""-
-
-    Issue a command to tilt the drone camera.
+    r"""Issue a command to tilt the drone camera.
 
     Attributes:
         velocity (blueye.protocol.types.TiltVelocity):
@@ -94,9 +90,7 @@ class TiltVelocityCtrl(proto.Message):
 
 
 class LightsCtrl(proto.Message):
-    r"""-
-
-    Issue a command to set the main light intensity.
+    r"""Issue a command to set the main light intensity.
 
     Attributes:
         lights (blueye.protocol.types.Lights):
@@ -109,9 +103,7 @@ class LightsCtrl(proto.Message):
 
 
 class GuestportLightsCtrl(proto.Message):
-    r"""-
-
-    Issue a command to set the guest port light intensity.
+    r"""Issue a command to set the guest port light intensity.
 
     Attributes:
         lights (blueye.protocol.types.Lights):
@@ -124,9 +116,7 @@ class GuestportLightsCtrl(proto.Message):
 
 
 class LaserCtrl(proto.Message):
-    r"""-
-
-    Issue a command to set the laser intensity.
+    r"""Issue a command to set the laser intensity.
 
     Attributes:
         laser (blueye.protocol.types.Laser):
@@ -139,9 +129,7 @@ class LaserCtrl(proto.Message):
 
 
 class PilotGPSPositionCtrl(proto.Message):
-    r"""-
-
-    Issue a command with the GPS position of the pilot.
+    r"""Issue a command with the GPS position of the pilot.
 
     Attributes:
         position (blueye.protocol.types.LatLongPosition):
@@ -154,14 +142,11 @@ class PilotGPSPositionCtrl(proto.Message):
 
 
 class WatchdogCtrl(proto.Message):
-    r"""-
-
-    Issue a watchdog message to indicate that the remote client is
-    connected and working as expected.
-
-    If a watchdog message is not received every second, the drone will
-    turn off lights and other auto functions to indicate that connection
-    with the client has been lost.
+    r"""Issue a watchdog message to indicate that the remote client
+    is connected and working as expected.
+    If a watchdog message is not received every second, the drone
+    will turn off lights and other auto functions to indicate that
+    connection with the client has been lost.
 
     Attributes:
         connection_duration (blueye.protocol.types.ConnectionDuration):
@@ -180,9 +165,7 @@ class WatchdogCtrl(proto.Message):
 
 
 class RecordCtrl(proto.Message):
-    r"""-
-
-    Issue a command to start video recording.
+    r"""Issue a command to start video recording.
 
     Attributes:
         record_on (blueye.protocol.types.RecordOn):
@@ -195,37 +178,23 @@ class RecordCtrl(proto.Message):
 
 
 class TakePictureCtrl(proto.Message):
-    r"""-
-
-    Issue a command to take a picture.
-    """
+    r"""Issue a command to take a picture."""
 
 
 class StartCalibrationCtrl(proto.Message):
-    r"""-
-
-    Issue a command to start compass calibration.
-    """
+    r"""Issue a command to start compass calibration."""
 
 
 class CancelCalibrationCtrl(proto.Message):
-    r"""-
-
-    Issue a command to cancel compass calibration.
-    """
+    r"""Issue a command to cancel compass calibration."""
 
 
 class FinishCalibrationCtrl(proto.Message):
-    r"""-
-
-    Issue a command to finish compass calibration.
-    """
+    r"""Issue a command to finish compass calibration."""
 
 
 class AutoHeadingCtrl(proto.Message):
-    r"""-
-
-    Issue a command to set auto heading to a desired state.
+    r"""Issue a command to set auto heading to a desired state.
 
     Attributes:
         state (blueye.protocol.types.AutoHeadingState):
@@ -238,9 +207,7 @@ class AutoHeadingCtrl(proto.Message):
 
 
 class AutoDepthCtrl(proto.Message):
-    r"""-
-
-    Issue a command to set auto depth to a desired state.
+    r"""Issue a command to set auto depth to a desired state.
 
     Attributes:
         state (blueye.protocol.types.AutoDepthState):
@@ -253,9 +220,7 @@ class AutoDepthCtrl(proto.Message):
 
 
 class AutoAltitudeCtrl(proto.Message):
-    r"""-
-
-    Issue a command to set auto altitude to a desired state.
+    r"""Issue a command to set auto altitude to a desired state.
 
     Attributes:
         state (blueye.protocol.types.AutoAltitudeState):
@@ -268,9 +233,7 @@ class AutoAltitudeCtrl(proto.Message):
 
 
 class StationKeepingCtrl(proto.Message):
-    r"""-
-
-    Issue a command to set station keeping to a desired state.
+    r"""Issue a command to set station keeping to a desired state.
 
     Attributes:
         state (blueye.protocol.types.StationKeepingState):
@@ -283,10 +246,8 @@ class StationKeepingCtrl(proto.Message):
 
 
 class WeatherVaningCtrl(proto.Message):
-    r"""-
-
-    Issue a command to set station keeping with weather vaning to a
-    desired state.
+    r"""Issue a command to set station keeping with weather vaning to
+    a desired state.
 
     Attributes:
         state (blueye.protocol.types.WeatherVaningState):
@@ -299,9 +260,7 @@ class WeatherVaningCtrl(proto.Message):
 
 
 class ResetPositionCtrl(proto.Message):
-    r"""-
-
-    Issue a command to reset the position estimate.
+    r"""Issue a command to reset the position estimate.
 
     Attributes:
         settings (blueye.protocol.types.ResetPositionSettings):
@@ -314,16 +273,11 @@ class ResetPositionCtrl(proto.Message):
 
 
 class ResetOdometerCtrl(proto.Message):
-    r"""-
-
-    Issue a command to reset the odometer.
-    """
+    r"""Issue a command to reset the odometer."""
 
 
 class TiltStabilizationCtrl(proto.Message):
-    r"""-
-
-    Issue a command to enable or disable tilt stabilization.
+    r"""Issue a command to enable or disable tilt stabilization.
 
     Attributes:
         state (blueye.protocol.types.TiltStabilizationState):
@@ -337,9 +291,7 @@ class TiltStabilizationCtrl(proto.Message):
 
 
 class WaterDensityCtrl(proto.Message):
-    r"""-
-
-    Issue a command to set the water density.
+    r"""Issue a command to set the water density.
 
     Attributes:
         density (blueye.protocol.types.WaterDensity):
@@ -352,9 +304,7 @@ class WaterDensityCtrl(proto.Message):
 
 
 class PingerConfigurationCtrl(proto.Message):
-    r"""-
-
-    Issue a command to set the pinger configuration.
+    r"""Issue a command to set the pinger configuration.
 
     Attributes:
         configuration (blueye.protocol.types.PingerConfiguration):
@@ -367,9 +317,7 @@ class PingerConfigurationCtrl(proto.Message):
 
 
 class SystemTimeCtrl(proto.Message):
-    r"""-
-
-    Issue a command to set the system time on the drone.
+    r"""Issue a command to set the system time on the drone.
 
     Attributes:
         system_time (blueye.protocol.types.SystemTime):
@@ -382,9 +330,7 @@ class SystemTimeCtrl(proto.Message):
 
 
 class GripperCtrl(proto.Message):
-    r"""-
-
-    Issue a command to control the gripper.
+    r"""Issue a command to control the gripper.
 
     Attributes:
         gripper_velocities (blueye.protocol.types.GripperVelocities):
@@ -397,9 +343,7 @@ class GripperCtrl(proto.Message):
 
 
 class GenericServoCtrl(proto.Message):
-    r"""-
-
-    Issue a command to set a generic servo value.
+    r"""Issue a command to set a generic servo value.
 
     Attributes:
         servo (blueye.protocol.types.GenericServo):
@@ -412,9 +356,7 @@ class GenericServoCtrl(proto.Message):
 
 
 class MultibeamServoCtrl(proto.Message):
-    r"""-
-
-    Issue a command to set multibeam servo angle.
+    r"""Issue a command to set multibeam servo angle.
 
     Attributes:
         servo (blueye.protocol.types.MultibeamServo):
@@ -427,23 +369,15 @@ class MultibeamServoCtrl(proto.Message):
 
 
 class DeactivateGuestPortsCtrl(proto.Message):
-    r"""-
-
-    Deactivate the guest port power
-    """
+    r"""Deactivate the guest port power"""
 
 
 class ActivateGuestPortsCtrl(proto.Message):
-    r"""-
-
-    Activated the guest port power
-    """
+    r"""Activated the guest port power"""
 
 
 class RestartGuestPortsCtrl(proto.Message):
-    r"""-
-
-    Restart the guest ports by turning power on and off
+    r"""Restart the guest ports by turning power on and off
 
     Attributes:
         restart_info (blueye.protocol.types.GuestPortRestartInfo):
@@ -457,9 +391,7 @@ class RestartGuestPortsCtrl(proto.Message):
 
 
 class SetAquaTrollParameterUnitCtrl(proto.Message):
-    r"""-
-
-    Request to set an In-Situ Aqua Troll parameter unit
+    r"""Request to set an In-Situ Aqua Troll parameter unit
 
     Attributes:
         parameter_info (blueye.protocol.types.SetAquaTrollParameterUnit):
@@ -473,9 +405,7 @@ class SetAquaTrollParameterUnitCtrl(proto.Message):
 
 
 class SetAquaTrollConnectionStatusCtrl(proto.Message):
-    r"""-
-
-    Request to change the In-Situ Aqua Troll connection status
+    r"""Request to change the In-Situ Aqua Troll connection status
 
     Attributes:
         connection_status (blueye.protocol.types.SetAquaTrollConnectionStatus):

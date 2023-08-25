@@ -107,10 +107,7 @@ __protobuf__ = proto.module(
 
 
 class HeadingSource(proto.Enum):
-    r"""-
-
-    Heading source used during reset of the position estimate.
-    """
+    r"""Heading source used during reset of the position estimate."""
     HEADING_SOURCE_UNSPECIFIED = 0
     HEADING_SOURCE_DRONE_COMPASS = 1
     HEADING_SOURCE_MANUAL_INPUT = 2
@@ -124,10 +121,7 @@ class ResetCoordinateSource(proto.Enum):
 
 
 class Model(proto.Enum):
-    r"""-
-
-    Drone models produced by Blueye
-    """
+    r"""Drone models produced by Blueye"""
     MODEL_UNSPECIFIED = 0
     MODEL_PIONEER = 1
     MODEL_PRO = 2
@@ -136,10 +130,7 @@ class Model(proto.Enum):
 
 
 class PressureSensorType(proto.Enum):
-    r"""-
-
-    Depth sensors used by the drone.
-    """
+    r"""Depth sensors used by the drone."""
     PRESSURE_SENSOR_TYPE_UNSPECIFIED = 0
     PRESSURE_SENSOR_TYPE_NOT_CONNECTED = 1
     PRESSURE_SENSOR_TYPE_MS5837_30BA26 = 2
@@ -148,50 +139,35 @@ class PressureSensorType(proto.Enum):
 
 
 class Resolution(proto.Enum):
-    r"""-
-
-    Available camera resolutions.
-    """
+    r"""Available camera resolutions."""
     RESOLUTION_UNSPECIFIED = 0
     RESOLUTION_FULLHD_1080P = 1
     RESOLUTION_HD_720P = 2
 
 
 class Framerate(proto.Enum):
-    r"""-
-
-    Available camera framerates.
-    """
+    r"""Available camera framerates."""
     FRAMERATE_UNSPECIFIED = 0
     FRAMERATE_FPS_30 = 1
     FRAMERATE_FPS_25 = 2
 
 
 class Camera(proto.Enum):
-    r"""-
-
-    Which camera to control.
-    """
+    r"""Which camera to control."""
     CAMERA_UNSPECIFIED = 0
     CAMERA_MAIN = 1
     CAMERA_GUESTPORT = 2
 
 
 class TemperatureUnit(proto.Enum):
-    r"""-
-
-    Available temperature units.
-    """
+    r"""Available temperature units."""
     TEMPERATURE_UNIT_UNSPECIFIED = 0
     TEMPERATURE_UNIT_CELSIUS = 1
     TEMPERATURE_UNIT_FAHRENHEIT = 2
 
 
 class LogoType(proto.Enum):
-    r"""-
-
-    Available logo types.
-    """
+    r"""Available logo types."""
     LOGO_TYPE_UNSPECIFIED = 0
     LOGO_TYPE_NONE = 1
     LOGO_TYPE_DEFAULT = 2
@@ -199,30 +175,21 @@ class LogoType(proto.Enum):
 
 
 class DepthUnit(proto.Enum):
-    r"""-
-
-    Available depth units.
-    """
+    r"""Available depth units."""
     DEPTH_UNIT_UNSPECIFIED = 0
     DEPTH_UNIT_METERS = 1
     DEPTH_UNIT_FEET = 2
 
 
 class ThicknessUnit(proto.Enum):
-    r"""-
-
-    Available thickness units.
-    """
+    r"""Available thickness units."""
     THICKNESS_UNIT_UNSPECIFIED = 0
     THICKNESS_UNIT_MILLIMETERS = 1
     THICKNESS_UNIT_INCHES = 2
 
 
 class FontSize(proto.Enum):
-    r"""-
-
-    Available font sizes for overlay text elements.
-    """
+    r"""Available font sizes for overlay text elements."""
     FONT_SIZE_UNSPECIFIED = 0
     FONT_SIZE_PX15 = 1
     FONT_SIZE_PX20 = 2
@@ -233,10 +200,7 @@ class FontSize(proto.Enum):
 
 
 class GuestPortDeviceID(proto.Enum):
-    r"""-
-
-    GuestPort device ID.
-    """
+    r"""GuestPort device ID."""
     GUEST_PORT_DEVICE_ID_UNSPECIFIED = 0
     GUEST_PORT_DEVICE_ID_BLIND_PLUG = 1
     GUEST_PORT_DEVICE_ID_TEST_STATION = 2
@@ -271,10 +235,7 @@ class GuestPortDeviceID(proto.Enum):
 
 
 class GuestPortNumber(proto.Enum):
-    r"""-
-
-    GuestPort number.
-    """
+    r"""GuestPort number."""
     GUEST_PORT_NUMBER_UNSPECIFIED = 0
     GUEST_PORT_NUMBER_PORT_1 = 1
     GUEST_PORT_NUMBER_PORT_2 = 2
@@ -282,9 +243,8 @@ class GuestPortNumber(proto.Enum):
 
 
 class NavigationSensorID(proto.Enum):
-    r"""-
-
-    List of navigation sensors that can be used by the position observer
+    r"""List of navigation sensors that can be used by the position
+    observer
     """
     NAVIGATION_SENSOR_ID_UNSPECIFIED = 0
     NAVIGATION_SENSOR_ID_WATERLINKED_DVL_A50 = 1
@@ -293,10 +253,7 @@ class NavigationSensorID(proto.Enum):
 
 
 class GuestPortError(proto.Enum):
-    r"""-
-
-    GuestPort error.
-    """
+    r"""GuestPort error."""
     GUEST_PORT_ERROR_UNSPECIFIED = 0
     GUEST_PORT_ERROR_NOT_CONNECTED = 1
     GUEST_PORT_ERROR_READ_ERROR = 2
@@ -306,15 +263,13 @@ class GuestPortError(proto.Enum):
 
 
 class BinlogRecord(proto.Message):
-    r"""-
-
-    Wrapper message for each entry in the drone telemetry logfile.
-
+    r"""Wrapper message for each entry in the drone telemetry
+    logfile.
     Each entry contains the unix timestamp in UTC, the monotonic
-    timestamp (time since boot), and an Any message wrapping the custom
-    Blueye message.
-
-    See separate documentation for the logfile format for more details.
+    timestamp (time since boot), and an Any message wrapping the
+    custom Blueye message.
+    See separate documentation for the logfile format for more
+    details.
 
     Attributes:
         payload (google.protobuf.any_pb2.Any):
@@ -339,13 +294,10 @@ class BinlogRecord(proto.Message):
 
 
 class MotionInput(proto.Message):
-    r"""-
-
-    Motion input from client.
-
+    r"""Motion input from client.
     Used to indicate the desired motion in each direction. Typically
-    these values map to the left and right joystick for motion, and the
-    left and right trigger for the slow and boost modifiers.
+    these values map to the left and right joystick for motion, and
+    the left and right trigger for the slow and boost modifiers.
 
     Attributes:
         surge (float):
@@ -382,10 +334,8 @@ class MotionInput(proto.Message):
 
 
 class Lights(proto.Message):
-    r"""-
-
-    Lights message used to represent the intensity of the main light or
-    external lights.
+    r"""Lights message used to represent the intensity of the main
+    light or external lights.
 
     Attributes:
         value (float):
@@ -396,12 +346,11 @@ class Lights(proto.Message):
 
 
 class Laser(proto.Message):
-    r"""-
-
-    Laser message used to represent the intensity of connected laser.
-
-    If the laser does not support dimming but only on and off, a value
-    of 0 turns the laser off, and any value above 0 turns the laser on.
+    r"""Laser message used to represent the intensity of connected
+    laser.
+    If the laser does not support dimming but only on and off, a
+    value of 0 turns the laser off, and any value above 0 turns the
+    laser on.
 
     Attributes:
         value (float):
@@ -413,9 +362,8 @@ class Laser(proto.Message):
 
 
 class LatLongPosition(proto.Message):
-    r"""-
-
-    Latitude and longitude position in WGS 84 decimal degrees format.
+    r"""Latitude and longitude position in WGS 84 decimal degrees
+    format.
 
     Attributes:
         latitude (float):
@@ -430,9 +378,7 @@ class LatLongPosition(proto.Message):
 
 
 class ConnectionDuration(proto.Message):
-    r"""-
-
-    Connection duration of a remote client.
+    r"""Connection duration of a remote client.
 
     Attributes:
         value (int):
@@ -443,9 +389,7 @@ class ConnectionDuration(proto.Message):
 
 
 class AutoHeadingState(proto.Message):
-    r"""-
-
-    Auto heading state.
+    r"""Auto heading state.
 
     Attributes:
         enabled (bool):
@@ -456,9 +400,7 @@ class AutoHeadingState(proto.Message):
 
 
 class AutoDepthState(proto.Message):
-    r"""-
-
-    Auto depth state.
+    r"""Auto depth state.
 
     Attributes:
         enabled (bool):
@@ -469,9 +411,7 @@ class AutoDepthState(proto.Message):
 
 
 class AutoAltitudeState(proto.Message):
-    r"""-
-
-    Auto altitude state.
+    r"""Auto altitude state.
 
     Attributes:
         enabled (bool):
@@ -482,9 +422,7 @@ class AutoAltitudeState(proto.Message):
 
 
 class StationKeepingState(proto.Message):
-    r"""-
-
-    Station keeping state.
+    r"""Station keeping state.
 
     Attributes:
         enabled (bool):
@@ -495,9 +433,7 @@ class StationKeepingState(proto.Message):
 
 
 class WeatherVaningState(proto.Message):
-    r"""-
-
-    Weather vaning state.
+    r"""Weather vaning state.
 
     Attributes:
         enabled (bool):
@@ -508,9 +444,7 @@ class WeatherVaningState(proto.Message):
 
 
 class ControlMode(proto.Message):
-    r"""-
-
-    Control mode from drone supervisor
+    r"""Control mode from drone supervisor
 
     Attributes:
         auto_depth (bool):
@@ -537,12 +471,9 @@ class ControlMode(proto.Message):
 
 
 class TiltStabilizationState(proto.Message):
-    r"""-
-
-    Tilt stabilization state.
-
-    Blueye drones with mechanical tilt has the ability to enable camera
-    stabilization.
+    r"""Tilt stabilization state.
+    Blueye drones with mechanical tilt has the ability to enable
+    camera stabilization.
 
     Attributes:
         enabled (bool):
@@ -553,9 +484,7 @@ class TiltStabilizationState(proto.Message):
 
 
 class SystemTime(proto.Message):
-    r"""-
-
-    System time.
+    r"""System time.
 
     Attributes:
         unix_timestamp (google.protobuf.timestamp_pb2.Timestamp):
@@ -568,9 +497,7 @@ class SystemTime(proto.Message):
 
 
 class GripperVelocities(proto.Message):
-    r"""-
-
-    Gripper velocity values.
+    r"""Gripper velocity values.
 
     Attributes:
         grip_velocity (float):
@@ -585,9 +512,7 @@ class GripperVelocities(proto.Message):
 
 
 class ClientInfo(proto.Message):
-    r"""-
-
-    Information about a remote client.
+    r"""Information about a remote client.
 
     Attributes:
         type_ (str):
@@ -620,10 +545,8 @@ class ClientInfo(proto.Message):
 
 
 class ConnectedClient(proto.Message):
-    r"""-
-
-    Information about a connected client with an id assigned by the
-    drone.
+    r"""Information about a connected client with an id assigned by
+    the drone.
 
     Attributes:
         client_id (int):
@@ -640,9 +563,7 @@ class ConnectedClient(proto.Message):
 
 
 class RecordState(proto.Message):
-    r"""-
-
-    Camera recording state.
+    r"""Camera recording state.
 
     Attributes:
         main_is_recording (bool):
@@ -665,10 +586,7 @@ class RecordState(proto.Message):
 
 
 class WaterDensity(proto.Message):
-    r"""-
-
-    Water density.
-
+    r"""Water density.
     Used to specify the water density the drone is operating in, to
     achieve more accruate depth measurements.
 
@@ -681,10 +599,7 @@ class WaterDensity(proto.Message):
 
 
 class PingerConfiguration(proto.Message):
-    r"""-
-
-    Pinger configuration.
-
+    r"""Pinger configuration.
     Used to specify the configuration the BR 1D-Pinger.
 
     Attributes:
@@ -703,9 +618,7 @@ class PingerConfiguration(proto.Message):
 
 
 class WaterTemperature(proto.Message):
-    r"""-
-
-    Water temperature measured by the drone's combined depth and
+    r"""Water temperature measured by the drone's combined depth and
     temperature sensor.
 
     Attributes:
@@ -717,9 +630,7 @@ class WaterTemperature(proto.Message):
 
 
 class CPUTemperature(proto.Message):
-    r"""-
-
-    CPU temperature.
+    r"""CPU temperature.
 
     Attributes:
         value (float):
@@ -730,10 +641,7 @@ class CPUTemperature(proto.Message):
 
 
 class CanisterTemperature(proto.Message):
-    r"""-
-
-    Canister temperature.
-
+    r"""Canister temperature.
     Temperature measured in the top or bottom canister of the drone.
 
     Attributes:
@@ -745,10 +653,7 @@ class CanisterTemperature(proto.Message):
 
 
 class CanisterHumidity(proto.Message):
-    r"""-
-
-    Canister humidity.
-
+    r"""Canister humidity.
     Humidity measured in the top or bottom canister of the drone.
 
     Attributes:
@@ -760,9 +665,7 @@ class CanisterHumidity(proto.Message):
 
 
 class Battery(proto.Message):
-    r"""-
-
-    Essential battery information.
+    r"""Essential battery information.
 
     Attributes:
         voltage (float):
@@ -781,12 +684,9 @@ class Battery(proto.Message):
 
 
 class BatteryBQ40Z50(proto.Message):
-    r"""-
-
-    Battery information message.
-
-    Detailed information about all aspects of the connected Blueye Smart
-    Battery, using the BQ40Z50 BMS.
+    r"""Battery information message.
+    Detailed information about all aspects of the connected Blueye
+    Smart Battery, using the BQ40Z50 BMS.
 
     Attributes:
         voltage (blueye.protocol.types.BatteryBQ40Z50.Voltage):
@@ -835,9 +735,7 @@ class BatteryBQ40Z50(proto.Message):
             Battery chemistry
     """
     class Voltage(proto.Message):
-        r"""-
-
-        Battery voltage levels.
+        r"""Battery voltage levels.
 
         Attributes:
             total (float):
@@ -863,9 +761,7 @@ class BatteryBQ40Z50(proto.Message):
         cell_4 = proto.Field(proto.FLOAT, number=5)
 
     class Temperature(proto.Message):
-        r"""-
-
-        Battery temperature.
+        r"""Battery temperature.
 
         Attributes:
             average (float):
@@ -891,9 +787,7 @@ class BatteryBQ40Z50(proto.Message):
         cell_4 = proto.Field(proto.FLOAT, number=5)
 
     class BatteryStatus(proto.Message):
-        r"""-
-
-        Battery status from BQ40Z50 ref data sheet 0x16.
+        r"""Battery status from BQ40Z50 ref data sheet 0x16.
 
         Attributes:
             overcharged_alarm (bool):
@@ -920,10 +814,7 @@ class BatteryBQ40Z50(proto.Message):
                 Battery error codes
         """
         class BatteryError(proto.Enum):
-            r"""-
-
-            Battery errror code from BQ40Z50 BMS data sheet.
-            """
+            r"""Battery errror code from BQ40Z50 BMS data sheet."""
             BATTERY_ERROR_UNSPECIFIED = 0
             BATTERY_ERROR_OK = 1
             BATTERY_ERROR_BUSY = 2
@@ -1012,9 +903,7 @@ class BatteryBQ40Z50(proto.Message):
 
 
 class Attitude(proto.Message):
-    r"""-
-
-    The attitude of the drone.
+    r"""The attitude of the drone.
 
     Attributes:
         roll (float):
@@ -1033,9 +922,7 @@ class Attitude(proto.Message):
 
 
 class Altitude(proto.Message):
-    r"""-
-
-    Drone altitude over seabed, typically obtained from a DVL.
+    r"""Drone altitude over seabed, typically obtained from a DVL.
 
     Attributes:
         value (float):
@@ -1050,10 +937,8 @@ class Altitude(proto.Message):
 
 
 class ForwardDistance(proto.Message):
-    r"""-
-
-    Distance to an object infront of the drone, typically obtained from
-    an 1D pinger.
+    r"""Distance to an object infront of the drone, typically
+    obtained from an 1D pinger.
 
     Attributes:
         value (float):
@@ -1068,10 +953,8 @@ class ForwardDistance(proto.Message):
 
 
 class PositionEstimate(proto.Message):
-    r"""-
-
-    Position estimate from the Extended Kalman filter based observer if
-    a DVL is connected.
+    r"""Position estimate from the Extended Kalman filter based
+    observer if a DVL is connected.
 
     Attributes:
         northing (float):
@@ -1128,9 +1011,8 @@ class PositionEstimate(proto.Message):
 
 
 class ResetPositionSettings(proto.Message):
-    r"""-
-
-    ResetPositionSettings used during reset of the position estimate.
+    r"""ResetPositionSettings used during reset of the position
+    estimate.
 
     Attributes:
         heading_source_during_reset (blueye.protocol.types.HeadingSource):
@@ -1161,9 +1043,7 @@ class ResetPositionSettings(proto.Message):
 
 
 class Depth(proto.Message):
-    r"""-
-
-    Water depth of the drone.
+    r"""Water depth of the drone.
 
     Attributes:
         value (float):
@@ -1174,9 +1054,7 @@ class Depth(proto.Message):
 
 
 class Reference(proto.Message):
-    r"""-
-
-    Reference for the control system. Note that the internal heading
+    r"""Reference for the control system. Note that the internal heading
     referece is not relative to North. Use (ControlHealth.heading_error
     + pose.yaw) instead.
 
@@ -1214,10 +1092,8 @@ class Reference(proto.Message):
 
 
 class ControlForce(proto.Message):
-    r"""-
-
-    Control Force is used for showing the requested control force in
-    each direction in Newtons.
+    r"""Control Force is used for showing the requested control force
+    in each direction in Newtons.
 
     Attributes:
         surge (float):
@@ -1240,10 +1116,8 @@ class ControlForce(proto.Message):
 
 
 class ControllerHealth(proto.Message):
-    r"""-
-
-    Controller health is used for showing the state of the controller
-    with an relative error and load from 0 to 1.
+    r"""Controller health is used for showing the state of the
+    controller with an relative error and load from 0 to 1.
 
     Attributes:
         depth_error (float):
@@ -1266,12 +1140,9 @@ class ControllerHealth(proto.Message):
 
 
 class DiveTime(proto.Message):
-    r"""-
-
-    Amount of time the drone has been submerged.
-
-    The drone starts incrementing this value when the depth is above 250
-    mm.
+    r"""Amount of time the drone has been submerged.
+    The drone starts incrementing this value when the depth is above
+    250 mm.
 
     Attributes:
         value (int):
@@ -1283,9 +1154,7 @@ class DiveTime(proto.Message):
 
 
 class RecordOn(proto.Message):
-    r"""-
-
-    Which cameras are supposed to be recording
+    r"""Which cameras are supposed to be recording
 
     Attributes:
         main (bool):
@@ -1300,9 +1169,7 @@ class RecordOn(proto.Message):
 
 
 class StorageSpace(proto.Message):
-    r"""-
-
-    Storage space.
+    r"""Storage space.
 
     Attributes:
         total_space (int):
@@ -1317,9 +1184,7 @@ class StorageSpace(proto.Message):
 
 
 class CalibrationState(proto.Message):
-    r"""-
-
-    Compass calibration state.
+    r"""Compass calibration state.
 
     Attributes:
         status (blueye.protocol.types.CalibrationState.Status):
@@ -1340,10 +1205,7 @@ class CalibrationState(proto.Message):
             Progress for the thruster calibration (0..1)
     """
     class Status(proto.Enum):
-        r"""-
-
-        Status of the compass calibration procedure.
-
+        r"""Status of the compass calibration procedure.
         When calibration is started, the status will indicate the active
         (upfacing) axis.
         """
@@ -1378,9 +1240,7 @@ class CalibrationState(proto.Message):
 
 
 class IperfStatus(proto.Message):
-    r"""-
-
-    Connection speed between drone and Surface Unit.
+    r"""Connection speed between drone and Surface Unit.
 
     Attributes:
         sent (float):
@@ -1397,9 +1257,7 @@ class IperfStatus(proto.Message):
 
 
 class NStreamers(proto.Message):
-    r"""-
-
-    Number of spectators connected to video stream.
+    r"""Number of spectators connected to video stream.
 
     Attributes:
         main (int):
@@ -1416,9 +1274,7 @@ class NStreamers(proto.Message):
 
 
 class TiltAngle(proto.Message):
-    r"""-
-
-    Angle of tilt camera in degrees.
+    r"""Angle of tilt camera in degrees.
 
     Attributes:
         value (float):
@@ -1429,9 +1285,7 @@ class TiltAngle(proto.Message):
 
 
 class TiltVelocity(proto.Message):
-    r"""-
-
-    Relative velocity of tilt
+    r"""Relative velocity of tilt
 
     Attributes:
         value (float):
@@ -1443,13 +1297,10 @@ class TiltVelocity(proto.Message):
 
 
 class DroneInfo(proto.Message):
-    r"""-
-
-    Information about the drone.
-
+    r"""Information about the drone.
     This message contains serial numbers and version information for
-    internal components in the drone. Primarily used for diagnostics, or
-    to determine the origin of a logfile.
+    internal components in the drone. Primarily used for
+    diagnostics, or to determine the origin of a logfile.
 
     Attributes:
         blunux_version (str):
@@ -1507,9 +1358,7 @@ class DroneInfo(proto.Message):
 
 
 class ErrorFlags(proto.Message):
-    r"""-
-
-    Known error states for the drone.
+    r"""Known error states for the drone.
 
     Attributes:
         pmu_comm_ack (bool):
@@ -1687,9 +1536,7 @@ class ErrorFlags(proto.Message):
 
 
 class CameraParameters(proto.Message):
-    r"""-
-
-    Camera parameters.
+    r"""Camera parameters.
 
     Attributes:
         h264_bitrate (int):
@@ -1740,10 +1587,7 @@ class CameraParameters(proto.Message):
 
 
 class OverlayParameters(proto.Message):
-    r"""-
-
-    Overlay parameters.
-
+    r"""Overlay parameters.
     All available parameters that can be used to configure telemetry
     overlay on video recordings.
 
@@ -1859,9 +1703,8 @@ class OverlayParameters(proto.Message):
 
 
 class NavigationSensorStatus(proto.Message):
-    r"""-
-
-    Navigation sensor used in the position observer with validity state
+    r"""Navigation sensor used in the position observer with validity
+    state
 
     Attributes:
         sensor_id (blueye.protocol.types.NavigationSensorID):
@@ -1878,9 +1721,7 @@ class NavigationSensorStatus(proto.Message):
 
 
 class GuestPortDevice(proto.Message):
-    r"""-
-
-    GuestPort device.
+    r"""GuestPort device.
 
     Attributes:
         device_id (blueye.protocol.types.GuestPortDeviceID):
@@ -1913,9 +1754,7 @@ class GuestPortDevice(proto.Message):
 
 
 class GuestPortDeviceList(proto.Message):
-    r"""-
-
-    List of guest port devices.
+    r"""List of guest port devices.
 
     Attributes:
         devices (Sequence[blueye.protocol.types.GuestPortDevice]):
@@ -1928,9 +1767,7 @@ class GuestPortDeviceList(proto.Message):
 
 
 class GuestPortConnectorInfo(proto.Message):
-    r"""-
-
-    GuestPort connector information.
+    r"""GuestPort connector information.
 
     Attributes:
         device_list (blueye.protocol.types.GuestPortDeviceList):
@@ -1955,9 +1792,7 @@ class GuestPortConnectorInfo(proto.Message):
 
 
 class GuestPortInfo(proto.Message):
-    r"""-
-
-    GuestPort information.
+    r"""GuestPort information.
 
     Attributes:
         gp1 (blueye.protocol.types.GuestPortConnectorInfo):
@@ -1982,9 +1817,7 @@ class GuestPortInfo(proto.Message):
 
 
 class GuestPortRestartInfo(proto.Message):
-    r"""-
-
-    GuestPort restart information.
+    r"""GuestPort restart information.
 
     Attributes:
         power_off_duration (float):
@@ -1995,9 +1828,7 @@ class GuestPortRestartInfo(proto.Message):
 
 
 class ThicknessGauge(proto.Message):
-    r"""-
-
-    Thickness measurement data from a Cygnus Thickness Gauge.
+    r"""Thickness measurement data from a Cygnus Thickness Gauge.
 
     Attributes:
         thickness_measurement (float):
@@ -2021,9 +1852,7 @@ class ThicknessGauge(proto.Message):
 
 
 class CpProbe(proto.Message):
-    r"""-
-
-    Reading from a Cathodic Protection Potential probe.
+    r"""Reading from a Cathodic Protection Potential probe.
 
     Attributes:
         measurement (float):
@@ -2038,9 +1867,7 @@ class CpProbe(proto.Message):
 
 
 class GenericServo(proto.Message):
-    r"""-
-
-    Servo message used to represent the angle of the servo.
+    r"""Servo message used to represent the angle of the servo.
 
     Attributes:
         value (float):
@@ -2057,9 +1884,7 @@ class GenericServo(proto.Message):
 
 
 class MultibeamServo(proto.Message):
-    r"""-
-
-    Servo message used to represent the angle of the servo.
+    r"""Servo message used to represent the angle of the servo.
 
     Attributes:
         angle (float):
@@ -2070,9 +1895,7 @@ class MultibeamServo(proto.Message):
 
 
 class GuestPortCurrent(proto.Message):
-    r"""-
-
-    GuestPort current readings.
+    r"""GuestPort current readings.
 
     Attributes:
         gp1_bat (float):
@@ -2095,9 +1918,7 @@ class GuestPortCurrent(proto.Message):
 
 
 class Vector3(proto.Message):
-    r"""-
-
-    Vector with 3 elements
+    r"""Vector with 3 elements
 
     Attributes:
         x (float):
@@ -2116,11 +1937,10 @@ class Vector3(proto.Message):
 
 
 class Imu(proto.Message):
-    r"""-
-
-    Imu data in drone body frame
-
-    x - forward y - right z - down
+    r"""Imu data in drone body frame
+    x - forward
+    y - right
+    z - down
 
     Attributes:
         accelerometer (blueye.protocol.types.Vector3):
@@ -2149,9 +1969,7 @@ class Imu(proto.Message):
 
 
 class MedusaSpectrometerData(proto.Message):
-    r"""-
-
-    Medusa gamma ray sensor spectrometer data
+    r"""Medusa gamma ray sensor spectrometer data
 
     Attributes:
         drone_time (google.protobuf.timestamp_pb2.Timestamp):

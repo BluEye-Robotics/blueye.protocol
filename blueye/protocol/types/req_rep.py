@@ -54,9 +54,7 @@ __protobuf__ = proto.module(
 
 
 class SetOverlayParametersReq(proto.Message):
-    r"""-
-
-    Request to set video overlay parameters.
+    r"""Request to set video overlay parameters.
 
     Attributes:
         overlay_parameters (blueye.protocol.types.OverlayParameters):
@@ -69,23 +67,15 @@ class SetOverlayParametersReq(proto.Message):
 
 
 class SetOverlayParametersRep(proto.Message):
-    r"""-
-
-    Response after setting video overlay parameters.
-    """
+    r"""Response after setting video overlay parameters."""
 
 
 class GetOverlayParametersReq(proto.Message):
-    r"""-
-
-    Request to get currently set video overlay parameters.
-    """
+    r"""Request to get currently set video overlay parameters."""
 
 
 class GetOverlayParametersRep(proto.Message):
-    r"""-
-
-    Response with the currently set video overlay parameters.
+    r"""Response with the currently set video overlay parameters.
 
     Attributes:
         overlay_parameters (blueye.protocol.types.OverlayParameters):
@@ -98,9 +88,7 @@ class GetOverlayParametersRep(proto.Message):
 
 
 class SetCameraParametersReq(proto.Message):
-    r"""-
-
-    Request to set camera parameters.
+    r"""Request to set camera parameters.
 
     Attributes:
         camera_parameters (blueye.protocol.types.CameraParameters):
@@ -113,16 +101,11 @@ class SetCameraParametersReq(proto.Message):
 
 
 class SetCameraParametersRep(proto.Message):
-    r"""-
-
-    Response after setting the camera parameters.
-    """
+    r"""Response after setting the camera parameters."""
 
 
 class GetCameraParametersReq(proto.Message):
-    r"""-
-
-    Request to get the currently set camera parameters.
+    r"""Request to get the currently set camera parameters.
 
     Attributes:
         camera (blueye.protocol.types.Camera):
@@ -135,9 +118,7 @@ class GetCameraParametersReq(proto.Message):
 
 
 class GetCameraParametersRep(proto.Message):
-    r"""-
-
-    Response with the currently set camera parameters.
+    r"""Response with the currently set camera parameters.
 
     Attributes:
         camera_parameters (blueye.protocol.types.CameraParameters):
@@ -150,9 +131,7 @@ class GetCameraParametersRep(proto.Message):
 
 
 class SyncTimeReq(proto.Message):
-    r"""-
-
-    Request to set the system time on the drone.
+    r"""Request to set the system time on the drone.
 
     Attributes:
         time (blueye.protocol.types.SystemTime):
@@ -165,9 +144,7 @@ class SyncTimeReq(proto.Message):
 
 
 class SyncTimeRep(proto.Message):
-    r"""-
-
-    Response after setting the system time on the drone.
+    r"""Response after setting the system time on the drone.
 
     Attributes:
         success (bool):
@@ -178,28 +155,19 @@ class SyncTimeRep(proto.Message):
 
 
 class PingReq(proto.Message):
-    r"""-
-
-    The simplest message to use to test request/reply communication with
-    the drone.
-
-    The drone replies with a PingRep message immediately after receiving
-    the PingReq.
+    r"""The simplest message to use to test request/reply
+    communication with the drone.
+    The drone replies with a PingRep message immediately after
+    receiving the PingReq.
     """
 
 
 class PingRep(proto.Message):
-    r"""-
-
-    Response message from a PingReq request.
-    """
+    r"""Response message from a PingReq request."""
 
 
 class SetThicknessGaugeParametersReq(proto.Message):
-    r"""-
-
-    Request to set parameters for ultrasonic thickness gauge.
-
+    r"""Request to set parameters for ultrasonic thickness gauge.
     The sound velocity is used to calculate the thickness of the
     material being measured.
 
@@ -212,16 +180,11 @@ class SetThicknessGaugeParametersReq(proto.Message):
 
 
 class SetThicknessGaugeParametersRep(proto.Message):
-    r"""-
-
-    Response after setting thicknes gauge parameters.
-    """
+    r"""Response after setting thicknes gauge parameters."""
 
 
 class ConnectClientReq(proto.Message):
-    r"""-
-
-    Connect a new client to the drone.
+    r"""Connect a new client to the drone.
 
     Attributes:
         client_info (blueye.protocol.types.ClientInfo):
@@ -235,12 +198,9 @@ class ConnectClientReq(proto.Message):
 
 
 class ConnectClientRep(proto.Message):
-    r"""-
-
-    Response after connecting a client to the drone.
-
-    Contains information about which client is in control, and a list of
-    all connected clients.
+    r"""Response after connecting a client to the drone.
+    Contains information about which client is in control, and a
+    list of all connected clients.
 
     Attributes:
         client_id (int):
@@ -261,14 +221,11 @@ class ConnectClientRep(proto.Message):
 
 
 class DisconnectClientReq(proto.Message):
-    r"""-
-
-    Disconnect a client from the drone.
-
+    r"""Disconnect a client from the drone.
     This request will remove the client from the list of connected
-    clients. It allows clients to disconnect instantly, without waiting
-    for a watchdog to clear the client in control, or promote a new
-    client to be in control.
+    clients. It allows clients to disconnect instantly, without
+    waiting for a watchdog to clear the client in control, or
+    promote a new client to be in control.
 
     Attributes:
         client_id (int):
@@ -279,10 +236,7 @@ class DisconnectClientReq(proto.Message):
 
 
 class DisconnectClientRep(proto.Message):
-    r"""-
-
-    Response after disconnecting a client from the drone.
-
+    r"""Response after disconnecting a client from the drone.
     Contains information about which clients are connected and in
     control.
 
@@ -301,19 +255,15 @@ class DisconnectClientRep(proto.Message):
 
 
 class GetBatteryReq(proto.Message):
-    r"""-
-
-    Request essential battery information.
-
-    Can be used to instantly get battery information, instead of having
-    to wait for the BatteryTel message to be received.
+    r"""Request essential battery information.
+    Can be used to instantly get battery information,
+    instead of having to wait for the BatteryTel message to be
+    received.
     """
 
 
 class GetBatteryRep(proto.Message):
-    r"""-
-
-    Response with essential battery information.
+    r"""Response with essential battery information.
 
     Attributes:
         battery (blueye.protocol.types.Battery):
@@ -326,9 +276,7 @@ class GetBatteryRep(proto.Message):
 
 
 class SetPubFrequencyReq(proto.Message):
-    r"""-
-
-    Request to update the publish frequency
+    r"""Request to update the publish frequency
 
     Attributes:
         message_type (str):
@@ -343,9 +291,7 @@ class SetPubFrequencyReq(proto.Message):
 
 
 class SetPubFrequencyRep(proto.Message):
-    r"""-
-
-    Response after updating publish frequency
+    r"""Response after updating publish frequency
 
     Attributes:
         success (bool):
@@ -357,9 +303,7 @@ class SetPubFrequencyRep(proto.Message):
 
 
 class GetTelemetryReq(proto.Message):
-    r"""-
-
-    Request to get latest telemetry data
+    r"""Request to get latest telemetry data
 
     Attributes:
         message_type (str):
@@ -370,9 +314,7 @@ class GetTelemetryReq(proto.Message):
 
 
 class GetTelemetryRep(proto.Message):
-    r"""-
-
-    Response with latest telemetry
+    r"""Response with latest telemetry
 
     Attributes:
         payload (google.protobuf.any_pb2.Any):

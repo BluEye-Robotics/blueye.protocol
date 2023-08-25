@@ -76,9 +76,7 @@ __protobuf__ = proto.module(
 
 
 class AttitudeTel(proto.Message):
-    r"""-
-
-    Receive the current attitude of the drone.
+    r"""Receive the current attitude of the drone.
 
     Attributes:
         attitude (blueye.protocol.types.Attitude):
@@ -91,9 +89,7 @@ class AttitudeTel(proto.Message):
 
 
 class AltitudeTel(proto.Message):
-    r"""-
-
-    Receive the current altitude of the drone.
+    r"""Receive the current altitude of the drone.
 
     Attributes:
         altitude (blueye.protocol.types.Altitude):
@@ -184,9 +180,7 @@ class ControllerHealthTel(proto.Message):
 
 
 class LightsTel(proto.Message):
-    r"""-
-
-    Receive the status of the main lights of the drone.
+    r"""Receive the status of the main lights of the drone.
 
     Attributes:
         lights (blueye.protocol.types.Lights):
@@ -199,9 +193,8 @@ class LightsTel(proto.Message):
 
 
 class GuestPortLightsTel(proto.Message):
-    r"""-
-
-    Receive the status of any guest port lights connected to the drone.
+    r"""Receive the status of any guest port lights connected to the
+    drone.
 
     Attributes:
         lights (blueye.protocol.types.Lights):
@@ -214,9 +207,7 @@ class GuestPortLightsTel(proto.Message):
 
 
 class LaserTel(proto.Message):
-    r"""-
-
-    Receive the status of any lasers connected to the drone.
+    r"""Receive the status of any lasers connected to the drone.
 
     Attributes:
         laser (blueye.protocol.types.Laser):
@@ -498,9 +489,7 @@ class DroneInfoTel(proto.Message):
 
 
 class ErrorFlagsTel(proto.Message):
-    r"""-
-
-    Receive currently set error flags.
+    r"""Receive currently set error flags.
 
     Attributes:
         error_flags (blueye.protocol.types.ErrorFlags):
@@ -513,9 +502,7 @@ class ErrorFlagsTel(proto.Message):
 
 
 class ControlModeTel(proto.Message):
-    r"""-
-
-    Receive the current state of the control system.
+    r"""Receive the current state of the control system.
 
     Attributes:
         state (blueye.protocol.types.ControlMode):
@@ -528,9 +515,7 @@ class ControlModeTel(proto.Message):
 
 
 class ThicknessGaugeTel(proto.Message):
-    r"""-
-
-    Thickness gauge measurement telemetry message.
+    r"""Thickness gauge measurement telemetry message.
 
     Attributes:
         thickness_gauge (blueye.protocol.types.ThicknessGauge):
@@ -543,9 +528,7 @@ class ThicknessGaugeTel(proto.Message):
 
 
 class CpProbeTel(proto.Message):
-    r"""-
-
-    Cathodic Protection Potential probe telemetry message
+    r"""Cathodic Protection Potential probe telemetry message
 
     Attributes:
         cp_probe (blueye.protocol.types.CpProbe):
@@ -558,9 +541,7 @@ class CpProbeTel(proto.Message):
 
 
 class AquaTrollProbeMetadataTel(proto.Message):
-    r"""-
-
-    Metadata from the In-Situ Aqua Troll probe's common registers
+    r"""Metadata from the In-Situ Aqua Troll probe's common registers
 
     Attributes:
         probe (blueye.protocol.types.AquaTrollProbeMetadata):
@@ -573,9 +554,7 @@ class AquaTrollProbeMetadataTel(proto.Message):
 
 
 class AquaTrollSensorMetadataTel(proto.Message):
-    r"""-
-
-    Metadata from a single sensor from In-Situ Aqua Troll probe
+    r"""Metadata from a single sensor from In-Situ Aqua Troll probe
 
     Attributes:
         sensors (blueye.protocol.types.AquaTrollSensorMetadataArray):
@@ -588,9 +567,7 @@ class AquaTrollSensorMetadataTel(proto.Message):
 
 
 class AquaTrollSensorParametersTel(proto.Message):
-    r"""-
-
-    Single sensor from In-Situ Aqua Troll probe
+    r"""Single sensor from In-Situ Aqua Troll probe
 
     Attributes:
         sensors (blueye.protocol.types.AquaTrollSensorParametersArray):
@@ -603,9 +580,7 @@ class AquaTrollSensorParametersTel(proto.Message):
 
 
 class ConnectedClientsTel(proto.Message):
-    r"""-
-
-    List of connected clients telemetry message.
+    r"""List of connected clients telemetry message.
 
     Attributes:
         client_id_in_control (int):
@@ -622,9 +597,7 @@ class ConnectedClientsTel(proto.Message):
 
 
 class GenericServoTel(proto.Message):
-    r"""-
-
-    State of a generic servo
+    r"""State of a generic servo
 
     Attributes:
         servo (blueye.protocol.types.GenericServo):
@@ -637,9 +610,7 @@ class GenericServoTel(proto.Message):
 
 
 class MultibeamServoTel(proto.Message):
-    r"""-
-
-    State of the servo installed in the multibeam
+    r"""State of the servo installed in the multibeam
 
     Attributes:
         servo (blueye.protocol.types.MultibeamServo):
@@ -652,9 +623,7 @@ class MultibeamServoTel(proto.Message):
 
 
 class GuestPortCurrentTel(proto.Message):
-    r"""-
-
-    GuestPort current readings
+    r"""GuestPort current readings
 
     Attributes:
         current (blueye.protocol.types.GuestPortCurrent):
@@ -667,9 +636,7 @@ class GuestPortCurrentTel(proto.Message):
 
 
 class CalibratedImuTel(proto.Message):
-    r"""-
-
-    Calibrated IMU data
+    r"""Calibrated IMU data
 
     Attributes:
         imu (blueye.protocol.types.Imu):
@@ -682,9 +649,7 @@ class CalibratedImuTel(proto.Message):
 
 
 class Imu1Tel(proto.Message):
-    r"""-
-
-    Raw IMU data from IMU 1
+    r"""Raw IMU data from IMU 1
 
     Attributes:
         imu (blueye.protocol.types.Imu):
@@ -697,9 +662,7 @@ class Imu1Tel(proto.Message):
 
 
 class Imu2Tel(proto.Message):
-    r"""-
-
-    Raw IMU data from IMU 2
+    r"""Raw IMU data from IMU 2
 
     Attributes:
         imu (blueye.protocol.types.Imu):
@@ -712,9 +675,7 @@ class Imu2Tel(proto.Message):
 
 
 class MedusaSpectrometerDataTel(proto.Message):
-    r"""-
-
-    Medusa gamma ray sensor spectrometer data
+    r"""Medusa gamma ray sensor spectrometer data
 
     Attributes:
         data (blueye.protocol.types.MedusaSpectrometerData):
