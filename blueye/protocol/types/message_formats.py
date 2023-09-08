@@ -125,8 +125,9 @@ class Model(proto.Enum):
     MODEL_UNSPECIFIED = 0
     MODEL_PIONEER = 1
     MODEL_PRO = 2
-    MODEL_PRO2 = 4
+    MODEL_X1 = 4
     MODEL_X3 = 3
+    MODEL_NEXT = 5
 
 
 class PressureSensorType(proto.Enum):
