@@ -8,7 +8,10 @@ package_data = \
 {'': ['*']}
 
 install_requires = \
-['numpy>=1.23,<2.0', 'proto-plus>=1.22.1,<2.0.0', 'setuptools>=40']
+['proto-plus>=1.22.1,<2.0.0', 'setuptools>=40']
+
+extras_require = \
+{':python_version >= "3.9" and python_version < "3.13"': ['numpy>=1.26,<2.0']}
 
 setup_kwargs = {
     'name': 'blueye-protocol',
@@ -23,7 +26,8 @@ setup_kwargs = {
     'packages': packages,
     'package_data': package_data,
     'install_requires': install_requires,
-    'python_requires': '>=3.8,<4.0',
+    'extras_require': extras_require,
+    'python_requires': '>=3.9,<4.0',
 }
 
 
