@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "blueye.protocol"
 description = "Python protocol definition for the Blueye drones"
-version = "2.3.0"
+version = "2.4.0"
 authors = ["Sindre Hansen <sindre.hansen@blueye.no>",
            "Johannes Schrimpf <johannes.schrimpf@blueye.no>",
            "Aksel Lenes <aksel.lenes@blueye.no>",
@@ -17,21 +17,21 @@ homepage ="https://www.blueyerobotics.com"
 keywords = ["Blueye", "Robotics", "Protocol"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
-numpy = "^1.23"
+python = "^3.9"
+numpy = { version = "^1.26", python = "^3.9,<3.13" }
 setuptools = ">=40"
 proto-plus = "^1.22.1"
 
 [tool.poetry.dev-dependencies]
 Jinja2 = "^3.0"
-pytest = "^6.2.5"
-pytest-mock = "^1.10.4"
+pytest = "^7.4"
+pytest-mock = "^3.11"
 pytest-timeout = "^1.4.2"
 invoke = "^2.1.1"
-pytest-cov = "^3.0"
+pytest-cov = "^4.1"
 toml = "^0.10.0"
 flake8 = "^3.8.4"
-packaging ="^23.0"
+packaging = ">=23.0"
 
 [tool.poetry.build]
 generate-setup-file = true
