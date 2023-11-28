@@ -127,6 +127,7 @@ class Model(proto.Enum):
     MODEL_PRO = 2
     MODEL_X1 = 4
     MODEL_X3 = 3
+    MODEL_X3_ULTRA = 6
     MODEL_NEXT = 5
 
 
