@@ -95,6 +95,7 @@ from .types.message_formats import GenericServo
 from .types.message_formats import GripperVelocities
 from .types.message_formats import GuestPortConnectorInfo
 from .types.message_formats import GuestPortCurrent
+from .types.message_formats import GuestPortDetachStatus
 from .types.message_formats import GuestPortDevice
 from .types.message_formats import GuestPortDeviceID
 from .types.message_formats import GuestPortDeviceList
@@ -306,6 +307,7 @@ __all__ = (
     'GuestPortConnectorInfo',
     'GuestPortCurrent',
     'GuestPortCurrentTel',
+    'GuestPortDetachStatus',
     'GuestPortDevice',
     'GuestPortDeviceID',
     'GuestPortDeviceList',

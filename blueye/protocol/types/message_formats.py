@@ -40,6 +40,7 @@ __protobuf__ = proto.module(
         'GuestPortDeviceID',
         'GuestPortNumber',
         'NavigationSensorID',
+        'GuestPortDetachStatus',
         'GuestPortError',
         'BinlogRecord',
         'MotionInput',
@@ -257,8 +258,17 @@ class NavigationSensorID(proto.Enum):
     NAVIGATION_SENSOR_ID_NMEA = 3
 
 
+class GuestPortDetachStatus(proto.Enum):
+    r"""GuestPort detach status."""
+    GUEST_PORT_DETACH_STATUS_UNSPECIFIED = 0
+    GUEST_PORT_DETACH_STATUS_ATTACHED = 1
+    GUEST_PORT_DETACH_STATUS_DETACHED = 2
+
+
 class GuestPortError(proto.Enum):
-    r"""GuestPort error."""
+    r"""GuestPort error. Only indicated errors on the guest port
+    connector itself.
+    """
     GUEST_PORT_ERROR_UNSPECIFIED = 0
     GUEST_PORT_ERROR_NOT_CONNECTED = 1
     GUEST_PORT_ERROR_READ_ERROR = 2
@@ -1741,6 +1751,8 @@ class GuestPortDevice(proto.Message):
             Depth rating (m)
         required_blunux_version (str):
             Required Blunux version (x.y.z)
+        detach_status (blueye.protocol.types.GuestPortDetachStatus):
+            Detach status based on detection pin
     """
 
     device_id = proto.Field(proto.ENUM, number=1,
@@ -1756,6 +1768,10 @@ class GuestPortDevice(proto.Message):
     depth_rating = proto.Field(proto.FLOAT, number=5)
 
     required_blunux_version = proto.Field(proto.STRING, number=6)
+
+    detach_status = proto.Field(proto.ENUM, number=7,
+        enum='GuestPortDetachStatus',
+    )
 
 
 class GuestPortDeviceList(proto.Message):
@@ -1778,7 +1794,7 @@ class GuestPortConnectorInfo(proto.Message):
         device_list (blueye.protocol.types.GuestPortDeviceList):
             List of devices on this connector
         error (blueye.protocol.types.GuestPortError):
-            Guest port error
+            Guest port connector error
         guest_port_number (blueye.protocol.types.GuestPortNumber):
             Guest port the connector is connected to
     """

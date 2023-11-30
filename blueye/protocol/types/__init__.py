@@ -92,6 +92,7 @@ from .message_formats import (
     GuestPortDeviceID,
     GuestPortNumber,
     NavigationSensorID,
+    GuestPortDetachStatus,
     GuestPortError,
 )
 from .req_rep import (
@@ -297,6 +298,7 @@ __all__ = (
     'GuestPortDeviceID',
     'GuestPortNumber',
     'NavigationSensorID',
+    'GuestPortDetachStatus',
     'GuestPortError',
     'SetOverlayParametersReq',
     'SetOverlayParametersRep',
