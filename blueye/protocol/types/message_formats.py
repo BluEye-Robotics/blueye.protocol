@@ -711,29 +711,33 @@ class BatteryBQ40Z50(proto.Message):
         status (blueye.protocol.types.BatteryBQ40Z50.BatteryStatus):
             Battery status flags
         current (float):
-            Current (A)
+            Measured current from the coulomb counter (A)
         average_current (float):
             Average current (A)
         relative_state_of_charge (float):
-            Relative state of charge (0..1)
+            Predicted remaining battery capacity as a factor of
+            full_charge_capacity (0..1)
         absolute_state_of_charge (float):
-            Absolute state of charge (0..1)
+            Predicted remaining battery capacity (0..1)
         calculated_state_of_charge (float):
             Calculated state of charge (0..1)
         remaining_capacity (float):
-            Remaining capacity (Ah)
+            Predicted remaining battery capacity (Ah)
         full_charge_capacity (float):
-            Full charge capacity (Ah)
+            Predicted battery capacity when fully charged
+            (Ah)
         runtime_to_empty (int):
-            Runtime to empty (s)
+            Predicted remaining battery capacity based on
+            the present rate of discharge (s)
         average_time_to_empty (int):
-            Average time to empty (s)
+            Predicted remaining battery capacity based on
+            average_current (s)
         average_time_to_full (int):
-            Average time to full (s)
+            Predicted time-to-full charge based on average_current (s)
         charging_current (float):
-            Charging current (A)
+            Desired charging current (A)
         charging_voltage (float):
-            Charging voltage (V)
+            Desired charging voltage (V)
         cycle_count (int):
             Number of charging cycles
         design_capacity (float):
