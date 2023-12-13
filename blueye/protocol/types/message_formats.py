@@ -882,55 +882,56 @@ class BatteryBQ40Z50(proto.Message):
                 Maximum reported cell voltages
             min_cell_voltages (blueye.protocol.types.BatteryBQ40Z50.BatteryLifetimes.CellVoltages):
                 Minimum reported cell voltages
-            max_delta_cell_voltage (int):
-                Max delta between cells, [0, 32767], mV
-            max_charge_current (int):
-                Max reported current in the charge direction, [0, 32767], mA
-            max_discharge_current (int):
-                Max reported current in the discharge direction, [-32768,
-                0], mA
-            max_avg_discharge_current (int):
-                Max reported average current in the discharge direction,
-                [-32768, 0], mA
-            max_avg_discharge_power (int):
-                Max reported power in discharge direction, [-32768, 0], cW
-            max_cell_temperature (int):
-                Max reported cell temperature, [-128, 127], °C
-            min_cell_temperature (int):
-                Min reported cell temperature, [-128, 127], °C
-            max_delta_cell_temperature (int):
-                Max reported temperature delta for TSx inputs configured as
-                cell temperature, [-128, 127], °C
-            max_temperature_internal_sensor (int):
-                Max reported internal temperature sensor temperature, [-128,
-                127], °C
-            min_temperature_internal_sensor (int):
-                Min reported internal temperature sensor temperature, [-128,
-                127], °C
-            max_temperature_fet (int):
-                Max reported FET temperature, [-128, 127], °C
+            max_delta_cell_voltage (float):
+                Max delta between cells (V)
+            max_charge_current (float):
+                Max reported current in the charge direction
+                (A)
+            max_discharge_current (float):
+                Max reported current in the discharge
+                direction (A)
+            max_avg_discharge_current (float):
+                Max reported average current in the discharge
+                direction (A)
+            max_avg_discharge_power (float):
+                Max reported power in discharge direction (W)
+            max_cell_temperature (float):
+                Max reported cell temperature (°C)
+            min_cell_temperature (float):
+                Min reported cell temperature (°C)
+            max_delta_cell_temperature (float):
+                Max reported temperature delta for TSx inputs
+                configured as cell temperature (°C)
+            max_temperature_internal_sensor (float):
+                Max reported internal temperature sensor
+                temperature (°C)
+            min_temperature_internal_sensor (float):
+                Min reported internal temperature sensor
+                temperature (°C)
+            max_temperature_fet (float):
+                Max reported FET temperature (°C)
         """
         class CellVoltages(proto.Message):
             r"""
 
             Attributes:
-                cell_1 (int):
-                    Voltage for cell number 1, [0, 32767], mV
-                cell_2 (int):
-                    Voltage for cell number 2, [0, 32767], mV
-                cell_3 (int):
-                    Voltage for cell number 3, [0, 32767], mV
-                cell_4 (int):
-                    Voltage for cell number 4, [0, 32767], mV
+                cell_1 (float):
+                    Voltage for cell number 1 (V)
+                cell_2 (float):
+                    Voltage for cell number 2 (V)
+                cell_3 (float):
+                    Voltage for cell number 3 (V)
+                cell_4 (float):
+                    Voltage for cell number 4 (V)
             """
 
-            cell_1 = proto.Field(proto.UINT32, number=1)
+            cell_1 = proto.Field(proto.FLOAT, number=1)
 
-            cell_2 = proto.Field(proto.UINT32, number=2)
+            cell_2 = proto.Field(proto.FLOAT, number=2)
 
-            cell_3 = proto.Field(proto.UINT32, number=3)
+            cell_3 = proto.Field(proto.FLOAT, number=3)
 
-            cell_4 = proto.Field(proto.UINT32, number=4)
+            cell_4 = proto.Field(proto.FLOAT, number=4)
 
         max_cell_voltages = proto.Field(proto.MESSAGE, number=1,
             message='BatteryBQ40Z50.BatteryLifetimes.CellVoltages',
@@ -940,90 +941,99 @@ class BatteryBQ40Z50(proto.Message):
             message='BatteryBQ40Z50.BatteryLifetimes.CellVoltages',
         )
 
-        max_delta_cell_voltage = proto.Field(proto.INT32, number=3)
+        max_delta_cell_voltage = proto.Field(proto.FLOAT, number=3)
 
-        max_charge_current = proto.Field(proto.INT32, number=4)
+        max_charge_current = proto.Field(proto.FLOAT, number=4)
 
-        max_discharge_current = proto.Field(proto.INT32, number=5)
+        max_discharge_current = proto.Field(proto.FLOAT, number=5)
 
-        max_avg_discharge_current = proto.Field(proto.INT32, number=6)
+        max_avg_discharge_current = proto.Field(proto.FLOAT, number=6)
 
-        max_avg_discharge_power = proto.Field(proto.INT32, number=7)
+        max_avg_discharge_power = proto.Field(proto.FLOAT, number=7)
 
-        max_cell_temperature = proto.Field(proto.INT32, number=8)
+        max_cell_temperature = proto.Field(proto.FLOAT, number=8)
 
-        min_cell_temperature = proto.Field(proto.INT32, number=9)
+        min_cell_temperature = proto.Field(proto.FLOAT, number=9)
 
-        max_delta_cell_temperature = proto.Field(proto.INT32, number=10)
+        max_delta_cell_temperature = proto.Field(proto.FLOAT, number=10)
 
-        max_temperature_internal_sensor = proto.Field(proto.INT32, number=11)
+        max_temperature_internal_sensor = proto.Field(proto.FLOAT, number=11)
 
-        min_temperature_internal_sensor = proto.Field(proto.INT32, number=12)
+        min_temperature_internal_sensor = proto.Field(proto.FLOAT, number=12)
 
-        max_temperature_fet = proto.Field(proto.INT32, number=13)
+        max_temperature_fet = proto.Field(proto.FLOAT, number=13)
 
     class BatterySafetyEvents(proto.Message):
         r"""
 
         Attributes:
             cov_events_count (int):
-                Number of cell overvoltage (COV) events, [0, 32767], events
+                Number of cell overvoltage (COV) events
+                (events)
             cov_last_event (int):
-                Last COV event in cycle count cycles, [0, 32767], cycles
+                Last COV event in cycle count cycles (cycles)
             cuv_events_count (int):
-                Number of cell undervoltage (CUV) events, [0, 32767], events
+                Number of cell undervoltage (CUV) events
+                (events)
             cuv_last_event (int):
-                Last CUV event in cycle count cycles, [0, 32767], cycles
+                Last CUV event in cycle count cycles (cycles)
             ocd1_events_count (int):
-                Number of Overcurrent in Discharge 1 (OCD1) events, [0,
-                32767], events
+                Number of Overcurrent in Discharge 1 (OCD1)
+                events (events)
             ocd1_last_event (int):
-                Last OCD1 event in cycle count cycles, [0, 32767], cycles
+                Last OCD1 event in cycle count cycles
+                (cycles)
             ocd2_events_count (int):
-                Number of Overcurrent in Discharge 2 (OCD2) events, [0,
-                32767], events
+                Number of Overcurrent in Discharge 2 (OCD2)
+                events (events)
             ocd2_last_event (int):
-                Last OCD2 event in cycle count cycles, [0, 32767], cycles
+                Last OCD2 event in cycle count cycles
+                (cycles)
             occ1_events_count (int):
-                Number of Overcurrent in Charge 1 (OCC1) events, [0, 32767],
-                events
+                Number of Overcurrent in Charge 1 (OCC1)
+                events (events)
             occ1_last_event (int):
-                Last OCC1 event in cycle count cycles, [0, 32767], cycles
+                Last OCC1 event in cycle count cycles
+                (cycles)
             occ2_events_count (int):
-                Number of Overcurrent in Charge 2 (OCC2) events, [0, 32767],
-                events
+                Number of Overcurrent in Charge 2 (OCC2)
+                events (events)
             occ2_last_event (int):
-                Last OCC2 event in cycle count cycles, [0, 32767], cycles
+                Last OCC2 event in cycle count cycles
+                (cycles)
             aold_events_count (int):
-                Number of Overload in discharge (AOLD) events, [0, 32767],
-                events
+                Number of Overload in discharge (AOLD) events
+                (events)
             aold_last_event (int):
-                Last AOLD event in cycle count cycles, [0, 32767], cycles
+                Last AOLD event in cycle count cycles
+                (cycles)
             ascd_events_count (int):
-                Number of Short Circuit in Discharge (ASCD) events, [0,
-                32767], events
+                Number of Short Circuit in Discharge (ASCD)
+                events (events)
             ascd_last_event (int):
-                Last ASCD event in cycle count cycles, [0, 32767], cycles
+                Last ASCD event in cycle count cycles
+                (cycles)
             ascc_events_count (int):
-                Number of Short Circuit in Charge (ASCC) events, [0, 32767],
-                events
+                Number of Short Circuit in Charge (ASCC)
+                events (events)
             ascc_last_event (int):
-                Last ASCC event in cycle count cycles, [0, 32767], cycles
+                Last ASCC event in cycle count cycles
+                (cycles)
             otc_events_count (int):
-                Number of Overtemperature in Charge (OTC) events, [0,
-                32767], events
+                Number of Overtemperature in Charge (OTC)
+                events (events)
             otc_last_event (int):
-                Last OTC event in cycle count cycles, [0, 32767], cycles
+                Last OTC event in cycle count cycles (cycles)
             otd_events_count (int):
-                Number of Overtemperature in Discharge (OTD) events, [0,
-                32767], events
+                Number of Overtemperature in Discharge (OTD)
+                events (events)
             otd_last_event (int):
-                Last OTD event in cycle count cycles, [0, 32767], cycles
+                Last OTD event in cycle count cycles (cycles)
             otf_events_count (int):
-                Number of Overtemperature in FET (OTF) events, [0, 32767],
-                events
+                Number of Overtemperature in FET (OTF) events
+                (events)
             otf_last_event (int):
-                Last OTF event in cycle count cycles, [0, 32767], cycles
+                Last OTF event in cycle count cycles (cycles)
         """
 
         cov_events_count = proto.Field(proto.UINT32, number=1)
@@ -1079,11 +1089,11 @@ class BatteryBQ40Z50(proto.Message):
 
         Attributes:
             charge_termination_events_count (int):
-                Total number of valid charge termination events, [0, 32767],
-                events
+                Total number of valid charge termination
+                events (events)
             charge_termination_last_event (int):
-                Last valid charge termination in cycle count cycles, [0,
-                32767], cycles
+                Last valid charge termination in cycle count
+                cycles (cycles)
         """
 
         charge_termination_events_count = proto.Field(proto.UINT32, number=1)
