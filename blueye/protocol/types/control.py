@@ -42,6 +42,11 @@ __protobuf__ = proto.module(
         'AutoAltitudeCtrl',
         'StationKeepingCtrl',
         'WeatherVaningCtrl',
+        'AutoPilotSurgeYawCtrl',
+        'AutoPilotHeaveCtrl',
+        'RunMissionCtrl',
+        'PauseMissionCtrl',
+        'ClearMissionCtrl',
         'ResetPositionCtrl',
         'ResetOdometerCtrl',
         'TiltStabilizationCtrl',
@@ -257,6 +262,46 @@ class WeatherVaningCtrl(proto.Message):
     state = proto.Field(proto.MESSAGE, number=1,
         message=message_formats.WeatherVaningState,
     )
+
+
+class AutoPilotSurgeYawCtrl(proto.Message):
+    r"""Issue a command to set Auto Pilot for cruising and turning to
+    a desired state.
+
+    Attributes:
+        state (blueye.protocol.types.AutoPilotSurgeYawState):
+            State of the auto pilot surge yaw controller
+    """
+
+    state = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.AutoPilotSurgeYawState,
+    )
+
+
+class AutoPilotHeaveCtrl(proto.Message):
+    r"""Issue a command to set Auto Pilot for vertiacl movement to a
+    desired state.
+
+    Attributes:
+        state (blueye.protocol.types.AutoPilotHeaveState):
+            State of the auto pilot heave controller
+    """
+
+    state = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.AutoPilotHeaveState,
+    )
+
+
+class RunMissionCtrl(proto.Message):
+    r"""Issue a command to start and pause the loaded mission."""
+
+
+class PauseMissionCtrl(proto.Message):
+    r"""Issue a command to pause the loaded mission."""
+
+
+class ClearMissionCtrl(proto.Message):
+    r"""Clear the loaded mission."""
 
 
 class ResetPositionCtrl(proto.Message):

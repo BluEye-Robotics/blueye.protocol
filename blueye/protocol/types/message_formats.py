@@ -19,7 +19,7 @@ import proto  # type: ignore
 
 
 from google.protobuf import any_pb2 as gp_any  # type: ignore
-from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
+from google.protobuf import timestamp_pb2 as gp_timestamp  # type: ignore
 
 
 __protobuf__ = proto.module(
@@ -27,6 +27,8 @@ __protobuf__ = proto.module(
     manifest={
         'HeadingSource',
         'ResetCoordinateSource',
+        'NotificationType',
+        'NotificationLevel',
         'Model',
         'PressureSensorType',
         'Resolution',
@@ -53,6 +55,8 @@ __protobuf__ = proto.module(
         'AutoAltitudeState',
         'StationKeepingState',
         'WeatherVaningState',
+        'AutoPilotSurgeYawState',
+        'AutoPilotHeaveState',
         'ControlMode',
         'TiltStabilizationState',
         'SystemTime',
@@ -75,6 +79,7 @@ __protobuf__ = proto.module(
         'ResetPositionSettings',
         'Depth',
         'Reference',
+        'Notification',
         'ControlForce',
         'ControllerHealth',
         'DiveTime',
@@ -119,6 +124,45 @@ class ResetCoordinateSource(proto.Enum):
     RESET_COORDINATE_SOURCE_UNSPECIFIED = 0
     RESET_COORDINATE_SOURCE_DEVICE_GPS = 1
     RESET_COORDINATE_SOURCE_MANUAL = 2
+
+
+class NotificationType(proto.Enum):
+    r"""Notification is used for displaying info, warnings, and
+    errors to the user.
+    """
+    NOTIFICATION_TYPE_UNSPECIFIED = 0
+    NOTIFICATION_TYPE_POSITION_ESTIMATE_IS_INACCURATE = 1
+    NOTIFICATION_TYPE_DRONE_POSITION_IS_UNKNOWN = 2
+    NOTIFICATION_TYPE_USER_POSITION_IS_UNKNOWN = 3
+    NOTIFICATION_TYPE_NO_MISSION_LOADED = 4
+    NOTIFICATION_TYPE_MISSION_LOADED = 5
+    NOTIFICATION_TYPE_FAILED_TO_LOAD_MISSION = 6
+    NOTIFICATION_TYPE_MISSION_COMPLETE = 7
+    NOTIFICATION_TYPE_INSTRUCTION_COMPLETE = 8
+    NOTIFICATION_TYPE_WAYPOINT_REACHED = 9
+    NOTIFICATION_TYPE_DEPTH_TARGET_REACHED = 10
+    NOTIFICATION_TYPE_ALTITUDE_TARGET_REACHED = 11
+    NOTIFICATION_TYPE_WAYPOINT_IS_TO_FAR_AWAY = 12
+    NOTIFICATION_TYPE_DEPTH_SET_POINT_IS_TO_FAR_AWAY = 13
+    NOTIFICATION_TYPE_TIME_TO_COMPLETE_IS_TOO_LONG = 14
+    NOTIFICATION_TYPE_RETURNING_TO_HOME = 15
+    NOTIFICATION_TYPE_GO_TO_SURFACE = 16
+    NOTIFICATION_TYPE_GO_TO_SEA_BOTTOM = 17
+    NOTIFICATION_TYPE_GO_TO_WAYPOINT = 18
+    NOTIFICATION_TYPE_GO_TO_DEPTH_SET_POINT = 19
+    NOTIFICATION_TYPE_GO_TO_WAYPOINT_WITH_DEPTH_SET_POINT = 20
+    NOTIFICATION_TYPE_MISSION_STARTED = 21
+    NOTIFICATION_TYPE_MISSION_PAUSED = 22
+    NOTIFICATION_TYPE_MISSION_RESUMED = 23
+    NOTIFICATION_TYPE_MISSION_ABORTED = 24
+
+
+class NotificationLevel(proto.Enum):
+    r"""List of available notification levels."""
+    NOTIFICATION_LEVEL_UNSPECIFIED = 0
+    NOTIFICATION_LEVEL_INFO = 1
+    NOTIFICATION_LEVEL_WARNING = 2
+    NOTIFICATION_LEVEL_ERROR = 3
 
 
 class Model(proto.Enum):
@@ -300,11 +344,11 @@ class BinlogRecord(proto.Message):
     )
 
     unix_timestamp = proto.Field(proto.MESSAGE, number=2,
-        message=timestamp.Timestamp,
+        message=gp_timestamp.Timestamp,
     )
 
     clock_monotonic = proto.Field(proto.MESSAGE, number=3,
-        message=timestamp.Timestamp,
+        message=gp_timestamp.Timestamp,
     )
 
 
@@ -458,6 +502,28 @@ class WeatherVaningState(proto.Message):
     enabled = proto.Field(proto.BOOL, number=1)
 
 
+class AutoPilotSurgeYawState(proto.Message):
+    r"""Auto pilot surge yaw state.
+
+    Attributes:
+        enabled (bool):
+            If auto pilot surge yaw is enabled
+    """
+
+    enabled = proto.Field(proto.BOOL, number=1)
+
+
+class AutoPilotHeaveState(proto.Message):
+    r"""Auto pilot heave state.
+
+    Attributes:
+        enabled (bool):
+            If auto pilot heave is enabled
+    """
+
+    enabled = proto.Field(proto.BOOL, number=1)
+
+
 class ControlMode(proto.Message):
     r"""Control mode from drone supervisor
 
@@ -472,6 +538,10 @@ class ControlMode(proto.Message):
             If station keeping is enabled
         weather_vaning (bool):
             If weather vaning is enabled
+        auto_pilot_surge_yaw (bool):
+            If auto pilot surge yaw is enabled
+        auto_pilot_heave (bool):
+            If auto pilot heave is enabled
     """
 
     auto_depth = proto.Field(proto.BOOL, number=1)
@@ -483,6 +553,10 @@ class ControlMode(proto.Message):
     station_keeping = proto.Field(proto.BOOL, number=4)
 
     weather_vaning = proto.Field(proto.BOOL, number=5)
+
+    auto_pilot_surge_yaw = proto.Field(proto.BOOL, number=6)
+
+    auto_pilot_heave = proto.Field(proto.BOOL, number=7)
 
 
 class TiltStabilizationState(proto.Message):
@@ -507,7 +581,7 @@ class SystemTime(proto.Message):
     """
 
     unix_timestamp = proto.Field(proto.MESSAGE, number=1,
-        message=timestamp.Timestamp,
+        message=gp_timestamp.Timestamp,
     )
 
 
@@ -603,7 +677,7 @@ class RecordState(proto.Message):
 class WaterDensity(proto.Message):
     r"""Water density.
     Used to specify the water density the drone is operating in, to
-    achieve more accruate depth measurements.
+    achieve more accurate depth measurements.
 
     Attributes:
         value (float):
@@ -1141,7 +1215,7 @@ class BatteryBQ40Z50(proto.Message):
     design_capacity = proto.Field(proto.FLOAT, number=20)
 
     manufacture_date = proto.Field(proto.MESSAGE, number=21,
-        message=timestamp.Timestamp,
+        message=gp_timestamp.Timestamp,
     )
 
     serial_number = proto.Field(proto.UINT32, number=22)
@@ -1200,8 +1274,8 @@ class Altitude(proto.Message):
 
 
 class ForwardDistance(proto.Message):
-    r"""Distance to an object infront of the drone, typically
-    obtained from an 1D pinger.
+    r"""Distance to an object infront of the drone
+    Typically obtained from a 1D pinger.
 
     Attributes:
         value (float):
@@ -1318,7 +1392,7 @@ class Depth(proto.Message):
 
 class Reference(proto.Message):
     r"""Reference for the control system. Note that the internal heading
-    referece is not relative to North. Use (ControlHealth.heading_error
+    reference is not relative to North, use (ControlHealth.heading_error
     + pose.yaw) instead.
 
     Attributes:
@@ -1352,6 +1426,39 @@ class Reference(proto.Message):
     heading = proto.Field(proto.FLOAT, number=6)
 
     altitude = proto.Field(proto.FLOAT, number=7)
+
+
+class Notification(proto.Message):
+    r"""Notification is used for displaying info, warnings, and
+    errors to the user.
+
+    Attributes:
+        type_ (blueye.protocol.types.NotificationType):
+            Notification to be displayed to the user
+        level (blueye.protocol.types.NotificationLevel):
+            Level of the notification, info, warning or
+            error
+        value (google.protobuf.any_pb2.Any):
+            Optional value to be displayed in the message
+        timestamp (google.protobuf.timestamp_pb2.Timestamp):
+            Timestamp of the notification
+    """
+
+    type_ = proto.Field(proto.ENUM, number=1,
+        enum='NotificationType',
+    )
+
+    level = proto.Field(proto.ENUM, number=2,
+        enum='NotificationLevel',
+    )
+
+    value = proto.Field(proto.MESSAGE, number=3,
+        message=gp_any.Any,
+    )
+
+    timestamp = proto.Field(proto.MESSAGE, number=4,
+        message=gp_timestamp.Timestamp,
+    )
 
 
 class ControlForce(proto.Message):
@@ -2259,11 +2366,11 @@ class MedusaSpectrometerData(proto.Message):
     """
 
     drone_time = proto.Field(proto.MESSAGE, number=6,
-        message=timestamp.Timestamp,
+        message=gp_timestamp.Timestamp,
     )
 
     sensor_time = proto.Field(proto.MESSAGE, number=7,
-        message=timestamp.Timestamp,
+        message=gp_timestamp.Timestamp,
     )
 
     realtime = proto.Field(proto.FLOAT, number=1)

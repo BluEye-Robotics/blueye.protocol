@@ -19,6 +19,7 @@ import proto  # type: ignore
 
 
 from blueye.protocol.types import message_formats
+from blueye.protocol.types import mission_planning
 from google.protobuf import any_pb2 as gp_any  # type: ignore
 
 
@@ -45,6 +46,12 @@ __protobuf__ = proto.module(
         'DisconnectClientRep',
         'GetBatteryReq',
         'GetBatteryRep',
+        'SetMissionReq',
+        'SetMissionRep',
+        'GetMissionReq',
+        'GetMissionRep',
+        'SetInstructionUpdateReq',
+        'SetInstructionUpdateRep',
         'SetPubFrequencyReq',
         'SetPubFrequencyRep',
         'GetTelemetryReq',
@@ -273,6 +280,64 @@ class GetBatteryRep(proto.Message):
     battery = proto.Field(proto.MESSAGE, number=1,
         message=message_formats.Battery,
     )
+
+
+class SetMissionReq(proto.Message):
+    r"""Issue a desired mission to the reference_generator.
+
+    Attributes:
+        mission (blueye.protocol.types.Mission):
+            requested mission isseued to the reference
+            generator
+    """
+
+    mission = proto.Field(proto.MESSAGE, number=1,
+        message=mission_planning.Mission,
+    )
+
+
+class SetMissionRep(proto.Message):
+    r"""Response after setting a new mission."""
+
+
+class GetMissionReq(proto.Message):
+    r"""Service request to the reference_generator to get the active
+    mission.
+    """
+
+
+class GetMissionRep(proto.Message):
+    r"""Get active mission response.
+
+    Attributes:
+        mission (blueye.protocol.types.Mission):
+            active mission with waypoints
+    """
+
+    mission = proto.Field(proto.MESSAGE, number=1,
+        message=mission_planning.Mission,
+    )
+
+
+class SetInstructionUpdateReq(proto.Message):
+    r"""Updates an instruction in current mission with a new
+    instruction payload.
+
+    Attributes:
+        instruction (blueye.protocol.types.Instruction):
+            instruction that will replace the desired
+            instruction
+    """
+
+    instruction = proto.Field(proto.MESSAGE, number=1,
+        message=mission_planning.Instruction,
+    )
+
+
+class SetInstructionUpdateRep(proto.Message):
+    r"""Response after updating an instruction in the current
+    mission.
+    """
 
 
 class SetPubFrequencyReq(proto.Message):

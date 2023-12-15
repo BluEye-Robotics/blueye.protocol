@@ -20,6 +20,7 @@ import proto  # type: ignore
 
 from blueye.protocol.types import aquatroll
 from blueye.protocol.types import message_formats
+from blueye.protocol.types import mission_planning
 
 
 __protobuf__ = proto.module(
@@ -31,6 +32,9 @@ __protobuf__ = proto.module(
         'PositionEstimateTel',
         'DepthTel',
         'ReferenceTel',
+        'ReferenceAutoPilotTel',
+        'MissionStatusTel',
+        'NotificationTel',
         'ControlForceTel',
         'ControllerHealthTel',
         'LightsTel',
@@ -102,7 +106,8 @@ class AltitudeTel(proto.Message):
 
 
 class ForwardDistanceTel(proto.Message):
-    r"""
+    r"""Distance to an object in front of the drone when a 1D pinger
+    is mounted forwards.
 
     Attributes:
         forward_distance (blueye.protocol.types.ForwardDistance):
@@ -115,7 +120,8 @@ class ForwardDistanceTel(proto.Message):
 
 
 class PositionEstimateTel(proto.Message):
-    r"""
+    r"""Position estimate of the drone if a DVL or a positioning
+    system is available.
 
     Attributes:
         position_estimate (blueye.protocol.types.PositionEstimate):
@@ -128,7 +134,8 @@ class PositionEstimateTel(proto.Message):
 
 
 class DepthTel(proto.Message):
-    r"""
+    r"""Measurement of the drones position relative to the sea
+    surface.
 
     Attributes:
         depth (blueye.protocol.types.Depth):
@@ -141,7 +148,7 @@ class DepthTel(proto.Message):
 
 
 class ReferenceTel(proto.Message):
-    r"""
+    r"""Reference signals indicating desired states.
 
     Attributes:
         reference (blueye.protocol.types.Reference):
@@ -153,8 +160,47 @@ class ReferenceTel(proto.Message):
     )
 
 
+class ReferenceAutoPilotTel(proto.Message):
+    r"""Reference for the auto pilot when a mission is active.
+
+    Attributes:
+        reference_auto_pilot (blueye.protocol.types.ReferenceAutoPilot):
+
+    """
+
+    reference_auto_pilot = proto.Field(proto.MESSAGE, number=1,
+        message=mission_planning.ReferenceAutoPilot,
+    )
+
+
+class MissionStatusTel(proto.Message):
+    r"""Mission status from the mission supervisor.
+
+    Attributes:
+        mission_status (blueye.protocol.types.MissionStatus):
+
+    """
+
+    mission_status = proto.Field(proto.MESSAGE, number=1,
+        message=mission_planning.MissionStatus,
+    )
+
+
+class NotificationTel(proto.Message):
+    r"""Notification from the control system.
+
+    Attributes:
+        notification (blueye.protocol.types.Notification):
+
+    """
+
+    notification = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.Notification,
+    )
+
+
 class ControlForceTel(proto.Message):
-    r"""
+    r"""Control force in all directions.
 
     Attributes:
         control_force (blueye.protocol.types.ControlForce):
@@ -167,7 +213,8 @@ class ControlForceTel(proto.Message):
 
 
 class ControllerHealthTel(proto.Message):
-    r"""
+    r"""Controller health indicating the load of the controller, used
+    to set a color in the heading and depth bar.
 
     Attributes:
         controller_health (blueye.protocol.types.ControllerHealth):
@@ -220,7 +267,7 @@ class LaserTel(proto.Message):
 
 
 class PilotGPSPositionTel(proto.Message):
-    r"""
+    r"""Pilot position (originating from device GPS) for logging.
 
     Attributes:
         position (blueye.protocol.types.LatLongPosition):
@@ -233,7 +280,7 @@ class PilotGPSPositionTel(proto.Message):
 
 
 class RecordStateTel(proto.Message):
-    r"""
+    r"""Record state from the drone.
 
     Attributes:
         record_state (blueye.protocol.types.RecordState):
@@ -306,7 +353,7 @@ class DroneTimeTel(proto.Message):
 
 
 class WaterTemperatureTel(proto.Message):
-    r"""
+    r"""Water temerature from the depth sensor.
 
     Attributes:
         temperature (blueye.protocol.types.WaterTemperature):
@@ -319,7 +366,7 @@ class WaterTemperatureTel(proto.Message):
 
 
 class CPUTemperatureTel(proto.Message):
-    r"""
+    r"""Drone CPU temperature
 
     Attributes:
         temperature (blueye.protocol.types.CPUTemperature):
@@ -384,7 +431,7 @@ class CanisterBottomHumidityTel(proto.Message):
 
 
 class VideoStorageSpaceTel(proto.Message):
-    r"""
+    r"""Video storage info.
 
     Attributes:
         storage_space (blueye.protocol.types.StorageSpace):
@@ -397,7 +444,7 @@ class VideoStorageSpaceTel(proto.Message):
 
 
 class DataStorageSpaceTel(proto.Message):
-    r"""
+    r"""Data storage info.
 
     Attributes:
         storage_space (blueye.protocol.types.StorageSpace):
@@ -410,7 +457,7 @@ class DataStorageSpaceTel(proto.Message):
 
 
 class CalibrationStateTel(proto.Message):
-    r"""
+    r"""Calibration state used for calibration rotine.
 
     Attributes:
         calibration_state (blueye.protocol.types.CalibrationState):
@@ -423,7 +470,7 @@ class CalibrationStateTel(proto.Message):
 
 
 class TiltStabilizationTel(proto.Message):
-    r"""
+    r"""Tilt stabilization state.
 
     Attributes:
         state (blueye.protocol.types.TiltStabilizationState):
@@ -436,7 +483,8 @@ class TiltStabilizationTel(proto.Message):
 
 
 class IperfTel(proto.Message):
-    r"""
+    r"""Iperf indicates the available bandwidth on the tether from
+    drone to surface unit.
 
     Attributes:
         status (blueye.protocol.types.IperfStatus):
@@ -449,7 +497,7 @@ class IperfTel(proto.Message):
 
 
 class NStreamersTel(proto.Message):
-    r"""
+    r"""Number of connected clients streaming video.
 
     Attributes:
         n_streamers (blueye.protocol.types.NStreamers):
@@ -462,7 +510,7 @@ class NStreamersTel(proto.Message):
 
 
 class TiltAngleTel(proto.Message):
-    r"""
+    r"""Tilt angle state on main camera.
 
     Attributes:
         angle (blueye.protocol.types.TiltAngle):

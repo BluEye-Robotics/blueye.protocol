@@ -35,7 +35,10 @@ from .types.control import ActivateGuestPortsCtrl
 from .types.control import AutoAltitudeCtrl
 from .types.control import AutoDepthCtrl
 from .types.control import AutoHeadingCtrl
+from .types.control import AutoPilotHeaveCtrl
+from .types.control import AutoPilotSurgeYawCtrl
 from .types.control import CancelCalibrationCtrl
+from .types.control import ClearMissionCtrl
 from .types.control import DeactivateGuestPortsCtrl
 from .types.control import FinishCalibrationCtrl
 from .types.control import GenericServoCtrl
@@ -45,12 +48,14 @@ from .types.control import LaserCtrl
 from .types.control import LightsCtrl
 from .types.control import MotionInputCtrl
 from .types.control import MultibeamServoCtrl
+from .types.control import PauseMissionCtrl
 from .types.control import PilotGPSPositionCtrl
 from .types.control import PingerConfigurationCtrl
 from .types.control import RecordCtrl
 from .types.control import ResetOdometerCtrl
 from .types.control import ResetPositionCtrl
 from .types.control import RestartGuestPortsCtrl
+from .types.control import RunMissionCtrl
 from .types.control import SetAquaTrollConnectionStatusCtrl
 from .types.control import SetAquaTrollParameterUnitCtrl
 from .types.control import StartCalibrationCtrl
@@ -67,6 +72,8 @@ from .types.message_formats import Attitude
 from .types.message_formats import AutoAltitudeState
 from .types.message_formats import AutoDepthState
 from .types.message_formats import AutoHeadingState
+from .types.message_formats import AutoPilotHeaveState
+from .types.message_formats import AutoPilotSurgeYawState
 from .types.message_formats import Battery
 from .types.message_formats import BatteryBQ40Z50
 from .types.message_formats import BinlogRecord
@@ -117,6 +124,9 @@ from .types.message_formats import MultibeamServo
 from .types.message_formats import NStreamers
 from .types.message_formats import NavigationSensorID
 from .types.message_formats import NavigationSensorStatus
+from .types.message_formats import Notification
+from .types.message_formats import NotificationLevel
+from .types.message_formats import NotificationType
 from .types.message_formats import OverlayParameters
 from .types.message_formats import PingerConfiguration
 from .types.message_formats import PositionEstimate
@@ -140,6 +150,27 @@ from .types.message_formats import Vector3
 from .types.message_formats import WaterDensity
 from .types.message_formats import WaterTemperature
 from .types.message_formats import WeatherVaningState
+from .types.mission_planning import CameraAction
+from .types.mission_planning import CameraCommand
+from .types.mission_planning import ControlModeCommand
+from .types.mission_planning import DepthSetPoint
+from .types.mission_planning import DepthSetPointCommand
+from .types.mission_planning import DepthZeroReference
+from .types.mission_planning import GoToHomeCommand
+from .types.mission_planning import GoToSeaBottomCommand
+from .types.mission_planning import GoToSurfaceCommand
+from .types.mission_planning import Instruction
+from .types.mission_planning import InstructionType
+from .types.mission_planning import Mission
+from .types.mission_planning import MissionState
+from .types.mission_planning import MissionStatus
+from .types.mission_planning import PathSegment
+from .types.mission_planning import ReferenceAutoPilot
+from .types.mission_planning import TiltMainCameraCommand
+from .types.mission_planning import TiltServoCommand
+from .types.mission_planning import WaitForCommand
+from .types.mission_planning import Waypoint
+from .types.mission_planning import WaypointCommand
 from .types.req_rep import ConnectClientRep
 from .types.req_rep import ConnectClientReq
 from .types.req_rep import DisconnectClientRep
@@ -148,6 +179,8 @@ from .types.req_rep import GetBatteryRep
 from .types.req_rep import GetBatteryReq
 from .types.req_rep import GetCameraParametersRep
 from .types.req_rep import GetCameraParametersReq
+from .types.req_rep import GetMissionRep
+from .types.req_rep import GetMissionReq
 from .types.req_rep import GetOverlayParametersRep
 from .types.req_rep import GetOverlayParametersReq
 from .types.req_rep import GetTelemetryRep
@@ -156,6 +189,10 @@ from .types.req_rep import PingRep
 from .types.req_rep import PingReq
 from .types.req_rep import SetCameraParametersRep
 from .types.req_rep import SetCameraParametersReq
+from .types.req_rep import SetInstructionUpdateRep
+from .types.req_rep import SetInstructionUpdateReq
+from .types.req_rep import SetMissionRep
+from .types.req_rep import SetMissionReq
 from .types.req_rep import SetOverlayParametersRep
 from .types.req_rep import SetOverlayParametersReq
 from .types.req_rep import SetPubFrequencyRep
@@ -199,11 +236,14 @@ from .types.telemetry import IperfTel
 from .types.telemetry import LaserTel
 from .types.telemetry import LightsTel
 from .types.telemetry import MedusaSpectrometerDataTel
+from .types.telemetry import MissionStatusTel
 from .types.telemetry import MultibeamServoTel
 from .types.telemetry import NStreamersTel
+from .types.telemetry import NotificationTel
 from .types.telemetry import PilotGPSPositionTel
 from .types.telemetry import PositionEstimateTel
 from .types.telemetry import RecordStateTel
+from .types.telemetry import ReferenceAutoPilotTel
 from .types.telemetry import ReferenceTel
 from .types.telemetry import ThicknessGaugeTel
 from .types.telemetry import TiltAngleTel
@@ -240,6 +280,10 @@ __all__ = (
     'AutoDepthState',
     'AutoHeadingCtrl',
     'AutoHeadingState',
+    'AutoPilotHeaveCtrl',
+    'AutoPilotHeaveState',
+    'AutoPilotSurgeYawCtrl',
+    'AutoPilotSurgeYawState',
     'Battery',
     'BatteryBQ40Z50',
     'BatteryBQ40Z50Tel',
@@ -250,6 +294,8 @@ __all__ = (
     'CalibrationState',
     'CalibrationStateTel',
     'Camera',
+    'CameraAction',
+    'CameraCommand',
     'CameraParameters',
     'CancelCalibrationCtrl',
     'CanisterBottomHumidityTel',
@@ -258,6 +304,7 @@ __all__ = (
     'CanisterTemperature',
     'CanisterTopHumidityTel',
     'CanisterTopTemperatureTel',
+    'ClearMissionCtrl',
     'ClientInfo',
     'ConnectClientRep',
     'ConnectClientReq',
@@ -267,6 +314,7 @@ __all__ = (
     'ControlForce',
     'ControlForceTel',
     'ControlMode',
+    'ControlModeCommand',
     'ControlModeTel',
     'ControllerHealth',
     'ControllerHealthTel',
@@ -275,8 +323,11 @@ __all__ = (
     'DataStorageSpaceTel',
     'DeactivateGuestPortsCtrl',
     'Depth',
+    'DepthSetPoint',
+    'DepthSetPointCommand',
     'DepthTel',
     'DepthUnit',
+    'DepthZeroReference',
     'DisconnectClientRep',
     'DisconnectClientReq',
     'DiveTime',
@@ -298,10 +349,15 @@ __all__ = (
     'GetBatteryReq',
     'GetCameraParametersRep',
     'GetCameraParametersReq',
+    'GetMissionRep',
+    'GetMissionReq',
     'GetOverlayParametersRep',
     'GetOverlayParametersReq',
     'GetTelemetryRep',
     'GetTelemetryReq',
+    'GoToHomeCommand',
+    'GoToSeaBottomCommand',
+    'GoToSurfaceCommand',
     'GripperCtrl',
     'GripperVelocities',
     'GuestPortConnectorInfo',
@@ -321,6 +377,8 @@ __all__ = (
     'Imu',
     'Imu1Tel',
     'Imu2Tel',
+    'Instruction',
+    'InstructionType',
     'IperfStatus',
     'IperfTel',
     'Laser',
@@ -333,6 +391,10 @@ __all__ = (
     'LogoType',
     'MedusaSpectrometerData',
     'MedusaSpectrometerDataTel',
+    'Mission',
+    'MissionState',
+    'MissionStatus',
+    'MissionStatusTel',
     'Model',
     'MotionInput',
     'MotionInputCtrl',
@@ -343,7 +405,13 @@ __all__ = (
     'NStreamersTel',
     'NavigationSensorID',
     'NavigationSensorStatus',
+    'Notification',
+    'NotificationLevel',
+    'NotificationTel',
+    'NotificationType',
     'OverlayParameters',
+    'PathSegment',
+    'PauseMissionCtrl',
     'PilotGPSPositionCtrl',
     'PilotGPSPositionTel',
     'PingRep',
@@ -358,6 +426,8 @@ __all__ = (
     'RecordState',
     'RecordStateTel',
     'Reference',
+    'ReferenceAutoPilot',
+    'ReferenceAutoPilotTel',
     'ReferenceTel',
     'ResetCoordinateSource',
     'ResetOdometerCtrl',
@@ -365,12 +435,17 @@ __all__ = (
     'ResetPositionSettings',
     'Resolution',
     'RestartGuestPortsCtrl',
+    'RunMissionCtrl',
     'SetAquaTrollConnectionStatus',
     'SetAquaTrollConnectionStatusCtrl',
     'SetAquaTrollParameterUnit',
     'SetAquaTrollParameterUnitCtrl',
     'SetCameraParametersRep',
     'SetCameraParametersReq',
+    'SetInstructionUpdateRep',
+    'SetInstructionUpdateReq',
+    'SetMissionRep',
+    'SetMissionReq',
     'SetOverlayParametersRep',
     'SetOverlayParametersReq',
     'SetPubFrequencyRep',
@@ -392,6 +467,8 @@ __all__ = (
     'ThicknessUnit',
     'TiltAngle',
     'TiltAngleTel',
+    'TiltMainCameraCommand',
+    'TiltServoCommand',
     'TiltStabilizationCtrl',
     'TiltStabilizationState',
     'TiltStabilizationTel',
@@ -400,11 +477,14 @@ __all__ = (
     'Type',
     'Vector3',
     'VideoStorageSpaceTel',
+    'WaitForCommand',
     'WatchdogCtrl',
     'WaterDensity',
     'WaterDensityCtrl',
     'WaterTemperature',
     'WaterTemperatureTel',
+    'Waypoint',
+    'WaypointCommand',
     'WeatherVaningCtrl',
     'WeatherVaningState',
 'BinlogRecord',
