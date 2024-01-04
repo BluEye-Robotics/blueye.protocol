@@ -157,7 +157,7 @@ from .types.mission_planning import DepthSetPoint
 from .types.mission_planning import DepthSetPointCommand
 from .types.mission_planning import DepthZeroReference
 from .types.mission_planning import GoToHomeCommand
-from .types.mission_planning import GoToSeaBottomCommand
+from .types.mission_planning import GoToSeabedCommand
 from .types.mission_planning import GoToSurfaceCommand
 from .types.mission_planning import Instruction
 from .types.mission_planning import InstructionType
@@ -356,7 +356,7 @@ __all__ = (
     'GetTelemetryRep',
     'GetTelemetryReq',
     'GoToHomeCommand',
-    'GoToSeaBottomCommand',
+    'GoToSeabedCommand',
     'GoToSurfaceCommand',
     'GripperCtrl',
     'GripperVelocities',

@@ -40,7 +40,7 @@ __protobuf__ = proto.module(
         'WaitForCommand',
         'CameraCommand',
         'GoToSurfaceCommand',
-        'GoToSeaBottomCommand',
+        'GoToSeabedCommand',
         'GoToHomeCommand',
         'PathSegment',
         'ReferenceAutoPilot',
@@ -104,27 +104,27 @@ class Mission(proto.Message):
 
     Attributes:
         id (int):
-            mission id
+            Mission id
         name (str):
-            mission name provided from the app
+            Mission name provided from the app
         instructions (Sequence[blueye.protocol.types.Instruction]):
-            list of instructions in the mission
+            List of instructions in the mission
         path_segments (Sequence[blueye.protocol.types.PathSegment]):
-            calculated path segments from the reference
+            Calculated path segments from the reference
             generator (optinal)
         total_distance (int):
-            total distance of the mission (m) (optinal)
+            Total distance of the mission (m) (optinal)
         total_duration_time (int):
-            total duration time of the mission (s)
+            Total duration time of the mission (s)
             (optinal)
         default_surge_speed (float):
-            default cruise speed of the mission (m/s)
+            Default cruise speed of the mission (m/s)
             (optinal)
         default_heave_speed (float):
-            default heave speed of the mission (m/s)
+            Default heave speed of the mission (m/s)
             (optinal)
         default_circle_of_acceptance (float):
-            default circle of acceptance for waypoints
+            Default circle of acceptance for waypoints
             (m) (optinal)
     """
 
@@ -159,30 +159,30 @@ class Instruction(proto.Message):
         id (int):
 
         group_id (int):
-            group id used for polygoons
+            Group id used for polygoons
         auto_continue (bool):
-            false will pause the mission after this
+            False will pause the mission after this
             instruction
         waypoint_command (blueye.protocol.types.WaypointCommand):
-            go to waypoint
+            Go to waypoint
         depth_set_point_command (blueye.protocol.types.DepthSetPointCommand):
-            go to depth
+            Go to depth
         camera_command (blueye.protocol.types.CameraCommand):
-            camera commands
+            Camera commands
         control_mode_command (blueye.protocol.types.ControlModeCommand):
-            set control modes
+            Set control modes
         tilt_main_camera_command (blueye.protocol.types.TiltMainCameraCommand):
-            set camera to angle x
+            Set camera to angle x
         tilt_servo_command (blueye.protocol.types.TiltServoCommand):
-            set tilt angle
+            Set tilt angle
         wait_for_command (blueye.protocol.types.WaitForCommand):
-            wait for x seconds
+            Wait for x seconds
         go_to_surface_command (blueye.protocol.types.GoToSurfaceCommand):
-            go to surface
-        go_to_sea_bottom_command (blueye.protocol.types.GoToSeaBottomCommand):
-            go to sea bottom
+            Go to surface
+        go_to_seabed_command (blueye.protocol.types.GoToSeabedCommand):
+            Go to seabed
         go_to_home_command (blueye.protocol.types.GoToHomeCommand):
-            go to home position
+            Go to home position
     """
 
     id = proto.Field(proto.UINT32, number=1)
@@ -223,8 +223,8 @@ class Instruction(proto.Message):
         message='GoToSurfaceCommand',
     )
 
-    go_to_sea_bottom_command = proto.Field(proto.MESSAGE, number=12, oneof='command',
-        message='GoToSeaBottomCommand',
+    go_to_seabed_command = proto.Field(proto.MESSAGE, number=12, oneof='command',
+        message='GoToSeabedCommand',
     )
 
     go_to_home_command = proto.Field(proto.MESSAGE, number=13, oneof='command',
@@ -234,16 +234,16 @@ class Instruction(proto.Message):
 
 class DepthSetPoint(proto.Message):
     r"""Depth set point is used to describe a depth setpoint relative
-    to the surface or the seabottom.
+    to the surface or the seabed.
 
     Attributes:
         depth (float):
-            desired depth at the wp (m)
+            Desired depth at the wp (m)
         speed_to_depth (float):
-            desired speed to desired depth set point
+            Desired speed to desired depth set point
             (m/s)
         depth_zero_reference (blueye.protocol.types.DepthZeroReference):
-            used to destinguish desired altitude or depth
+            Used to destinguish desired altitude or depth
     """
 
     depth = proto.Field(proto.FLOAT, number=1)
@@ -260,18 +260,18 @@ class Waypoint(proto.Message):
 
     Attributes:
         id (int):
-            waypoint id
+            Waypoint id
         name (str):
-            waypoint name provided from the app
+            Waypoint name provided from the app
         global_position (blueye.protocol.types.LatLongPosition):
-            position if the waypoint (decimal degrees)
+            Position if the waypoint (decimal degrees)
         circle_of_acceptance (float):
-            radius of the accepance circle around the
+            Radius of the accepance circle around the
             waypoint (m)
         speed_to_target (float):
-            desired speed over ground to waypoint (m/s)
+            Desired speed over ground to waypoint (m/s)
         depth_set_point (blueye.protocol.types.DepthSetPoint):
-            depth set point (optional)
+            Depth set point (optional)
     """
 
     id = proto.Field(proto.UINT32, number=1)
@@ -297,7 +297,7 @@ class ControlModeCommand(proto.Message):
 
     Attributes:
         control_mode (blueye.protocol.types.ControlMode):
-            requested control mode
+            Requested control mode
     """
 
     control_mode = proto.Field(proto.MESSAGE, number=1,
@@ -311,7 +311,7 @@ class WaypointCommand(proto.Message):
 
     Attributes:
         waypoint (blueye.protocol.types.Waypoint):
-            waypoint to go to
+            Waypoint to go to
     """
 
     waypoint = proto.Field(proto.MESSAGE, number=1,
@@ -325,7 +325,7 @@ class DepthSetPointCommand(proto.Message):
 
     Attributes:
         depth_set_point (blueye.protocol.types.DepthSetPoint):
-            depth set point to go to
+            Depth set point to go to
     """
 
     depth_set_point = proto.Field(proto.MESSAGE, number=1,
@@ -339,7 +339,7 @@ class TiltMainCameraCommand(proto.Message):
 
     Attributes:
         tilt_angle (blueye.protocol.types.TiltAngle):
-            tilt angle of the camera (-30..30)
+            Tilt angle of the camera (-30..30)
     """
 
     tilt_angle = proto.Field(proto.MESSAGE, number=1,
@@ -353,7 +353,7 @@ class TiltServoCommand(proto.Message):
 
     Attributes:
         tilt_angle (blueye.protocol.types.MultibeamServo):
-            tilt angle for the servo, i.e. multibeam
+            Tilt angle for the servo, i.e. multibeam
     """
 
     tilt_angle = proto.Field(proto.MESSAGE, number=1,
@@ -366,7 +366,7 @@ class WaitForCommand(proto.Message):
 
     Attributes:
         wait_for_seconds (float):
-            wait for x seconds
+            Wait for x seconds
     """
 
     wait_for_seconds = proto.Field(proto.FLOAT, number=1)
@@ -377,9 +377,9 @@ class CameraCommand(proto.Message):
 
     Attributes:
         camera_action (blueye.protocol.types.CameraAction):
-            camera command
+            Camera command
         action_param (float):
-            used for taking photos based on a time or
+            Used for taking photos based on a time or
             distance interval
     """
 
@@ -395,18 +395,18 @@ class GoToSurfaceCommand(proto.Message):
 
     Attributes:
         desired_speed (float):
-            desired speed to surface (m/s)
+            Desired speed to surface (m/s)
     """
 
     desired_speed = proto.Field(proto.FLOAT, number=1)
 
 
-class GoToSeaBottomCommand(proto.Message):
-    r"""GoToSeaBottomCommand is used to go to the sea bottom.
+class GoToSeabedCommand(proto.Message):
+    r"""GoToSeabedCommand is used to go to the seabed.
 
     Attributes:
         desired_speed (float):
-            desired speed to seabed (m/s)
+            Desired speed to seabed (m/s)
     """
 
     desired_speed = proto.Field(proto.FLOAT, number=1)
@@ -417,7 +417,7 @@ class GoToHomeCommand(proto.Message):
 
     Attributes:
         desired_speed (float):
-            desired speed to home (m/s)
+            Desired speed to home (m/s)
     """
 
     desired_speed = proto.Field(proto.FLOAT, number=1)
@@ -429,24 +429,24 @@ class PathSegment(proto.Message):
 
     Attributes:
         id (int):
-            path segment id starting at 0, -1 for
+            Path segment id starting at 0, -1 for
             inactive
         speed_to_target (float):
-            desired speed over ground in (m/s)
+            Desired speed over ground in (m/s)
         course_to_target (float):
-            course to target relative to north (rad) [-pi, pi]
+            Course to target relative to north (rad) [-pi, pi]
         depth_speed (float):
-            desired speed in heave (m/s)
+            Desired speed in heave (m/s)
         horizontal_length (float):
-            horizontal length of the path segment (m)
+            Horizontal length of the path segment (m)
         vertical_length (float):
-            vertical legth of the path segment (m)
+            Vertical legth of the path segment (m)
         from_wp_id (int):
-            id of the starting waypoint
+            Id of the starting waypoint
         to_wp_id (int):
-            id of the ending waypoint
+            Id of the ending waypoint
         duration_time (float):
-            estmated time it takes to complete given
+            Estmated time it takes to complete given
             legth and desired speed (s)
     """
 
@@ -496,7 +496,7 @@ class ReferenceAutoPilot(proto.Message):
             Vertical distance to the next waypoint (m)
         depth_zero_reference (blueye.protocol.types.DepthZeroReference):
             Indicates if depth is measured from the
-            surface or seabottom
+            surface or seabed
         time_to_complete (float):
             Estimated time to complete the instruction
             (s)
