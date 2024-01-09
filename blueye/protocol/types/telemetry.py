@@ -42,6 +42,7 @@ __protobuf__ = proto.module(
         'LaserTel',
         'PilotGPSPositionTel',
         'RecordStateTel',
+        'TimeLapseStateTel',
         'BatteryTel',
         'BatteryBQ40Z50Tel',
         'DiveTimeTel',
@@ -289,6 +290,19 @@ class RecordStateTel(proto.Message):
 
     record_state = proto.Field(proto.MESSAGE, number=1,
         message=message_formats.RecordState,
+    )
+
+
+class TimeLapseStateTel(proto.Message):
+    r"""Time-lapse state from the drone.
+
+    Attributes:
+        time_lapse_state (blueye.protocol.types.TimeLapseState):
+
+    """
+
+    time_lapse_state = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.TimeLapseState,
     )
 
 

@@ -25,6 +25,7 @@ from google.protobuf import timestamp_pb2 as gp_timestamp  # type: ignore
 __protobuf__ = proto.module(
     package='blueye.protocol',
     manifest={
+        'IntervalType',
         'HeadingSource',
         'ResetCoordinateSource',
         'NotificationType',
@@ -64,6 +65,7 @@ __protobuf__ = proto.module(
         'ClientInfo',
         'ConnectedClient',
         'RecordState',
+        'TimeLapseState',
         'WaterDensity',
         'PingerConfiguration',
         'WaterTemperature',
@@ -110,6 +112,13 @@ __protobuf__ = proto.module(
         'MedusaSpectrometerData',
     },
 )
+
+
+class IntervalType(proto.Enum):
+    r"""Interval type for time-lapse photos."""
+    INTERVAL_TYPE_UNSPECIFIED = 0
+    INTERVAL_TYPE_TIME = 1
+    INTERVAL_TYPE_DISTANCE = 2
 
 
 class HeadingSource(proto.Enum):
@@ -675,6 +684,27 @@ class RecordState(proto.Message):
     guestport_is_recording = proto.Field(proto.BOOL, number=3)
 
     guestport_seconds = proto.Field(proto.INT32, number=4)
+
+
+class TimeLapseState(proto.Message):
+    r"""Time-lapse state published if time-lapse mission is running.
+
+    Attributes:
+        interval (float):
+            Interval between photos
+        photos_taken (int):
+            Number of photos taken
+        interval_type (blueye.protocol.types.IntervalType):
+            Interval type for photos, distance or time
+    """
+
+    interval = proto.Field(proto.FLOAT, number=1)
+
+    photos_taken = proto.Field(proto.INT32, number=2)
+
+    interval_type = proto.Field(proto.ENUM, number=3,
+        enum='IntervalType',
+    )
 
 
 class WaterDensity(proto.Message):

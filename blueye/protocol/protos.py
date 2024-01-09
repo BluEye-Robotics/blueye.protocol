@@ -112,6 +112,7 @@ from .types.message_formats import GuestPortNumber
 from .types.message_formats import GuestPortRestartInfo
 from .types.message_formats import HeadingSource
 from .types.message_formats import Imu
+from .types.message_formats import IntervalType
 from .types.message_formats import IperfStatus
 from .types.message_formats import Laser
 from .types.message_formats import LatLongPosition
@@ -146,6 +147,7 @@ from .types.message_formats import ThicknessUnit
 from .types.message_formats import TiltAngle
 from .types.message_formats import TiltStabilizationState
 from .types.message_formats import TiltVelocity
+from .types.message_formats import TimeLapseState
 from .types.message_formats import Vector3
 from .types.message_formats import WaterDensity
 from .types.message_formats import WaterTemperature
@@ -248,6 +250,7 @@ from .types.telemetry import ReferenceTel
 from .types.telemetry import ThicknessGaugeTel
 from .types.telemetry import TiltAngleTel
 from .types.telemetry import TiltStabilizationTel
+from .types.telemetry import TimeLapseStateTel
 from .types.telemetry import VideoStorageSpaceTel
 from .types.telemetry import WaterTemperatureTel
 
@@ -379,6 +382,7 @@ __all__ = (
     'Imu2Tel',
     'Instruction',
     'InstructionType',
+    'IntervalType',
     'IperfStatus',
     'IperfTel',
     'Laser',
@@ -474,6 +478,8 @@ __all__ = (
     'TiltStabilizationTel',
     'TiltVelocity',
     'TiltVelocityCtrl',
+    'TimeLapseState',
+    'TimeLapseStateTel',
     'Type',
     'Vector3',
     'VideoStorageSpaceTel',
