@@ -353,11 +353,11 @@ class TiltServoCommand(proto.Message):
     servo.
 
     Attributes:
-        tilt_angle (blueye.protocol.types.MultibeamServo):
-            Tilt angle for the servo, i.e. multibeam
+        multibeam_servo (blueye.protocol.types.MultibeamServo):
+            Tilt angle for the multibeam servo
     """
 
-    tilt_angle = proto.Field(proto.MESSAGE, number=1,
+    multibeam_servo = proto.Field(proto.MESSAGE, number=1,
         message=message_formats.MultibeamServo,
     )
 
