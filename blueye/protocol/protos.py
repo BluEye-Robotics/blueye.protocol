@@ -169,7 +169,7 @@ from .types.mission_planning import MissionStatus
 from .types.mission_planning import PathSegment
 from .types.mission_planning import ReferenceAutoPilot
 from .types.mission_planning import TiltMainCameraCommand
-from .types.mission_planning import TiltServoCommand
+from .types.mission_planning import TiltMultibeamCommand
 from .types.mission_planning import WaitForCommand
 from .types.mission_planning import Waypoint
 from .types.mission_planning import WaypointCommand
@@ -472,7 +472,7 @@ __all__ = (
     'TiltAngle',
     'TiltAngleTel',
     'TiltMainCameraCommand',
-    'TiltServoCommand',
+    'TiltMultibeamCommand',
     'TiltStabilizationCtrl',
     'TiltStabilizationState',
     'TiltStabilizationTel',

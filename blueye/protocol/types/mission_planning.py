@@ -36,7 +36,7 @@ __protobuf__ = proto.module(
         'WaypointCommand',
         'DepthSetPointCommand',
         'TiltMainCameraCommand',
-        'TiltServoCommand',
+        'TiltMultibeamCommand',
         'WaitForCommand',
         'CameraCommand',
         'GoToSurfaceCommand',
@@ -174,8 +174,8 @@ class Instruction(proto.Message):
             Set control modes
         tilt_main_camera_command (blueye.protocol.types.TiltMainCameraCommand):
             Set camera to angle x
-        tilt_servo_command (blueye.protocol.types.TiltServoCommand):
-            Set tilt angle
+        tilt_multibeam_command (blueye.protocol.types.TiltMultibeamCommand):
+            Set multibeam tilt angle
         wait_for_command (blueye.protocol.types.WaitForCommand):
             Wait for x seconds
         go_to_surface_command (blueye.protocol.types.GoToSurfaceCommand):
@@ -212,8 +212,8 @@ class Instruction(proto.Message):
         message='TiltMainCameraCommand',
     )
 
-    tilt_servo_command = proto.Field(proto.MESSAGE, number=9, oneof='command',
-        message='TiltServoCommand',
+    tilt_multibeam_command = proto.Field(proto.MESSAGE, number=9, oneof='command',
+        message='TiltMultibeamCommand',
     )
 
     wait_for_command = proto.Field(proto.MESSAGE, number=10, oneof='command',
@@ -348,8 +348,8 @@ class TiltMainCameraCommand(proto.Message):
     )
 
 
-class TiltServoCommand(proto.Message):
-    r"""The TiltServoCommand is used to set the tilt angle of the
+class TiltMultibeamCommand(proto.Message):
+    r"""The TiltMultibeamCommand is used to set the tilt angle of the
     servo.
 
     Attributes:
