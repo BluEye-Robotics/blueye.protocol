@@ -155,6 +155,8 @@ from .types.message_formats import WeatherVaningState
 from .types.mission_planning import CameraAction
 from .types.mission_planning import CameraCommand
 from .types.mission_planning import ControlModeCommand
+from .types.mission_planning import ControlModeHorizontal
+from .types.mission_planning import ControlModeVertical
 from .types.mission_planning import DepthSetPoint
 from .types.mission_planning import DepthSetPointCommand
 from .types.mission_planning import DepthZeroReference
@@ -318,7 +320,9 @@ __all__ = (
     'ControlForceTel',
     'ControlMode',
     'ControlModeCommand',
+    'ControlModeHorizontal',
     'ControlModeTel',
+    'ControlModeVertical',
     'ControllerHealth',
     'ControllerHealthTel',
     'CpProbe',

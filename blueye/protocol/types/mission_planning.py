@@ -25,6 +25,8 @@ __protobuf__ = proto.module(
     package='blueye.protocol',
     manifest={
         'DepthZeroReference',
+        'ControlModeVertical',
+        'ControlModeHorizontal',
         'CameraAction',
         'InstructionType',
         'MissionState',
@@ -56,6 +58,22 @@ class DepthZeroReference(proto.Enum):
     DEPTH_ZERO_REFERENCE_UNSPECIFIED = 0
     DEPTH_ZERO_REFERENCE_SURFACE = 1
     DEPTH_ZERO_REFERENCE_SEABED = 2
+
+
+class ControlModeVertical(proto.Enum):
+    r""""""
+    CONTROL_MODE_VERTICAL_UNSPECIFIED = 0
+    CONTROL_MODE_VERTICAL_MANUAL = 1
+    CONTROL_MODE_VERTICAL_AUTO_DEPTH = 2
+    CONTROL_MODE_VERTICAL_AUTO_ALTITUDE = 3
+
+
+class ControlModeHorizontal(proto.Enum):
+    r""""""
+    CONTROL_MODE_HORIZONTAL_UNSPECIFIED = 0
+    CONTROL_MODE_HORIZONTAL_MANUAL = 1
+    CONTROL_MODE_HORIZONTAL_AUTO_HEADING = 2
+    CONTROL_MODE_HORIZONTAL_STATION_KEEPING = 3
 
 
 class CameraAction(proto.Enum):
@@ -293,16 +311,22 @@ class Waypoint(proto.Message):
 
 
 class ControlModeCommand(proto.Message):
-    r"""A ControlModeCommand is used to enable a controlmode during a
-    mission.
+    r"""A ControlModeCommand is used to set vertical and horizontal
+    control mode during a mission.
 
     Attributes:
-        control_mode (blueye.protocol.types.ControlMode):
-            Requested control mode
+        control_mode_vertical (blueye.protocol.types.ControlModeVertical):
+            Desired control mode in heave
+        control_mode_horizontal (blueye.protocol.types.ControlModeHorizontal):
+            Desired control mode in surge and yaw
     """
 
-    control_mode = proto.Field(proto.MESSAGE, number=1,
-        message=message_formats.ControlMode,
+    control_mode_vertical = proto.Field(proto.ENUM, number=5,
+        enum='ControlModeVertical',
+    )
+
+    control_mode_horizontal = proto.Field(proto.ENUM, number=6,
+        enum='ControlModeHorizontal',
     )
 
 
