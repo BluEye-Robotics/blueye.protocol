@@ -576,6 +576,8 @@ class MissionStatus(proto.Message):
             Ids of the completed path segments
         total_number_of_path_segments (int):
             Total number of path segments in the mission
+        id (int):
+            Mission id of the active mission
     """
 
     state = proto.Field(proto.ENUM, number=1,
@@ -595,6 +597,8 @@ class MissionStatus(proto.Message):
     completed_path_segment_ids = proto.RepeatedField(proto.UINT32, number=7)
 
     total_number_of_path_segments = proto.Field(proto.UINT32, number=8)
+
+    id = proto.Field(proto.UINT32, number=9)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))
