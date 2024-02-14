@@ -713,11 +713,12 @@ class TimeLapseState(proto.Message):
 class WaterDensity(proto.Message):
     r"""Water density.
     Used to specify the water density the drone is operating in, to
-    achieve more accurate depth measurements.
+    achieve more accurate depth measurements, f. ex. influenced by
+    salinity.
 
     Attributes:
         value (float):
-            Salinity (kg/l)
+            Water density (g/l)
     """
 
     value = proto.Field(proto.FLOAT, number=1)
