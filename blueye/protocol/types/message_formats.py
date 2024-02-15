@@ -383,6 +383,12 @@ class MotionInput(proto.Message):
         heave (float):
             Descend (positive) and ascend (negative)
             movement (-1..1)
+        roll (float):
+            Roll left (negative) or right (positive).
+            (-1..1)
+        pitch (float):
+            Pitch down (negative) or up (positive).
+            (-1..1)
         yaw (float):
             Left (positive) and right (negative) movement
             (-1..1)
@@ -399,6 +405,10 @@ class MotionInput(proto.Message):
     sway = proto.Field(proto.FLOAT, number=2)
 
     heave = proto.Field(proto.FLOAT, number=3)
+
+    roll = proto.Field(proto.FLOAT, number=7)
+
+    pitch = proto.Field(proto.FLOAT, number=8)
 
     yaw = proto.Field(proto.FLOAT, number=4)
 
