@@ -645,6 +645,9 @@ class ClientInfo(proto.Message):
             Platform software version string
         name (str):
             Name of the client
+        is_observer (bool):
+            If the client should be connected as an
+            observer or not
     """
 
     type_ = proto.Field(proto.STRING, number=1)
@@ -658,6 +661,8 @@ class ClientInfo(proto.Message):
     platform_version = proto.Field(proto.STRING, number=5)
 
     name = proto.Field(proto.STRING, number=6)
+
+    is_observer = proto.Field(proto.BOOL, number=7)
 
 
 class ConnectedClient(proto.Message):
