@@ -37,6 +37,7 @@ from .types.control import AutoDepthCtrl
 from .types.control import AutoHeadingCtrl
 from .types.control import AutoPilotHeaveCtrl
 from .types.control import AutoPilotSurgeYawCtrl
+from .types.control import CalibrateDvlGyroCtrl
 from .types.control import CancelCalibrationCtrl
 from .types.control import ClearMissionCtrl
 from .types.control import DeactivateGuestPortsCtrl
@@ -295,6 +296,7 @@ __all__ = (
     'BinlogRecord',
     'CPUTemperature',
     'CPUTemperatureTel',
+    'CalibrateDvlGyroCtrl',
     'CalibratedImuTel',
     'CalibrationState',
     'CalibrationStateTel',

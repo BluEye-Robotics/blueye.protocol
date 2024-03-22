@@ -49,6 +49,7 @@ __protobuf__ = proto.module(
         'ClearMissionCtrl',
         'ResetPositionCtrl',
         'ResetOdometerCtrl',
+        'CalibrateDvlGyroCtrl',
         'TiltStabilizationCtrl',
         'WaterDensityCtrl',
         'PingerConfigurationCtrl',
@@ -319,6 +320,10 @@ class ResetPositionCtrl(proto.Message):
 
 class ResetOdometerCtrl(proto.Message):
     r"""Issue a command to reset the odometer."""
+
+
+class CalibrateDvlGyroCtrl(proto.Message):
+    r"""Issue a command to calibrate the DVL gyro."""
 
 
 class TiltStabilizationCtrl(proto.Message):
