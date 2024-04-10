@@ -265,6 +265,7 @@ __all__ = (
     'AquaTrollDevice',
     'AquaTrollDeviceStatus',
     'AquaTrollParameter',
+    'AquaTrollParameterBlock',
     'AquaTrollProbeMetadata',
     'AquaTrollProbeMetadataTel',
     'AquaTrollQuality',
@@ -293,7 +294,6 @@ __all__ = (
     'BatteryBQ40Z50',
     'BatteryBQ40Z50Tel',
     'BatteryTel',
-    'BinlogRecord',
     'CPUTemperature',
     'CPUTemperatureTel',
     'CalibrateDvlGyroCtrl',
@@ -499,5 +499,5 @@ __all__ = (
     'WaypointCommand',
     'WeatherVaningCtrl',
     'WeatherVaningState',
-'AquaTrollParameterBlock',
+'BinlogRecord',
 )
