@@ -76,6 +76,9 @@ __protobuf__ = proto.module(
         'Imu1Tel',
         'Imu2Tel',
         'MedusaSpectrometerDataTel',
+        'MultibeamPingTel',
+        'MultibeamConfigTel',
+        'MultibeamDiscoveryTel',
     },
 )
 
@@ -746,6 +749,45 @@ class MedusaSpectrometerDataTel(proto.Message):
 
     data = proto.Field(proto.MESSAGE, number=1,
         message=message_formats.MedusaSpectrometerData,
+    )
+
+
+class MultibeamPingTel(proto.Message):
+    r"""Multibeam sonar ping data
+
+    Attributes:
+        ping (blueye.protocol.types.MultibeamPing):
+            Ping data from a multibeam sonar
+    """
+
+    ping = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.MultibeamPing,
+    )
+
+
+class MultibeamConfigTel(proto.Message):
+    r"""Multibeam sonar config
+
+    Attributes:
+        config (blueye.protocol.types.MultibeamConfig):
+            Config data from a multibeam sonar
+    """
+
+    config = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.MultibeamConfig,
+    )
+
+
+class MultibeamDiscoveryTel(proto.Message):
+    r"""Multibeam sonar status message
+
+    Attributes:
+        discovery (blueye.protocol.types.MultibeamDiscovery):
+            Discovery data from a multibeam sonar
+    """
+
+    discovery = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.MultibeamDiscovery,
     )
 
 

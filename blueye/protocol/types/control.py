@@ -62,6 +62,9 @@ __protobuf__ = proto.module(
         'RestartGuestPortsCtrl',
         'SetAquaTrollParameterUnitCtrl',
         'SetAquaTrollConnectionStatusCtrl',
+        'SetMultibeamConfigCtrl',
+        'ActivateMultibeamCtrl',
+        'DeactivateMultibeamCtrl',
     },
 )
 
@@ -466,6 +469,38 @@ class SetAquaTrollConnectionStatusCtrl(proto.Message):
     connection_status = proto.Field(proto.MESSAGE, number=1,
         message=aquatroll.SetAquaTrollConnectionStatus,
     )
+
+
+class SetMultibeamConfigCtrl(proto.Message):
+    r"""Update multibeam settings
+
+    Attributes:
+        config (blueye.protocol.types.MultibeamConfig):
+            Message with the multibeam ping configuration
+            to set.
+    """
+
+    config = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.MultibeamConfig,
+    )
+
+
+class ActivateMultibeamCtrl(proto.Message):
+    r"""Activate multibeam
+
+    Attributes:
+        config (blueye.protocol.types.MultibeamConfig):
+            Message with the multibeam ping configuration
+            to set on connect
+    """
+
+    config = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.MultibeamConfig,
+    )
+
+
+class DeactivateMultibeamCtrl(proto.Message):
+    r"""Deactivate multibeam"""
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

@@ -32,6 +32,7 @@ from .types.aquatroll import SetAquaTrollConnectionStatus
 from .types.aquatroll import SetAquaTrollParameterUnit
 from .types.aquatroll import Type
 from .types.control import ActivateGuestPortsCtrl
+from .types.control import ActivateMultibeamCtrl
 from .types.control import AutoAltitudeCtrl
 from .types.control import AutoDepthCtrl
 from .types.control import AutoHeadingCtrl
@@ -41,6 +42,7 @@ from .types.control import CalibrateDvlGyroCtrl
 from .types.control import CancelCalibrationCtrl
 from .types.control import ClearMissionCtrl
 from .types.control import DeactivateGuestPortsCtrl
+from .types.control import DeactivateMultibeamCtrl
 from .types.control import FinishCalibrationCtrl
 from .types.control import GenericServoCtrl
 from .types.control import GripperCtrl
@@ -59,6 +61,7 @@ from .types.control import RestartGuestPortsCtrl
 from .types.control import RunMissionCtrl
 from .types.control import SetAquaTrollConnectionStatusCtrl
 from .types.control import SetAquaTrollParameterUnitCtrl
+from .types.control import SetMultibeamConfigCtrl
 from .types.control import StartCalibrationCtrl
 from .types.control import StationKeepingCtrl
 from .types.control import SystemTimeCtrl
@@ -122,6 +125,10 @@ from .types.message_formats import LogoType
 from .types.message_formats import MedusaSpectrometerData
 from .types.message_formats import Model
 from .types.message_formats import MotionInput
+from .types.message_formats import MultibeamConfig
+from .types.message_formats import MultibeamDiscovery
+from .types.message_formats import MultibeamFrequencyMode
+from .types.message_formats import MultibeamPing
 from .types.message_formats import MultibeamServo
 from .types.message_formats import NStreamers
 from .types.message_formats import NavigationSensorID
@@ -242,6 +249,9 @@ from .types.telemetry import LaserTel
 from .types.telemetry import LightsTel
 from .types.telemetry import MedusaSpectrometerDataTel
 from .types.telemetry import MissionStatusTel
+from .types.telemetry import MultibeamConfigTel
+from .types.telemetry import MultibeamDiscoveryTel
+from .types.telemetry import MultibeamPingTel
 from .types.telemetry import MultibeamServoTel
 from .types.telemetry import NStreamersTel
 from .types.telemetry import NotificationTel
@@ -260,6 +270,7 @@ from .types.telemetry import WaterTemperatureTel
 
 __all__ = (
     'ActivateGuestPortsCtrl',
+    'ActivateMultibeamCtrl',
     'Altitude',
     'AltitudeTel',
     'AquaTrollDevice',
@@ -331,6 +342,7 @@ __all__ = (
     'CpProbeTel',
     'DataStorageSpaceTel',
     'DeactivateGuestPortsCtrl',
+    'DeactivateMultibeamCtrl',
     'Depth',
     'DepthSetPoint',
     'DepthSetPointCommand',
@@ -408,6 +420,13 @@ __all__ = (
     'Model',
     'MotionInput',
     'MotionInputCtrl',
+    'MultibeamConfig',
+    'MultibeamConfigTel',
+    'MultibeamDiscovery',
+    'MultibeamDiscoveryTel',
+    'MultibeamFrequencyMode',
+    'MultibeamPing',
+    'MultibeamPingTel',
     'MultibeamServo',
     'MultibeamServoCtrl',
     'MultibeamServoTel',
@@ -456,6 +475,7 @@ __all__ = (
     'SetInstructionUpdateReq',
     'SetMissionRep',
     'SetMissionReq',
+    'SetMultibeamConfigCtrl',
     'SetOverlayParametersRep',
     'SetOverlayParametersReq',
     'SetPubFrequencyRep',

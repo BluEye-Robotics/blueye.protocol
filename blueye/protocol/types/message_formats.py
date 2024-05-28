@@ -45,6 +45,7 @@ __protobuf__ = proto.module(
         'NavigationSensorID',
         'GuestPortDetachStatus',
         'GuestPortError',
+        'MultibeamFrequencyMode',
         'BinlogRecord',
         'MotionInput',
         'Lights',
@@ -110,6 +111,9 @@ __protobuf__ = proto.module(
         'Vector3',
         'Imu',
         'MedusaSpectrometerData',
+        'MultibeamPing',
+        'MultibeamConfig',
+        'MultibeamDiscovery',
     },
 )
 
@@ -338,6 +342,14 @@ class GuestPortError(proto.Enum):
     GUEST_PORT_ERROR_NOT_FLASHED = 3
     GUEST_PORT_ERROR_CRC_ERROR = 4
     GUEST_PORT_ERROR_PARSE_ERROR = 5
+
+
+class MultibeamFrequencyMode(proto.Enum):
+    r""""""
+    MULTIBEAM_FREQUENCY_MODE_UNSPECIFIED = 0
+    MULTIBEAM_FREQUENCY_MODE_AUTO = 1
+    MULTIBEAM_FREQUENCY_MODE_LOW_FREQUENCY = 2
+    MULTIBEAM_FREQUENCY_MODE_HIGH_FREQUENCY = 3
 
 
 class BinlogRecord(proto.Message):
@@ -697,6 +709,10 @@ class RecordState(proto.Message):
             If the guestport camera is recording
         guestport_seconds (int):
             Guestport record time (s)
+        multibeam_is_recording (bool):
+            If the multibeam is recording
+        multibeam_seconds (int):
+            Multibeam record time (s)
     """
 
     main_is_recording = proto.Field(proto.BOOL, number=1)
@@ -706,6 +722,10 @@ class RecordState(proto.Message):
     guestport_is_recording = proto.Field(proto.BOOL, number=3)
 
     guestport_seconds = proto.Field(proto.INT32, number=4)
+
+    multibeam_is_recording = proto.Field(proto.BOOL, number=5)
+
+    multibeam_seconds = proto.Field(proto.INT32, number=6)
 
 
 class TimeLapseState(proto.Message):
@@ -1587,11 +1607,15 @@ class RecordOn(proto.Message):
             Record the main camera
         guestport (bool):
             Record external camera
+        multibeam (bool):
+            Record multibeam
     """
 
     main = proto.Field(proto.BOOL, number=1)
 
     guestport = proto.Field(proto.BOOL, number=2)
+
+    multibeam = proto.Field(proto.BOOL, number=3)
 
 
 class StorageSpace(proto.Message):
@@ -2438,6 +2462,176 @@ class MedusaSpectrometerData(proto.Message):
     countrate = proto.Field(proto.UINT32, number=4)
 
     cosmics = proto.Field(proto.UINT32, number=5)
+
+
+class MultibeamPing(proto.Message):
+    r"""Multibeam sonar ping
+    Contains all the information for rendering a multibeam sonar
+    frame
+
+    Attributes:
+        range_ (float):
+            Maximum range value (m)
+        gain (float):
+            Percentage of gain (0 to 1)
+        frequency (float):
+            Ping acoustic frequency (Hz)
+        speed_of_sound_used (float):
+            Speed of sound used by the sonar for range
+            calculations (m/s)
+        frequency_mode (blueye.protocol.types.MultibeamFrequencyMode):
+            Frequency mode used by the sonar for this
+            frame
+        number_of_ranges (int):
+            Height of the ping image data.
+        number_of_beams (int):
+            Width of the ping image data.
+        step (int):
+            Size in bytes of each row in the ping data
+            image.
+        bearings (Sequence[float]):
+            Bearing angle of each column of the sonar
+            data (in 100th of a degree, multiply by 0.01 to
+            get a value in degrees). The sonar image is not
+            sampled uniformly in the bearing direction.
+        ping_data (bytes):
+            Ping data (row major, 2D, grayscale image)
+        device_id (blueye.protocol.types.GuestPortDeviceID):
+            Device ID of the sonar
+    """
+
+    range_ = proto.Field(proto.DOUBLE, number=1)
+
+    gain = proto.Field(proto.DOUBLE, number=2)
+
+    frequency = proto.Field(proto.DOUBLE, number=3)
+
+    speed_of_sound_used = proto.Field(proto.DOUBLE, number=4)
+
+    frequency_mode = proto.Field(proto.ENUM, number=5,
+        enum='MultibeamFrequencyMode',
+    )
+
+    number_of_ranges = proto.Field(proto.UINT32, number=6)
+
+    number_of_beams = proto.Field(proto.UINT32, number=7)
+
+    step = proto.Field(proto.UINT32, number=8)
+
+    bearings = proto.RepeatedField(proto.FLOAT, number=9)
+
+    ping_data = proto.Field(proto.BYTES, number=10)
+
+    device_id = proto.Field(proto.ENUM, number=11,
+        enum='GuestPortDeviceID',
+    )
+
+
+class MultibeamConfig(proto.Message):
+    r"""Configuration message for sonar devices
+
+    Attributes:
+        frequency_mode (blueye.protocol.types.MultibeamFrequencyMode):
+            Frequency mode used by the sonar if supported
+        ping_rate (blueye.protocol.types.MultibeamConfig.PingRate):
+            Sets the maximum ping rate.
+        gamma_correction (float):
+            Gamma correction (0..1.0)
+        gain_assist (bool):
+            Enable gain assist
+        maximum_number_of_beams (blueye.protocol.types.MultibeamConfig.MaximumNumberOfBeams):
+            Maximum number of beams. Used to throttle
+            bandwidth.
+        range_ (float):
+            The range demand (m)
+        gain (float):
+            The gain demand (0..1)
+        salinity (float):
+            Set water salinity (ppt). Defaults to zero in
+            fresh water
+        device_id (blueye.protocol.types.GuestPortDeviceID):
+            Device ID of the sonar
+    """
+    class PingRate(proto.Enum):
+        r""""""
+        PING_RATE_UNSPECIFIED = 0
+        PING_RATE_NORMAL = 1
+        PING_RATE_HIGH = 2
+        PING_RATE_HIGHEST = 3
+        PING_RATE_LOW = 4
+        PING_RATE_LOWEST = 5
+        PING_RATE_STANDBY = 6
+
+    class MaximumNumberOfBeams(proto.Enum):
+        r""""""
+        MAXIMUM_NUMBER_OF_BEAMS_UNSPECIFIED = 0
+        MAXIMUM_NUMBER_OF_BEAMS_MAX_128 = 1
+        MAXIMUM_NUMBER_OF_BEAMS_MAX_256 = 2
+        MAXIMUM_NUMBER_OF_BEAMS_MAX_512 = 3
+        MAXIMUM_NUMBER_OF_BEAMS_MAX_1024 = 4
+
+    frequency_mode = proto.Field(proto.ENUM, number=1,
+        enum='MultibeamFrequencyMode',
+    )
+
+    ping_rate = proto.Field(proto.ENUM, number=2,
+        enum=PingRate,
+    )
+
+    gamma_correction = proto.Field(proto.DOUBLE, number=3)
+
+    gain_assist = proto.Field(proto.BOOL, number=4)
+
+    maximum_number_of_beams = proto.Field(proto.ENUM, number=5,
+        enum=MaximumNumberOfBeams,
+    )
+
+    range_ = proto.Field(proto.DOUBLE, number=6)
+
+    gain = proto.Field(proto.DOUBLE, number=7)
+
+    salinity = proto.Field(proto.DOUBLE, number=8)
+
+    device_id = proto.Field(proto.ENUM, number=9,
+        enum='GuestPortDeviceID',
+    )
+
+
+class MultibeamDiscovery(proto.Message):
+    r"""Discovery message for sonar devices
+
+    Attributes:
+        enabled (bool):
+            If the sonar driver is enabled
+        ip (str):
+            IP address of the sonar
+        mask (str):
+            Subnet mask of the sonar
+        serial_number (str):
+            Serial number of the sonar
+        fw_version (str):
+            Firmware version of the sonar
+        connected_ip (str):
+            IP address of the connected device
+        device_id (blueye.protocol.types.GuestPortDeviceID):
+            Device ID of the sonar
+    """
+
+    enabled = proto.Field(proto.BOOL, number=1)
+
+    ip = proto.Field(proto.STRING, number=2)
+
+    mask = proto.Field(proto.STRING, number=3)
+
+    serial_number = proto.Field(proto.STRING, number=4)
+
+    fw_version = proto.Field(proto.STRING, number=5)
+
+    connected_ip = proto.Field(proto.STRING, number=6)
+
+    device_id = proto.Field(proto.ENUM, number=7,
+        enum='GuestPortDeviceID',
+    )
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))
