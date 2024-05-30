@@ -187,7 +187,7 @@ class SetThicknessGaugeParametersReq(proto.Message):
 
 
 class SetThicknessGaugeParametersRep(proto.Message):
-    r"""Response after setting thicknes gauge parameters."""
+    r"""Response after setting thickness gauge parameters."""
 
 
 class ConnectClientReq(proto.Message):
@@ -287,7 +287,7 @@ class SetMissionReq(proto.Message):
 
     Attributes:
         mission (blueye.protocol.types.Mission):
-            requested mission isseued to the reference
+            requested mission issued to the reference
             generator
     """
 

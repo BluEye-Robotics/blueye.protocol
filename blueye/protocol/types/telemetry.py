@@ -370,7 +370,7 @@ class DroneTimeTel(proto.Message):
 
 
 class WaterTemperatureTel(proto.Message):
-    r"""Water temerature from the depth sensor.
+    r"""Water temperature from the depth sensor.
 
     Attributes:
         temperature (blueye.protocol.types.WaterTemperature):
@@ -474,7 +474,7 @@ class DataStorageSpaceTel(proto.Message):
 
 
 class CalibrationStateTel(proto.Message):
-    r"""Calibration state used for calibration rotine.
+    r"""Calibration state used for calibration routine.
 
     Attributes:
         calibration_state (blueye.protocol.types.CalibrationState):
@@ -584,7 +584,7 @@ class ThicknessGaugeTel(proto.Message):
 
     Attributes:
         thickness_gauge (blueye.protocol.types.ThicknessGauge):
-            Tickness measurement with a cygnus gauge.
+            Thickness measurement with a cygnus gauge.
     """
 
     thickness_gauge = proto.Field(proto.MESSAGE, number=1,

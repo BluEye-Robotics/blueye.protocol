@@ -212,7 +212,7 @@ class Resolution(proto.Enum):
 
 
 class Framerate(proto.Enum):
-    r"""Available camera framerates."""
+    r"""Available camera frame rates."""
     FRAMERATE_UNSPECIFIED = 0
     FRAMERATE_FPS_30 = 1
     FRAMERATE_FPS_25 = 2
@@ -989,7 +989,7 @@ class BatteryBQ40Z50(proto.Message):
                 Battery error codes
         """
         class BatteryError(proto.Enum):
-            r"""Battery errror code from BQ40Z50 BMS data sheet."""
+            r"""Battery error code from BQ40Z50 BMS data sheet."""
             BATTERY_ERROR_UNSPECIFIED = 0
             BATTERY_ERROR_OK = 1
             BATTERY_ERROR_BUSY = 2
@@ -1118,35 +1118,35 @@ class BatteryBQ40Z50(proto.Message):
 
         Attributes:
             cov_events_count (int):
-                Number of cell overvoltage (COV) events
+                Number of cell over voltage (COV) events
                 (events)
             cov_last_event (int):
                 Last COV event in cycle count cycles (cycles)
             cuv_events_count (int):
-                Number of cell undervoltage (CUV) events
+                Number of cell under voltage (CUV) events
                 (events)
             cuv_last_event (int):
                 Last CUV event in cycle count cycles (cycles)
             ocd1_events_count (int):
-                Number of Overcurrent in Discharge 1 (OCD1)
+                Number of over current in Discharge 1 (OCD1)
                 events (events)
             ocd1_last_event (int):
                 Last OCD1 event in cycle count cycles
                 (cycles)
             ocd2_events_count (int):
-                Number of Overcurrent in Discharge 2 (OCD2)
+                Number of over current in Discharge 2 (OCD2)
                 events (events)
             ocd2_last_event (int):
                 Last OCD2 event in cycle count cycles
                 (cycles)
             occ1_events_count (int):
-                Number of Overcurrent in Charge 1 (OCC1)
+                Number of over current in Charge 1 (OCC1)
                 events (events)
             occ1_last_event (int):
                 Last OCC1 event in cycle count cycles
                 (cycles)
             occ2_events_count (int):
-                Number of Overcurrent in Charge 2 (OCC2)
+                Number of over current in Charge 2 (OCC2)
                 events (events)
             occ2_last_event (int):
                 Last OCC2 event in cycle count cycles
@@ -1170,18 +1170,18 @@ class BatteryBQ40Z50(proto.Message):
                 Last ASCC event in cycle count cycles
                 (cycles)
             otc_events_count (int):
-                Number of Overtemperature in Charge (OTC)
+                Number of over temperature in Charge (OTC)
                 events (events)
             otc_last_event (int):
                 Last OTC event in cycle count cycles (cycles)
             otd_events_count (int):
-                Number of Overtemperature in Discharge (OTD)
+                Number of over temperature in Discharge (OTD)
                 events (events)
             otd_last_event (int):
                 Last OTD event in cycle count cycles (cycles)
             otf_events_count (int):
-                Number of Overtemperature in FET (OTF) events
-                (events)
+                Number of over temperature in FET (OTF)
+                events (events)
             otf_last_event (int):
                 Last OTF event in cycle count cycles (cycles)
         """
@@ -1350,7 +1350,7 @@ class Altitude(proto.Message):
 
 
 class ForwardDistance(proto.Message):
-    r"""Distance to an object infront of the drone
+    r"""Distance to an object in front of the drone
     Typically obtained from a 1D pinger.
 
     Attributes:
@@ -2072,7 +2072,7 @@ class OverlayParameters(proto.Message):
             Feet or None
         temperature_unit (blueye.protocol.types.TemperatureUnit):
             Which unit should be used for temperature:
-            Celcius or Fahrenheit
+            Celsius or Fahrenheit
         thickness_unit (blueye.protocol.types.ThicknessUnit):
             Which unit should be used for thickness:
             Millimeters or Inches

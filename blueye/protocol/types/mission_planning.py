@@ -130,21 +130,21 @@ class Mission(proto.Message):
             List of instructions in the mission
         path_segments (Sequence[blueye.protocol.types.PathSegment]):
             Calculated path segments from the reference
-            generator (optinal)
+            generator (optional)
         total_distance (int):
-            Total distance of the mission (m) (optinal)
+            Total distance of the mission (m) (optional)
         total_duration_time (int):
             Total duration time of the mission (s)
-            (optinal)
+            (optional)
         default_surge_speed (float):
             Default cruise speed of the mission (m/s)
-            (optinal)
+            (optional)
         default_heave_speed (float):
             Default heave speed of the mission (m/s)
-            (optinal)
+            (optional)
         default_circle_of_acceptance (float):
             Default circle of acceptance for waypoints
-            (m) (optinal)
+            (m) (optional)
     """
 
     id = proto.Field(proto.UINT32, number=1)
@@ -171,14 +171,14 @@ class Mission(proto.Message):
 
 
 class Instruction(proto.Message):
-    r"""A mission consitst of one or multiple instructions. One
+    r"""A mission consists of one or multiple instructions. One
     instruction can be of different types.
 
     Attributes:
         id (int):
 
         group_id (int):
-            Group id used for polygoons
+            Group id used for polygons
         auto_continue (bool):
             False will pause the mission after this
             instruction
@@ -252,8 +252,8 @@ class Instruction(proto.Message):
 
 
 class DepthSetPoint(proto.Message):
-    r"""Depth set point is used to describe a depth setpoint relative
-    to the surface or the seabed.
+    r"""Depth set point is used to describe a depth set-point
+    relative to the surface or the seabed.
 
     Attributes:
         depth (float):
@@ -262,7 +262,7 @@ class DepthSetPoint(proto.Message):
             Desired speed to desired depth set point
             (m/s)
         depth_zero_reference (blueye.protocol.types.DepthZeroReference):
-            Used to destinguish desired altitude or depth
+            Used to distinguish desired altitude or depth
     """
 
     depth = proto.Field(proto.FLOAT, number=1)
@@ -285,7 +285,7 @@ class Waypoint(proto.Message):
         global_position (blueye.protocol.types.LatLongPosition):
             Position if the waypoint (decimal degrees)
         circle_of_acceptance (float):
-            Radius of the accepance circle around the
+            Radius of the acceptance circle around the
             waypoint (m)
         speed_to_target (float):
             Desired speed over ground to waypoint (m/s)
@@ -387,7 +387,7 @@ class TiltMultibeamCommand(proto.Message):
 
 
 class WaitForCommand(proto.Message):
-    r"""WaitForCommand is used to wait duringing a mission.
+    r"""WaitForCommand is used to wait during a mission.
 
     Attributes:
         wait_for_seconds (float):
@@ -465,14 +465,14 @@ class PathSegment(proto.Message):
         horizontal_length (float):
             Horizontal length of the path segment (m)
         vertical_length (float):
-            Vertical legth of the path segment (m)
+            Vertical length of the path segment (m)
         from_wp_id (int):
             Id of the starting waypoint
         to_wp_id (int):
             Id of the ending waypoint
         duration_time (float):
-            Estmated time it takes to complete given
-            legth and desired speed (s)
+            Estimated time it takes to complete given
+            length and desired speed (s)
     """
 
     id = proto.Field(proto.UINT32, number=1)
