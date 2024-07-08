@@ -43,6 +43,7 @@ from .types.control import CancelCalibrationCtrl
 from .types.control import ClearMissionCtrl
 from .types.control import DeactivateGuestPortsCtrl
 from .types.control import DeactivateMultibeamCtrl
+from .types.control import EndDiveCtrl
 from .types.control import FinishCalibrationCtrl
 from .types.control import GenericServoCtrl
 from .types.control import GripperCtrl
@@ -63,6 +64,7 @@ from .types.control import SetAquaTrollConnectionStatusCtrl
 from .types.control import SetAquaTrollParameterUnitCtrl
 from .types.control import SetMultibeamConfigCtrl
 from .types.control import StartCalibrationCtrl
+from .types.control import StartDiveCtrl
 from .types.control import StationKeepingCtrl
 from .types.control import SystemTimeCtrl
 from .types.control import TakePictureCtrl
@@ -356,6 +358,7 @@ __all__ = (
     'DroneInfo',
     'DroneInfoTel',
     'DroneTimeTel',
+    'EndDiveCtrl',
     'ErrorFlags',
     'ErrorFlagsTel',
     'FinishCalibrationCtrl',
@@ -483,6 +486,7 @@ __all__ = (
     'SetThicknessGaugeParametersRep',
     'SetThicknessGaugeParametersReq',
     'StartCalibrationCtrl',
+    'StartDiveCtrl',
     'StationKeepingCtrl',
     'StationKeepingState',
     'StorageSpace',

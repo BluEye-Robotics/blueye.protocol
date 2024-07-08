@@ -65,6 +65,8 @@ __protobuf__ = proto.module(
         'SetMultibeamConfigCtrl',
         'ActivateMultibeamCtrl',
         'DeactivateMultibeamCtrl',
+        'StartDiveCtrl',
+        'EndDiveCtrl',
     },
 )
 
@@ -501,6 +503,24 @@ class ActivateMultibeamCtrl(proto.Message):
 
 class DeactivateMultibeamCtrl(proto.Message):
     r"""Deactivate multibeam"""
+
+
+class StartDiveCtrl(proto.Message):
+    r"""Message sent when the user hits the start dive button in the
+    app.
+    The message does not do anything, but is included in the log
+    files so we can see at which point the user entered the dive
+    view.
+    """
+
+
+class EndDiveCtrl(proto.Message):
+    r"""Message sent when the user hits the end dive button in the
+    app.
+    The message does not do anything, but is included in the log
+    files so we can see at which point the user exited the dive
+    view.
+    """
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

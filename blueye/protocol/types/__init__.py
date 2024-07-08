@@ -277,6 +277,8 @@ from .control import (
     SetMultibeamConfigCtrl,
     ActivateMultibeamCtrl,
     DeactivateMultibeamCtrl,
+    StartDiveCtrl,
+    EndDiveCtrl,
 )
 
 __all__ = (
@@ -531,4 +533,6 @@ __all__ = (
     'SetMultibeamConfigCtrl',
     'ActivateMultibeamCtrl',
     'DeactivateMultibeamCtrl',
+    'StartDiveCtrl',
+    'EndDiveCtrl',
 )
