@@ -114,6 +114,7 @@ __protobuf__ = proto.module(
         'MultibeamPing',
         'MultibeamConfig',
         'MultibeamDiscovery',
+        'PersistentStorageSettings',
     },
 )
 
@@ -2633,6 +2634,62 @@ class MultibeamDiscovery(proto.Message):
     device_id = proto.Field(proto.ENUM, number=7,
         enum='GuestPortDeviceID',
     )
+
+
+class PersistentStorageSettings(proto.Message):
+    r"""PersistentStorageSettings defines settings for writing
+    various types of data in the persistent storage on the drone
+    Some of the data is written during factory calibration (acc
+    calibration), while other data is written during user
+    calubration or during normal operation.
+
+    Attributes:
+        videos (bool):
+            Indicates if videos should be written to the
+            video partition.
+        images (bool):
+            Indicates if images should be written to the
+            video partition.
+        binlog (bool):
+            Indicates if binary logs with telemetry data
+            should be written to the data partition.
+        multibeam (bool):
+            Indicates if multibeam data should be written
+            to the video partition.
+        webserver_log (bool):
+            Indicates if webserver logs should be written
+            to the data partition.
+        control_system_log (bool):
+            Indicates if control system logs should be
+            written to the data partition.
+        gyro_calibration (bool):
+            Indicates if gyro calibration data should be
+            written to the data partition.
+        compass_calibration (bool):
+            Indicates if compass calibration data should
+            be written to the data partition.
+        acc_calibration (bool):
+            Indicates if accelerometer calibration data
+            should be written to the data partition.
+    """
+
+    videos = proto.Field(proto.BOOL, number=1)
+
+    images = proto.Field(proto.BOOL, number=2)
+
+    binlog = proto.Field(proto.BOOL, number=3)
+
+    multibeam = proto.Field(proto.BOOL, number=4)
+
+    webserver_log = proto.Field(proto.BOOL, number=5)
+
+    control_system_log = proto.Field(proto.BOOL, number=6)
+
+    gyro_calibration = proto.Field(proto.BOOL, number=7)
+
+    compass_calibration = proto.Field(proto.BOOL, number=8)
+
+    acc_calibration = proto.Field(proto.BOOL, number=9)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

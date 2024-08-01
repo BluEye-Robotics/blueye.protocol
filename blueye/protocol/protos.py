@@ -139,6 +139,7 @@ from .types.message_formats import Notification
 from .types.message_formats import NotificationLevel
 from .types.message_formats import NotificationType
 from .types.message_formats import OverlayParameters
+from .types.message_formats import PersistentStorageSettings
 from .types.message_formats import PingerConfiguration
 from .types.message_formats import PositionEstimate
 from .types.message_formats import PressureSensorType
@@ -197,6 +198,8 @@ from .types.req_rep import GetMissionRep
 from .types.req_rep import GetMissionReq
 from .types.req_rep import GetOverlayParametersRep
 from .types.req_rep import GetOverlayParametersReq
+from .types.req_rep import GetPersistentStorageSettingsRep
+from .types.req_rep import GetPersistentStorageSettingsReq
 from .types.req_rep import GetTelemetryRep
 from .types.req_rep import GetTelemetryReq
 from .types.req_rep import PingRep
@@ -209,6 +212,8 @@ from .types.req_rep import SetMissionRep
 from .types.req_rep import SetMissionReq
 from .types.req_rep import SetOverlayParametersRep
 from .types.req_rep import SetOverlayParametersReq
+from .types.req_rep import SetPersistentStorageSettingsRep
+from .types.req_rep import SetPersistentStorageSettingsReq
 from .types.req_rep import SetPubFrequencyRep
 from .types.req_rep import SetPubFrequencyReq
 from .types.req_rep import SetThicknessGaugeParametersRep
@@ -377,6 +382,8 @@ __all__ = (
     'GetMissionReq',
     'GetOverlayParametersRep',
     'GetOverlayParametersReq',
+    'GetPersistentStorageSettingsRep',
+    'GetPersistentStorageSettingsReq',
     'GetTelemetryRep',
     'GetTelemetryReq',
     'GoToHomeCommand',
@@ -444,6 +451,7 @@ __all__ = (
     'OverlayParameters',
     'PathSegment',
     'PauseMissionCtrl',
+    'PersistentStorageSettings',
     'PilotGPSPositionCtrl',
     'PilotGPSPositionTel',
     'PingRep',
@@ -481,6 +489,8 @@ __all__ = (
     'SetMultibeamConfigCtrl',
     'SetOverlayParametersRep',
     'SetOverlayParametersReq',
+    'SetPersistentStorageSettingsRep',
+    'SetPersistentStorageSettingsReq',
     'SetPubFrequencyRep',
     'SetPubFrequencyReq',
     'SetThicknessGaugeParametersRep',

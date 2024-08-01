@@ -56,6 +56,10 @@ __protobuf__ = proto.module(
         'SetPubFrequencyRep',
         'GetTelemetryReq',
         'GetTelemetryRep',
+        'SetPersistentStorageSettingsReq',
+        'SetPersistentStorageSettingsRep',
+        'GetPersistentStorageSettingsReq',
+        'GetPersistentStorageSettingsRep',
     },
 )
 
@@ -389,6 +393,41 @@ class GetTelemetryRep(proto.Message):
 
     payload = proto.Field(proto.MESSAGE, number=1,
         message=gp_any.Any,
+    )
+
+
+class SetPersistentStorageSettingsReq(proto.Message):
+    r"""Request to set persistent storage settings.
+
+    Attributes:
+        persistent_storage_settings (blueye.protocol.types.PersistentStorageSettings):
+            The persistent storage settings to apply.
+    """
+
+    persistent_storage_settings = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.PersistentStorageSettings,
+    )
+
+
+class SetPersistentStorageSettingsRep(proto.Message):
+    r"""Response after setting persistent storage settings."""
+
+
+class GetPersistentStorageSettingsReq(proto.Message):
+    r"""Request to get currently set persistent storage settings."""
+
+
+class GetPersistentStorageSettingsRep(proto.Message):
+    r"""Response with the currently set persistent storage settings.
+
+    Attributes:
+        persistent_storage_settings (blueye.protocol.types.PersistentStorageSettings):
+            The currently set persistent storage
+            settings.
+    """
+
+    persistent_storage_settings = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.PersistentStorageSettings,
     )
 
 
