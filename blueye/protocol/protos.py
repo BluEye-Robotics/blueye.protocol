@@ -129,9 +129,11 @@ from .types.message_formats import Model
 from .types.message_formats import MotionInput
 from .types.message_formats import MultibeamConfig
 from .types.message_formats import MultibeamDiscovery
+from .types.message_formats import MultibeamFrameOffset
 from .types.message_formats import MultibeamFrequencyMode
 from .types.message_formats import MultibeamPing
 from .types.message_formats import MultibeamServo
+from .types.message_formats import MutltibeamRecordingIndex
 from .types.message_formats import NStreamers
 from .types.message_formats import NavigationSensorID
 from .types.message_formats import NavigationSensorStatus
@@ -283,6 +285,7 @@ __all__ = (
     'AquaTrollDevice',
     'AquaTrollDeviceStatus',
     'AquaTrollParameter',
+    'AquaTrollParameterBlock',
     'AquaTrollProbeMetadata',
     'AquaTrollProbeMetadataTel',
     'AquaTrollQuality',
@@ -311,7 +314,6 @@ __all__ = (
     'BatteryBQ40Z50',
     'BatteryBQ40Z50Tel',
     'BatteryTel',
-    'BinlogRecord',
     'CPUTemperature',
     'CPUTemperatureTel',
     'CalibrateDvlGyroCtrl',
@@ -434,12 +436,14 @@ __all__ = (
     'MultibeamConfigTel',
     'MultibeamDiscovery',
     'MultibeamDiscoveryTel',
+    'MultibeamFrameOffset',
     'MultibeamFrequencyMode',
     'MultibeamPing',
     'MultibeamPingTel',
     'MultibeamServo',
     'MultibeamServoCtrl',
     'MultibeamServoTel',
+    'MutltibeamRecordingIndex',
     'NStreamers',
     'NStreamersTel',
     'NavigationSensorID',
@@ -533,5 +537,5 @@ __all__ = (
     'WaypointCommand',
     'WeatherVaningCtrl',
     'WeatherVaningState',
-'AquaTrollParameterBlock',
+'BinlogRecord',
 )

@@ -19,6 +19,7 @@ import proto  # type: ignore
 
 
 from google.protobuf import any_pb2 as gp_any  # type: ignore
+from google.protobuf import duration_pb2 as gp_duration  # type: ignore
 from google.protobuf import timestamp_pb2 as gp_timestamp  # type: ignore
 
 
@@ -114,6 +115,8 @@ __protobuf__ = proto.module(
         'MultibeamPing',
         'MultibeamConfig',
         'MultibeamDiscovery',
+        'MultibeamFrameOffset',
+        'MutltibeamRecordingIndex',
         'PersistentStorageSettings',
     },
 )
@@ -307,6 +310,7 @@ class GuestPortDeviceID(proto.Enum):
     GUEST_PORT_DEVICE_ID_CERULEAN_OMNISCAN_450FS = 36
     GUEST_PORT_DEVICE_ID_CERULEAN_OMNISCAN_450SS = 37
     GUEST_PORT_DEVICE_ID_BLUEYE_GNSS_DEVICE = 38
+    GUEST_PORT_DEVICE_ID_WATERLINKED_DVL_A50_600 = 39
 
 
 class GuestPortNumber(proto.Enum):
@@ -2500,6 +2504,8 @@ class MultibeamPing(proto.Message):
             Ping data (row major, 2D, grayscale image)
         device_id (blueye.protocol.types.GuestPortDeviceID):
             Device ID of the sonar
+        frame_generation_timestamp (google.protobuf.timestamp_pb2.Timestamp):
+            Timestamp when the frame was generated
     """
 
     range_ = proto.Field(proto.DOUBLE, number=1)
@@ -2526,6 +2532,10 @@ class MultibeamPing(proto.Message):
 
     device_id = proto.Field(proto.ENUM, number=11,
         enum='GuestPortDeviceID',
+    )
+
+    frame_generation_timestamp = proto.Field(proto.MESSAGE, number=12,
+        message=gp_timestamp.Timestamp,
     )
 
 
@@ -2633,6 +2643,36 @@ class MultibeamDiscovery(proto.Message):
 
     device_id = proto.Field(proto.ENUM, number=7,
         enum='GuestPortDeviceID',
+    )
+
+
+class MultibeamFrameOffset(proto.Message):
+    r"""Frame offset for multibeam recordings index cache
+
+    Attributes:
+        duration (google.protobuf.duration_pb2.Duration):
+            Duration from the start of the recording
+        offset (int):
+            Offset in bytes from the start of the file
+    """
+
+    duration = proto.Field(proto.MESSAGE, number=1,
+        message=gp_duration.Duration,
+    )
+
+    offset = proto.Field(proto.INT64, number=2)
+
+
+class MutltibeamRecordingIndex(proto.Message):
+    r"""Multibeam recording index cache
+
+    Attributes:
+        frame_offsets (Sequence[blueye.protocol.types.MultibeamFrameOffset]):
+            List of frame offsets
+    """
+
+    frame_offsets = proto.RepeatedField(proto.MESSAGE, number=1,
+        message='MultibeamFrameOffset',
     )
 
 
