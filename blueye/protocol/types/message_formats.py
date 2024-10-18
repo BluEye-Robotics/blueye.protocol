@@ -711,27 +711,39 @@ class RecordState(proto.Message):
             If the main camera is recording
         main_seconds (int):
             Main record time (s)
+        main_fps (float):
+            Main record fps
         guestport_is_recording (bool):
             If the guestport camera is recording
         guestport_seconds (int):
             Guestport record time (s)
+        guestport_fps (float):
+            Guestport record fps
         multibeam_is_recording (bool):
             If the multibeam is recording
         multibeam_seconds (int):
             Multibeam record time (s)
+        multibeam_fps (float):
+            Multibeam record fps
     """
 
     main_is_recording = proto.Field(proto.BOOL, number=1)
 
     main_seconds = proto.Field(proto.INT32, number=2)
 
+    main_fps = proto.Field(proto.FLOAT, number=7)
+
     guestport_is_recording = proto.Field(proto.BOOL, number=3)
 
     guestport_seconds = proto.Field(proto.INT32, number=4)
 
+    guestport_fps = proto.Field(proto.FLOAT, number=8)
+
     multibeam_is_recording = proto.Field(proto.BOOL, number=5)
 
     multibeam_seconds = proto.Field(proto.INT32, number=6)
+
+    multibeam_fps = proto.Field(proto.FLOAT, number=9)
 
 
 class TimeLapseState(proto.Message):
