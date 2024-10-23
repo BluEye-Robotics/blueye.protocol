@@ -178,6 +178,8 @@ class NotificationType(proto.Enum):
     NOTIFICATION_TYPE_SET_TILT_MAIN_CAMERA = 28
     NOTIFICATION_TYPE_SET_TILT_MULTIBEAM = 29
     NOTIFICATION_TYPE_INSTRUCTION_SKIPPED = 30
+    NOTIFICATION_TYPE_DVL_HIGH_TEMPERATURE_DETECTED = 31
+    NOTIFICATION_TYPE_DVL_THERMAL_PROTECTION_MODE_DETECTED = 32
 
 
 class NotificationLevel(proto.Enum):
@@ -1916,6 +1918,11 @@ class ErrorFlags(proto.Message):
             Max battery current exceeded on GP3
         gp_20v_current (bool):
             Max 20V current exceeded on GP
+        dvl_thermal_protection_mode (bool):
+            DVL is in thermal protection mode
+        dvl_no_power (bool):
+            GP protection has been triggered at boot or
+            faulty DVL
     """
 
     pmu_comm_ack = proto.Field(proto.BOOL, number=1)
@@ -2001,6 +2008,10 @@ class ErrorFlags(proto.Message):
     gp3_bat_current = proto.Field(proto.BOOL, number=41)
 
     gp_20v_current = proto.Field(proto.BOOL, number=42)
+
+    dvl_thermal_protection_mode = proto.Field(proto.BOOL, number=43)
+
+    dvl_no_power = proto.Field(proto.BOOL, number=44)
 
 
 class CameraParameters(proto.Message):
