@@ -79,6 +79,7 @@ __protobuf__ = proto.module(
         'MultibeamPingTel',
         'MultibeamConfigTel',
         'MultibeamDiscoveryTel',
+        'CPUInfoTel',
     },
 )
 
@@ -788,6 +789,19 @@ class MultibeamDiscoveryTel(proto.Message):
 
     discovery = proto.Field(proto.MESSAGE, number=1,
         message=message_formats.MultibeamDiscovery,
+    )
+
+
+class CPUInfoTel(proto.Message):
+    r"""
+
+    Attributes:
+        cpu_info (blueye.protocol.types.CPUInfo):
+
+    """
+
+    cpu_info = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.CPUInfo,
     )
 
 

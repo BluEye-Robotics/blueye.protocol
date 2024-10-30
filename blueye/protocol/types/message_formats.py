@@ -118,6 +118,7 @@ __protobuf__ = proto.module(
         'MultibeamFrameOffset',
         'MutltibeamRecordingIndex',
         'PersistentStorageSettings',
+        'CPUInfo',
     },
 )
 
@@ -2753,6 +2754,23 @@ class PersistentStorageSettings(proto.Message):
     compass_calibration = proto.Field(proto.BOOL, number=8)
 
     acc_calibration = proto.Field(proto.BOOL, number=9)
+
+
+class CPUInfo(proto.Message):
+    r"""CPU information
+    Contains information about the CPU load and memory usage of the
+    drone.
+
+    Attributes:
+        cpu_load (float):
+            CPU load in percent (0..100)
+        memory_bus_load (float):
+            Memory bus load in percent (0..100)
+    """
+
+    cpu_load = proto.Field(proto.FLOAT, number=1)
+
+    memory_bus_load = proto.Field(proto.FLOAT, number=2)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

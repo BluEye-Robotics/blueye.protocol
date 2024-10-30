@@ -87,6 +87,7 @@ from .message_formats import (
     MultibeamFrameOffset,
     MutltibeamRecordingIndex,
     PersistentStorageSettings,
+    CPUInfo,
     IntervalType,
     HeadingSource,
     ResetCoordinateSource,
@@ -250,6 +251,7 @@ from .telemetry import (
     MultibeamPingTel,
     MultibeamConfigTel,
     MultibeamDiscoveryTel,
+    CPUInfoTel,
 )
 from .req_rep import (
     SetOverlayParametersReq,
@@ -360,6 +362,7 @@ __all__ = (
     'MultibeamFrameOffset',
     'MutltibeamRecordingIndex',
     'PersistentStorageSettings',
+    'CPUInfo',
     'IntervalType',
     'HeadingSource',
     'ResetCoordinateSource',
@@ -515,6 +518,7 @@ __all__ = (
     'MultibeamPingTel',
     'MultibeamConfigTel',
     'MultibeamDiscoveryTel',
+    'CPUInfoTel',
     'SetOverlayParametersReq',
     'SetOverlayParametersRep',
     'GetOverlayParametersReq',

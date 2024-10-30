@@ -83,6 +83,7 @@ from .types.message_formats import AutoPilotSurgeYawState
 from .types.message_formats import Battery
 from .types.message_formats import BatteryBQ40Z50
 from .types.message_formats import BinlogRecord
+from .types.message_formats import CPUInfo
 from .types.message_formats import CPUTemperature
 from .types.message_formats import CalibrationState
 from .types.message_formats import Camera
@@ -229,6 +230,7 @@ from .types.telemetry import AquaTrollSensorParametersTel
 from .types.telemetry import AttitudeTel
 from .types.telemetry import BatteryBQ40Z50Tel
 from .types.telemetry import BatteryTel
+from .types.telemetry import CPUInfoTel
 from .types.telemetry import CPUTemperatureTel
 from .types.telemetry import CalibratedImuTel
 from .types.telemetry import CalibrationStateTel
@@ -314,6 +316,8 @@ __all__ = (
     'BatteryBQ40Z50',
     'BatteryBQ40Z50Tel',
     'BatteryTel',
+    'CPUInfo',
+    'CPUInfoTel',
     'CPUTemperature',
     'CPUTemperatureTel',
     'CalibrateDvlGyroCtrl',
