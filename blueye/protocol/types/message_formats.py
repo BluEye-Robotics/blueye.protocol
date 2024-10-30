@@ -2763,9 +2763,9 @@ class CPUInfo(proto.Message):
 
     Attributes:
         cpu_load (float):
-            CPU load in percent (0..100)
+            CPU load (0..1)
         memory_bus_load (float):
-            Memory bus load in percent (0..100)
+            Memory bus load (0..1)
     """
 
     cpu_load = proto.Field(proto.FLOAT, number=1)
