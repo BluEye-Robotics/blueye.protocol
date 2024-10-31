@@ -1924,6 +1924,10 @@ class ErrorFlags(proto.Message):
         dvl_no_power (bool):
             GP protection has been triggered at boot or
             faulty DVL
+        usb_disconnect (bool):
+            USB disconnect
+        video_urb_error (bool):
+            Video URB error
     """
 
     pmu_comm_ack = proto.Field(proto.BOOL, number=1)
@@ -2013,6 +2017,10 @@ class ErrorFlags(proto.Message):
     dvl_thermal_protection_mode = proto.Field(proto.BOOL, number=43)
 
     dvl_no_power = proto.Field(proto.BOOL, number=44)
+
+    usb_disconnect = proto.Field(proto.BOOL, number=45)
+
+    video_urb_error = proto.Field(proto.BOOL, number=46)
 
 
 class CameraParameters(proto.Message):
