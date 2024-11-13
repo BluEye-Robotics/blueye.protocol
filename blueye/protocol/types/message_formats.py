@@ -2595,6 +2595,9 @@ class MultibeamConfig(proto.Message):
             fresh water
         device_id (blueye.protocol.types.GuestPortDeviceID):
             Device ID of the sonar
+        bandwidth_limit (int):
+            Network bandwidth limit (Mbit/s). Applies
+            only to Oculus devices.
     """
     class PingRate(proto.Enum):
         r""""""
@@ -2639,6 +2642,8 @@ class MultibeamConfig(proto.Message):
     device_id = proto.Field(proto.ENUM, number=9,
         enum='GuestPortDeviceID',
     )
+
+    bandwidth_limit = proto.Field(proto.UINT32, number=10)
 
 
 class MultibeamDiscovery(proto.Message):
