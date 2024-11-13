@@ -2774,11 +2774,19 @@ class CPUInfo(proto.Message):
             CPU load (0..1)
         memory_bus_load (float):
             Memory bus load (0..1)
+        main_queue_load (float):
+            Main queue load (0..1)
+        guestport_queue_load (float):
+            Guestport queue load (0..1)
     """
 
     cpu_load = proto.Field(proto.FLOAT, number=1)
 
     memory_bus_load = proto.Field(proto.FLOAT, number=2)
+
+    main_queue_load = proto.Field(proto.FLOAT, number=3)
+
+    guestport_queue_load = proto.Field(proto.FLOAT, number=4)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

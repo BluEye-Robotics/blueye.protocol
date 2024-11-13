@@ -793,7 +793,7 @@ class MultibeamDiscoveryTel(proto.Message):
 
 
 class CPUInfoTel(proto.Message):
-    r"""
+    r"""Information about cpu and memory usage
 
     Attributes:
         cpu_info (blueye.protocol.types.CPUInfo):
