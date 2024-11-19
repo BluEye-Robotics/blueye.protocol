@@ -332,6 +332,8 @@ class NavigationSensorID(proto.Enum):
     NAVIGATION_SENSOR_ID_WATERLINKED_DVL_A50 = 1
     NAVIGATION_SENSOR_ID_WATERLINKED_UGPS_G2 = 2
     NAVIGATION_SENSOR_ID_NMEA = 3
+    NAVIGATION_SENSOR_ID_BLUEYE_GNSS = 4
+    NAVIGATION_SENSOR_ID_NORTEK_DVL_NUCLEUS = 5
 
 
 class GuestPortDetachStatus(proto.Enum):
@@ -1396,8 +1398,7 @@ class PositionEstimate(proto.Message):
         easting (float):
             Position from reset point (m)
         heading (float):
-            Gyro based heading estimate (continous
-            radians)
+            Continuous heading estimate (rad)
         surge_rate (float):
             Velocity in surge (m/s)
         sway_rate (float):
@@ -1415,6 +1416,12 @@ class PositionEstimate(proto.Message):
             decimal degrees
         navigation_sensors (Sequence[blueye.protocol.types.NavigationSensorStatus]):
             List of available sensors with status
+        speed_over_ground (float):
+            Speed over ground (m/s)
+        course_over_ground (float):
+            Course over ground (°)
+        time_since_reset_sec (int):
+            Time since reset (s)
     """
 
     northing = proto.Field(proto.FLOAT, number=1)
@@ -1442,6 +1449,12 @@ class PositionEstimate(proto.Message):
     navigation_sensors = proto.RepeatedField(proto.MESSAGE, number=11,
         message='NavigationSensorStatus',
     )
+
+    speed_over_ground = proto.Field(proto.FLOAT, number=12)
+
+    course_over_ground = proto.Field(proto.FLOAT, number=13)
+
+    time_since_reset_sec = proto.Field(proto.INT32, number=14)
 
 
 class ResetPositionSettings(proto.Message):
@@ -2199,6 +2212,18 @@ class NavigationSensorStatus(proto.Message):
             Sensor id
         is_valid (bool):
             Sensor validity
+        northing (float):
+            Position from reset point (m)
+        easting (float):
+            Position from reset point (m)
+        heading (float):
+            Heading from sensor (-pi..pi)
+        fom (float):
+            Figure of merit
+        std (float):
+            Standard deviation
+        global_position (blueye.protocol.types.LatLongPosition):
+            Global position from sensor
     """
 
     sensor_id = proto.Field(proto.ENUM, number=1,
@@ -2206,6 +2231,20 @@ class NavigationSensorStatus(proto.Message):
     )
 
     is_valid = proto.Field(proto.BOOL, number=2)
+
+    northing = proto.Field(proto.FLOAT, number=3)
+
+    easting = proto.Field(proto.FLOAT, number=4)
+
+    heading = proto.Field(proto.FLOAT, number=5)
+
+    fom = proto.Field(proto.FLOAT, number=6)
+
+    std = proto.Field(proto.FLOAT, number=7)
+
+    global_position = proto.Field(proto.MESSAGE, number=8,
+        message='LatLongPosition',
+    )
 
 
 class GuestPortDevice(proto.Message):
