@@ -101,6 +101,8 @@ from .types.message_formats import Depth
 from .types.message_formats import DepthUnit
 from .types.message_formats import DiveTime
 from .types.message_formats import DroneInfo
+from .types.message_formats import DvlTransducer
+from .types.message_formats import DvlVelocity
 from .types.message_formats import ErrorFlags
 from .types.message_formats import FontSize
 from .types.message_formats import ForwardDistance
@@ -248,6 +250,7 @@ from .types.telemetry import DepthTel
 from .types.telemetry import DiveTimeTel
 from .types.telemetry import DroneInfoTel
 from .types.telemetry import DroneTimeTel
+from .types.telemetry import DvlVelocityTel
 from .types.telemetry import ErrorFlagsTel
 from .types.telemetry import ForwardDistanceTel
 from .types.telemetry import GenericServoTel
@@ -369,6 +372,9 @@ __all__ = (
     'DroneInfo',
     'DroneInfoTel',
     'DroneTimeTel',
+    'DvlTransducer',
+    'DvlVelocity',
+    'DvlVelocityTel',
     'EndDiveCtrl',
     'ErrorFlags',
     'ErrorFlagsTel',

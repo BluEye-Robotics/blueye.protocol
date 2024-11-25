@@ -81,6 +81,8 @@ __protobuf__ = proto.module(
         'ForwardDistance',
         'PositionEstimate',
         'ResetPositionSettings',
+        'DvlTransducer',
+        'DvlVelocity',
         'Depth',
         'Reference',
         'Notification',
@@ -1486,6 +1488,83 @@ class ResetPositionSettings(proto.Message):
 
     reset_coordinate = proto.Field(proto.MESSAGE, number=4,
         message='LatLongPosition',
+    )
+
+
+class DvlTransducer(proto.Message):
+    r"""DVL raw transducer data.
+
+    Attributes:
+        id (int):
+            Transducer ID, 3 beams for Nucleus DVL, 4
+            beams for DVL A50
+        velocity (float):
+            Velocity (m/s)
+        distance (float):
+            Distance (m)
+        beam_valid (bool):
+            Beam validity
+        rssi (float):
+            Received signal strength indicator: strength
+            of the signal received by this transducer (dBm)
+        nsd (float):
+            Noise spectral density: strength of the
+            background noise received by this transducer
+            (dBm)
+    """
+
+    id = proto.Field(proto.INT32, number=1)
+
+    velocity = proto.Field(proto.FLOAT, number=2)
+
+    distance = proto.Field(proto.FLOAT, number=3)
+
+    beam_valid = proto.Field(proto.BOOL, number=4)
+
+    rssi = proto.Field(proto.FLOAT, number=5)
+
+    nsd = proto.Field(proto.FLOAT, number=6)
+
+
+class DvlVelocity(proto.Message):
+    r"""DVL raw velocity data.
+
+    Attributes:
+        sensor_id (blueye.protocol.types.NavigationSensorID):
+            Sensor id
+        status (int):
+            Vendor-specific status of the DVL
+        delta_time (float):
+            Time since last velocity measurement (ms)
+        fom (float):
+            Figure of merit, a measure of the accuracy of
+            the velocities (m/s)
+        velocity (blueye.protocol.types.Vector3):
+            Velocity, x forward, y left, z down (m/s)
+        is_water_tracking (bool):
+            Water tracking status
+        transducers (Sequence[blueye.protocol.types.DvlTransducer]):
+            List of transducers
+    """
+
+    sensor_id = proto.Field(proto.ENUM, number=1,
+        enum='NavigationSensorID',
+    )
+
+    status = proto.Field(proto.INT32, number=2)
+
+    delta_time = proto.Field(proto.FLOAT, number=3)
+
+    fom = proto.Field(proto.FLOAT, number=4)
+
+    velocity = proto.Field(proto.MESSAGE, number=5,
+        message='Vector3',
+    )
+
+    is_water_tracking = proto.Field(proto.BOOL, number=6)
+
+    transducers = proto.RepeatedField(proto.MESSAGE, number=7,
+        message='DvlTransducer',
     )
 
 

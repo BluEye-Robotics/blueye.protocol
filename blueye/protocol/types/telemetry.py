@@ -29,6 +29,7 @@ __protobuf__ = proto.module(
         'AttitudeTel',
         'AltitudeTel',
         'ForwardDistanceTel',
+        'DvlVelocityTel',
         'PositionEstimateTel',
         'DepthTel',
         'ReferenceTel',
@@ -121,6 +122,19 @@ class ForwardDistanceTel(proto.Message):
 
     forward_distance = proto.Field(proto.MESSAGE, number=1,
         message=message_formats.ForwardDistance,
+    )
+
+
+class DvlVelocityTel(proto.Message):
+    r"""Dvl raw sensor data.
+
+    Attributes:
+        dvl_velocity (blueye.protocol.types.DvlVelocity):
+            Dvl velocity data.
+    """
+
+    dvl_velocity = proto.Field(proto.MESSAGE, number=1,
+        message=message_formats.DvlVelocity,
     )
 
 
