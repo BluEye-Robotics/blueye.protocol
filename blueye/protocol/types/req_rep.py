@@ -410,7 +410,15 @@ class SetPersistentStorageSettingsReq(proto.Message):
 
 
 class SetPersistentStorageSettingsRep(proto.Message):
-    r"""Response after setting persistent storage settings."""
+    r"""Response after setting persistent storage settings.
+
+    Attributes:
+        success (bool):
+            If the persistent storage settings were set
+            successfully.
+    """
+
+    success = proto.Field(proto.BOOL, number=1)
 
 
 class GetPersistentStorageSettingsReq(proto.Message):
