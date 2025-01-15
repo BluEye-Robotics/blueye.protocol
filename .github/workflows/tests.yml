@@ -8,15 +8,16 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ["3.10", "3.11", "3.12", "3.13"]
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: true
           token: ${{ secrets.GIT_TOKEN }}
-      - name: Set up Python 3.13
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version:  ${{ matrix.python }}
       - name: Install Poetry
         uses: abatilo/actions-poetry@v3.0.2
         with:
