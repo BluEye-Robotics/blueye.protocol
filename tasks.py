@@ -51,10 +51,31 @@ def generate_proto(context):
             --mount type=bind,source=$(pwd)/build/,destination=/out/ \
             --rm \
             --user $UID \
-            gcr.io/gapic-images/gapic-generator-python:v0.40"  # noqa F501
+            blueyerobotics/gapic-generator-python:v1.21.0"  # noqa F501
         )
         context.run("cp -r build/blueye/protocol/types blueye/protocol/")
         context.run("cp -r build/blueye/protocol/__init__.py blueye/protocol/protos.py")
+
+    # Remove package_version lines from  protos.py to avoid circular import
+    protos_file_path = get_project_root_path() / "blueye/protocol/protos.py"
+    with open(protos_file_path, "r") as file:
+        lines = file.readlines()
+
+    lines_to_remove = [
+        "from blueye.protocol import gapic_version as package_version\n",
+        "__version__ = package_version.__version__\n",
+    ]
+
+    with open(protos_file_path, "w") as file:
+        skip_empty_lines = False
+        for line in lines:
+            if line in lines_to_remove:
+                skip_empty_lines = True
+                continue
+            if skip_empty_lines and line.strip() == "":
+                continue
+            skip_empty_lines = False
+            file.write(line)
 
 
 @task(pre=[generate_tcp, generate_udp])

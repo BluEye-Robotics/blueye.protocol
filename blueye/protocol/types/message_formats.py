@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-
-# Copyright 2020 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,13 +13,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from __future__ import annotations
+
+from typing import MutableMapping, MutableSequence
 
 import proto  # type: ignore
 
-
-from google.protobuf import any_pb2 as gp_any  # type: ignore
-from google.protobuf import duration_pb2 as gp_duration  # type: ignore
-from google.protobuf import timestamp_pb2 as gp_timestamp  # type: ignore
+from google.protobuf import any_pb2  # type: ignore
+from google.protobuf import duration_pb2  # type: ignore
+from google.protobuf import timestamp_pb2  # type: ignore
 
 
 __protobuf__ = proto.module(
@@ -126,21 +127,49 @@ __protobuf__ = proto.module(
 
 
 class IntervalType(proto.Enum):
-    r"""Interval type for time-lapse photos."""
+    r"""Interval type for time-lapse photos.
+
+    Values:
+        INTERVAL_TYPE_UNSPECIFIED (0):
+            Unspecified
+        INTERVAL_TYPE_TIME (1):
+            Time interval
+        INTERVAL_TYPE_DISTANCE (2):
+            Distance interval
+    """
     INTERVAL_TYPE_UNSPECIFIED = 0
     INTERVAL_TYPE_TIME = 1
     INTERVAL_TYPE_DISTANCE = 2
 
 
 class HeadingSource(proto.Enum):
-    r"""Heading source used during reset of the position estimate."""
+    r"""Heading source used during reset of the position estimate.
+
+    Values:
+        HEADING_SOURCE_UNSPECIFIED (0):
+            Unspecified
+        HEADING_SOURCE_DRONE_COMPASS (1):
+            Uses the drone compass to set the heading
+        HEADING_SOURCE_MANUAL_INPUT (2):
+            Used when the user sets the heading manually
+    """
     HEADING_SOURCE_UNSPECIFIED = 0
     HEADING_SOURCE_DRONE_COMPASS = 1
     HEADING_SOURCE_MANUAL_INPUT = 2
 
 
 class ResetCoordinateSource(proto.Enum):
-    r""""""
+    r"""
+
+    Values:
+        RESET_COORDINATE_SOURCE_UNSPECIFIED (0):
+            Unspecified, fallback to device GPS
+        RESET_COORDINATE_SOURCE_DEVICE_GPS (1):
+            Uses the device GPS to set the reset point
+        RESET_COORDINATE_SOURCE_MANUAL (2):
+            Uses a coordinate in decimal degrees to set
+            the reset point
+    """
     RESET_COORDINATE_SOURCE_UNSPECIFIED = 0
     RESET_COORDINATE_SOURCE_DEVICE_GPS = 1
     RESET_COORDINATE_SOURCE_MANUAL = 2
@@ -149,6 +178,75 @@ class ResetCoordinateSource(proto.Enum):
 class NotificationType(proto.Enum):
     r"""Notification is used for displaying info, warnings, and
     errors to the user.
+
+    Values:
+        NOTIFICATION_TYPE_UNSPECIFIED (0):
+            Unspecified
+        NOTIFICATION_TYPE_POSITION_ESTIMATE_IS_INACCURATE (1):
+            Position estimate is inaccurate
+        NOTIFICATION_TYPE_DRONE_POSITION_IS_UNKNOWN (2):
+            Drone position is unknown
+        NOTIFICATION_TYPE_USER_POSITION_IS_UNKNOWN (3):
+            User position is unknown
+        NOTIFICATION_TYPE_NO_MISSION_LOADED (4):
+            No mission is loaded
+        NOTIFICATION_TYPE_MISSION_LOADED (5):
+            Mission is loaded
+        NOTIFICATION_TYPE_FAILED_TO_LOAD_MISSION (6):
+            Failed to load mission
+        NOTIFICATION_TYPE_MISSION_COMPLETE (7):
+            Mission is complete
+        NOTIFICATION_TYPE_INSTRUCTION_COMPLETE (8):
+            Instruction is complete
+        NOTIFICATION_TYPE_WAYPOINT_REACHED (9):
+            Waypoint reached
+        NOTIFICATION_TYPE_DEPTH_TARGET_REACHED (10):
+            Depth set point is reached
+        NOTIFICATION_TYPE_ALTITUDE_TARGET_REACHED (11):
+            Altitude set point is reached
+        NOTIFICATION_TYPE_WAYPOINT_IS_TOO_FAR_AWAY (12):
+            The waypoint is too far away
+        NOTIFICATION_TYPE_DEPTH_SET_POINT_IS_TOO_FAR_AWAY (13):
+            The depth set point is too far away
+        NOTIFICATION_TYPE_TIME_TO_COMPLETE_IS_TOO_LONG (14):
+            The time to complete the mission is too long
+        NOTIFICATION_TYPE_RETURNING_TO_HOME (15):
+            Returning to home
+        NOTIFICATION_TYPE_GO_TO_SURFACE (16):
+            Go to surface
+        NOTIFICATION_TYPE_GO_TO_SEABED (17):
+            Go to seabed with an altimeter
+        NOTIFICATION_TYPE_GO_TO_WAYPOINT (18):
+            Go to waypoint
+        NOTIFICATION_TYPE_GO_TO_DEPTH_SET_POINT (19):
+            Go to depth set point
+        NOTIFICATION_TYPE_GO_TO_WAYPOINT_WITH_DEPTH_SET_POINT (20):
+            Go to waypoint with depth set point
+        NOTIFICATION_TYPE_MISSION_STARTED (21):
+            Mission is started
+        NOTIFICATION_TYPE_MISSION_PAUSED (22):
+            Mission is paused
+        NOTIFICATION_TYPE_MISSION_RESUMED (23):
+            Mission is resumed
+        NOTIFICATION_TYPE_MISSION_ABORTED (24):
+            Mission is aborted
+        NOTIFICATION_TYPE_DRONE_IS_STUCK (25):
+            Drone is stuck during a mission
+        NOTIFICATION_TYPE_WAIT_FOR (26):
+            Wait for instruction running
+        NOTIFICATION_TYPE_CAMERA_ACTION (27):
+            Camera action initiated
+        NOTIFICATION_TYPE_SET_TILT_MAIN_CAMERA (28):
+            Set tilt for main camera
+        NOTIFICATION_TYPE_SET_TILT_MULTIBEAM (29):
+            Set tilt for multibeam
+        NOTIFICATION_TYPE_INSTRUCTION_SKIPPED (30):
+            When an instruction is not available in the
+            ROV
+        NOTIFICATION_TYPE_DVL_HIGH_TEMPERATURE_DETECTED (31):
+            DVL high temperature detected
+        NOTIFICATION_TYPE_DVL_THERMAL_PROTECTION_MODE_DETECTED (32):
+            DVL thermal protection mode detected
     """
     NOTIFICATION_TYPE_UNSPECIFIED = 0
     NOTIFICATION_TYPE_POSITION_ESTIMATE_IS_INACCURATE = 1
@@ -186,7 +284,18 @@ class NotificationType(proto.Enum):
 
 
 class NotificationLevel(proto.Enum):
-    r"""List of available notification levels."""
+    r"""List of available notification levels.
+
+    Values:
+        NOTIFICATION_LEVEL_UNSPECIFIED (0):
+            Unspecified
+        NOTIFICATION_LEVEL_INFO (1):
+            Info
+        NOTIFICATION_LEVEL_WARNING (2):
+            Warning
+        NOTIFICATION_LEVEL_ERROR (3):
+            Error
+    """
     NOTIFICATION_LEVEL_UNSPECIFIED = 0
     NOTIFICATION_LEVEL_INFO = 1
     NOTIFICATION_LEVEL_WARNING = 2
@@ -194,7 +303,25 @@ class NotificationLevel(proto.Enum):
 
 
 class Model(proto.Enum):
-    r"""Drone models produced by Blueye"""
+    r"""Drone models produced by Blueye
+
+    Values:
+        MODEL_UNSPECIFIED (0):
+            ModelName not specified
+        MODEL_PIONEER (1):
+            Blueye Pioneer, the first model
+        MODEL_PRO (2):
+            Blueye Pro, features camera tilt
+        MODEL_X1 (4):
+            Blueye X1, features camera tilt and one guest
+            port
+        MODEL_X3 (3):
+            Blueye X3, features support for peripherals
+        MODEL_X3_ULTRA (6):
+            Blueye X3 Ultra
+        MODEL_NEXT (5):
+            Blueye ?
+    """
     MODEL_UNSPECIFIED = 0
     MODEL_PIONEER = 1
     MODEL_PRO = 2
@@ -205,7 +332,22 @@ class Model(proto.Enum):
 
 
 class PressureSensorType(proto.Enum):
-    r"""Depth sensors used by the drone."""
+    r"""Depth sensors used by the drone.
+
+    Values:
+        PRESSURE_SENSOR_TYPE_UNSPECIFIED (0):
+            Depth sensor type not specified
+        PRESSURE_SENSOR_TYPE_NOT_CONNECTED (1):
+            No se
+        PRESSURE_SENSOR_TYPE_MS5837_30BA26 (2):
+            Thh MS5837 30BA26 pressure sensor
+        PRESSURE_SENSOR_TYPE_KELLER_PA7LD (3):
+            The extended depth sensor using the Keller
+            PA7LD pressure sensor
+        PRESSURE_SENSOR_TYPE_MS5637_02BA03 (4):
+            The internal pressure sensor using the MS5637
+            02BA03 pressure sensor
+    """
     PRESSURE_SENSOR_TYPE_UNSPECIFIED = 0
     PRESSURE_SENSOR_TYPE_NOT_CONNECTED = 1
     PRESSURE_SENSOR_TYPE_MS5837_30BA26 = 2
@@ -214,35 +356,82 @@ class PressureSensorType(proto.Enum):
 
 
 class Resolution(proto.Enum):
-    r"""Available camera resolutions."""
+    r"""Available camera resolutions.
+
+    Values:
+        RESOLUTION_UNSPECIFIED (0):
+            Resolution not specified
+        RESOLUTION_FULLHD_1080P (1):
+            1080p Full HD resolution
+        RESOLUTION_HD_720P (2):
+            720p HD resolution
+    """
     RESOLUTION_UNSPECIFIED = 0
     RESOLUTION_FULLHD_1080P = 1
     RESOLUTION_HD_720P = 2
 
 
 class Framerate(proto.Enum):
-    r"""Available camera frame rates."""
+    r"""Available camera frame rates.
+
+    Values:
+        FRAMERATE_UNSPECIFIED (0):
+            Framerate not specified
+        FRAMERATE_FPS_30 (1):
+            30 frames per second
+        FRAMERATE_FPS_25 (2):
+            25 frames per second
+    """
     FRAMERATE_UNSPECIFIED = 0
     FRAMERATE_FPS_30 = 1
     FRAMERATE_FPS_25 = 2
 
 
 class Camera(proto.Enum):
-    r"""Which camera to control."""
+    r"""Which camera to control.
+
+    Values:
+        CAMERA_UNSPECIFIED (0):
+            Camera not specified
+        CAMERA_MAIN (1):
+            Main camera
+        CAMERA_GUESTPORT (2):
+            Guestport camera
+    """
     CAMERA_UNSPECIFIED = 0
     CAMERA_MAIN = 1
     CAMERA_GUESTPORT = 2
 
 
 class TemperatureUnit(proto.Enum):
-    r"""Available temperature units."""
+    r"""Available temperature units.
+
+    Values:
+        TEMPERATURE_UNIT_UNSPECIFIED (0):
+            Temperature unit not specified
+        TEMPERATURE_UNIT_CELSIUS (1):
+            Temperature should be displayed as Celsius
+        TEMPERATURE_UNIT_FAHRENHEIT (2):
+            Temperature should be displayed as Fahrenheit
+    """
     TEMPERATURE_UNIT_UNSPECIFIED = 0
     TEMPERATURE_UNIT_CELSIUS = 1
     TEMPERATURE_UNIT_FAHRENHEIT = 2
 
 
 class LogoType(proto.Enum):
-    r"""Available logo types."""
+    r"""Available logo types.
+
+    Values:
+        LOGO_TYPE_UNSPECIFIED (0):
+            Logo type not specified
+        LOGO_TYPE_NONE (1):
+            Do not add any logo
+        LOGO_TYPE_DEFAULT (2):
+            Add default logo
+        LOGO_TYPE_CUSTOM (3):
+            Add user defined logo
+    """
     LOGO_TYPE_UNSPECIFIED = 0
     LOGO_TYPE_NONE = 1
     LOGO_TYPE_DEFAULT = 2
@@ -250,21 +439,56 @@ class LogoType(proto.Enum):
 
 
 class DepthUnit(proto.Enum):
-    r"""Available depth units."""
+    r"""Available depth units.
+
+    Values:
+        DEPTH_UNIT_UNSPECIFIED (0):
+            Depth unit not specified
+        DEPTH_UNIT_METERS (1):
+            Depth should be displayed as meters
+        DEPTH_UNIT_FEET (2):
+            Depth should be displayed as feet
+    """
     DEPTH_UNIT_UNSPECIFIED = 0
     DEPTH_UNIT_METERS = 1
     DEPTH_UNIT_FEET = 2
 
 
 class ThicknessUnit(proto.Enum):
-    r"""Available thickness units."""
+    r"""Available thickness units.
+
+    Values:
+        THICKNESS_UNIT_UNSPECIFIED (0):
+            Thickness unit not specified
+        THICKNESS_UNIT_MILLIMETERS (1):
+            Thickness should be displayed as millimeters
+        THICKNESS_UNIT_INCHES (2):
+            Thickness should be displayed as inches
+    """
     THICKNESS_UNIT_UNSPECIFIED = 0
     THICKNESS_UNIT_MILLIMETERS = 1
     THICKNESS_UNIT_INCHES = 2
 
 
 class FontSize(proto.Enum):
-    r"""Available font sizes for overlay text elements."""
+    r"""Available font sizes for overlay text elements.
+
+    Values:
+        FONT_SIZE_UNSPECIFIED (0):
+            Font size not specified
+        FONT_SIZE_PX15 (1):
+            15 px
+        FONT_SIZE_PX20 (2):
+            20 px
+        FONT_SIZE_PX25 (3):
+            25 px
+        FONT_SIZE_PX30 (4):
+            30 px
+        FONT_SIZE_PX35 (5):
+            35 px
+        FONT_SIZE_PX40 (6):
+            40 px
+    """
     FONT_SIZE_UNSPECIFIED = 0
     FONT_SIZE_PX15 = 1
     FONT_SIZE_PX20 = 2
@@ -275,7 +499,96 @@ class FontSize(proto.Enum):
 
 
 class GuestPortDeviceID(proto.Enum):
-    r"""GuestPort device ID."""
+    r"""GuestPort device ID.
+
+    Values:
+        GUEST_PORT_DEVICE_ID_UNSPECIFIED (0):
+            Unspecified
+        GUEST_PORT_DEVICE_ID_BLIND_PLUG (1):
+            Blueye blind plug
+        GUEST_PORT_DEVICE_ID_TEST_STATION (2):
+            Blueye test station
+        GUEST_PORT_DEVICE_ID_DEBUG_SERIAL (3):
+            Blueye debug serial
+        GUEST_PORT_DEVICE_ID_BLUEYE_LIGHT (4):
+            Blueye Light
+        GUEST_PORT_DEVICE_ID_BLUEYE_CAM (5):
+            Blueye Cam
+        GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_LUMEN (6):
+            Blue Robotics Lumen
+        GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_NEWTON (7):
+            Blue Robotics Newton
+        GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_PING_SONAR (8):
+            Blue Robotics Ping Sonar
+        GUEST_PORT_DEVICE_ID_BLUEPRINT_LAB_REACH_ALPHA (9):
+            Blueprint Lab Reach Alpha
+        GUEST_PORT_DEVICE_ID_WATERLINKED_DVL_A50 (10):
+            Waterlinked DVL A50
+        GUEST_PORT_DEVICE_ID_IMPACT_SUBSEA_ISS360 (11):
+            Impact Subsea ISS360 Sonar
+        GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_SEATRAC_X010 (12):
+            Blueprint Subsea Seatrac X110
+        GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_M750D (13):
+            Blueprint Subsea Oculus M750d
+        GUEST_PORT_DEVICE_ID_CYGNUS_MINI_ROV_THICKNESS_GAUGE (14):
+            Cygnus Mini ROV Thickness Gauge
+        GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_PING360_SONAR (15):
+            Blue Robotics Ping360 Scanning Imaging Sonar
+        GUEST_PORT_DEVICE_ID_TRITECH_GEMINI_720IM (16):
+            Tritech Gemini 720im Multibeam Sonar
+        GUEST_PORT_DEVICE_ID_BLUEYE_LIGHT_PAIR (17):
+            Blueye Light Pair
+        GUEST_PORT_DEVICE_ID_TRITECH_GEMINI_MICRON (18):
+            Tritech Micron Gemini
+        GUEST_PORT_DEVICE_ID_OCEAN_TOOLS_DIGICP (19):
+            Ocean Tools DigiCP
+        GUEST_PORT_DEVICE_ID_TRITECH_GEMINI_720IK (20):
+            Tritech Gemini 720ik Multibeam Sonar
+        GUEST_PORT_DEVICE_ID_NORTEK_NUCLEUS_1000 (21):
+            Nortek Nucleus 1000 DVL
+        GUEST_PORT_DEVICE_ID_BLUEYE_GENERIC_SERVO (22):
+            Blueye Generic Servo
+        GUEST_PORT_DEVICE_ID_BLUEYE_MULTIBEAM_SERVO (23):
+            Blueye Multibeam Skid Servo
+        GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_DETACHABLE_NEWTON (24):
+            Detachable Blue Robotics Newton
+        GUEST_PORT_DEVICE_ID_INSITU_AQUA_TROLL_500 (25):
+            In-Situ Aqua TROLL 500
+        GUEST_PORT_DEVICE_ID_MEDUSA_RADIOMETRICS_MS100 (26):
+            Medusa Radiometrics Gamma Ray Sensor
+        GUEST_PORT_DEVICE_ID_LASER_TOOLS_SEA_BEAM (27):
+            Laser Tools Sea Beam Underwater Laser
+        GUEST_PORT_DEVICE_ID_SPOT_X_LASER_SCALERS (28):
+            Spot X Laser Scalers
+        GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_M1200D (29):
+            Blueprint Subsea Oculus M1200d
+        GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_M3000D (30):
+            Blueprint Subsea Oculus M3000d
+        GUEST_PORT_DEVICE_ID_INSITU_AQUA_TROLL_100 (31):
+            In-Situ Aqua TROLL 100
+        GUEST_PORT_DEVICE_ID_INSITU_RDO_PRO_X (32):
+            In-Situ RDO PRO-X
+        GUEST_PORT_DEVICE_ID_INSITU_RDO_BLUE (33):
+            In-Situ RDO Blue
+        GUEST_PORT_DEVICE_ID_BLUEYE_CAMERA_SERVO (34):
+            Blueye Camera Servo
+        GUEST_PORT_DEVICE_ID_BLUEYE_MULTIBEAM_HEAD_SERVO (35):
+            Blueye Multibeam Head Servo
+        GUEST_PORT_DEVICE_ID_CERULEAN_OMNISCAN_450FS (36):
+            Cerulean Omniscan 450 FS
+        GUEST_PORT_DEVICE_ID_CERULEAN_OMNISCAN_450SS (37):
+            Cerulean Omniscan 450 SS
+        GUEST_PORT_DEVICE_ID_BLUEYE_GNSS_DEVICE (38):
+            Blueye GNSS device
+        GUEST_PORT_DEVICE_ID_WATERLINKED_DVL_A50_600 (39):
+            Waterlinked DVL A50 600m
+        GUEST_PORT_DEVICE_ID_IMAGENEX_831L (40):
+            Imagenex 831L Pipe Profiling Sonar
+        GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_C550D (41):
+            Blueprint Subsea Oculus C550d
+        GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_M370S (42):
+            Blueprint Subsea Oculus M370s
+    """
     GUEST_PORT_DEVICE_ID_UNSPECIFIED = 0
     GUEST_PORT_DEVICE_ID_BLIND_PLUG = 1
     GUEST_PORT_DEVICE_ID_TEST_STATION = 2
@@ -322,7 +635,18 @@ class GuestPortDeviceID(proto.Enum):
 
 
 class GuestPortNumber(proto.Enum):
-    r"""GuestPort number."""
+    r"""GuestPort number.
+
+    Values:
+        GUEST_PORT_NUMBER_UNSPECIFIED (0):
+            Unspecified
+        GUEST_PORT_NUMBER_PORT_1 (1):
+            Guest port 1
+        GUEST_PORT_NUMBER_PORT_2 (2):
+            Guest port 2
+        GUEST_PORT_NUMBER_PORT_3 (3):
+            Guest port 3
+    """
     GUEST_PORT_NUMBER_UNSPECIFIED = 0
     GUEST_PORT_NUMBER_PORT_1 = 1
     GUEST_PORT_NUMBER_PORT_2 = 2
@@ -332,6 +656,20 @@ class GuestPortNumber(proto.Enum):
 class NavigationSensorID(proto.Enum):
     r"""List of navigation sensors that can be used by the position
     observer
+
+    Values:
+        NAVIGATION_SENSOR_ID_UNSPECIFIED (0):
+            Unspecified
+        NAVIGATION_SENSOR_ID_WATERLINKED_DVL_A50 (1):
+            Water Linked DVL A50
+        NAVIGATION_SENSOR_ID_WATERLINKED_UGPS_G2 (2):
+            Water Linked UGPS G2
+        NAVIGATION_SENSOR_ID_NMEA (3):
+            NMEA stream from external positioning system
+        NAVIGATION_SENSOR_ID_BLUEYE_GNSS (4):
+            Blueye GNSS device on the ROV
+        NAVIGATION_SENSOR_ID_NORTEK_DVL_NUCLEUS (5):
+            Nortek DVL Nucleus 1000
     """
     NAVIGATION_SENSOR_ID_UNSPECIFIED = 0
     NAVIGATION_SENSOR_ID_WATERLINKED_DVL_A50 = 1
@@ -342,7 +680,17 @@ class NavigationSensorID(proto.Enum):
 
 
 class GuestPortDetachStatus(proto.Enum):
-    r"""GuestPort detach status."""
+    r"""GuestPort detach status.
+
+    Values:
+        GUEST_PORT_DETACH_STATUS_UNSPECIFIED (0):
+            Unspecified (Default for non-detachable
+            devices)
+        GUEST_PORT_DETACH_STATUS_ATTACHED (1):
+            Detachable device attached
+        GUEST_PORT_DETACH_STATUS_DETACHED (2):
+            Detachable device detached
+    """
     GUEST_PORT_DETACH_STATUS_UNSPECIFIED = 0
     GUEST_PORT_DETACH_STATUS_ATTACHED = 1
     GUEST_PORT_DETACH_STATUS_DETACHED = 2
@@ -351,6 +699,20 @@ class GuestPortDetachStatus(proto.Enum):
 class GuestPortError(proto.Enum):
     r"""GuestPort error. Only indicated errors on the guest port
     connector itself.
+
+    Values:
+        GUEST_PORT_ERROR_UNSPECIFIED (0):
+            Unspecified value
+        GUEST_PORT_ERROR_NOT_CONNECTED (1):
+            Device not connected
+        GUEST_PORT_ERROR_READ_ERROR (2):
+            EEPROM read error
+        GUEST_PORT_ERROR_NOT_FLASHED (3):
+            Connector not flashed
+        GUEST_PORT_ERROR_CRC_ERROR (4):
+            Wrong CRC for protobuf message
+        GUEST_PORT_ERROR_PARSE_ERROR (5):
+            Protobuf message cannot be parsed
     """
     GUEST_PORT_ERROR_UNSPECIFIED = 0
     GUEST_PORT_ERROR_NOT_CONNECTED = 1
@@ -361,7 +723,20 @@ class GuestPortError(proto.Enum):
 
 
 class MultibeamFrequencyMode(proto.Enum):
-    r""""""
+    r"""
+
+    Values:
+        MULTIBEAM_FREQUENCY_MODE_UNSPECIFIED (0):
+            No description available.
+        MULTIBEAM_FREQUENCY_MODE_AUTO (1):
+            Auto switching mode (if available)
+        MULTIBEAM_FREQUENCY_MODE_LOW_FREQUENCY (2):
+            Low frequency mode (wide aperture,
+            navigation)
+        MULTIBEAM_FREQUENCY_MODE_HIGH_FREQUENCY (3):
+            High frequency mode (narrow aperture, target
+            identification)
+    """
     MULTIBEAM_FREQUENCY_MODE_UNSPECIFIED = 0
     MULTIBEAM_FREQUENCY_MODE_AUTO = 1
     MULTIBEAM_FREQUENCY_MODE_LOW_FREQUENCY = 2
@@ -374,6 +749,7 @@ class BinlogRecord(proto.Message):
     Each entry contains the unix timestamp in UTC, the monotonic
     timestamp (time since boot), and an Any message wrapping the
     custom Blueye message.
+
     See separate documentation for the logfile format for more
     details.
 
@@ -386,21 +762,26 @@ class BinlogRecord(proto.Message):
             Posix CLOCK_MONOTONIC timestamp.
     """
 
-    payload = proto.Field(proto.MESSAGE, number=1,
-        message=gp_any.Any,
+    payload: any_pb2.Any = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=any_pb2.Any,
     )
-
-    unix_timestamp = proto.Field(proto.MESSAGE, number=2,
-        message=gp_timestamp.Timestamp,
+    unix_timestamp: timestamp_pb2.Timestamp = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=timestamp_pb2.Timestamp,
     )
-
-    clock_monotonic = proto.Field(proto.MESSAGE, number=3,
-        message=gp_timestamp.Timestamp,
+    clock_monotonic: timestamp_pb2.Timestamp = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=timestamp_pb2.Timestamp,
     )
 
 
 class MotionInput(proto.Message):
     r"""Motion input from client.
+
     Used to indicate the desired motion in each direction. Typically
     these values map to the left and right joystick for motion, and
     the left and right trigger for the slow and boost modifiers.
@@ -432,21 +813,38 @@ class MotionInput(proto.Message):
             motion (0..1)
     """
 
-    surge = proto.Field(proto.FLOAT, number=1)
-
-    sway = proto.Field(proto.FLOAT, number=2)
-
-    heave = proto.Field(proto.FLOAT, number=3)
-
-    roll = proto.Field(proto.FLOAT, number=7)
-
-    pitch = proto.Field(proto.FLOAT, number=8)
-
-    yaw = proto.Field(proto.FLOAT, number=4)
-
-    slow = proto.Field(proto.FLOAT, number=5)
-
-    boost = proto.Field(proto.FLOAT, number=6)
+    surge: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    sway: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    heave: float = proto.Field(
+        proto.FLOAT,
+        number=3,
+    )
+    roll: float = proto.Field(
+        proto.FLOAT,
+        number=7,
+    )
+    pitch: float = proto.Field(
+        proto.FLOAT,
+        number=8,
+    )
+    yaw: float = proto.Field(
+        proto.FLOAT,
+        number=4,
+    )
+    slow: float = proto.Field(
+        proto.FLOAT,
+        number=5,
+    )
+    boost: float = proto.Field(
+        proto.FLOAT,
+        number=6,
+    )
 
 
 class Lights(proto.Message):
@@ -458,7 +856,10 @@ class Lights(proto.Message):
             Light intensity (0..1)
     """
 
-    value = proto.Field(proto.FLOAT, number=1)
+    value: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
 
 
 class Laser(proto.Message):
@@ -474,7 +875,10 @@ class Laser(proto.Message):
             laser on (0..1)
     """
 
-    value = proto.Field(proto.FLOAT, number=1)
+    value: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
 
 
 class LatLongPosition(proto.Message):
@@ -488,9 +892,14 @@ class LatLongPosition(proto.Message):
             Longitude (°)
     """
 
-    latitude = proto.Field(proto.DOUBLE, number=1)
-
-    longitude = proto.Field(proto.DOUBLE, number=2)
+    latitude: float = proto.Field(
+        proto.DOUBLE,
+        number=1,
+    )
+    longitude: float = proto.Field(
+        proto.DOUBLE,
+        number=2,
+    )
 
 
 class ConnectionDuration(proto.Message):
@@ -501,7 +910,10 @@ class ConnectionDuration(proto.Message):
             time since connected to drone (s)
     """
 
-    value = proto.Field(proto.INT32, number=1)
+    value: int = proto.Field(
+        proto.INT32,
+        number=1,
+    )
 
 
 class AutoHeadingState(proto.Message):
@@ -512,7 +924,10 @@ class AutoHeadingState(proto.Message):
             If auto heading is enabled
     """
 
-    enabled = proto.Field(proto.BOOL, number=1)
+    enabled: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
 
 
 class AutoDepthState(proto.Message):
@@ -523,7 +938,10 @@ class AutoDepthState(proto.Message):
             If auto depth is enabled
     """
 
-    enabled = proto.Field(proto.BOOL, number=1)
+    enabled: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
 
 
 class AutoAltitudeState(proto.Message):
@@ -534,7 +952,10 @@ class AutoAltitudeState(proto.Message):
             If auto altitude is enabled
     """
 
-    enabled = proto.Field(proto.BOOL, number=1)
+    enabled: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
 
 
 class StationKeepingState(proto.Message):
@@ -545,7 +966,10 @@ class StationKeepingState(proto.Message):
             If station keeping is enabled
     """
 
-    enabled = proto.Field(proto.BOOL, number=1)
+    enabled: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
 
 
 class WeatherVaningState(proto.Message):
@@ -556,7 +980,10 @@ class WeatherVaningState(proto.Message):
             If weather vaning is enabled
     """
 
-    enabled = proto.Field(proto.BOOL, number=1)
+    enabled: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
 
 
 class AutoPilotSurgeYawState(proto.Message):
@@ -567,7 +994,10 @@ class AutoPilotSurgeYawState(proto.Message):
             If auto pilot surge yaw is enabled
     """
 
-    enabled = proto.Field(proto.BOOL, number=1)
+    enabled: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
 
 
 class AutoPilotHeaveState(proto.Message):
@@ -578,7 +1008,10 @@ class AutoPilotHeaveState(proto.Message):
             If auto pilot heave is enabled
     """
 
-    enabled = proto.Field(proto.BOOL, number=1)
+    enabled: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
 
 
 class ControlMode(proto.Message):
@@ -601,23 +1034,39 @@ class ControlMode(proto.Message):
             If auto pilot heave is enabled
     """
 
-    auto_depth = proto.Field(proto.BOOL, number=1)
-
-    auto_heading = proto.Field(proto.BOOL, number=2)
-
-    auto_altitude = proto.Field(proto.BOOL, number=3)
-
-    station_keeping = proto.Field(proto.BOOL, number=4)
-
-    weather_vaning = proto.Field(proto.BOOL, number=5)
-
-    auto_pilot_surge_yaw = proto.Field(proto.BOOL, number=6)
-
-    auto_pilot_heave = proto.Field(proto.BOOL, number=7)
+    auto_depth: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    auto_heading: bool = proto.Field(
+        proto.BOOL,
+        number=2,
+    )
+    auto_altitude: bool = proto.Field(
+        proto.BOOL,
+        number=3,
+    )
+    station_keeping: bool = proto.Field(
+        proto.BOOL,
+        number=4,
+    )
+    weather_vaning: bool = proto.Field(
+        proto.BOOL,
+        number=5,
+    )
+    auto_pilot_surge_yaw: bool = proto.Field(
+        proto.BOOL,
+        number=6,
+    )
+    auto_pilot_heave: bool = proto.Field(
+        proto.BOOL,
+        number=7,
+    )
 
 
 class TiltStabilizationState(proto.Message):
     r"""Tilt stabilization state.
+
     Blueye drones with mechanical tilt has the ability to enable
     camera stabilization.
 
@@ -626,7 +1075,10 @@ class TiltStabilizationState(proto.Message):
             If tilt stabilization is enabled
     """
 
-    enabled = proto.Field(proto.BOOL, number=1)
+    enabled: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
 
 
 class SystemTime(proto.Message):
@@ -637,8 +1089,10 @@ class SystemTime(proto.Message):
             Unix timestamp
     """
 
-    unix_timestamp = proto.Field(proto.MESSAGE, number=1,
-        message=gp_timestamp.Timestamp,
+    unix_timestamp: timestamp_pb2.Timestamp = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=timestamp_pb2.Timestamp,
     )
 
 
@@ -652,9 +1106,14 @@ class GripperVelocities(proto.Message):
             The rotating velocity (-1.0..1.0)
     """
 
-    grip_velocity = proto.Field(proto.FLOAT, number=1)
-
-    rotate_velocity = proto.Field(proto.FLOAT, number=2)
+    grip_velocity: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    rotate_velocity: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
 
 
 class ClientInfo(proto.Message):
@@ -680,19 +1139,34 @@ class ClientInfo(proto.Message):
             observer or not
     """
 
-    type_ = proto.Field(proto.STRING, number=1)
-
-    version = proto.Field(proto.STRING, number=2)
-
-    device_type = proto.Field(proto.STRING, number=3)
-
-    platform = proto.Field(proto.STRING, number=4)
-
-    platform_version = proto.Field(proto.STRING, number=5)
-
-    name = proto.Field(proto.STRING, number=6)
-
-    is_observer = proto.Field(proto.BOOL, number=7)
+    type_: str = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    version: str = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    device_type: str = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    platform: str = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    platform_version: str = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    name: str = proto.Field(
+        proto.STRING,
+        number=6,
+    )
+    is_observer: bool = proto.Field(
+        proto.BOOL,
+        number=7,
+    )
 
 
 class ConnectedClient(proto.Message):
@@ -706,9 +1180,13 @@ class ConnectedClient(proto.Message):
             Client information.
     """
 
-    client_id = proto.Field(proto.UINT32, number=1)
-
-    client_info = proto.Field(proto.MESSAGE, number=2,
+    client_id: int = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    client_info: 'ClientInfo' = proto.Field(
+        proto.MESSAGE,
+        number=2,
         message='ClientInfo',
     )
 
@@ -737,23 +1215,42 @@ class RecordState(proto.Message):
             Multibeam record fps
     """
 
-    main_is_recording = proto.Field(proto.BOOL, number=1)
-
-    main_seconds = proto.Field(proto.INT32, number=2)
-
-    main_fps = proto.Field(proto.FLOAT, number=7)
-
-    guestport_is_recording = proto.Field(proto.BOOL, number=3)
-
-    guestport_seconds = proto.Field(proto.INT32, number=4)
-
-    guestport_fps = proto.Field(proto.FLOAT, number=8)
-
-    multibeam_is_recording = proto.Field(proto.BOOL, number=5)
-
-    multibeam_seconds = proto.Field(proto.INT32, number=6)
-
-    multibeam_fps = proto.Field(proto.FLOAT, number=9)
+    main_is_recording: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    main_seconds: int = proto.Field(
+        proto.INT32,
+        number=2,
+    )
+    main_fps: float = proto.Field(
+        proto.FLOAT,
+        number=7,
+    )
+    guestport_is_recording: bool = proto.Field(
+        proto.BOOL,
+        number=3,
+    )
+    guestport_seconds: int = proto.Field(
+        proto.INT32,
+        number=4,
+    )
+    guestport_fps: float = proto.Field(
+        proto.FLOAT,
+        number=8,
+    )
+    multibeam_is_recording: bool = proto.Field(
+        proto.BOOL,
+        number=5,
+    )
+    multibeam_seconds: int = proto.Field(
+        proto.INT32,
+        number=6,
+    )
+    multibeam_fps: float = proto.Field(
+        proto.FLOAT,
+        number=9,
+    )
 
 
 class TimeLapseState(proto.Message):
@@ -768,17 +1265,24 @@ class TimeLapseState(proto.Message):
             Interval type for photos, distance or time
     """
 
-    interval = proto.Field(proto.FLOAT, number=1)
-
-    photos_taken = proto.Field(proto.INT32, number=2)
-
-    interval_type = proto.Field(proto.ENUM, number=3,
+    interval: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    photos_taken: int = proto.Field(
+        proto.INT32,
+        number=2,
+    )
+    interval_type: 'IntervalType' = proto.Field(
+        proto.ENUM,
+        number=3,
         enum='IntervalType',
     )
 
 
 class WaterDensity(proto.Message):
     r"""Water density.
+
     Used to specify the water density the drone is operating in, to
     achieve more accurate depth measurements, f. ex. influenced by
     salinity.
@@ -788,11 +1292,15 @@ class WaterDensity(proto.Message):
             Water density (g/l)
     """
 
-    value = proto.Field(proto.FLOAT, number=1)
+    value: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
 
 
 class PingerConfiguration(proto.Message):
     r"""Pinger configuration.
+
     Used to specify the configuration the BR 1D-Pinger.
 
     Attributes:
@@ -800,12 +1308,24 @@ class PingerConfiguration(proto.Message):
             Mounting direction of the pinger
     """
     class MountingDirection(proto.Enum):
-        r""""""
+        r"""
+
+        Values:
+            MOUNTING_DIRECTION_UNSPECIFIED (0):
+                Mounting direction is unspecified
+            MOUNTING_DIRECTION_FORWARDS (1):
+                Pointing forwards from the drones perspective
+            MOUNTING_DIRECTION_DOWNWARDS (2):
+                Pointing downwards from the drones
+                perspective
+        """
         MOUNTING_DIRECTION_UNSPECIFIED = 0
         MOUNTING_DIRECTION_FORWARDS = 1
         MOUNTING_DIRECTION_DOWNWARDS = 2
 
-    mounting_direction = proto.Field(proto.ENUM, number=1,
+    mounting_direction: MountingDirection = proto.Field(
+        proto.ENUM,
+        number=1,
         enum=MountingDirection,
     )
 
@@ -819,7 +1339,10 @@ class WaterTemperature(proto.Message):
             Water temperature (°C)
     """
 
-    value = proto.Field(proto.FLOAT, number=1)
+    value: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
 
 
 class CPUTemperature(proto.Message):
@@ -830,11 +1353,15 @@ class CPUTemperature(proto.Message):
             CPU temperature (°C)
     """
 
-    value = proto.Field(proto.FLOAT, number=1)
+    value: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
 
 
 class CanisterTemperature(proto.Message):
     r"""Canister temperature.
+
     Temperature measured in the top or bottom canister of the drone.
 
     Attributes:
@@ -842,11 +1369,15 @@ class CanisterTemperature(proto.Message):
             Temperature (°C)
     """
 
-    temperature = proto.Field(proto.FLOAT, number=3)
+    temperature: float = proto.Field(
+        proto.FLOAT,
+        number=3,
+    )
 
 
 class CanisterHumidity(proto.Message):
     r"""Canister humidity.
+
     Humidity measured in the top or bottom canister of the drone.
 
     Attributes:
@@ -854,7 +1385,10 @@ class CanisterHumidity(proto.Message):
             Air humidity (%)
     """
 
-    humidity = proto.Field(proto.FLOAT, number=3)
+    humidity: float = proto.Field(
+        proto.FLOAT,
+        number=3,
+    )
 
 
 class Battery(proto.Message):
@@ -869,15 +1403,23 @@ class Battery(proto.Message):
             Battery temperature (°C)
     """
 
-    voltage = proto.Field(proto.FLOAT, number=1)
-
-    level = proto.Field(proto.FLOAT, number=2)
-
-    temperature = proto.Field(proto.FLOAT, number=3)
+    voltage: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    level: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    temperature: float = proto.Field(
+        proto.FLOAT,
+        number=3,
+    )
 
 
 class BatteryBQ40Z50(proto.Message):
     r"""Battery information message.
+
     Detailed information about all aspects of the connected Blueye
     Smart Battery, using the BQ40Z50 BMS.
 
@@ -937,6 +1479,7 @@ class BatteryBQ40Z50(proto.Message):
         charging_events (blueye.protocol.types.BatteryBQ40Z50.BatteryChargingEvents):
             Battery charging events
     """
+
     class Voltage(proto.Message):
         r"""Battery voltage levels.
 
@@ -953,15 +1496,26 @@ class BatteryBQ40Z50(proto.Message):
                 Cell 4 voltage level (V)
         """
 
-        total = proto.Field(proto.FLOAT, number=1)
-
-        cell_1 = proto.Field(proto.FLOAT, number=2)
-
-        cell_2 = proto.Field(proto.FLOAT, number=3)
-
-        cell_3 = proto.Field(proto.FLOAT, number=4)
-
-        cell_4 = proto.Field(proto.FLOAT, number=5)
+        total: float = proto.Field(
+            proto.FLOAT,
+            number=1,
+        )
+        cell_1: float = proto.Field(
+            proto.FLOAT,
+            number=2,
+        )
+        cell_2: float = proto.Field(
+            proto.FLOAT,
+            number=3,
+        )
+        cell_3: float = proto.Field(
+            proto.FLOAT,
+            number=4,
+        )
+        cell_4: float = proto.Field(
+            proto.FLOAT,
+            number=5,
+        )
 
     class Temperature(proto.Message):
         r"""Battery temperature.
@@ -979,15 +1533,26 @@ class BatteryBQ40Z50(proto.Message):
                 Cell 4 temperature (°C)
         """
 
-        average = proto.Field(proto.FLOAT, number=1)
-
-        cell_1 = proto.Field(proto.FLOAT, number=2)
-
-        cell_2 = proto.Field(proto.FLOAT, number=3)
-
-        cell_3 = proto.Field(proto.FLOAT, number=4)
-
-        cell_4 = proto.Field(proto.FLOAT, number=5)
+        average: float = proto.Field(
+            proto.FLOAT,
+            number=1,
+        )
+        cell_1: float = proto.Field(
+            proto.FLOAT,
+            number=2,
+        )
+        cell_2: float = proto.Field(
+            proto.FLOAT,
+            number=3,
+        )
+        cell_3: float = proto.Field(
+            proto.FLOAT,
+            number=4,
+        )
+        cell_4: float = proto.Field(
+            proto.FLOAT,
+            number=5,
+        )
 
     class BatteryStatus(proto.Message):
         r"""Battery status from BQ40Z50 ref data sheet 0x16.
@@ -1017,7 +1582,28 @@ class BatteryBQ40Z50(proto.Message):
                 Battery error codes
         """
         class BatteryError(proto.Enum):
-            r"""Battery error code from BQ40Z50 BMS data sheet."""
+            r"""Battery error code from BQ40Z50 BMS data sheet.
+
+            Values:
+                BATTERY_ERROR_UNSPECIFIED (0):
+                    No description available.
+                BATTERY_ERROR_OK (1):
+                    No description available.
+                BATTERY_ERROR_BUSY (2):
+                    No description available.
+                BATTERY_ERROR_RESERVED_COMMAND (3):
+                    No description available.
+                BATTERY_ERROR_UNSUPPORTED_COMMAND (4):
+                    No description available.
+                BATTERY_ERROR_ACCESS_DENIED (5):
+                    No description available.
+                BATTERY_ERROR_OVERFLOW_UNDERFLOW (6):
+                    No description available.
+                BATTERY_ERROR_BAD_SIZE (7):
+                    No description available.
+                BATTERY_ERROR_UNKNOWN_ERROR (8):
+                    No description available.
+            """
             BATTERY_ERROR_UNSPECIFIED = 0
             BATTERY_ERROR_OK = 1
             BATTERY_ERROR_BUSY = 2
@@ -1028,27 +1614,49 @@ class BatteryBQ40Z50(proto.Message):
             BATTERY_ERROR_BAD_SIZE = 7
             BATTERY_ERROR_UNKNOWN_ERROR = 8
 
-        overcharged_alarm = proto.Field(proto.BOOL, number=1)
-
-        terminate_charge_alarm = proto.Field(proto.BOOL, number=2)
-
-        over_temperature_alarm = proto.Field(proto.BOOL, number=3)
-
-        terminate_discharge_alarm = proto.Field(proto.BOOL, number=4)
-
-        remaining_capacity_alarm = proto.Field(proto.BOOL, number=5)
-
-        remaining_time_alarm = proto.Field(proto.BOOL, number=6)
-
-        initialization = proto.Field(proto.BOOL, number=7)
-
-        discharging_or_relax = proto.Field(proto.BOOL, number=8)
-
-        fully_charged = proto.Field(proto.BOOL, number=9)
-
-        fully_discharged = proto.Field(proto.BOOL, number=10)
-
-        error = proto.Field(proto.ENUM, number=11,
+        overcharged_alarm: bool = proto.Field(
+            proto.BOOL,
+            number=1,
+        )
+        terminate_charge_alarm: bool = proto.Field(
+            proto.BOOL,
+            number=2,
+        )
+        over_temperature_alarm: bool = proto.Field(
+            proto.BOOL,
+            number=3,
+        )
+        terminate_discharge_alarm: bool = proto.Field(
+            proto.BOOL,
+            number=4,
+        )
+        remaining_capacity_alarm: bool = proto.Field(
+            proto.BOOL,
+            number=5,
+        )
+        remaining_time_alarm: bool = proto.Field(
+            proto.BOOL,
+            number=6,
+        )
+        initialization: bool = proto.Field(
+            proto.BOOL,
+            number=7,
+        )
+        discharging_or_relax: bool = proto.Field(
+            proto.BOOL,
+            number=8,
+        )
+        fully_charged: bool = proto.Field(
+            proto.BOOL,
+            number=9,
+        )
+        fully_discharged: bool = proto.Field(
+            proto.BOOL,
+            number=10,
+        )
+        error: 'BatteryBQ40Z50.BatteryStatus.BatteryError' = proto.Field(
+            proto.ENUM,
+            number=11,
             enum='BatteryBQ40Z50.BatteryStatus.BatteryError',
         )
 
@@ -1089,6 +1697,7 @@ class BatteryBQ40Z50(proto.Message):
             max_temperature_fet (float):
                 Max reported FET temperature (°C)
         """
+
         class CellVoltages(proto.Message):
             r"""
 
@@ -1103,43 +1712,77 @@ class BatteryBQ40Z50(proto.Message):
                     Voltage for cell number 4 (V)
             """
 
-            cell_1 = proto.Field(proto.FLOAT, number=1)
+            cell_1: float = proto.Field(
+                proto.FLOAT,
+                number=1,
+            )
+            cell_2: float = proto.Field(
+                proto.FLOAT,
+                number=2,
+            )
+            cell_3: float = proto.Field(
+                proto.FLOAT,
+                number=3,
+            )
+            cell_4: float = proto.Field(
+                proto.FLOAT,
+                number=4,
+            )
 
-            cell_2 = proto.Field(proto.FLOAT, number=2)
-
-            cell_3 = proto.Field(proto.FLOAT, number=3)
-
-            cell_4 = proto.Field(proto.FLOAT, number=4)
-
-        max_cell_voltages = proto.Field(proto.MESSAGE, number=1,
+        max_cell_voltages: 'BatteryBQ40Z50.BatteryLifetimes.CellVoltages' = proto.Field(
+            proto.MESSAGE,
+            number=1,
             message='BatteryBQ40Z50.BatteryLifetimes.CellVoltages',
         )
-
-        min_cell_voltages = proto.Field(proto.MESSAGE, number=2,
+        min_cell_voltages: 'BatteryBQ40Z50.BatteryLifetimes.CellVoltages' = proto.Field(
+            proto.MESSAGE,
+            number=2,
             message='BatteryBQ40Z50.BatteryLifetimes.CellVoltages',
         )
-
-        max_delta_cell_voltage = proto.Field(proto.FLOAT, number=3)
-
-        max_charge_current = proto.Field(proto.FLOAT, number=4)
-
-        max_discharge_current = proto.Field(proto.FLOAT, number=5)
-
-        max_avg_discharge_current = proto.Field(proto.FLOAT, number=6)
-
-        max_avg_discharge_power = proto.Field(proto.FLOAT, number=7)
-
-        max_cell_temperature = proto.Field(proto.FLOAT, number=8)
-
-        min_cell_temperature = proto.Field(proto.FLOAT, number=9)
-
-        max_delta_cell_temperature = proto.Field(proto.FLOAT, number=10)
-
-        max_temperature_internal_sensor = proto.Field(proto.FLOAT, number=11)
-
-        min_temperature_internal_sensor = proto.Field(proto.FLOAT, number=12)
-
-        max_temperature_fet = proto.Field(proto.FLOAT, number=13)
+        max_delta_cell_voltage: float = proto.Field(
+            proto.FLOAT,
+            number=3,
+        )
+        max_charge_current: float = proto.Field(
+            proto.FLOAT,
+            number=4,
+        )
+        max_discharge_current: float = proto.Field(
+            proto.FLOAT,
+            number=5,
+        )
+        max_avg_discharge_current: float = proto.Field(
+            proto.FLOAT,
+            number=6,
+        )
+        max_avg_discharge_power: float = proto.Field(
+            proto.FLOAT,
+            number=7,
+        )
+        max_cell_temperature: float = proto.Field(
+            proto.FLOAT,
+            number=8,
+        )
+        min_cell_temperature: float = proto.Field(
+            proto.FLOAT,
+            number=9,
+        )
+        max_delta_cell_temperature: float = proto.Field(
+            proto.FLOAT,
+            number=10,
+        )
+        max_temperature_internal_sensor: float = proto.Field(
+            proto.FLOAT,
+            number=11,
+        )
+        min_temperature_internal_sensor: float = proto.Field(
+            proto.FLOAT,
+            number=12,
+        )
+        max_temperature_fet: float = proto.Field(
+            proto.FLOAT,
+            number=13,
+        )
 
     class BatterySafetyEvents(proto.Message):
         r"""
@@ -1214,53 +1857,102 @@ class BatteryBQ40Z50(proto.Message):
                 Last OTF event in cycle count cycles (cycles)
         """
 
-        cov_events_count = proto.Field(proto.UINT32, number=1)
-
-        cov_last_event = proto.Field(proto.UINT32, number=2)
-
-        cuv_events_count = proto.Field(proto.UINT32, number=3)
-
-        cuv_last_event = proto.Field(proto.UINT32, number=4)
-
-        ocd1_events_count = proto.Field(proto.UINT32, number=5)
-
-        ocd1_last_event = proto.Field(proto.UINT32, number=6)
-
-        ocd2_events_count = proto.Field(proto.UINT32, number=7)
-
-        ocd2_last_event = proto.Field(proto.UINT32, number=8)
-
-        occ1_events_count = proto.Field(proto.UINT32, number=9)
-
-        occ1_last_event = proto.Field(proto.UINT32, number=10)
-
-        occ2_events_count = proto.Field(proto.UINT32, number=11)
-
-        occ2_last_event = proto.Field(proto.UINT32, number=12)
-
-        aold_events_count = proto.Field(proto.UINT32, number=13)
-
-        aold_last_event = proto.Field(proto.UINT32, number=14)
-
-        ascd_events_count = proto.Field(proto.UINT32, number=15)
-
-        ascd_last_event = proto.Field(proto.UINT32, number=16)
-
-        ascc_events_count = proto.Field(proto.UINT32, number=17)
-
-        ascc_last_event = proto.Field(proto.UINT32, number=18)
-
-        otc_events_count = proto.Field(proto.UINT32, number=19)
-
-        otc_last_event = proto.Field(proto.UINT32, number=20)
-
-        otd_events_count = proto.Field(proto.UINT32, number=21)
-
-        otd_last_event = proto.Field(proto.UINT32, number=22)
-
-        otf_events_count = proto.Field(proto.UINT32, number=23)
-
-        otf_last_event = proto.Field(proto.UINT32, number=24)
+        cov_events_count: int = proto.Field(
+            proto.UINT32,
+            number=1,
+        )
+        cov_last_event: int = proto.Field(
+            proto.UINT32,
+            number=2,
+        )
+        cuv_events_count: int = proto.Field(
+            proto.UINT32,
+            number=3,
+        )
+        cuv_last_event: int = proto.Field(
+            proto.UINT32,
+            number=4,
+        )
+        ocd1_events_count: int = proto.Field(
+            proto.UINT32,
+            number=5,
+        )
+        ocd1_last_event: int = proto.Field(
+            proto.UINT32,
+            number=6,
+        )
+        ocd2_events_count: int = proto.Field(
+            proto.UINT32,
+            number=7,
+        )
+        ocd2_last_event: int = proto.Field(
+            proto.UINT32,
+            number=8,
+        )
+        occ1_events_count: int = proto.Field(
+            proto.UINT32,
+            number=9,
+        )
+        occ1_last_event: int = proto.Field(
+            proto.UINT32,
+            number=10,
+        )
+        occ2_events_count: int = proto.Field(
+            proto.UINT32,
+            number=11,
+        )
+        occ2_last_event: int = proto.Field(
+            proto.UINT32,
+            number=12,
+        )
+        aold_events_count: int = proto.Field(
+            proto.UINT32,
+            number=13,
+        )
+        aold_last_event: int = proto.Field(
+            proto.UINT32,
+            number=14,
+        )
+        ascd_events_count: int = proto.Field(
+            proto.UINT32,
+            number=15,
+        )
+        ascd_last_event: int = proto.Field(
+            proto.UINT32,
+            number=16,
+        )
+        ascc_events_count: int = proto.Field(
+            proto.UINT32,
+            number=17,
+        )
+        ascc_last_event: int = proto.Field(
+            proto.UINT32,
+            number=18,
+        )
+        otc_events_count: int = proto.Field(
+            proto.UINT32,
+            number=19,
+        )
+        otc_last_event: int = proto.Field(
+            proto.UINT32,
+            number=20,
+        )
+        otd_events_count: int = proto.Field(
+            proto.UINT32,
+            number=21,
+        )
+        otd_last_event: int = proto.Field(
+            proto.UINT32,
+            number=22,
+        )
+        otf_events_count: int = proto.Field(
+            proto.UINT32,
+            number=23,
+        )
+        otf_last_event: int = proto.Field(
+            proto.UINT32,
+            number=24,
+        )
 
     class BatteryChargingEvents(proto.Message):
         r"""
@@ -1274,71 +1966,120 @@ class BatteryBQ40Z50(proto.Message):
                 cycles (cycles)
         """
 
-        charge_termination_events_count = proto.Field(proto.UINT32, number=1)
+        charge_termination_events_count: int = proto.Field(
+            proto.UINT32,
+            number=1,
+        )
+        charge_termination_last_event: int = proto.Field(
+            proto.UINT32,
+            number=2,
+        )
 
-        charge_termination_last_event = proto.Field(proto.UINT32, number=2)
-
-    voltage = proto.Field(proto.MESSAGE, number=1,
+    voltage: Voltage = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=Voltage,
     )
-
-    temperature = proto.Field(proto.MESSAGE, number=2,
+    temperature: Temperature = proto.Field(
+        proto.MESSAGE,
+        number=2,
         message=Temperature,
     )
-
-    status = proto.Field(proto.MESSAGE, number=4,
+    status: BatteryStatus = proto.Field(
+        proto.MESSAGE,
+        number=4,
         message=BatteryStatus,
     )
-
-    current = proto.Field(proto.FLOAT, number=6)
-
-    average_current = proto.Field(proto.FLOAT, number=7)
-
-    relative_state_of_charge = proto.Field(proto.FLOAT, number=8)
-
-    absolute_state_of_charge = proto.Field(proto.FLOAT, number=9)
-
-    calculated_state_of_charge = proto.Field(proto.FLOAT, number=26)
-
-    remaining_capacity = proto.Field(proto.FLOAT, number=10)
-
-    full_charge_capacity = proto.Field(proto.FLOAT, number=11)
-
-    runtime_to_empty = proto.Field(proto.UINT32, number=12)
-
-    average_time_to_empty = proto.Field(proto.UINT32, number=13)
-
-    average_time_to_full = proto.Field(proto.UINT32, number=14)
-
-    charging_current = proto.Field(proto.FLOAT, number=17)
-
-    charging_voltage = proto.Field(proto.FLOAT, number=18)
-
-    cycle_count = proto.Field(proto.UINT32, number=19)
-
-    design_capacity = proto.Field(proto.FLOAT, number=20)
-
-    manufacture_date = proto.Field(proto.MESSAGE, number=21,
-        message=gp_timestamp.Timestamp,
+    current: float = proto.Field(
+        proto.FLOAT,
+        number=6,
     )
-
-    serial_number = proto.Field(proto.UINT32, number=22)
-
-    manufacturer_name = proto.Field(proto.STRING, number=23)
-
-    device_name = proto.Field(proto.STRING, number=24)
-
-    device_chemistry = proto.Field(proto.STRING, number=25)
-
-    lifetimes = proto.Field(proto.MESSAGE, number=27,
+    average_current: float = proto.Field(
+        proto.FLOAT,
+        number=7,
+    )
+    relative_state_of_charge: float = proto.Field(
+        proto.FLOAT,
+        number=8,
+    )
+    absolute_state_of_charge: float = proto.Field(
+        proto.FLOAT,
+        number=9,
+    )
+    calculated_state_of_charge: float = proto.Field(
+        proto.FLOAT,
+        number=26,
+    )
+    remaining_capacity: float = proto.Field(
+        proto.FLOAT,
+        number=10,
+    )
+    full_charge_capacity: float = proto.Field(
+        proto.FLOAT,
+        number=11,
+    )
+    runtime_to_empty: int = proto.Field(
+        proto.UINT32,
+        number=12,
+    )
+    average_time_to_empty: int = proto.Field(
+        proto.UINT32,
+        number=13,
+    )
+    average_time_to_full: int = proto.Field(
+        proto.UINT32,
+        number=14,
+    )
+    charging_current: float = proto.Field(
+        proto.FLOAT,
+        number=17,
+    )
+    charging_voltage: float = proto.Field(
+        proto.FLOAT,
+        number=18,
+    )
+    cycle_count: int = proto.Field(
+        proto.UINT32,
+        number=19,
+    )
+    design_capacity: float = proto.Field(
+        proto.FLOAT,
+        number=20,
+    )
+    manufacture_date: timestamp_pb2.Timestamp = proto.Field(
+        proto.MESSAGE,
+        number=21,
+        message=timestamp_pb2.Timestamp,
+    )
+    serial_number: int = proto.Field(
+        proto.UINT32,
+        number=22,
+    )
+    manufacturer_name: str = proto.Field(
+        proto.STRING,
+        number=23,
+    )
+    device_name: str = proto.Field(
+        proto.STRING,
+        number=24,
+    )
+    device_chemistry: str = proto.Field(
+        proto.STRING,
+        number=25,
+    )
+    lifetimes: BatteryLifetimes = proto.Field(
+        proto.MESSAGE,
+        number=27,
         message=BatteryLifetimes,
     )
-
-    safety_events = proto.Field(proto.MESSAGE, number=28,
+    safety_events: BatterySafetyEvents = proto.Field(
+        proto.MESSAGE,
+        number=28,
         message=BatterySafetyEvents,
     )
-
-    charging_events = proto.Field(proto.MESSAGE, number=29,
+    charging_events: BatteryChargingEvents = proto.Field(
+        proto.MESSAGE,
+        number=29,
         message=BatteryChargingEvents,
     )
 
@@ -1355,11 +2096,18 @@ class Attitude(proto.Message):
             Yaw angle (-180°..180°)
     """
 
-    roll = proto.Field(proto.FLOAT, number=1)
-
-    pitch = proto.Field(proto.FLOAT, number=2)
-
-    yaw = proto.Field(proto.FLOAT, number=3)
+    roll: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    pitch: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    yaw: float = proto.Field(
+        proto.FLOAT,
+        number=3,
+    )
 
 
 class Altitude(proto.Message):
@@ -1372,13 +2120,19 @@ class Altitude(proto.Message):
             If altitude is valid or not
     """
 
-    value = proto.Field(proto.FLOAT, number=1)
-
-    is_valid = proto.Field(proto.BOOL, number=2)
+    value: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    is_valid: bool = proto.Field(
+        proto.BOOL,
+        number=2,
+    )
 
 
 class ForwardDistance(proto.Message):
     r"""Distance to an object in front of the drone
+
     Typically obtained from a 1D pinger.
 
     Attributes:
@@ -1388,9 +2142,14 @@ class ForwardDistance(proto.Message):
             If distance reading is valid or not
     """
 
-    value = proto.Field(proto.FLOAT, number=1)
-
-    is_valid = proto.Field(proto.BOOL, number=2)
+    value: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    is_valid: bool = proto.Field(
+        proto.BOOL,
+        number=2,
+    )
 
 
 class PositionEstimate(proto.Message):
@@ -1419,7 +2178,7 @@ class PositionEstimate(proto.Message):
         global_position (blueye.protocol.types.LatLongPosition):
             Best estimate of the global position in
             decimal degrees
-        navigation_sensors (Sequence[blueye.protocol.types.NavigationSensorStatus]):
+        navigation_sensors (MutableSequence[blueye.protocol.types.NavigationSensorStatus]):
             List of available sensors with status
         speed_over_ground (float):
             Speed over ground (m/s)
@@ -1429,37 +2188,64 @@ class PositionEstimate(proto.Message):
             Time since reset (s)
     """
 
-    northing = proto.Field(proto.FLOAT, number=1)
-
-    easting = proto.Field(proto.FLOAT, number=2)
-
-    heading = proto.Field(proto.FLOAT, number=3)
-
-    surge_rate = proto.Field(proto.FLOAT, number=4)
-
-    sway_rate = proto.Field(proto.FLOAT, number=5)
-
-    yaw_rate = proto.Field(proto.FLOAT, number=6)
-
-    ocean_current = proto.Field(proto.FLOAT, number=7)
-
-    odometer = proto.Field(proto.FLOAT, number=8)
-
-    is_valid = proto.Field(proto.BOOL, number=9)
-
-    global_position = proto.Field(proto.MESSAGE, number=10,
+    northing: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    easting: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    heading: float = proto.Field(
+        proto.FLOAT,
+        number=3,
+    )
+    surge_rate: float = proto.Field(
+        proto.FLOAT,
+        number=4,
+    )
+    sway_rate: float = proto.Field(
+        proto.FLOAT,
+        number=5,
+    )
+    yaw_rate: float = proto.Field(
+        proto.FLOAT,
+        number=6,
+    )
+    ocean_current: float = proto.Field(
+        proto.FLOAT,
+        number=7,
+    )
+    odometer: float = proto.Field(
+        proto.FLOAT,
+        number=8,
+    )
+    is_valid: bool = proto.Field(
+        proto.BOOL,
+        number=9,
+    )
+    global_position: 'LatLongPosition' = proto.Field(
+        proto.MESSAGE,
+        number=10,
         message='LatLongPosition',
     )
-
-    navigation_sensors = proto.RepeatedField(proto.MESSAGE, number=11,
+    navigation_sensors: MutableSequence['NavigationSensorStatus'] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=11,
         message='NavigationSensorStatus',
     )
-
-    speed_over_ground = proto.Field(proto.FLOAT, number=12)
-
-    course_over_ground = proto.Field(proto.FLOAT, number=13)
-
-    time_since_reset_sec = proto.Field(proto.INT32, number=14)
+    speed_over_ground: float = proto.Field(
+        proto.FLOAT,
+        number=12,
+    )
+    course_over_ground: float = proto.Field(
+        proto.FLOAT,
+        number=13,
+    )
+    time_since_reset_sec: int = proto.Field(
+        proto.INT32,
+        number=14,
+    )
 
 
 class ResetPositionSettings(proto.Message):
@@ -1479,17 +2265,23 @@ class ResetPositionSettings(proto.Message):
             Reset coordinate in decimal degrees
     """
 
-    heading_source_during_reset = proto.Field(proto.ENUM, number=1,
+    heading_source_during_reset: 'HeadingSource' = proto.Field(
+        proto.ENUM,
+        number=1,
         enum='HeadingSource',
     )
-
-    manual_heading = proto.Field(proto.FLOAT, number=2)
-
-    reset_coordinate_source = proto.Field(proto.ENUM, number=3,
+    manual_heading: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    reset_coordinate_source: 'ResetCoordinateSource' = proto.Field(
+        proto.ENUM,
+        number=3,
         enum='ResetCoordinateSource',
     )
-
-    reset_coordinate = proto.Field(proto.MESSAGE, number=4,
+    reset_coordinate: 'LatLongPosition' = proto.Field(
+        proto.MESSAGE,
+        number=4,
         message='LatLongPosition',
     )
 
@@ -1516,17 +2308,30 @@ class DvlTransducer(proto.Message):
             (dBm)
     """
 
-    id = proto.Field(proto.INT32, number=1)
-
-    velocity = proto.Field(proto.FLOAT, number=2)
-
-    distance = proto.Field(proto.FLOAT, number=3)
-
-    beam_valid = proto.Field(proto.BOOL, number=4)
-
-    rssi = proto.Field(proto.FLOAT, number=5)
-
-    nsd = proto.Field(proto.FLOAT, number=6)
+    id: int = proto.Field(
+        proto.INT32,
+        number=1,
+    )
+    velocity: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    distance: float = proto.Field(
+        proto.FLOAT,
+        number=3,
+    )
+    beam_valid: bool = proto.Field(
+        proto.BOOL,
+        number=4,
+    )
+    rssi: float = proto.Field(
+        proto.FLOAT,
+        number=5,
+    )
+    nsd: float = proto.Field(
+        proto.FLOAT,
+        number=6,
+    )
 
 
 class DvlVelocity(proto.Message):
@@ -1546,27 +2351,39 @@ class DvlVelocity(proto.Message):
             Velocity, x forward, y left, z down (m/s)
         is_water_tracking (bool):
             Water tracking status
-        transducers (Sequence[blueye.protocol.types.DvlTransducer]):
+        transducers (MutableSequence[blueye.protocol.types.DvlTransducer]):
             List of transducers
     """
 
-    sensor_id = proto.Field(proto.ENUM, number=1,
+    sensor_id: 'NavigationSensorID' = proto.Field(
+        proto.ENUM,
+        number=1,
         enum='NavigationSensorID',
     )
-
-    status = proto.Field(proto.INT32, number=2)
-
-    delta_time = proto.Field(proto.FLOAT, number=3)
-
-    fom = proto.Field(proto.FLOAT, number=4)
-
-    velocity = proto.Field(proto.MESSAGE, number=5,
+    status: int = proto.Field(
+        proto.INT32,
+        number=2,
+    )
+    delta_time: float = proto.Field(
+        proto.FLOAT,
+        number=3,
+    )
+    fom: float = proto.Field(
+        proto.FLOAT,
+        number=4,
+    )
+    velocity: 'Vector3' = proto.Field(
+        proto.MESSAGE,
+        number=5,
         message='Vector3',
     )
-
-    is_water_tracking = proto.Field(proto.BOOL, number=6)
-
-    transducers = proto.RepeatedField(proto.MESSAGE, number=7,
+    is_water_tracking: bool = proto.Field(
+        proto.BOOL,
+        number=6,
+    )
+    transducers: MutableSequence['DvlTransducer'] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=7,
         message='DvlTransducer',
     )
 
@@ -1579,7 +2396,10 @@ class Depth(proto.Message):
             Drone depth below surface (m)
     """
 
-    value = proto.Field(proto.FLOAT, number=1)
+    value: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
 
 
 class Reference(proto.Message):
@@ -1605,19 +2425,34 @@ class Reference(proto.Message):
             Reference used in auto altitude mode (m)
     """
 
-    surge = proto.Field(proto.FLOAT, number=1)
-
-    sway = proto.Field(proto.FLOAT, number=2)
-
-    heave = proto.Field(proto.FLOAT, number=3)
-
-    yaw = proto.Field(proto.FLOAT, number=4)
-
-    depth = proto.Field(proto.FLOAT, number=5)
-
-    heading = proto.Field(proto.FLOAT, number=6)
-
-    altitude = proto.Field(proto.FLOAT, number=7)
+    surge: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    sway: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    heave: float = proto.Field(
+        proto.FLOAT,
+        number=3,
+    )
+    yaw: float = proto.Field(
+        proto.FLOAT,
+        number=4,
+    )
+    depth: float = proto.Field(
+        proto.FLOAT,
+        number=5,
+    )
+    heading: float = proto.Field(
+        proto.FLOAT,
+        number=6,
+    )
+    altitude: float = proto.Field(
+        proto.FLOAT,
+        number=7,
+    )
 
 
 class Notification(proto.Message):
@@ -1636,20 +2471,25 @@ class Notification(proto.Message):
             Timestamp of the notification
     """
 
-    type_ = proto.Field(proto.ENUM, number=1,
+    type_: 'NotificationType' = proto.Field(
+        proto.ENUM,
+        number=1,
         enum='NotificationType',
     )
-
-    level = proto.Field(proto.ENUM, number=2,
+    level: 'NotificationLevel' = proto.Field(
+        proto.ENUM,
+        number=2,
         enum='NotificationLevel',
     )
-
-    value = proto.Field(proto.MESSAGE, number=3,
-        message=gp_any.Any,
+    value: any_pb2.Any = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=any_pb2.Any,
     )
-
-    timestamp = proto.Field(proto.MESSAGE, number=4,
-        message=gp_timestamp.Timestamp,
+    timestamp: timestamp_pb2.Timestamp = proto.Field(
+        proto.MESSAGE,
+        number=4,
+        message=timestamp_pb2.Timestamp,
     )
 
 
@@ -1668,13 +2508,22 @@ class ControlForce(proto.Message):
             Moment in yaw (Nm)
     """
 
-    surge = proto.Field(proto.FLOAT, number=1)
-
-    sway = proto.Field(proto.FLOAT, number=2)
-
-    heave = proto.Field(proto.FLOAT, number=3)
-
-    yaw = proto.Field(proto.FLOAT, number=4)
+    surge: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    sway: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    heave: float = proto.Field(
+        proto.FLOAT,
+        number=3,
+    )
+    yaw: float = proto.Field(
+        proto.FLOAT,
+        number=4,
+    )
 
 
 class ControllerHealth(proto.Message):
@@ -1692,17 +2541,27 @@ class ControllerHealth(proto.Message):
             Heading controller load (0..1)
     """
 
-    depth_error = proto.Field(proto.FLOAT, number=1)
-
-    depth_health = proto.Field(proto.FLOAT, number=2)
-
-    heading_error = proto.Field(proto.FLOAT, number=3)
-
-    heading_health = proto.Field(proto.FLOAT, number=4)
+    depth_error: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    depth_health: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    heading_error: float = proto.Field(
+        proto.FLOAT,
+        number=3,
+    )
+    heading_health: float = proto.Field(
+        proto.FLOAT,
+        number=4,
+    )
 
 
 class DiveTime(proto.Message):
     r"""Amount of time the drone has been submerged.
+
     The drone starts incrementing this value when the depth is above
     250 mm.
 
@@ -1712,7 +2571,10 @@ class DiveTime(proto.Message):
             submerged
     """
 
-    value = proto.Field(proto.INT32, number=1)
+    value: int = proto.Field(
+        proto.INT32,
+        number=1,
+    )
 
 
 class RecordOn(proto.Message):
@@ -1727,11 +2589,18 @@ class RecordOn(proto.Message):
             Record multibeam
     """
 
-    main = proto.Field(proto.BOOL, number=1)
-
-    guestport = proto.Field(proto.BOOL, number=2)
-
-    multibeam = proto.Field(proto.BOOL, number=3)
+    main: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    guestport: bool = proto.Field(
+        proto.BOOL,
+        number=2,
+    )
+    multibeam: bool = proto.Field(
+        proto.BOOL,
+        number=3,
+    )
 
 
 class StorageSpace(proto.Message):
@@ -1744,9 +2613,14 @@ class StorageSpace(proto.Message):
             Available bytes of storage space (B)
     """
 
-    total_space = proto.Field(proto.INT64, number=1)
-
-    free_space = proto.Field(proto.INT64, number=2)
+    total_space: int = proto.Field(
+        proto.INT64,
+        number=1,
+    )
+    free_space: int = proto.Field(
+        proto.INT64,
+        number=2,
+    )
 
 
 class CalibrationState(proto.Message):
@@ -1772,8 +2646,39 @@ class CalibrationState(proto.Message):
     """
     class Status(proto.Enum):
         r"""Status of the compass calibration procedure.
+
         When calibration is started, the status will indicate the active
         (upfacing) axis.
+
+        Values:
+            STATUS_UNSPECIFIED (0):
+                Unspecified status
+            STATUS_NOT_CALIBRATING (1):
+                Compass is not currently calibrating
+            STATUS_CALIBRATING_NO_AXIS (2):
+                Compass is calibrating but active calibration
+                axis cannot be determined
+            STATUS_CALIBRATING_X_POSITIVE (3):
+                Compass is calibrating and the positive X
+                axis is active
+            STATUS_CALIBRATING_X_NEGATIVE (4):
+                Compass is calibrating and the negative X
+                axis is active
+            STATUS_CALIBRATING_Y_POSITIVE (5):
+                Compass is calibrating and the positive Y
+                axis is active
+            STATUS_CALIBRATING_Y_NEGATIVE (6):
+                Compass is calibrating and the negative Y
+                axis is active
+            STATUS_CALIBRATING_Z_POSITIVE (7):
+                Compass is calibrating and the positive Z
+                axis is active
+            STATUS_CALIBRATING_Z_NEGATIVE (8):
+                Compass is calibrating and the negative Z
+                axis is active
+            STATUS_CALIBRATING_THRUSTER (9):
+                Compass is calibrating for thruster
+                interferance
         """
         STATUS_UNSPECIFIED = 0
         STATUS_NOT_CALIBRATING = 1
@@ -1786,23 +2691,39 @@ class CalibrationState(proto.Message):
         STATUS_CALIBRATING_Z_NEGATIVE = 8
         STATUS_CALIBRATING_THRUSTER = 9
 
-    status = proto.Field(proto.ENUM, number=1,
+    status: Status = proto.Field(
+        proto.ENUM,
+        number=1,
         enum=Status,
     )
-
-    progress_x_positive = proto.Field(proto.FLOAT, number=2)
-
-    progress_x_negative = proto.Field(proto.FLOAT, number=3)
-
-    progress_y_positive = proto.Field(proto.FLOAT, number=4)
-
-    progress_y_negative = proto.Field(proto.FLOAT, number=5)
-
-    progress_z_positive = proto.Field(proto.FLOAT, number=6)
-
-    progress_z_negative = proto.Field(proto.FLOAT, number=7)
-
-    progress_thruster = proto.Field(proto.FLOAT, number=8)
+    progress_x_positive: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    progress_x_negative: float = proto.Field(
+        proto.FLOAT,
+        number=3,
+    )
+    progress_y_positive: float = proto.Field(
+        proto.FLOAT,
+        number=4,
+    )
+    progress_y_negative: float = proto.Field(
+        proto.FLOAT,
+        number=5,
+    )
+    progress_z_positive: float = proto.Field(
+        proto.FLOAT,
+        number=6,
+    )
+    progress_z_negative: float = proto.Field(
+        proto.FLOAT,
+        number=7,
+    )
+    progress_thruster: float = proto.Field(
+        proto.FLOAT,
+        number=8,
+    )
 
 
 class IperfStatus(proto.Message):
@@ -1817,9 +2738,14 @@ class IperfStatus(proto.Message):
             (Mbit/s)
     """
 
-    sent = proto.Field(proto.FLOAT, number=1)
-
-    received = proto.Field(proto.FLOAT, number=2)
+    sent: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    received: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
 
 
 class NStreamers(proto.Message):
@@ -1834,9 +2760,14 @@ class NStreamers(proto.Message):
             stream
     """
 
-    main = proto.Field(proto.INT32, number=1)
-
-    guestport = proto.Field(proto.INT32, number=2)
+    main: int = proto.Field(
+        proto.INT32,
+        number=1,
+    )
+    guestport: int = proto.Field(
+        proto.INT32,
+        number=2,
+    )
 
 
 class TiltAngle(proto.Message):
@@ -1847,7 +2778,10 @@ class TiltAngle(proto.Message):
             Tilt angle (°)
     """
 
-    value = proto.Field(proto.FLOAT, number=1)
+    value: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
 
 
 class TiltVelocity(proto.Message):
@@ -1859,11 +2793,15 @@ class TiltVelocity(proto.Message):
             negative means down and positive means up
     """
 
-    value = proto.Field(proto.FLOAT, number=1)
+    value: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
 
 
 class DroneInfo(proto.Message):
     r"""Information about the drone.
+
     This message contains serial numbers and version information for
     internal components in the drone. Primarily used for
     diagnostics, or to determine the origin of a logfile.
@@ -1894,31 +2832,51 @@ class DroneInfo(proto.Message):
             drone
     """
 
-    blunux_version = proto.Field(proto.STRING, number=1)
-
-    serial_number = proto.Field(proto.BYTES, number=2)
-
-    hardware_id = proto.Field(proto.BYTES, number=3)
-
-    model = proto.Field(proto.ENUM, number=4,
+    blunux_version: str = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    serial_number: bytes = proto.Field(
+        proto.BYTES,
+        number=2,
+    )
+    hardware_id: bytes = proto.Field(
+        proto.BYTES,
+        number=3,
+    )
+    model: 'Model' = proto.Field(
+        proto.ENUM,
+        number=4,
         enum='Model',
     )
-
-    mb_serial = proto.Field(proto.BYTES, number=5)
-
-    bb_serial = proto.Field(proto.BYTES, number=6)
-
-    ds_serial = proto.Field(proto.BYTES, number=10)
-
-    mb_uid = proto.Field(proto.BYTES, number=7)
-
-    bb_uid = proto.Field(proto.BYTES, number=8)
-
-    gp = proto.Field(proto.MESSAGE, number=9,
+    mb_serial: bytes = proto.Field(
+        proto.BYTES,
+        number=5,
+    )
+    bb_serial: bytes = proto.Field(
+        proto.BYTES,
+        number=6,
+    )
+    ds_serial: bytes = proto.Field(
+        proto.BYTES,
+        number=10,
+    )
+    mb_uid: bytes = proto.Field(
+        proto.BYTES,
+        number=7,
+    )
+    bb_uid: bytes = proto.Field(
+        proto.BYTES,
+        number=8,
+    )
+    gp: 'GuestPortInfo' = proto.Field(
+        proto.MESSAGE,
+        number=9,
         message='GuestPortInfo',
     )
-
-    depth_sensor = proto.Field(proto.ENUM, number=11,
+    depth_sensor: 'PressureSensorType' = proto.Field(
+        proto.ENUM,
+        number=11,
         enum='PressureSensorType',
     )
 
@@ -2025,97 +2983,190 @@ class ErrorFlags(proto.Message):
             Video URB error
     """
 
-    pmu_comm_ack = proto.Field(proto.BOOL, number=1)
-
-    pmu_comm_stream = proto.Field(proto.BOOL, number=2)
-
-    depth_read = proto.Field(proto.BOOL, number=3)
-
-    depth_spike = proto.Field(proto.BOOL, number=4)
-
-    inner_pressure_read = proto.Field(proto.BOOL, number=5)
-
-    inner_pressure_spike = proto.Field(proto.BOOL, number=6)
-
-    compass_calibration = proto.Field(proto.BOOL, number=7)
-
-    tilt_calibration = proto.Field(proto.BOOL, number=8)
-
-    gp1_read = proto.Field(proto.BOOL, number=9)
-
-    gp2_read = proto.Field(proto.BOOL, number=10)
-
-    gp3_read = proto.Field(proto.BOOL, number=11)
-
-    gp1_not_flashed = proto.Field(proto.BOOL, number=12)
-
-    gp2_not_flashed = proto.Field(proto.BOOL, number=13)
-
-    gp3_not_flashed = proto.Field(proto.BOOL, number=14)
-
-    gp1_unknown_device = proto.Field(proto.BOOL, number=15)
-
-    gp2_unknown_device = proto.Field(proto.BOOL, number=16)
-
-    gp3_unknown_device = proto.Field(proto.BOOL, number=17)
-
-    gp1_device_connection = proto.Field(proto.BOOL, number=18)
-
-    gp2_device_connection = proto.Field(proto.BOOL, number=19)
-
-    gp3_device_connection = proto.Field(proto.BOOL, number=20)
-
-    gp1_device = proto.Field(proto.BOOL, number=21)
-
-    gp2_device = proto.Field(proto.BOOL, number=22)
-
-    gp3_device = proto.Field(proto.BOOL, number=23)
-
-    drone_serial_not_set = proto.Field(proto.BOOL, number=24)
-
-    drone_serial = proto.Field(proto.BOOL, number=25)
-
-    mb_eeprom_read = proto.Field(proto.BOOL, number=26)
-
-    bb_eeprom_read = proto.Field(proto.BOOL, number=27)
-
-    mb_eeprom_not_flashed = proto.Field(proto.BOOL, number=28)
-
-    bb_eeprom_not_flashed = proto.Field(proto.BOOL, number=29)
-
-    main_camera_connection = proto.Field(proto.BOOL, number=30)
-
-    main_camera_firmware = proto.Field(proto.BOOL, number=31)
-
-    guestport_camera_connection = proto.Field(proto.BOOL, number=32)
-
-    guestport_camera_firmware = proto.Field(proto.BOOL, number=33)
-
-    mb_serial = proto.Field(proto.BOOL, number=34)
-
-    bb_serial = proto.Field(proto.BOOL, number=35)
-
-    ds_serial = proto.Field(proto.BOOL, number=36)
-
-    gp_current_read = proto.Field(proto.BOOL, number=37)
-
-    gp_current = proto.Field(proto.BOOL, number=38)
-
-    gp1_bat_current = proto.Field(proto.BOOL, number=39)
-
-    gp2_bat_current = proto.Field(proto.BOOL, number=40)
-
-    gp3_bat_current = proto.Field(proto.BOOL, number=41)
-
-    gp_20v_current = proto.Field(proto.BOOL, number=42)
-
-    dvl_thermal_protection_mode = proto.Field(proto.BOOL, number=43)
-
-    dvl_no_power = proto.Field(proto.BOOL, number=44)
-
-    usb_disconnect = proto.Field(proto.BOOL, number=45)
-
-    video_urb_error = proto.Field(proto.BOOL, number=46)
+    pmu_comm_ack: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    pmu_comm_stream: bool = proto.Field(
+        proto.BOOL,
+        number=2,
+    )
+    depth_read: bool = proto.Field(
+        proto.BOOL,
+        number=3,
+    )
+    depth_spike: bool = proto.Field(
+        proto.BOOL,
+        number=4,
+    )
+    inner_pressure_read: bool = proto.Field(
+        proto.BOOL,
+        number=5,
+    )
+    inner_pressure_spike: bool = proto.Field(
+        proto.BOOL,
+        number=6,
+    )
+    compass_calibration: bool = proto.Field(
+        proto.BOOL,
+        number=7,
+    )
+    tilt_calibration: bool = proto.Field(
+        proto.BOOL,
+        number=8,
+    )
+    gp1_read: bool = proto.Field(
+        proto.BOOL,
+        number=9,
+    )
+    gp2_read: bool = proto.Field(
+        proto.BOOL,
+        number=10,
+    )
+    gp3_read: bool = proto.Field(
+        proto.BOOL,
+        number=11,
+    )
+    gp1_not_flashed: bool = proto.Field(
+        proto.BOOL,
+        number=12,
+    )
+    gp2_not_flashed: bool = proto.Field(
+        proto.BOOL,
+        number=13,
+    )
+    gp3_not_flashed: bool = proto.Field(
+        proto.BOOL,
+        number=14,
+    )
+    gp1_unknown_device: bool = proto.Field(
+        proto.BOOL,
+        number=15,
+    )
+    gp2_unknown_device: bool = proto.Field(
+        proto.BOOL,
+        number=16,
+    )
+    gp3_unknown_device: bool = proto.Field(
+        proto.BOOL,
+        number=17,
+    )
+    gp1_device_connection: bool = proto.Field(
+        proto.BOOL,
+        number=18,
+    )
+    gp2_device_connection: bool = proto.Field(
+        proto.BOOL,
+        number=19,
+    )
+    gp3_device_connection: bool = proto.Field(
+        proto.BOOL,
+        number=20,
+    )
+    gp1_device: bool = proto.Field(
+        proto.BOOL,
+        number=21,
+    )
+    gp2_device: bool = proto.Field(
+        proto.BOOL,
+        number=22,
+    )
+    gp3_device: bool = proto.Field(
+        proto.BOOL,
+        number=23,
+    )
+    drone_serial_not_set: bool = proto.Field(
+        proto.BOOL,
+        number=24,
+    )
+    drone_serial: bool = proto.Field(
+        proto.BOOL,
+        number=25,
+    )
+    mb_eeprom_read: bool = proto.Field(
+        proto.BOOL,
+        number=26,
+    )
+    bb_eeprom_read: bool = proto.Field(
+        proto.BOOL,
+        number=27,
+    )
+    mb_eeprom_not_flashed: bool = proto.Field(
+        proto.BOOL,
+        number=28,
+    )
+    bb_eeprom_not_flashed: bool = proto.Field(
+        proto.BOOL,
+        number=29,
+    )
+    main_camera_connection: bool = proto.Field(
+        proto.BOOL,
+        number=30,
+    )
+    main_camera_firmware: bool = proto.Field(
+        proto.BOOL,
+        number=31,
+    )
+    guestport_camera_connection: bool = proto.Field(
+        proto.BOOL,
+        number=32,
+    )
+    guestport_camera_firmware: bool = proto.Field(
+        proto.BOOL,
+        number=33,
+    )
+    mb_serial: bool = proto.Field(
+        proto.BOOL,
+        number=34,
+    )
+    bb_serial: bool = proto.Field(
+        proto.BOOL,
+        number=35,
+    )
+    ds_serial: bool = proto.Field(
+        proto.BOOL,
+        number=36,
+    )
+    gp_current_read: bool = proto.Field(
+        proto.BOOL,
+        number=37,
+    )
+    gp_current: bool = proto.Field(
+        proto.BOOL,
+        number=38,
+    )
+    gp1_bat_current: bool = proto.Field(
+        proto.BOOL,
+        number=39,
+    )
+    gp2_bat_current: bool = proto.Field(
+        proto.BOOL,
+        number=40,
+    )
+    gp3_bat_current: bool = proto.Field(
+        proto.BOOL,
+        number=41,
+    )
+    gp_20v_current: bool = proto.Field(
+        proto.BOOL,
+        number=42,
+    )
+    dvl_thermal_protection_mode: bool = proto.Field(
+        proto.BOOL,
+        number=43,
+    )
+    dvl_no_power: bool = proto.Field(
+        proto.BOOL,
+        number=44,
+    )
+    usb_disconnect: bool = proto.Field(
+        proto.BOOL,
+        number=45,
+    )
+    video_urb_error: bool = proto.Field(
+        proto.BOOL,
+        number=46,
+    )
 
 
 class CameraParameters(proto.Message):
@@ -2144,33 +3195,50 @@ class CameraParameters(proto.Message):
             Which camera the parameters belong to.
     """
 
-    h264_bitrate = proto.Field(proto.INT32, number=1)
-
-    mjpg_bitrate = proto.Field(proto.INT32, number=2)
-
-    exposure = proto.Field(proto.INT32, number=3)
-
-    white_balance = proto.Field(proto.INT32, number=4)
-
-    hue = proto.Field(proto.INT32, number=5)
-
-    gain = proto.Field(proto.FLOAT, number=9)
-
-    resolution = proto.Field(proto.ENUM, number=6,
+    h264_bitrate: int = proto.Field(
+        proto.INT32,
+        number=1,
+    )
+    mjpg_bitrate: int = proto.Field(
+        proto.INT32,
+        number=2,
+    )
+    exposure: int = proto.Field(
+        proto.INT32,
+        number=3,
+    )
+    white_balance: int = proto.Field(
+        proto.INT32,
+        number=4,
+    )
+    hue: int = proto.Field(
+        proto.INT32,
+        number=5,
+    )
+    gain: float = proto.Field(
+        proto.FLOAT,
+        number=9,
+    )
+    resolution: 'Resolution' = proto.Field(
+        proto.ENUM,
+        number=6,
         enum='Resolution',
     )
-
-    framerate = proto.Field(proto.ENUM, number=7,
+    framerate: 'Framerate' = proto.Field(
+        proto.ENUM,
+        number=7,
         enum='Framerate',
     )
-
-    camera = proto.Field(proto.ENUM, number=8,
+    camera: 'Camera' = proto.Field(
+        proto.ENUM,
+        number=8,
         enum='Camera',
     )
 
 
 class OverlayParameters(proto.Message):
     r"""Overlay parameters.
+
     All available parameters that can be used to configure telemetry
     overlay on video recordings.
 
@@ -2228,61 +3296,103 @@ class OverlayParameters(proto.Message):
             background (0..1), 0: transparent, 1: black
     """
 
-    temperature_enabled = proto.Field(proto.BOOL, number=1)
-
-    depth_enabled = proto.Field(proto.BOOL, number=2)
-
-    heading_enabled = proto.Field(proto.BOOL, number=3)
-
-    tilt_enabled = proto.Field(proto.BOOL, number=4)
-
-    thickness_enabled = proto.Field(proto.BOOL, number=18)
-
-    date_enabled = proto.Field(proto.BOOL, number=5)
-
-    distance_enabled = proto.Field(proto.BOOL, number=20)
-
-    altitude_enabled = proto.Field(proto.BOOL, number=21)
-
-    cp_probe_enabled = proto.Field(proto.BOOL, number=22)
-
-    medusa_enabled = proto.Field(proto.BOOL, number=24)
-
-    drone_location_enabled = proto.Field(proto.BOOL, number=23)
-
-    logo_type = proto.Field(proto.ENUM, number=6,
+    temperature_enabled: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    depth_enabled: bool = proto.Field(
+        proto.BOOL,
+        number=2,
+    )
+    heading_enabled: bool = proto.Field(
+        proto.BOOL,
+        number=3,
+    )
+    tilt_enabled: bool = proto.Field(
+        proto.BOOL,
+        number=4,
+    )
+    thickness_enabled: bool = proto.Field(
+        proto.BOOL,
+        number=18,
+    )
+    date_enabled: bool = proto.Field(
+        proto.BOOL,
+        number=5,
+    )
+    distance_enabled: bool = proto.Field(
+        proto.BOOL,
+        number=20,
+    )
+    altitude_enabled: bool = proto.Field(
+        proto.BOOL,
+        number=21,
+    )
+    cp_probe_enabled: bool = proto.Field(
+        proto.BOOL,
+        number=22,
+    )
+    medusa_enabled: bool = proto.Field(
+        proto.BOOL,
+        number=24,
+    )
+    drone_location_enabled: bool = proto.Field(
+        proto.BOOL,
+        number=23,
+    )
+    logo_type: 'LogoType' = proto.Field(
+        proto.ENUM,
+        number=6,
         enum='LogoType',
     )
-
-    depth_unit = proto.Field(proto.ENUM, number=7,
+    depth_unit: 'DepthUnit' = proto.Field(
+        proto.ENUM,
+        number=7,
         enum='DepthUnit',
     )
-
-    temperature_unit = proto.Field(proto.ENUM, number=8,
+    temperature_unit: 'TemperatureUnit' = proto.Field(
+        proto.ENUM,
+        number=8,
         enum='TemperatureUnit',
     )
-
-    thickness_unit = proto.Field(proto.ENUM, number=19,
+    thickness_unit: 'ThicknessUnit' = proto.Field(
+        proto.ENUM,
+        number=19,
         enum='ThicknessUnit',
     )
-
-    timezone_offset = proto.Field(proto.INT32, number=9)
-
-    margin_width = proto.Field(proto.INT32, number=10)
-
-    margin_height = proto.Field(proto.INT32, number=11)
-
-    font_size = proto.Field(proto.ENUM, number=12,
+    timezone_offset: int = proto.Field(
+        proto.INT32,
+        number=9,
+    )
+    margin_width: int = proto.Field(
+        proto.INT32,
+        number=10,
+    )
+    margin_height: int = proto.Field(
+        proto.INT32,
+        number=11,
+    )
+    font_size: 'FontSize' = proto.Field(
+        proto.ENUM,
+        number=12,
         enum='FontSize',
     )
-
-    title = proto.Field(proto.STRING, number=13)
-
-    subtitle = proto.Field(proto.STRING, number=14)
-
-    date_format = proto.Field(proto.STRING, number=16)
-
-    shading = proto.Field(proto.FLOAT, number=17)
+    title: str = proto.Field(
+        proto.STRING,
+        number=13,
+    )
+    subtitle: str = proto.Field(
+        proto.STRING,
+        number=14,
+    )
+    date_format: str = proto.Field(
+        proto.STRING,
+        number=16,
+    )
+    shading: float = proto.Field(
+        proto.FLOAT,
+        number=17,
+    )
 
 
 class NavigationSensorStatus(proto.Message):
@@ -2308,23 +3418,38 @@ class NavigationSensorStatus(proto.Message):
             Global position from sensor
     """
 
-    sensor_id = proto.Field(proto.ENUM, number=1,
+    sensor_id: 'NavigationSensorID' = proto.Field(
+        proto.ENUM,
+        number=1,
         enum='NavigationSensorID',
     )
-
-    is_valid = proto.Field(proto.BOOL, number=2)
-
-    northing = proto.Field(proto.FLOAT, number=3)
-
-    easting = proto.Field(proto.FLOAT, number=4)
-
-    heading = proto.Field(proto.FLOAT, number=5)
-
-    fom = proto.Field(proto.FLOAT, number=6)
-
-    std = proto.Field(proto.FLOAT, number=7)
-
-    global_position = proto.Field(proto.MESSAGE, number=8,
+    is_valid: bool = proto.Field(
+        proto.BOOL,
+        number=2,
+    )
+    northing: float = proto.Field(
+        proto.FLOAT,
+        number=3,
+    )
+    easting: float = proto.Field(
+        proto.FLOAT,
+        number=4,
+    )
+    heading: float = proto.Field(
+        proto.FLOAT,
+        number=5,
+    )
+    fom: float = proto.Field(
+        proto.FLOAT,
+        number=6,
+    )
+    std: float = proto.Field(
+        proto.FLOAT,
+        number=7,
+    )
+    global_position: 'LatLongPosition' = proto.Field(
+        proto.MESSAGE,
+        number=8,
         message='LatLongPosition',
     )
 
@@ -2349,21 +3474,34 @@ class GuestPortDevice(proto.Message):
             Detach status based on detection pin
     """
 
-    device_id = proto.Field(proto.ENUM, number=1,
+    device_id: 'GuestPortDeviceID' = proto.Field(
+        proto.ENUM,
+        number=1,
         enum='GuestPortDeviceID',
     )
-
-    manufacturer = proto.Field(proto.STRING, number=2)
-
-    name = proto.Field(proto.STRING, number=3)
-
-    serial_number = proto.Field(proto.STRING, number=4)
-
-    depth_rating = proto.Field(proto.FLOAT, number=5)
-
-    required_blunux_version = proto.Field(proto.STRING, number=6)
-
-    detach_status = proto.Field(proto.ENUM, number=7,
+    manufacturer: str = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    name: str = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    serial_number: str = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    depth_rating: float = proto.Field(
+        proto.FLOAT,
+        number=5,
+    )
+    required_blunux_version: str = proto.Field(
+        proto.STRING,
+        number=6,
+    )
+    detach_status: 'GuestPortDetachStatus' = proto.Field(
+        proto.ENUM,
+        number=7,
         enum='GuestPortDetachStatus',
     )
 
@@ -2372,11 +3510,13 @@ class GuestPortDeviceList(proto.Message):
     r"""List of guest port devices.
 
     Attributes:
-        devices (Sequence[blueye.protocol.types.GuestPortDevice]):
+        devices (MutableSequence[blueye.protocol.types.GuestPortDevice]):
             List of guest port devices
     """
 
-    devices = proto.RepeatedField(proto.MESSAGE, number=1,
+    devices: MutableSequence['GuestPortDevice'] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='GuestPortDevice',
     )
 
@@ -2384,24 +3524,41 @@ class GuestPortDeviceList(proto.Message):
 class GuestPortConnectorInfo(proto.Message):
     r"""GuestPort connector information.
 
+    This message has `oneof`_ fields (mutually exclusive fields).
+    For each oneof, at most one member field can be set at the same time.
+    Setting any member of the oneof automatically clears all other
+    members.
+
+    .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
+
     Attributes:
         device_list (blueye.protocol.types.GuestPortDeviceList):
             List of devices on this connector
+
+            This field is a member of `oneof`_ ``connected_device``.
         error (blueye.protocol.types.GuestPortError):
             Guest port connector error
+
+            This field is a member of `oneof`_ ``connected_device``.
         guest_port_number (blueye.protocol.types.GuestPortNumber):
             Guest port the connector is connected to
     """
 
-    device_list = proto.Field(proto.MESSAGE, number=1, oneof='connected_device',
+    device_list: 'GuestPortDeviceList' = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        oneof='connected_device',
         message='GuestPortDeviceList',
     )
-
-    error = proto.Field(proto.ENUM, number=2, oneof='connected_device',
+    error: 'GuestPortError' = proto.Field(
+        proto.ENUM,
+        number=2,
+        oneof='connected_device',
         enum='GuestPortError',
     )
-
-    guest_port_number = proto.Field(proto.ENUM, number=3,
+    guest_port_number: 'GuestPortNumber' = proto.Field(
+        proto.ENUM,
+        number=3,
         enum='GuestPortNumber',
     )
 
@@ -2418,15 +3575,19 @@ class GuestPortInfo(proto.Message):
             GuestPortConnectorInfo 3
     """
 
-    gp1 = proto.Field(proto.MESSAGE, number=1,
+    gp1: 'GuestPortConnectorInfo' = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message='GuestPortConnectorInfo',
     )
-
-    gp2 = proto.Field(proto.MESSAGE, number=2,
+    gp2: 'GuestPortConnectorInfo' = proto.Field(
+        proto.MESSAGE,
+        number=2,
         message='GuestPortConnectorInfo',
     )
-
-    gp3 = proto.Field(proto.MESSAGE, number=3,
+    gp3: 'GuestPortConnectorInfo' = proto.Field(
+        proto.MESSAGE,
+        number=3,
         message='GuestPortConnectorInfo',
     )
 
@@ -2439,7 +3600,10 @@ class GuestPortRestartInfo(proto.Message):
             Duration to keep the guest ports off (s)
     """
 
-    power_off_duration = proto.Field(proto.DOUBLE, number=1)
+    power_off_duration: float = proto.Field(
+        proto.DOUBLE,
+        number=1,
+    )
 
 
 class ThicknessGauge(proto.Message):
@@ -2457,13 +3621,22 @@ class ThicknessGauge(proto.Message):
             Indicating if the measurement is valid
     """
 
-    thickness_measurement = proto.Field(proto.FLOAT, number=1)
-
-    echo_count = proto.Field(proto.UINT32, number=2)
-
-    sound_velocity = proto.Field(proto.UINT32, number=3)
-
-    is_measurement_valid = proto.Field(proto.BOOL, number=4)
+    thickness_measurement: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    echo_count: int = proto.Field(
+        proto.UINT32,
+        number=2,
+    )
+    sound_velocity: int = proto.Field(
+        proto.UINT32,
+        number=3,
+    )
+    is_measurement_valid: bool = proto.Field(
+        proto.BOOL,
+        number=4,
+    )
 
 
 class CpProbe(proto.Message):
@@ -2476,9 +3649,14 @@ class CpProbe(proto.Message):
             Indicating if the measurement is valid
     """
 
-    measurement = proto.Field(proto.FLOAT, number=1)
-
-    is_measurement_valid = proto.Field(proto.BOOL, number=2)
+    measurement: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    is_measurement_valid: bool = proto.Field(
+        proto.BOOL,
+        number=2,
+    )
 
 
 class GenericServo(proto.Message):
@@ -2491,9 +3669,13 @@ class GenericServo(proto.Message):
             Guest port the servo is on
     """
 
-    value = proto.Field(proto.FLOAT, number=1)
-
-    guest_port_number = proto.Field(proto.ENUM, number=2,
+    value: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    guest_port_number: 'GuestPortNumber' = proto.Field(
+        proto.ENUM,
+        number=2,
         enum='GuestPortNumber',
     )
 
@@ -2506,7 +3688,10 @@ class MultibeamServo(proto.Message):
             Servo degrees (-30..30)
     """
 
-    angle = proto.Field(proto.FLOAT, number=1)
+    angle: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
 
 
 class GuestPortCurrent(proto.Message):
@@ -2523,13 +3708,22 @@ class GuestPortCurrent(proto.Message):
             Current on common 20V supply (A)
     """
 
-    gp1_bat = proto.Field(proto.DOUBLE, number=1)
-
-    gp2_bat = proto.Field(proto.DOUBLE, number=2)
-
-    gp3_bat = proto.Field(proto.DOUBLE, number=3)
-
-    gp_20v = proto.Field(proto.DOUBLE, number=4)
+    gp1_bat: float = proto.Field(
+        proto.DOUBLE,
+        number=1,
+    )
+    gp2_bat: float = proto.Field(
+        proto.DOUBLE,
+        number=2,
+    )
+    gp3_bat: float = proto.Field(
+        proto.DOUBLE,
+        number=3,
+    )
+    gp_20v: float = proto.Field(
+        proto.DOUBLE,
+        number=4,
+    )
 
 
 class Vector3(proto.Message):
@@ -2544,15 +3738,23 @@ class Vector3(proto.Message):
             z-component
     """
 
-    x = proto.Field(proto.DOUBLE, number=1)
-
-    y = proto.Field(proto.DOUBLE, number=2)
-
-    z = proto.Field(proto.DOUBLE, number=3)
+    x: float = proto.Field(
+        proto.DOUBLE,
+        number=1,
+    )
+    y: float = proto.Field(
+        proto.DOUBLE,
+        number=2,
+    )
+    z: float = proto.Field(
+        proto.DOUBLE,
+        number=3,
+    )
 
 
 class Imu(proto.Message):
     r"""Imu data in drone body frame
+
     x - forward
     y - right
     z - down
@@ -2568,19 +3770,25 @@ class Imu(proto.Message):
             Temperature (°C)
     """
 
-    accelerometer = proto.Field(proto.MESSAGE, number=1,
+    accelerometer: 'Vector3' = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message='Vector3',
     )
-
-    gyroscope = proto.Field(proto.MESSAGE, number=2,
+    gyroscope: 'Vector3' = proto.Field(
+        proto.MESSAGE,
+        number=2,
         message='Vector3',
     )
-
-    magnetometer = proto.Field(proto.MESSAGE, number=3,
+    magnetometer: 'Vector3' = proto.Field(
+        proto.MESSAGE,
+        number=3,
         message='Vector3',
     )
-
-    temperature = proto.Field(proto.FLOAT, number=4)
+    temperature: float = proto.Field(
+        proto.FLOAT,
+        number=4,
+    )
 
 
 class MedusaSpectrometerData(proto.Message):
@@ -2604,27 +3812,41 @@ class MedusaSpectrometerData(proto.Message):
             Detected counts above the last channel
     """
 
-    drone_time = proto.Field(proto.MESSAGE, number=6,
-        message=gp_timestamp.Timestamp,
+    drone_time: timestamp_pb2.Timestamp = proto.Field(
+        proto.MESSAGE,
+        number=6,
+        message=timestamp_pb2.Timestamp,
     )
-
-    sensor_time = proto.Field(proto.MESSAGE, number=7,
-        message=gp_timestamp.Timestamp,
+    sensor_time: timestamp_pb2.Timestamp = proto.Field(
+        proto.MESSAGE,
+        number=7,
+        message=timestamp_pb2.Timestamp,
     )
-
-    realtime = proto.Field(proto.FLOAT, number=1)
-
-    livetime = proto.Field(proto.FLOAT, number=2)
-
-    total = proto.Field(proto.UINT32, number=3)
-
-    countrate = proto.Field(proto.UINT32, number=4)
-
-    cosmics = proto.Field(proto.UINT32, number=5)
+    realtime: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    livetime: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    total: int = proto.Field(
+        proto.UINT32,
+        number=3,
+    )
+    countrate: int = proto.Field(
+        proto.UINT32,
+        number=4,
+    )
+    cosmics: int = proto.Field(
+        proto.UINT32,
+        number=5,
+    )
 
 
 class MultibeamPing(proto.Message):
     r"""Multibeam sonar ping
+
     Contains all the information for rendering a multibeam sonar
     frame
 
@@ -2648,7 +3870,7 @@ class MultibeamPing(proto.Message):
         step (int):
             Size in bytes of each row in the ping data
             image.
-        bearings (Sequence[float]):
+        bearings (MutableSequence[float]):
             Bearing angle of each column of the sonar
             data (in 100th of a degree, multiply by 0.01 to
             get a value in degrees). The sonar image is not
@@ -2661,34 +3883,56 @@ class MultibeamPing(proto.Message):
             Timestamp when the frame was generated
     """
 
-    range_ = proto.Field(proto.DOUBLE, number=1)
-
-    gain = proto.Field(proto.DOUBLE, number=2)
-
-    frequency = proto.Field(proto.DOUBLE, number=3)
-
-    speed_of_sound_used = proto.Field(proto.DOUBLE, number=4)
-
-    frequency_mode = proto.Field(proto.ENUM, number=5,
+    range_: float = proto.Field(
+        proto.DOUBLE,
+        number=1,
+    )
+    gain: float = proto.Field(
+        proto.DOUBLE,
+        number=2,
+    )
+    frequency: float = proto.Field(
+        proto.DOUBLE,
+        number=3,
+    )
+    speed_of_sound_used: float = proto.Field(
+        proto.DOUBLE,
+        number=4,
+    )
+    frequency_mode: 'MultibeamFrequencyMode' = proto.Field(
+        proto.ENUM,
+        number=5,
         enum='MultibeamFrequencyMode',
     )
-
-    number_of_ranges = proto.Field(proto.UINT32, number=6)
-
-    number_of_beams = proto.Field(proto.UINT32, number=7)
-
-    step = proto.Field(proto.UINT32, number=8)
-
-    bearings = proto.RepeatedField(proto.FLOAT, number=9)
-
-    ping_data = proto.Field(proto.BYTES, number=10)
-
-    device_id = proto.Field(proto.ENUM, number=11,
+    number_of_ranges: int = proto.Field(
+        proto.UINT32,
+        number=6,
+    )
+    number_of_beams: int = proto.Field(
+        proto.UINT32,
+        number=7,
+    )
+    step: int = proto.Field(
+        proto.UINT32,
+        number=8,
+    )
+    bearings: MutableSequence[float] = proto.RepeatedField(
+        proto.FLOAT,
+        number=9,
+    )
+    ping_data: bytes = proto.Field(
+        proto.BYTES,
+        number=10,
+    )
+    device_id: 'GuestPortDeviceID' = proto.Field(
+        proto.ENUM,
+        number=11,
         enum='GuestPortDeviceID',
     )
-
-    frame_generation_timestamp = proto.Field(proto.MESSAGE, number=12,
-        message=gp_timestamp.Timestamp,
+    frame_generation_timestamp: timestamp_pb2.Timestamp = proto.Field(
+        proto.MESSAGE,
+        number=12,
+        message=timestamp_pb2.Timestamp,
     )
 
 
@@ -2721,7 +3965,24 @@ class MultibeamConfig(proto.Message):
             only to Oculus devices.
     """
     class PingRate(proto.Enum):
-        r""""""
+        r"""
+
+        Values:
+            PING_RATE_UNSPECIFIED (0):
+                No description available.
+            PING_RATE_NORMAL (1):
+                10Hz max ping rate
+            PING_RATE_HIGH (2):
+                15Hz max ping rate
+            PING_RATE_HIGHEST (3):
+                40Hz max ping rate
+            PING_RATE_LOW (4):
+                5Hz max ping rate
+            PING_RATE_LOWEST (5):
+                2Hz max ping rate
+            PING_RATE_STANDBY (6):
+                Disable ping
+        """
         PING_RATE_UNSPECIFIED = 0
         PING_RATE_NORMAL = 1
         PING_RATE_HIGH = 2
@@ -2731,40 +3992,70 @@ class MultibeamConfig(proto.Message):
         PING_RATE_STANDBY = 6
 
     class MaximumNumberOfBeams(proto.Enum):
-        r""""""
+        r"""
+
+        Values:
+            MAXIMUM_NUMBER_OF_BEAMS_UNSPECIFIED (0):
+                No description available.
+            MAXIMUM_NUMBER_OF_BEAMS_MAX_128 (1):
+                128 beams
+            MAXIMUM_NUMBER_OF_BEAMS_MAX_256 (2):
+                256 beams
+            MAXIMUM_NUMBER_OF_BEAMS_MAX_512 (3):
+                512 beams
+            MAXIMUM_NUMBER_OF_BEAMS_MAX_1024 (4):
+                1024 beams
+        """
         MAXIMUM_NUMBER_OF_BEAMS_UNSPECIFIED = 0
         MAXIMUM_NUMBER_OF_BEAMS_MAX_128 = 1
         MAXIMUM_NUMBER_OF_BEAMS_MAX_256 = 2
         MAXIMUM_NUMBER_OF_BEAMS_MAX_512 = 3
         MAXIMUM_NUMBER_OF_BEAMS_MAX_1024 = 4
 
-    frequency_mode = proto.Field(proto.ENUM, number=1,
+    frequency_mode: 'MultibeamFrequencyMode' = proto.Field(
+        proto.ENUM,
+        number=1,
         enum='MultibeamFrequencyMode',
     )
-
-    ping_rate = proto.Field(proto.ENUM, number=2,
+    ping_rate: PingRate = proto.Field(
+        proto.ENUM,
+        number=2,
         enum=PingRate,
     )
-
-    gamma_correction = proto.Field(proto.DOUBLE, number=3)
-
-    gain_assist = proto.Field(proto.BOOL, number=4)
-
-    maximum_number_of_beams = proto.Field(proto.ENUM, number=5,
+    gamma_correction: float = proto.Field(
+        proto.DOUBLE,
+        number=3,
+    )
+    gain_assist: bool = proto.Field(
+        proto.BOOL,
+        number=4,
+    )
+    maximum_number_of_beams: MaximumNumberOfBeams = proto.Field(
+        proto.ENUM,
+        number=5,
         enum=MaximumNumberOfBeams,
     )
-
-    range_ = proto.Field(proto.DOUBLE, number=6)
-
-    gain = proto.Field(proto.DOUBLE, number=7)
-
-    salinity = proto.Field(proto.DOUBLE, number=8)
-
-    device_id = proto.Field(proto.ENUM, number=9,
+    range_: float = proto.Field(
+        proto.DOUBLE,
+        number=6,
+    )
+    gain: float = proto.Field(
+        proto.DOUBLE,
+        number=7,
+    )
+    salinity: float = proto.Field(
+        proto.DOUBLE,
+        number=8,
+    )
+    device_id: 'GuestPortDeviceID' = proto.Field(
+        proto.ENUM,
+        number=9,
         enum='GuestPortDeviceID',
     )
-
-    bandwidth_limit = proto.Field(proto.UINT32, number=10)
+    bandwidth_limit: int = proto.Field(
+        proto.UINT32,
+        number=10,
+    )
 
 
 class MultibeamDiscovery(proto.Message):
@@ -2787,19 +4078,33 @@ class MultibeamDiscovery(proto.Message):
             Device ID of the sonar
     """
 
-    enabled = proto.Field(proto.BOOL, number=1)
-
-    ip = proto.Field(proto.STRING, number=2)
-
-    mask = proto.Field(proto.STRING, number=3)
-
-    serial_number = proto.Field(proto.STRING, number=4)
-
-    fw_version = proto.Field(proto.STRING, number=5)
-
-    connected_ip = proto.Field(proto.STRING, number=6)
-
-    device_id = proto.Field(proto.ENUM, number=7,
+    enabled: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    ip: str = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    mask: str = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    serial_number: str = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    fw_version: str = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    connected_ip: str = proto.Field(
+        proto.STRING,
+        number=6,
+    )
+    device_id: 'GuestPortDeviceID' = proto.Field(
+        proto.ENUM,
+        number=7,
         enum='GuestPortDeviceID',
     )
 
@@ -2814,22 +4119,28 @@ class MultibeamFrameOffset(proto.Message):
             Offset in bytes from the start of the file
     """
 
-    duration = proto.Field(proto.MESSAGE, number=1,
-        message=gp_duration.Duration,
+    duration: duration_pb2.Duration = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=duration_pb2.Duration,
     )
-
-    offset = proto.Field(proto.INT64, number=2)
+    offset: int = proto.Field(
+        proto.INT64,
+        number=2,
+    )
 
 
 class MutltibeamRecordingIndex(proto.Message):
     r"""Multibeam recording index cache
 
     Attributes:
-        frame_offsets (Sequence[blueye.protocol.types.MultibeamFrameOffset]):
+        frame_offsets (MutableSequence[blueye.protocol.types.MultibeamFrameOffset]):
             List of frame offsets
     """
 
-    frame_offsets = proto.RepeatedField(proto.MESSAGE, number=1,
+    frame_offsets: MutableSequence['MultibeamFrameOffset'] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='MultibeamFrameOffset',
     )
 
@@ -2871,27 +4182,47 @@ class PersistentStorageSettings(proto.Message):
             should be written to the data partition.
     """
 
-    videos = proto.Field(proto.BOOL, number=1)
-
-    images = proto.Field(proto.BOOL, number=2)
-
-    binlog = proto.Field(proto.BOOL, number=3)
-
-    multibeam = proto.Field(proto.BOOL, number=4)
-
-    webserver_log = proto.Field(proto.BOOL, number=5)
-
-    control_system_log = proto.Field(proto.BOOL, number=6)
-
-    gyro_calibration = proto.Field(proto.BOOL, number=7)
-
-    compass_calibration = proto.Field(proto.BOOL, number=8)
-
-    acc_calibration = proto.Field(proto.BOOL, number=9)
+    videos: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    images: bool = proto.Field(
+        proto.BOOL,
+        number=2,
+    )
+    binlog: bool = proto.Field(
+        proto.BOOL,
+        number=3,
+    )
+    multibeam: bool = proto.Field(
+        proto.BOOL,
+        number=4,
+    )
+    webserver_log: bool = proto.Field(
+        proto.BOOL,
+        number=5,
+    )
+    control_system_log: bool = proto.Field(
+        proto.BOOL,
+        number=6,
+    )
+    gyro_calibration: bool = proto.Field(
+        proto.BOOL,
+        number=7,
+    )
+    compass_calibration: bool = proto.Field(
+        proto.BOOL,
+        number=8,
+    )
+    acc_calibration: bool = proto.Field(
+        proto.BOOL,
+        number=9,
+    )
 
 
 class CPUInfo(proto.Message):
     r"""CPU information
+
     Contains information about the CPU load and memory usage of the
     drone.
 
@@ -2906,13 +4237,22 @@ class CPUInfo(proto.Message):
             Guestport queue load (0..1)
     """
 
-    cpu_load = proto.Field(proto.FLOAT, number=1)
-
-    memory_bus_load = proto.Field(proto.FLOAT, number=2)
-
-    main_queue_load = proto.Field(proto.FLOAT, number=3)
-
-    guestport_queue_load = proto.Field(proto.FLOAT, number=4)
+    cpu_load: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    memory_bus_load: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    main_queue_load: float = proto.Field(
+        proto.FLOAT,
+        number=3,
+    )
+    guestport_queue_load: float = proto.Field(
+        proto.FLOAT,
+        number=4,
+    )
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

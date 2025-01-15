@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-
-# Copyright 2020 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,9 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from __future__ import annotations
+
+from typing import MutableMapping, MutableSequence
 
 import proto  # type: ignore
-
 
 from blueye.protocol.types import aquatroll
 from blueye.protocol.types import message_formats
@@ -93,7 +94,9 @@ class AttitudeTel(proto.Message):
             The attitude of the drone.
     """
 
-    attitude = proto.Field(proto.MESSAGE, number=1,
+    attitude: message_formats.Attitude = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.Attitude,
     )
 
@@ -106,7 +109,9 @@ class AltitudeTel(proto.Message):
             The altitude of the drone.
     """
 
-    altitude = proto.Field(proto.MESSAGE, number=1,
+    altitude: message_formats.Altitude = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.Altitude,
     )
 
@@ -120,7 +125,9 @@ class ForwardDistanceTel(proto.Message):
 
     """
 
-    forward_distance = proto.Field(proto.MESSAGE, number=1,
+    forward_distance: message_formats.ForwardDistance = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.ForwardDistance,
     )
 
@@ -133,7 +140,9 @@ class DvlVelocityTel(proto.Message):
             Dvl velocity data.
     """
 
-    dvl_velocity = proto.Field(proto.MESSAGE, number=1,
+    dvl_velocity: message_formats.DvlVelocity = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.DvlVelocity,
     )
 
@@ -147,7 +156,9 @@ class PositionEstimateTel(proto.Message):
 
     """
 
-    position_estimate = proto.Field(proto.MESSAGE, number=1,
+    position_estimate: message_formats.PositionEstimate = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.PositionEstimate,
     )
 
@@ -161,7 +172,9 @@ class DepthTel(proto.Message):
 
     """
 
-    depth = proto.Field(proto.MESSAGE, number=1,
+    depth: message_formats.Depth = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.Depth,
     )
 
@@ -174,7 +187,9 @@ class ReferenceTel(proto.Message):
 
     """
 
-    reference = proto.Field(proto.MESSAGE, number=1,
+    reference: message_formats.Reference = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.Reference,
     )
 
@@ -187,7 +202,9 @@ class ReferenceAutoPilotTel(proto.Message):
 
     """
 
-    reference_auto_pilot = proto.Field(proto.MESSAGE, number=1,
+    reference_auto_pilot: mission_planning.ReferenceAutoPilot = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=mission_planning.ReferenceAutoPilot,
     )
 
@@ -200,7 +217,9 @@ class MissionStatusTel(proto.Message):
 
     """
 
-    mission_status = proto.Field(proto.MESSAGE, number=1,
+    mission_status: mission_planning.MissionStatus = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=mission_planning.MissionStatus,
     )
 
@@ -213,7 +232,9 @@ class NotificationTel(proto.Message):
 
     """
 
-    notification = proto.Field(proto.MESSAGE, number=1,
+    notification: message_formats.Notification = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.Notification,
     )
 
@@ -226,7 +247,9 @@ class ControlForceTel(proto.Message):
 
     """
 
-    control_force = proto.Field(proto.MESSAGE, number=1,
+    control_force: message_formats.ControlForce = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.ControlForce,
     )
 
@@ -240,7 +263,9 @@ class ControllerHealthTel(proto.Message):
 
     """
 
-    controller_health = proto.Field(proto.MESSAGE, number=1,
+    controller_health: message_formats.ControllerHealth = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.ControllerHealth,
     )
 
@@ -253,7 +278,9 @@ class LightsTel(proto.Message):
 
     """
 
-    lights = proto.Field(proto.MESSAGE, number=1,
+    lights: message_formats.Lights = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.Lights,
     )
 
@@ -267,7 +294,9 @@ class GuestPortLightsTel(proto.Message):
 
     """
 
-    lights = proto.Field(proto.MESSAGE, number=1,
+    lights: message_formats.Lights = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.Lights,
     )
 
@@ -280,7 +309,9 @@ class LaserTel(proto.Message):
 
     """
 
-    laser = proto.Field(proto.MESSAGE, number=1,
+    laser: message_formats.Laser = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.Laser,
     )
 
@@ -293,7 +324,9 @@ class PilotGPSPositionTel(proto.Message):
 
     """
 
-    position = proto.Field(proto.MESSAGE, number=1,
+    position: message_formats.LatLongPosition = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.LatLongPosition,
     )
 
@@ -306,7 +339,9 @@ class RecordStateTel(proto.Message):
 
     """
 
-    record_state = proto.Field(proto.MESSAGE, number=1,
+    record_state: message_formats.RecordState = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.RecordState,
     )
 
@@ -319,7 +354,9 @@ class TimeLapseStateTel(proto.Message):
 
     """
 
-    time_lapse_state = proto.Field(proto.MESSAGE, number=1,
+    time_lapse_state: message_formats.TimeLapseState = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.TimeLapseState,
     )
 
@@ -332,7 +369,9 @@ class BatteryTel(proto.Message):
             Essential battery information.
     """
 
-    battery = proto.Field(proto.MESSAGE, number=1,
+    battery: message_formats.Battery = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.Battery,
     )
 
@@ -346,7 +385,9 @@ class BatteryBQ40Z50Tel(proto.Message):
             Detailed battery information.
     """
 
-    battery = proto.Field(proto.MESSAGE, number=1,
+    battery: message_formats.BatteryBQ40Z50 = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.BatteryBQ40Z50,
     )
 
@@ -359,7 +400,9 @@ class DiveTimeTel(proto.Message):
             The current dive time of the drone.
     """
 
-    dive_time = proto.Field(proto.MESSAGE, number=1,
+    dive_time: message_formats.DiveTime = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.DiveTime,
     )
 
@@ -375,11 +418,14 @@ class DroneTimeTel(proto.Message):
             power on).
     """
 
-    real_time_clock = proto.Field(proto.MESSAGE, number=1,
+    real_time_clock: message_formats.SystemTime = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.SystemTime,
     )
-
-    monotonic_clock = proto.Field(proto.MESSAGE, number=2,
+    monotonic_clock: message_formats.SystemTime = proto.Field(
+        proto.MESSAGE,
+        number=2,
         message=message_formats.SystemTime,
     )
 
@@ -392,7 +438,9 @@ class WaterTemperatureTel(proto.Message):
 
     """
 
-    temperature = proto.Field(proto.MESSAGE, number=1,
+    temperature: message_formats.WaterTemperature = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.WaterTemperature,
     )
 
@@ -405,7 +453,9 @@ class CPUTemperatureTel(proto.Message):
 
     """
 
-    temperature = proto.Field(proto.MESSAGE, number=1,
+    temperature: message_formats.CPUTemperature = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.CPUTemperature,
     )
 
@@ -418,7 +468,9 @@ class CanisterTopTemperatureTel(proto.Message):
             Temperature information.
     """
 
-    temperature = proto.Field(proto.MESSAGE, number=1,
+    temperature: message_formats.CanisterTemperature = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.CanisterTemperature,
     )
 
@@ -431,7 +483,9 @@ class CanisterBottomTemperatureTel(proto.Message):
             Temperature information.
     """
 
-    temperature = proto.Field(proto.MESSAGE, number=1,
+    temperature: message_formats.CanisterTemperature = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.CanisterTemperature,
     )
 
@@ -444,7 +498,9 @@ class CanisterTopHumidityTel(proto.Message):
             Humidity information
     """
 
-    humidity = proto.Field(proto.MESSAGE, number=1,
+    humidity: message_formats.CanisterHumidity = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.CanisterHumidity,
     )
 
@@ -457,7 +513,9 @@ class CanisterBottomHumidityTel(proto.Message):
             Humidity information
     """
 
-    humidity = proto.Field(proto.MESSAGE, number=1,
+    humidity: message_formats.CanisterHumidity = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.CanisterHumidity,
     )
 
@@ -470,7 +528,9 @@ class VideoStorageSpaceTel(proto.Message):
 
     """
 
-    storage_space = proto.Field(proto.MESSAGE, number=1,
+    storage_space: message_formats.StorageSpace = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.StorageSpace,
     )
 
@@ -483,7 +543,9 @@ class DataStorageSpaceTel(proto.Message):
 
     """
 
-    storage_space = proto.Field(proto.MESSAGE, number=1,
+    storage_space: message_formats.StorageSpace = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.StorageSpace,
     )
 
@@ -496,7 +558,9 @@ class CalibrationStateTel(proto.Message):
 
     """
 
-    calibration_state = proto.Field(proto.MESSAGE, number=1,
+    calibration_state: message_formats.CalibrationState = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.CalibrationState,
     )
 
@@ -509,7 +573,9 @@ class TiltStabilizationTel(proto.Message):
 
     """
 
-    state = proto.Field(proto.MESSAGE, number=1,
+    state: message_formats.TiltStabilizationState = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.TiltStabilizationState,
     )
 
@@ -523,7 +589,9 @@ class IperfTel(proto.Message):
 
     """
 
-    status = proto.Field(proto.MESSAGE, number=1,
+    status: message_formats.IperfStatus = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.IperfStatus,
     )
 
@@ -536,7 +604,9 @@ class NStreamersTel(proto.Message):
 
     """
 
-    n_streamers = proto.Field(proto.MESSAGE, number=1,
+    n_streamers: message_formats.NStreamers = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.NStreamers,
     )
 
@@ -549,7 +619,9 @@ class TiltAngleTel(proto.Message):
 
     """
 
-    angle = proto.Field(proto.MESSAGE, number=1,
+    angle: message_formats.TiltAngle = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.TiltAngle,
     )
 
@@ -563,7 +635,9 @@ class DroneInfoTel(proto.Message):
             and serial number.
     """
 
-    drone_info = proto.Field(proto.MESSAGE, number=1,
+    drone_info: message_formats.DroneInfo = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.DroneInfo,
     )
 
@@ -576,7 +650,9 @@ class ErrorFlagsTel(proto.Message):
             Currently set error flags on the drone.
     """
 
-    error_flags = proto.Field(proto.MESSAGE, number=1,
+    error_flags: message_formats.ErrorFlags = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.ErrorFlags,
     )
 
@@ -589,7 +665,9 @@ class ControlModeTel(proto.Message):
             State of the control system.
     """
 
-    state = proto.Field(proto.MESSAGE, number=1,
+    state: message_formats.ControlMode = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.ControlMode,
     )
 
@@ -602,7 +680,9 @@ class ThicknessGaugeTel(proto.Message):
             Thickness measurement with a cygnus gauge.
     """
 
-    thickness_gauge = proto.Field(proto.MESSAGE, number=1,
+    thickness_gauge: message_formats.ThicknessGauge = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.ThicknessGauge,
     )
 
@@ -615,7 +695,9 @@ class CpProbeTel(proto.Message):
             Reading from cp probe.
     """
 
-    cp_probe = proto.Field(proto.MESSAGE, number=1,
+    cp_probe: message_formats.CpProbe = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.CpProbe,
     )
 
@@ -628,7 +710,9 @@ class AquaTrollProbeMetadataTel(proto.Message):
             AquaTroll message containing sensor array.
     """
 
-    probe = proto.Field(proto.MESSAGE, number=1,
+    probe: aquatroll.AquaTrollProbeMetadata = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=aquatroll.AquaTrollProbeMetadata,
     )
 
@@ -641,7 +725,9 @@ class AquaTrollSensorMetadataTel(proto.Message):
             AquaTroll message containing sensor array.
     """
 
-    sensors = proto.Field(proto.MESSAGE, number=1,
+    sensors: aquatroll.AquaTrollSensorMetadataArray = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=aquatroll.AquaTrollSensorMetadataArray,
     )
 
@@ -654,7 +740,9 @@ class AquaTrollSensorParametersTel(proto.Message):
             AquaTroll message containing parameter array.
     """
 
-    sensors = proto.Field(proto.MESSAGE, number=1,
+    sensors: aquatroll.AquaTrollSensorParametersArray = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=aquatroll.AquaTrollSensorParametersArray,
     )
 
@@ -665,13 +753,17 @@ class ConnectedClientsTel(proto.Message):
     Attributes:
         client_id_in_control (int):
             The client id of the client in control.
-        connected_clients (Sequence[blueye.protocol.types.ConnectedClient]):
+        connected_clients (MutableSequence[blueye.protocol.types.ConnectedClient]):
             List of connected clients.
     """
 
-    client_id_in_control = proto.Field(proto.UINT32, number=1)
-
-    connected_clients = proto.RepeatedField(proto.MESSAGE, number=2,
+    client_id_in_control: int = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    connected_clients: MutableSequence[message_formats.ConnectedClient] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=2,
         message=message_formats.ConnectedClient,
     )
 
@@ -684,7 +776,9 @@ class GenericServoTel(proto.Message):
             Servo state
     """
 
-    servo = proto.Field(proto.MESSAGE, number=1,
+    servo: message_formats.GenericServo = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.GenericServo,
     )
 
@@ -697,7 +791,9 @@ class MultibeamServoTel(proto.Message):
             Multibeam servo state
     """
 
-    servo = proto.Field(proto.MESSAGE, number=1,
+    servo: message_formats.MultibeamServo = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.MultibeamServo,
     )
 
@@ -710,7 +806,9 @@ class GuestPortCurrentTel(proto.Message):
 
     """
 
-    current = proto.Field(proto.MESSAGE, number=1,
+    current: message_formats.GuestPortCurrent = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.GuestPortCurrent,
     )
 
@@ -723,7 +821,9 @@ class CalibratedImuTel(proto.Message):
 
     """
 
-    imu = proto.Field(proto.MESSAGE, number=1,
+    imu: message_formats.Imu = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.Imu,
     )
 
@@ -736,7 +836,9 @@ class Imu1Tel(proto.Message):
 
     """
 
-    imu = proto.Field(proto.MESSAGE, number=1,
+    imu: message_formats.Imu = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.Imu,
     )
 
@@ -749,7 +851,9 @@ class Imu2Tel(proto.Message):
 
     """
 
-    imu = proto.Field(proto.MESSAGE, number=1,
+    imu: message_formats.Imu = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.Imu,
     )
 
@@ -762,7 +866,9 @@ class MedusaSpectrometerDataTel(proto.Message):
 
     """
 
-    data = proto.Field(proto.MESSAGE, number=1,
+    data: message_formats.MedusaSpectrometerData = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.MedusaSpectrometerData,
     )
 
@@ -775,7 +881,9 @@ class MultibeamPingTel(proto.Message):
             Ping data from a multibeam sonar
     """
 
-    ping = proto.Field(proto.MESSAGE, number=1,
+    ping: message_formats.MultibeamPing = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.MultibeamPing,
     )
 
@@ -788,7 +896,9 @@ class MultibeamConfigTel(proto.Message):
             Config data from a multibeam sonar
     """
 
-    config = proto.Field(proto.MESSAGE, number=1,
+    config: message_formats.MultibeamConfig = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.MultibeamConfig,
     )
 
@@ -801,7 +911,9 @@ class MultibeamDiscoveryTel(proto.Message):
             Discovery data from a multibeam sonar
     """
 
-    discovery = proto.Field(proto.MESSAGE, number=1,
+    discovery: message_formats.MultibeamDiscovery = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.MultibeamDiscovery,
     )
 
@@ -814,7 +926,9 @@ class CPUInfoTel(proto.Message):
 
     """
 
-    cpu_info = proto.Field(proto.MESSAGE, number=1,
+    cpu_info: message_formats.CPUInfo = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.CPUInfo,
     )
 
