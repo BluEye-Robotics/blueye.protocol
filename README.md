@@ -13,7 +13,7 @@ The protocol itself is defined in another repository, [ProtocolDefinitions](http
 
 The `blueye.protocol` package's primary use case is in the [`blueye.sdk`](https://github.com/BluEye-Robotics/blueye.sdk). The SDK implements the necessary "plumbing" to utilize the protocol defined here in `blueye.protocol`, and will make interacting with the Blueye drones much easier. If you wish to interact with the drones in your own project we recommend using the `blueye.sdk` package, not `blueye.protocol` directly.
 
-This package requires Python 3.8 or newer.
+This package requires Python 3.10 or newer.
 
 ## Installation
 ```shell
