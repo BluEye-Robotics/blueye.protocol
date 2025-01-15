@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-
-# Copyright 2020 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,9 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from __future__ import annotations
+
+from typing import MutableMapping, MutableSequence
 
 import proto  # type: ignore
-
 
 from blueye.protocol.types import message_formats
 
@@ -54,6 +55,14 @@ __protobuf__ = proto.module(
 class DepthZeroReference(proto.Enum):
     r"""Depth zero reference from surface for depth, and seabed for
     altitude.
+
+    Values:
+        DEPTH_ZERO_REFERENCE_UNSPECIFIED (0):
+            No description available.
+        DEPTH_ZERO_REFERENCE_SURFACE (1):
+            No description available.
+        DEPTH_ZERO_REFERENCE_SEABED (2):
+            No description available.
     """
     DEPTH_ZERO_REFERENCE_UNSPECIFIED = 0
     DEPTH_ZERO_REFERENCE_SURFACE = 1
@@ -61,7 +70,18 @@ class DepthZeroReference(proto.Enum):
 
 
 class ControlModeVertical(proto.Enum):
-    r""""""
+    r"""
+
+    Values:
+        CONTROL_MODE_VERTICAL_UNSPECIFIED (0):
+            Unspecified
+        CONTROL_MODE_VERTICAL_MANUAL (1):
+            Manual control mode
+        CONTROL_MODE_VERTICAL_AUTO_DEPTH (2):
+            Auto depth control mode
+        CONTROL_MODE_VERTICAL_AUTO_ALTITUDE (3):
+            Auto altitude control mode
+    """
     CONTROL_MODE_VERTICAL_UNSPECIFIED = 0
     CONTROL_MODE_VERTICAL_MANUAL = 1
     CONTROL_MODE_VERTICAL_AUTO_DEPTH = 2
@@ -69,7 +89,18 @@ class ControlModeVertical(proto.Enum):
 
 
 class ControlModeHorizontal(proto.Enum):
-    r""""""
+    r"""
+
+    Values:
+        CONTROL_MODE_HORIZONTAL_UNSPECIFIED (0):
+            Unspecified
+        CONTROL_MODE_HORIZONTAL_MANUAL (1):
+            Manual control mode
+        CONTROL_MODE_HORIZONTAL_AUTO_HEADING (2):
+            Auto heading control mode
+        CONTROL_MODE_HORIZONTAL_STATION_KEEPING (3):
+            Station keeping control mode
+    """
     CONTROL_MODE_HORIZONTAL_UNSPECIFIED = 0
     CONTROL_MODE_HORIZONTAL_MANUAL = 1
     CONTROL_MODE_HORIZONTAL_AUTO_HEADING = 2
@@ -77,7 +108,24 @@ class ControlModeHorizontal(proto.Enum):
 
 
 class CameraAction(proto.Enum):
-    r"""List of available camera actions."""
+    r"""List of available camera actions.
+
+    Values:
+        CAMERA_ACTION_UNSPECIFIED (0):
+            Unspecified command
+        CAMERA_ACTION_TAKE_PHOTO (1):
+            Take one photo
+        CAMERA_ACTION_TAKE_PHOTOS_TIME (2):
+            Take a photo every x second
+        CAMERA_ACTION_TAKE_PHOTOS_DISTANCE (3):
+            Take a photo every x meter
+        CAMERA_ACTION_STOP_TAKING_PHOTOS (4):
+            Stop taking photos
+        CAMERA_ACTION_START_RECORDING (5):
+            Start recording
+        CAMERA_ACTION_STOP_RECORDING (6):
+            Stop recording
+    """
     CAMERA_ACTION_UNSPECIFIED = 0
     CAMERA_ACTION_TAKE_PHOTO = 1
     CAMERA_ACTION_TAKE_PHOTOS_TIME = 2
@@ -88,7 +136,37 @@ class CameraAction(proto.Enum):
 
 
 class InstructionType(proto.Enum):
-    r"""List of available instruction types."""
+    r"""List of available instruction types.
+
+    Values:
+        INSTRUCTION_TYPE_UNSPECIFIED (0):
+            Unspecified
+        INSTRUCTION_TYPE_NONE (1):
+            None
+        INSTRUCTION_TYPE_GO_TO_WAYPOINT (2):
+            Go to waypoint
+        INSTRUCTION_TYPE_GO_TO_WAYPOINT_WITH_DEPTH_SET_POINT (3):
+            Go to waypoint with depth set point
+        INSTRUCTION_TYPE_GO_TO_DEPTH_SET_POINT (4):
+            Go to depth set point
+        INSTRUCTION_TYPE_SET_CAMERA_ACTION (5):
+            Command used to take photo repeatedly or
+            start, stop recording
+        INSTRUCTION_TYPE_SET_CONTROL_MODE (6):
+            Sets a new control mode
+        INSTRUCTION_TYPE_SET_TILT_MAIN_CAMERA (7):
+            Sets a new angle for the tilt servo
+        INSTRUCTION_TYPE_SET_TILT_SERVO (8):
+            Sets a new angle for the tilt servo
+        INSTRUCTION_TYPE_WAIT_FOR_SEC (9):
+            Waiting for requested time in seconds
+        INSTRUCTION_TYPE_GO_TO_SURFACE (10):
+            Go to the surface
+        INSTRUCTION_TYPE_GO_TO_SEABED (11):
+            Go to the seabed
+        INSTRUCTION_TYPE_GO_TO_HOME (12):
+            Returning to home
+    """
     INSTRUCTION_TYPE_UNSPECIFIED = 0
     INSTRUCTION_TYPE_NONE = 1
     INSTRUCTION_TYPE_GO_TO_WAYPOINT = 2
@@ -105,7 +183,28 @@ class InstructionType(proto.Enum):
 
 
 class MissionState(proto.Enum):
-    r"""List of mission supervisor states."""
+    r"""List of mission supervisor states.
+
+    Values:
+        MISSION_STATE_UNSPECIFIED (0):
+            Unspecified
+        MISSION_STATE_INACTIVE (1):
+            Mission supervisor is inactive
+        MISSION_STATE_READY (2):
+            Ready to start mission
+        MISSION_STATE_RUNNING (3):
+            Mission is running
+        MISSION_STATE_PAUSED (4):
+            Mission is paused
+        MISSION_STATE_COMPLETED (5):
+            Mission is completed
+        MISSION_STATE_ABORTED (6):
+            Mission is aborted by the mission supervisor
+        MISSION_STATE_FAILED_TO_LOAD_MISSION (7):
+            Mission has failed to load
+        MISSION_STATE_FAILED_TO_START_MISSION (8):
+            Mission has failed to start
+    """
     MISSION_STATE_UNSPECIFIED = 0
     MISSION_STATE_INACTIVE = 1
     MISSION_STATE_READY = 2
@@ -126,9 +225,9 @@ class Mission(proto.Message):
             Mission id
         name (str):
             Mission name provided from the app
-        instructions (Sequence[blueye.protocol.types.Instruction]):
+        instructions (MutableSequence[blueye.protocol.types.Instruction]):
             List of instructions in the mission
-        path_segments (Sequence[blueye.protocol.types.PathSegment]):
+        path_segments (MutableSequence[blueye.protocol.types.PathSegment]):
             Calculated path segments from the reference
             generator (optional)
         total_distance (int):
@@ -147,32 +246,56 @@ class Mission(proto.Message):
             (m) (optional)
     """
 
-    id = proto.Field(proto.UINT32, number=1)
-
-    name = proto.Field(proto.STRING, number=2)
-
-    instructions = proto.RepeatedField(proto.MESSAGE, number=3,
+    id: int = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    name: str = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    instructions: MutableSequence['Instruction'] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=3,
         message='Instruction',
     )
-
-    path_segments = proto.RepeatedField(proto.MESSAGE, number=4,
+    path_segments: MutableSequence['PathSegment'] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=4,
         message='PathSegment',
     )
-
-    total_distance = proto.Field(proto.UINT32, number=5)
-
-    total_duration_time = proto.Field(proto.UINT32, number=6)
-
-    default_surge_speed = proto.Field(proto.FLOAT, number=7)
-
-    default_heave_speed = proto.Field(proto.FLOAT, number=8)
-
-    default_circle_of_acceptance = proto.Field(proto.FLOAT, number=9)
+    total_distance: int = proto.Field(
+        proto.UINT32,
+        number=5,
+    )
+    total_duration_time: int = proto.Field(
+        proto.UINT32,
+        number=6,
+    )
+    default_surge_speed: float = proto.Field(
+        proto.FLOAT,
+        number=7,
+    )
+    default_heave_speed: float = proto.Field(
+        proto.FLOAT,
+        number=8,
+    )
+    default_circle_of_acceptance: float = proto.Field(
+        proto.FLOAT,
+        number=9,
+    )
 
 
 class Instruction(proto.Message):
     r"""A mission consists of one or multiple instructions. One
     instruction can be of different types.
+
+    This message has `oneof`_ fields (mutually exclusive fields).
+    For each oneof, at most one member field can be set at the same time.
+    Setting any member of the oneof automatically clears all other
+    members.
+
+    .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
 
     Attributes:
         id (int):
@@ -184,69 +307,116 @@ class Instruction(proto.Message):
             instruction
         waypoint_command (blueye.protocol.types.WaypointCommand):
             Go to waypoint
+
+            This field is a member of `oneof`_ ``command``.
         depth_set_point_command (blueye.protocol.types.DepthSetPointCommand):
             Go to depth
+
+            This field is a member of `oneof`_ ``command``.
         camera_command (blueye.protocol.types.CameraCommand):
             Camera commands
+
+            This field is a member of `oneof`_ ``command``.
         control_mode_command (blueye.protocol.types.ControlModeCommand):
             Set control modes
+
+            This field is a member of `oneof`_ ``command``.
         tilt_main_camera_command (blueye.protocol.types.TiltMainCameraCommand):
             Set camera to angle x
+
+            This field is a member of `oneof`_ ``command``.
         tilt_multibeam_command (blueye.protocol.types.TiltMultibeamCommand):
             Set multibeam tilt angle
+
+            This field is a member of `oneof`_ ``command``.
         wait_for_command (blueye.protocol.types.WaitForCommand):
             Wait for x seconds
+
+            This field is a member of `oneof`_ ``command``.
         go_to_surface_command (blueye.protocol.types.GoToSurfaceCommand):
             Go to surface
+
+            This field is a member of `oneof`_ ``command``.
         go_to_seabed_command (blueye.protocol.types.GoToSeabedCommand):
             Go to seabed
+
+            This field is a member of `oneof`_ ``command``.
         go_to_home_command (blueye.protocol.types.GoToHomeCommand):
             Go to home position
+
+            This field is a member of `oneof`_ ``command``.
     """
 
-    id = proto.Field(proto.UINT32, number=1)
-
-    group_id = proto.Field(proto.UINT32, number=2)
-
-    auto_continue = proto.Field(proto.BOOL, number=3)
-
-    waypoint_command = proto.Field(proto.MESSAGE, number=4, oneof='command',
+    id: int = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    group_id: int = proto.Field(
+        proto.UINT32,
+        number=2,
+    )
+    auto_continue: bool = proto.Field(
+        proto.BOOL,
+        number=3,
+    )
+    waypoint_command: 'WaypointCommand' = proto.Field(
+        proto.MESSAGE,
+        number=4,
+        oneof='command',
         message='WaypointCommand',
     )
-
-    depth_set_point_command = proto.Field(proto.MESSAGE, number=5, oneof='command',
+    depth_set_point_command: 'DepthSetPointCommand' = proto.Field(
+        proto.MESSAGE,
+        number=5,
+        oneof='command',
         message='DepthSetPointCommand',
     )
-
-    camera_command = proto.Field(proto.MESSAGE, number=6, oneof='command',
+    camera_command: 'CameraCommand' = proto.Field(
+        proto.MESSAGE,
+        number=6,
+        oneof='command',
         message='CameraCommand',
     )
-
-    control_mode_command = proto.Field(proto.MESSAGE, number=7, oneof='command',
+    control_mode_command: 'ControlModeCommand' = proto.Field(
+        proto.MESSAGE,
+        number=7,
+        oneof='command',
         message='ControlModeCommand',
     )
-
-    tilt_main_camera_command = proto.Field(proto.MESSAGE, number=8, oneof='command',
+    tilt_main_camera_command: 'TiltMainCameraCommand' = proto.Field(
+        proto.MESSAGE,
+        number=8,
+        oneof='command',
         message='TiltMainCameraCommand',
     )
-
-    tilt_multibeam_command = proto.Field(proto.MESSAGE, number=9, oneof='command',
+    tilt_multibeam_command: 'TiltMultibeamCommand' = proto.Field(
+        proto.MESSAGE,
+        number=9,
+        oneof='command',
         message='TiltMultibeamCommand',
     )
-
-    wait_for_command = proto.Field(proto.MESSAGE, number=10, oneof='command',
+    wait_for_command: 'WaitForCommand' = proto.Field(
+        proto.MESSAGE,
+        number=10,
+        oneof='command',
         message='WaitForCommand',
     )
-
-    go_to_surface_command = proto.Field(proto.MESSAGE, number=11, oneof='command',
+    go_to_surface_command: 'GoToSurfaceCommand' = proto.Field(
+        proto.MESSAGE,
+        number=11,
+        oneof='command',
         message='GoToSurfaceCommand',
     )
-
-    go_to_seabed_command = proto.Field(proto.MESSAGE, number=12, oneof='command',
+    go_to_seabed_command: 'GoToSeabedCommand' = proto.Field(
+        proto.MESSAGE,
+        number=12,
+        oneof='command',
         message='GoToSeabedCommand',
     )
-
-    go_to_home_command = proto.Field(proto.MESSAGE, number=13, oneof='command',
+    go_to_home_command: 'GoToHomeCommand' = proto.Field(
+        proto.MESSAGE,
+        number=13,
+        oneof='command',
         message='GoToHomeCommand',
     )
 
@@ -265,11 +435,17 @@ class DepthSetPoint(proto.Message):
             Used to distinguish desired altitude or depth
     """
 
-    depth = proto.Field(proto.FLOAT, number=1)
-
-    speed_to_depth = proto.Field(proto.FLOAT, number=2)
-
-    depth_zero_reference = proto.Field(proto.ENUM, number=3,
+    depth: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    speed_to_depth: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    depth_zero_reference: 'DepthZeroReference' = proto.Field(
+        proto.ENUM,
+        number=3,
         enum='DepthZeroReference',
     )
 
@@ -293,19 +469,30 @@ class Waypoint(proto.Message):
             Depth set point (optional)
     """
 
-    id = proto.Field(proto.UINT32, number=1)
-
-    name = proto.Field(proto.STRING, number=2)
-
-    global_position = proto.Field(proto.MESSAGE, number=3,
+    id: int = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    name: str = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    global_position: message_formats.LatLongPosition = proto.Field(
+        proto.MESSAGE,
+        number=3,
         message=message_formats.LatLongPosition,
     )
-
-    circle_of_acceptance = proto.Field(proto.FLOAT, number=4)
-
-    speed_to_target = proto.Field(proto.FLOAT, number=5)
-
-    depth_set_point = proto.Field(proto.MESSAGE, number=6,
+    circle_of_acceptance: float = proto.Field(
+        proto.FLOAT,
+        number=4,
+    )
+    speed_to_target: float = proto.Field(
+        proto.FLOAT,
+        number=5,
+    )
+    depth_set_point: 'DepthSetPoint' = proto.Field(
+        proto.MESSAGE,
+        number=6,
         message='DepthSetPoint',
     )
 
@@ -321,11 +508,14 @@ class ControlModeCommand(proto.Message):
             Desired control mode in surge and yaw
     """
 
-    control_mode_vertical = proto.Field(proto.ENUM, number=5,
+    control_mode_vertical: 'ControlModeVertical' = proto.Field(
+        proto.ENUM,
+        number=5,
         enum='ControlModeVertical',
     )
-
-    control_mode_horizontal = proto.Field(proto.ENUM, number=6,
+    control_mode_horizontal: 'ControlModeHorizontal' = proto.Field(
+        proto.ENUM,
+        number=6,
         enum='ControlModeHorizontal',
     )
 
@@ -339,7 +529,9 @@ class WaypointCommand(proto.Message):
             Waypoint to go to
     """
 
-    waypoint = proto.Field(proto.MESSAGE, number=1,
+    waypoint: 'Waypoint' = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message='Waypoint',
     )
 
@@ -353,7 +545,9 @@ class DepthSetPointCommand(proto.Message):
             Depth set point to go to
     """
 
-    depth_set_point = proto.Field(proto.MESSAGE, number=1,
+    depth_set_point: 'DepthSetPoint' = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message='DepthSetPoint',
     )
 
@@ -367,7 +561,9 @@ class TiltMainCameraCommand(proto.Message):
             Tilt angle of the camera (-30..30)
     """
 
-    tilt_angle = proto.Field(proto.MESSAGE, number=1,
+    tilt_angle: message_formats.TiltAngle = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.TiltAngle,
     )
 
@@ -381,7 +577,9 @@ class TiltMultibeamCommand(proto.Message):
             Tilt angle for the multibeam servo
     """
 
-    multibeam_servo = proto.Field(proto.MESSAGE, number=1,
+    multibeam_servo: message_formats.MultibeamServo = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.MultibeamServo,
     )
 
@@ -394,7 +592,10 @@ class WaitForCommand(proto.Message):
             Wait for x seconds
     """
 
-    wait_for_seconds = proto.Field(proto.FLOAT, number=1)
+    wait_for_seconds: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
 
 
 class CameraCommand(proto.Message):
@@ -408,11 +609,15 @@ class CameraCommand(proto.Message):
             distance interval
     """
 
-    camera_action = proto.Field(proto.ENUM, number=1,
+    camera_action: 'CameraAction' = proto.Field(
+        proto.ENUM,
+        number=1,
         enum='CameraAction',
     )
-
-    action_param = proto.Field(proto.FLOAT, number=2)
+    action_param: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
 
 
 class GoToSurfaceCommand(proto.Message):
@@ -423,7 +628,10 @@ class GoToSurfaceCommand(proto.Message):
             Desired speed to surface (m/s)
     """
 
-    desired_speed = proto.Field(proto.FLOAT, number=1)
+    desired_speed: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
 
 
 class GoToSeabedCommand(proto.Message):
@@ -434,7 +642,10 @@ class GoToSeabedCommand(proto.Message):
             Desired speed to seabed (m/s)
     """
 
-    desired_speed = proto.Field(proto.FLOAT, number=1)
+    desired_speed: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
 
 
 class GoToHomeCommand(proto.Message):
@@ -445,7 +656,10 @@ class GoToHomeCommand(proto.Message):
             Desired speed to home (m/s)
     """
 
-    desired_speed = proto.Field(proto.FLOAT, number=1)
+    desired_speed: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
 
 
 class PathSegment(proto.Message):
@@ -475,23 +689,42 @@ class PathSegment(proto.Message):
             length and desired speed (s)
     """
 
-    id = proto.Field(proto.UINT32, number=1)
-
-    speed_to_target = proto.Field(proto.FLOAT, number=2)
-
-    course_to_target = proto.Field(proto.FLOAT, number=3)
-
-    depth_speed = proto.Field(proto.FLOAT, number=4)
-
-    horizontal_length = proto.Field(proto.FLOAT, number=5)
-
-    vertical_length = proto.Field(proto.FLOAT, number=6)
-
-    from_wp_id = proto.Field(proto.UINT32, number=7)
-
-    to_wp_id = proto.Field(proto.UINT32, number=8)
-
-    duration_time = proto.Field(proto.FLOAT, number=9)
+    id: int = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    speed_to_target: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    course_to_target: float = proto.Field(
+        proto.FLOAT,
+        number=3,
+    )
+    depth_speed: float = proto.Field(
+        proto.FLOAT,
+        number=4,
+    )
+    horizontal_length: float = proto.Field(
+        proto.FLOAT,
+        number=5,
+    )
+    vertical_length: float = proto.Field(
+        proto.FLOAT,
+        number=6,
+    )
+    from_wp_id: int = proto.Field(
+        proto.UINT32,
+        number=7,
+    )
+    to_wp_id: int = proto.Field(
+        proto.UINT32,
+        number=8,
+    )
+    duration_time: float = proto.Field(
+        proto.FLOAT,
+        number=9,
+    )
 
 
 class ReferenceAutoPilot(proto.Message):
@@ -527,33 +760,56 @@ class ReferenceAutoPilot(proto.Message):
             (s)
     """
 
-    instruction_type = proto.Field(proto.ENUM, number=1,
+    instruction_type: 'InstructionType' = proto.Field(
+        proto.ENUM,
+        number=1,
         enum='InstructionType',
     )
-
-    active_instruction_id = proto.Field(proto.UINT32, number=2)
-
-    active_path_segment_id = proto.Field(proto.UINT32, number=3)
-
-    course_to_target = proto.Field(proto.FLOAT, number=4)
-
-    speed_over_ground = proto.Field(proto.FLOAT, number=5)
-
-    horizontal_distance_to_target = proto.Field(proto.FLOAT, number=6)
-
-    circle_of_acceptance = proto.Field(proto.FLOAT, number=7)
-
-    depth_set_point = proto.Field(proto.FLOAT, number=8)
-
-    heave_velocity = proto.Field(proto.FLOAT, number=9)
-
-    vertical_distance_to_target = proto.Field(proto.FLOAT, number=10)
-
-    depth_zero_reference = proto.Field(proto.ENUM, number=11,
+    active_instruction_id: int = proto.Field(
+        proto.UINT32,
+        number=2,
+    )
+    active_path_segment_id: int = proto.Field(
+        proto.UINT32,
+        number=3,
+    )
+    course_to_target: float = proto.Field(
+        proto.FLOAT,
+        number=4,
+    )
+    speed_over_ground: float = proto.Field(
+        proto.FLOAT,
+        number=5,
+    )
+    horizontal_distance_to_target: float = proto.Field(
+        proto.FLOAT,
+        number=6,
+    )
+    circle_of_acceptance: float = proto.Field(
+        proto.FLOAT,
+        number=7,
+    )
+    depth_set_point: float = proto.Field(
+        proto.FLOAT,
+        number=8,
+    )
+    heave_velocity: float = proto.Field(
+        proto.FLOAT,
+        number=9,
+    )
+    vertical_distance_to_target: float = proto.Field(
+        proto.FLOAT,
+        number=10,
+    )
+    depth_zero_reference: 'DepthZeroReference' = proto.Field(
+        proto.ENUM,
+        number=11,
         enum='DepthZeroReference',
     )
-
-    time_to_complete = proto.Field(proto.FLOAT, number=12)
+    time_to_complete: float = proto.Field(
+        proto.FLOAT,
+        number=12,
+    )
 
 
 class MissionStatus(proto.Message):
@@ -568,11 +824,11 @@ class MissionStatus(proto.Message):
             Estimated time to complete the mission (s)
         distance_to_complete (int):
             Distance left of the mission (m)
-        completed_instruction_ids (Sequence[int]):
+        completed_instruction_ids (MutableSequence[int]):
             Ids of the completed instructions
         total_number_of_instructions (int):
             Total number of instructions in the mission
-        completed_path_segment_ids (Sequence[int]):
+        completed_path_segment_ids (MutableSequence[int]):
             Ids of the completed path segments
         total_number_of_path_segments (int):
             Total number of path segments in the mission
@@ -580,25 +836,43 @@ class MissionStatus(proto.Message):
             Mission id of the active mission
     """
 
-    state = proto.Field(proto.ENUM, number=1,
+    state: 'MissionState' = proto.Field(
+        proto.ENUM,
+        number=1,
         enum='MissionState',
     )
-
-    time_elapsed = proto.Field(proto.UINT32, number=2)
-
-    estimated_time_to_complete = proto.Field(proto.UINT32, number=3)
-
-    distance_to_complete = proto.Field(proto.UINT32, number=4)
-
-    completed_instruction_ids = proto.RepeatedField(proto.UINT32, number=5)
-
-    total_number_of_instructions = proto.Field(proto.UINT32, number=6)
-
-    completed_path_segment_ids = proto.RepeatedField(proto.UINT32, number=7)
-
-    total_number_of_path_segments = proto.Field(proto.UINT32, number=8)
-
-    id = proto.Field(proto.UINT32, number=9)
+    time_elapsed: int = proto.Field(
+        proto.UINT32,
+        number=2,
+    )
+    estimated_time_to_complete: int = proto.Field(
+        proto.UINT32,
+        number=3,
+    )
+    distance_to_complete: int = proto.Field(
+        proto.UINT32,
+        number=4,
+    )
+    completed_instruction_ids: MutableSequence[int] = proto.RepeatedField(
+        proto.UINT32,
+        number=5,
+    )
+    total_number_of_instructions: int = proto.Field(
+        proto.UINT32,
+        number=6,
+    )
+    completed_path_segment_ids: MutableSequence[int] = proto.RepeatedField(
+        proto.UINT32,
+        number=7,
+    )
+    total_number_of_path_segments: int = proto.Field(
+        proto.UINT32,
+        number=8,
+    )
+    id: int = proto.Field(
+        proto.UINT32,
+        number=9,
+    )
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

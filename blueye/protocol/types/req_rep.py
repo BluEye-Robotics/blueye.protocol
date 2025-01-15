@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-
-# Copyright 2020 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,13 +13,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from __future__ import annotations
+
+from typing import MutableMapping, MutableSequence
 
 import proto  # type: ignore
 
-
 from blueye.protocol.types import message_formats
 from blueye.protocol.types import mission_planning
-from google.protobuf import any_pb2 as gp_any  # type: ignore
+from google.protobuf import any_pb2  # type: ignore
 
 
 __protobuf__ = proto.module(
@@ -72,17 +73,21 @@ class SetOverlayParametersReq(proto.Message):
             The video overlay parameters to apply.
     """
 
-    overlay_parameters = proto.Field(proto.MESSAGE, number=1,
+    overlay_parameters: message_formats.OverlayParameters = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.OverlayParameters,
     )
 
 
 class SetOverlayParametersRep(proto.Message):
-    r"""Response after setting video overlay parameters."""
+    r"""Response after setting video overlay parameters.
+    """
 
 
 class GetOverlayParametersReq(proto.Message):
-    r"""Request to get currently set video overlay parameters."""
+    r"""Request to get currently set video overlay parameters.
+    """
 
 
 class GetOverlayParametersRep(proto.Message):
@@ -93,7 +98,9 @@ class GetOverlayParametersRep(proto.Message):
             The currently set overlay parameters.
     """
 
-    overlay_parameters = proto.Field(proto.MESSAGE, number=1,
+    overlay_parameters: message_formats.OverlayParameters = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.OverlayParameters,
     )
 
@@ -106,13 +113,16 @@ class SetCameraParametersReq(proto.Message):
             The camera parameters to apply.
     """
 
-    camera_parameters = proto.Field(proto.MESSAGE, number=1,
+    camera_parameters: message_formats.CameraParameters = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.CameraParameters,
     )
 
 
 class SetCameraParametersRep(proto.Message):
-    r"""Response after setting the camera parameters."""
+    r"""Response after setting the camera parameters.
+    """
 
 
 class GetCameraParametersReq(proto.Message):
@@ -123,7 +133,9 @@ class GetCameraParametersReq(proto.Message):
             Which camera to read camera parameters from.
     """
 
-    camera = proto.Field(proto.ENUM, number=1,
+    camera: message_formats.Camera = proto.Field(
+        proto.ENUM,
+        number=1,
         enum=message_formats.Camera,
     )
 
@@ -136,7 +148,9 @@ class GetCameraParametersRep(proto.Message):
             The currently set camera parameters.
     """
 
-    camera_parameters = proto.Field(proto.MESSAGE, number=1,
+    camera_parameters: message_formats.CameraParameters = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.CameraParameters,
     )
 
@@ -149,7 +163,9 @@ class SyncTimeReq(proto.Message):
             The time to set on the drone.
     """
 
-    time = proto.Field(proto.MESSAGE, number=1,
+    time: message_formats.SystemTime = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.SystemTime,
     )
 
@@ -162,7 +178,10 @@ class SyncTimeRep(proto.Message):
             If the time was set successfully.
     """
 
-    success = proto.Field(proto.BOOL, number=1)
+    success: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
 
 
 class PingReq(proto.Message):
@@ -170,15 +189,18 @@ class PingReq(proto.Message):
     communication with the drone.
     The drone replies with a PingRep message immediately after
     receiving the PingReq.
+
     """
 
 
 class PingRep(proto.Message):
-    r"""Response message from a PingReq request."""
+    r"""Response message from a PingReq request.
+    """
 
 
 class SetThicknessGaugeParametersReq(proto.Message):
     r"""Request to set parameters for ultrasonic thickness gauge.
+
     The sound velocity is used to calculate the thickness of the
     material being measured.
 
@@ -187,11 +209,15 @@ class SetThicknessGaugeParametersReq(proto.Message):
             Sound velocity in m/s
     """
 
-    sound_velocity = proto.Field(proto.UINT32, number=1)
+    sound_velocity: int = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
 
 
 class SetThicknessGaugeParametersRep(proto.Message):
-    r"""Response after setting thickness gauge parameters."""
+    r"""Response after setting thickness gauge parameters.
+    """
 
 
 class ConnectClientReq(proto.Message):
@@ -203,13 +229,16 @@ class ConnectClientReq(proto.Message):
             the drone.
     """
 
-    client_info = proto.Field(proto.MESSAGE, number=1,
+    client_info: message_formats.ClientInfo = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.ClientInfo,
     )
 
 
 class ConnectClientRep(proto.Message):
     r"""Response after connecting a client to the drone.
+
     Contains information about which client is in control, and a
     list of all connected clients.
 
@@ -218,21 +247,28 @@ class ConnectClientRep(proto.Message):
             The assigned ID of this client.
         client_id_in_control (int):
             The ID of the client in control of the drone.
-        connected_clients (Sequence[blueye.protocol.types.ConnectedClient]):
+        connected_clients (MutableSequence[blueye.protocol.types.ConnectedClient]):
             List of connected clients.
     """
 
-    client_id = proto.Field(proto.UINT32, number=1)
-
-    client_id_in_control = proto.Field(proto.UINT32, number=2)
-
-    connected_clients = proto.RepeatedField(proto.MESSAGE, number=3,
+    client_id: int = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    client_id_in_control: int = proto.Field(
+        proto.UINT32,
+        number=2,
+    )
+    connected_clients: MutableSequence[message_formats.ConnectedClient] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=3,
         message=message_formats.ConnectedClient,
     )
 
 
 class DisconnectClientReq(proto.Message):
     r"""Disconnect a client from the drone.
+
     This request will remove the client from the list of connected
     clients. It allows clients to disconnect instantly, without
     waiting for a watchdog to clear the client in control, or
@@ -243,33 +279,43 @@ class DisconnectClientReq(proto.Message):
             The assigned ID of the client to disconnect.
     """
 
-    client_id = proto.Field(proto.UINT32, number=1)
+    client_id: int = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
 
 
 class DisconnectClientRep(proto.Message):
     r"""Response after disconnecting a client from the drone.
+
     Contains information about which clients are connected and in
     control.
 
     Attributes:
         client_id_in_control (int):
             The ID of the client in control of the drone.
-        connected_clients (Sequence[blueye.protocol.types.ConnectedClient]):
+        connected_clients (MutableSequence[blueye.protocol.types.ConnectedClient]):
             List of connected clients.
     """
 
-    client_id_in_control = proto.Field(proto.UINT32, number=1)
-
-    connected_clients = proto.RepeatedField(proto.MESSAGE, number=2,
+    client_id_in_control: int = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    connected_clients: MutableSequence[message_formats.ConnectedClient] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=2,
         message=message_formats.ConnectedClient,
     )
 
 
 class GetBatteryReq(proto.Message):
     r"""Request essential battery information.
+
     Can be used to instantly get battery information,
     instead of having to wait for the BatteryTel message to be
     received.
+
     """
 
 
@@ -281,7 +327,9 @@ class GetBatteryRep(proto.Message):
             Essential battery information.
     """
 
-    battery = proto.Field(proto.MESSAGE, number=1,
+    battery: message_formats.Battery = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.Battery,
     )
 
@@ -295,18 +343,22 @@ class SetMissionReq(proto.Message):
             generator
     """
 
-    mission = proto.Field(proto.MESSAGE, number=1,
+    mission: mission_planning.Mission = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=mission_planning.Mission,
     )
 
 
 class SetMissionRep(proto.Message):
-    r"""Response after setting a new mission."""
+    r"""Response after setting a new mission.
+    """
 
 
 class GetMissionReq(proto.Message):
     r"""Service request to the reference_generator to get the active
     mission.
+
     """
 
 
@@ -318,7 +370,9 @@ class GetMissionRep(proto.Message):
             active mission with waypoints
     """
 
-    mission = proto.Field(proto.MESSAGE, number=1,
+    mission: mission_planning.Mission = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=mission_planning.Mission,
     )
 
@@ -333,7 +387,9 @@ class SetInstructionUpdateReq(proto.Message):
             instruction
     """
 
-    instruction = proto.Field(proto.MESSAGE, number=1,
+    instruction: mission_planning.Instruction = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=mission_planning.Instruction,
     )
 
@@ -341,6 +397,7 @@ class SetInstructionUpdateReq(proto.Message):
 class SetInstructionUpdateRep(proto.Message):
     r"""Response after updating an instruction in the current
     mission.
+
     """
 
 
@@ -354,9 +411,14 @@ class SetPubFrequencyReq(proto.Message):
             Publish frequency (max 100 Hz).
     """
 
-    message_type = proto.Field(proto.STRING, number=1)
-
-    frequency = proto.Field(proto.FLOAT, number=2)
+    message_type: str = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    frequency: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
 
 
 class SetPubFrequencyRep(proto.Message):
@@ -368,7 +430,10 @@ class SetPubFrequencyRep(proto.Message):
             successfully updated.
     """
 
-    success = proto.Field(proto.BOOL, number=1)
+    success: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
 
 
 class GetTelemetryReq(proto.Message):
@@ -379,7 +444,10 @@ class GetTelemetryReq(proto.Message):
             Message name, f. ex. "AttitudeTel".
     """
 
-    message_type = proto.Field(proto.STRING, number=1)
+    message_type: str = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class GetTelemetryRep(proto.Message):
@@ -391,8 +459,10 @@ class GetTelemetryRep(proto.Message):
             available.
     """
 
-    payload = proto.Field(proto.MESSAGE, number=1,
-        message=gp_any.Any,
+    payload: any_pb2.Any = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=any_pb2.Any,
     )
 
 
@@ -404,7 +474,9 @@ class SetPersistentStorageSettingsReq(proto.Message):
             The persistent storage settings to apply.
     """
 
-    persistent_storage_settings = proto.Field(proto.MESSAGE, number=1,
+    persistent_storage_settings: message_formats.PersistentStorageSettings = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.PersistentStorageSettings,
     )
 
@@ -418,11 +490,15 @@ class SetPersistentStorageSettingsRep(proto.Message):
             successfully.
     """
 
-    success = proto.Field(proto.BOOL, number=1)
+    success: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
 
 
 class GetPersistentStorageSettingsReq(proto.Message):
-    r"""Request to get currently set persistent storage settings."""
+    r"""Request to get currently set persistent storage settings.
+    """
 
 
 class GetPersistentStorageSettingsRep(proto.Message):
@@ -434,7 +510,9 @@ class GetPersistentStorageSettingsRep(proto.Message):
             settings.
     """
 
-    persistent_storage_settings = proto.Field(proto.MESSAGE, number=1,
+    persistent_storage_settings: message_formats.PersistentStorageSettings = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.PersistentStorageSettings,
     )
 

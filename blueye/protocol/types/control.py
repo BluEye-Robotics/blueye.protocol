@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-
-# Copyright 2020 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,9 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from __future__ import annotations
+
+from typing import MutableMapping, MutableSequence
 
 import proto  # type: ignore
-
 
 from blueye.protocol.types import aquatroll
 from blueye.protocol.types import message_formats
@@ -81,7 +82,9 @@ class MotionInputCtrl(proto.Message):
             direction.
     """
 
-    motion_input = proto.Field(proto.MESSAGE, number=1,
+    motion_input: message_formats.MotionInput = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.MotionInput,
     )
 
@@ -95,7 +98,9 @@ class TiltVelocityCtrl(proto.Message):
             (direction and speed).
     """
 
-    velocity = proto.Field(proto.MESSAGE, number=1,
+    velocity: message_formats.TiltVelocity = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.TiltVelocity,
     )
 
@@ -108,7 +113,9 @@ class LightsCtrl(proto.Message):
             Message with the desired light intensity.
     """
 
-    lights = proto.Field(proto.MESSAGE, number=1,
+    lights: message_formats.Lights = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.Lights,
     )
 
@@ -121,7 +128,9 @@ class GuestportLightsCtrl(proto.Message):
             Message with the desired light intensity.
     """
 
-    lights = proto.Field(proto.MESSAGE, number=1,
+    lights: message_formats.Lights = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.Lights,
     )
 
@@ -134,7 +143,9 @@ class LaserCtrl(proto.Message):
             Message with the desired laser intensity.
     """
 
-    laser = proto.Field(proto.MESSAGE, number=1,
+    laser: message_formats.Laser = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.Laser,
     )
 
@@ -147,7 +158,9 @@ class PilotGPSPositionCtrl(proto.Message):
             The GPS position of the pilot.
     """
 
-    position = proto.Field(proto.MESSAGE, number=1,
+    position: message_formats.LatLongPosition = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.LatLongPosition,
     )
 
@@ -168,11 +181,15 @@ class WatchdogCtrl(proto.Message):
             ConnectClientRep response.
     """
 
-    connection_duration = proto.Field(proto.MESSAGE, number=1,
+    connection_duration: message_formats.ConnectionDuration = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.ConnectionDuration,
     )
-
-    client_id = proto.Field(proto.UINT32, number=2)
+    client_id: int = proto.Field(
+        proto.UINT32,
+        number=2,
+    )
 
 
 class RecordCtrl(proto.Message):
@@ -183,25 +200,31 @@ class RecordCtrl(proto.Message):
             Message specifying which cameras to record.
     """
 
-    record_on = proto.Field(proto.MESSAGE, number=1,
+    record_on: message_formats.RecordOn = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.RecordOn,
     )
 
 
 class TakePictureCtrl(proto.Message):
-    r"""Issue a command to take a picture."""
+    r"""Issue a command to take a picture.
+    """
 
 
 class StartCalibrationCtrl(proto.Message):
-    r"""Issue a command to start compass calibration."""
+    r"""Issue a command to start compass calibration.
+    """
 
 
 class CancelCalibrationCtrl(proto.Message):
-    r"""Issue a command to cancel compass calibration."""
+    r"""Issue a command to cancel compass calibration.
+    """
 
 
 class FinishCalibrationCtrl(proto.Message):
-    r"""Issue a command to finish compass calibration."""
+    r"""Issue a command to finish compass calibration.
+    """
 
 
 class AutoHeadingCtrl(proto.Message):
@@ -212,7 +235,9 @@ class AutoHeadingCtrl(proto.Message):
             State of the heading controller
     """
 
-    state = proto.Field(proto.MESSAGE, number=1,
+    state: message_formats.AutoHeadingState = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.AutoHeadingState,
     )
 
@@ -225,7 +250,9 @@ class AutoDepthCtrl(proto.Message):
             State of the depth controller
     """
 
-    state = proto.Field(proto.MESSAGE, number=1,
+    state: message_formats.AutoDepthState = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.AutoDepthState,
     )
 
@@ -238,7 +265,9 @@ class AutoAltitudeCtrl(proto.Message):
             State of the altitude controller
     """
 
-    state = proto.Field(proto.MESSAGE, number=1,
+    state: message_formats.AutoAltitudeState = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.AutoAltitudeState,
     )
 
@@ -251,7 +280,9 @@ class StationKeepingCtrl(proto.Message):
             State of the station keeping controller
     """
 
-    state = proto.Field(proto.MESSAGE, number=1,
+    state: message_formats.StationKeepingState = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.StationKeepingState,
     )
 
@@ -265,7 +296,9 @@ class WeatherVaningCtrl(proto.Message):
             State of the weather vaning controller
     """
 
-    state = proto.Field(proto.MESSAGE, number=1,
+    state: message_formats.WeatherVaningState = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.WeatherVaningState,
     )
 
@@ -279,7 +312,9 @@ class AutoPilotSurgeYawCtrl(proto.Message):
             State of the auto pilot surge yaw controller
     """
 
-    state = proto.Field(proto.MESSAGE, number=1,
+    state: message_formats.AutoPilotSurgeYawState = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.AutoPilotSurgeYawState,
     )
 
@@ -293,21 +328,26 @@ class AutoPilotHeaveCtrl(proto.Message):
             State of the auto pilot heave controller
     """
 
-    state = proto.Field(proto.MESSAGE, number=1,
+    state: message_formats.AutoPilotHeaveState = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.AutoPilotHeaveState,
     )
 
 
 class RunMissionCtrl(proto.Message):
-    r"""Issue a command to start and pause the loaded mission."""
+    r"""Issue a command to start and pause the loaded mission.
+    """
 
 
 class PauseMissionCtrl(proto.Message):
-    r"""Issue a command to pause the loaded mission."""
+    r"""Issue a command to pause the loaded mission.
+    """
 
 
 class ClearMissionCtrl(proto.Message):
-    r"""Clear the loaded mission."""
+    r"""Clear the loaded mission.
+    """
 
 
 class ResetPositionCtrl(proto.Message):
@@ -318,17 +358,21 @@ class ResetPositionCtrl(proto.Message):
             Reset settings.
     """
 
-    settings = proto.Field(proto.MESSAGE, number=1,
+    settings: message_formats.ResetPositionSettings = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.ResetPositionSettings,
     )
 
 
 class ResetOdometerCtrl(proto.Message):
-    r"""Issue a command to reset the odometer."""
+    r"""Issue a command to reset the odometer.
+    """
 
 
 class CalibrateDvlGyroCtrl(proto.Message):
-    r"""Issue a command to calibrate the DVL gyro."""
+    r"""Issue a command to calibrate the DVL gyro.
+    """
 
 
 class TiltStabilizationCtrl(proto.Message):
@@ -340,7 +384,9 @@ class TiltStabilizationCtrl(proto.Message):
             set.
     """
 
-    state = proto.Field(proto.MESSAGE, number=1,
+    state: message_formats.TiltStabilizationState = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.TiltStabilizationState,
     )
 
@@ -353,7 +399,9 @@ class WaterDensityCtrl(proto.Message):
             Message with the water density to set.
     """
 
-    density = proto.Field(proto.MESSAGE, number=1,
+    density: message_formats.WaterDensity = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.WaterDensity,
     )
 
@@ -366,7 +414,9 @@ class PingerConfigurationCtrl(proto.Message):
             Message with the pinger configuration to set.
     """
 
-    configuration = proto.Field(proto.MESSAGE, number=1,
+    configuration: message_formats.PingerConfiguration = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.PingerConfiguration,
     )
 
@@ -379,7 +429,9 @@ class SystemTimeCtrl(proto.Message):
             Message with the system time to set.
     """
 
-    system_time = proto.Field(proto.MESSAGE, number=1,
+    system_time: message_formats.SystemTime = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.SystemTime,
     )
 
@@ -392,7 +444,9 @@ class GripperCtrl(proto.Message):
             The desired gripping and rotation velocity.
     """
 
-    gripper_velocities = proto.Field(proto.MESSAGE, number=1,
+    gripper_velocities: message_formats.GripperVelocities = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.GripperVelocities,
     )
 
@@ -405,7 +459,9 @@ class GenericServoCtrl(proto.Message):
             Message with the desired servo value.
     """
 
-    servo = proto.Field(proto.MESSAGE, number=1,
+    servo: message_formats.GenericServo = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.GenericServo,
     )
 
@@ -418,17 +474,21 @@ class MultibeamServoCtrl(proto.Message):
             Message with the desired servo angle.
     """
 
-    servo = proto.Field(proto.MESSAGE, number=1,
+    servo: message_formats.MultibeamServo = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.MultibeamServo,
     )
 
 
 class DeactivateGuestPortsCtrl(proto.Message):
-    r"""Deactivate the guest port power"""
+    r"""Deactivate the guest port power
+    """
 
 
 class ActivateGuestPortsCtrl(proto.Message):
-    r"""Activated the guest port power"""
+    r"""Activated the guest port power
+    """
 
 
 class RestartGuestPortsCtrl(proto.Message):
@@ -440,7 +500,9 @@ class RestartGuestPortsCtrl(proto.Message):
             keep the guest ports off.
     """
 
-    restart_info = proto.Field(proto.MESSAGE, number=1,
+    restart_info: message_formats.GuestPortRestartInfo = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.GuestPortRestartInfo,
     )
 
@@ -454,7 +516,9 @@ class SetAquaTrollParameterUnitCtrl(proto.Message):
             parameter to set and the unit to set it to.
     """
 
-    parameter_info = proto.Field(proto.MESSAGE, number=1,
+    parameter_info: aquatroll.SetAquaTrollParameterUnit = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=aquatroll.SetAquaTrollParameterUnit,
     )
 
@@ -468,7 +532,9 @@ class SetAquaTrollConnectionStatusCtrl(proto.Message):
             parameter to set and the unit to set it to.
     """
 
-    connection_status = proto.Field(proto.MESSAGE, number=1,
+    connection_status: aquatroll.SetAquaTrollConnectionStatus = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=aquatroll.SetAquaTrollConnectionStatus,
     )
 
@@ -482,7 +548,9 @@ class SetMultibeamConfigCtrl(proto.Message):
             to set.
     """
 
-    config = proto.Field(proto.MESSAGE, number=1,
+    config: message_formats.MultibeamConfig = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.MultibeamConfig,
     )
 
@@ -496,13 +564,16 @@ class ActivateMultibeamCtrl(proto.Message):
             to set on connect
     """
 
-    config = proto.Field(proto.MESSAGE, number=1,
+    config: message_formats.MultibeamConfig = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message=message_formats.MultibeamConfig,
     )
 
 
 class DeactivateMultibeamCtrl(proto.Message):
-    r"""Deactivate multibeam"""
+    r"""Deactivate multibeam
+    """
 
 
 class StartDiveCtrl(proto.Message):
@@ -511,6 +582,7 @@ class StartDiveCtrl(proto.Message):
     The message does not do anything, but is included in the log
     files so we can see at which point the user entered the dive
     view.
+
     """
 
 
@@ -520,6 +592,7 @@ class EndDiveCtrl(proto.Message):
     The message does not do anything, but is included in the log
     files so we can see at which point the user exited the dive
     view.
+
     """
 
 
