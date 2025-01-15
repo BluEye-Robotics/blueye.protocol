@@ -17,10 +17,10 @@ homepage ="https://www.blueyerobotics.com"
 keywords = ["Blueye", "Robotics", "Protocol"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
 numpy = { version = "^1.26", python = "^3.9,<3.13" }
 setuptools = ">=40"
 proto-plus = "^1.22.1"
+python = "^3.10"
 
 [tool.poetry.dev-dependencies]
 Jinja2 = "^3.0"
