@@ -780,11 +780,8 @@ class BinlogRecord(proto.Message):
 
 
 class MotionInput(proto.Message):
-    r"""Motion input from client.
-
-    Used to indicate the desired motion in each direction. Typically
-    these values map to the left and right joystick for motion, and
-    the left and right trigger for the slow and boost modifiers.
+    r"""If you use both values at the same time they cancel each
+    other out.
 
     Attributes:
         surge (float):
@@ -806,10 +803,10 @@ class MotionInput(proto.Message):
             Left (positive) and right (negative) movement
             (-1..1)
         slow (float):
-            Multiplier used to reduce the speed of the
+            Modifier used to reduce the speed of the
             motion (0..1)
         boost (float):
-            Multiplier used to increase the speed of the
+            Modifier used to increase the speed of the
             motion (0..1)
     """
 
