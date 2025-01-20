@@ -138,8 +138,11 @@ class IntervalType(proto.Enum):
             Distance interval
     """
     INTERVAL_TYPE_UNSPECIFIED = 0
+    """Unspecified"""
     INTERVAL_TYPE_TIME = 1
+    """Time interval"""
     INTERVAL_TYPE_DISTANCE = 2
+    """Distance interval"""
 
 
 class HeadingSource(proto.Enum):
@@ -154,8 +157,11 @@ class HeadingSource(proto.Enum):
             Used when the user sets the heading manually
     """
     HEADING_SOURCE_UNSPECIFIED = 0
+    """Unspecified"""
     HEADING_SOURCE_DRONE_COMPASS = 1
+    """Uses the drone compass to set the heading"""
     HEADING_SOURCE_MANUAL_INPUT = 2
+    """Used when the user sets the heading manually"""
 
 
 class ResetCoordinateSource(proto.Enum):
@@ -171,8 +177,11 @@ class ResetCoordinateSource(proto.Enum):
             the reset point
     """
     RESET_COORDINATE_SOURCE_UNSPECIFIED = 0
+    """Unspecified, fallback to device GPS"""
     RESET_COORDINATE_SOURCE_DEVICE_GPS = 1
+    """Uses the device GPS to set the reset point"""
     RESET_COORDINATE_SOURCE_MANUAL = 2
+    """Uses a coordinate in decimal degrees to set the reset point"""
 
 
 class NotificationType(proto.Enum):
@@ -249,38 +258,71 @@ class NotificationType(proto.Enum):
             DVL thermal protection mode detected
     """
     NOTIFICATION_TYPE_UNSPECIFIED = 0
+    """Unspecified"""
     NOTIFICATION_TYPE_POSITION_ESTIMATE_IS_INACCURATE = 1
+    """Position estimate is inaccurate"""
     NOTIFICATION_TYPE_DRONE_POSITION_IS_UNKNOWN = 2
+    """Drone position is unknown"""
     NOTIFICATION_TYPE_USER_POSITION_IS_UNKNOWN = 3
+    """User position is unknown"""
     NOTIFICATION_TYPE_NO_MISSION_LOADED = 4
+    """No mission is loaded"""
     NOTIFICATION_TYPE_MISSION_LOADED = 5
+    """Mission is loaded"""
     NOTIFICATION_TYPE_FAILED_TO_LOAD_MISSION = 6
+    """Failed to load mission"""
     NOTIFICATION_TYPE_MISSION_COMPLETE = 7
+    """Mission is complete"""
     NOTIFICATION_TYPE_INSTRUCTION_COMPLETE = 8
+    """Instruction is complete"""
     NOTIFICATION_TYPE_WAYPOINT_REACHED = 9
+    """Waypoint reached"""
     NOTIFICATION_TYPE_DEPTH_TARGET_REACHED = 10
+    """Depth set point is reached"""
     NOTIFICATION_TYPE_ALTITUDE_TARGET_REACHED = 11
+    """Altitude set point is reached"""
     NOTIFICATION_TYPE_WAYPOINT_IS_TOO_FAR_AWAY = 12
+    """The waypoint is too far away"""
     NOTIFICATION_TYPE_DEPTH_SET_POINT_IS_TOO_FAR_AWAY = 13
+    """The depth set point is too far away"""
     NOTIFICATION_TYPE_TIME_TO_COMPLETE_IS_TOO_LONG = 14
+    """The time to complete the mission is too long"""
     NOTIFICATION_TYPE_RETURNING_TO_HOME = 15
+    """Returning to home"""
     NOTIFICATION_TYPE_GO_TO_SURFACE = 16
+    """Go to surface"""
     NOTIFICATION_TYPE_GO_TO_SEABED = 17
+    """Go to seabed with an altimeter"""
     NOTIFICATION_TYPE_GO_TO_WAYPOINT = 18
+    """Go to waypoint"""
     NOTIFICATION_TYPE_GO_TO_DEPTH_SET_POINT = 19
+    """Go to depth set point"""
     NOTIFICATION_TYPE_GO_TO_WAYPOINT_WITH_DEPTH_SET_POINT = 20
+    """Go to waypoint with depth set point"""
     NOTIFICATION_TYPE_MISSION_STARTED = 21
+    """Mission is started"""
     NOTIFICATION_TYPE_MISSION_PAUSED = 22
+    """Mission is paused"""
     NOTIFICATION_TYPE_MISSION_RESUMED = 23
+    """Mission is resumed"""
     NOTIFICATION_TYPE_MISSION_ABORTED = 24
+    """Mission is aborted"""
     NOTIFICATION_TYPE_DRONE_IS_STUCK = 25
+    """Drone is stuck during a mission"""
     NOTIFICATION_TYPE_WAIT_FOR = 26
+    """Wait for instruction running"""
     NOTIFICATION_TYPE_CAMERA_ACTION = 27
+    """Camera action initiated"""
     NOTIFICATION_TYPE_SET_TILT_MAIN_CAMERA = 28
+    """Set tilt for main camera"""
     NOTIFICATION_TYPE_SET_TILT_MULTIBEAM = 29
+    """Set tilt for multibeam"""
     NOTIFICATION_TYPE_INSTRUCTION_SKIPPED = 30
+    """When an instruction is not available in the ROV"""
     NOTIFICATION_TYPE_DVL_HIGH_TEMPERATURE_DETECTED = 31
+    """DVL high temperature detected"""
     NOTIFICATION_TYPE_DVL_THERMAL_PROTECTION_MODE_DETECTED = 32
+    """DVL thermal protection mode detected"""
 
 
 class NotificationLevel(proto.Enum):
@@ -297,9 +339,13 @@ class NotificationLevel(proto.Enum):
             Error
     """
     NOTIFICATION_LEVEL_UNSPECIFIED = 0
+    """Unspecified"""
     NOTIFICATION_LEVEL_INFO = 1
+    """Info"""
     NOTIFICATION_LEVEL_WARNING = 2
+    """Warning"""
     NOTIFICATION_LEVEL_ERROR = 3
+    """Error"""
 
 
 class Model(proto.Enum):
@@ -323,12 +369,19 @@ class Model(proto.Enum):
             Blueye ?
     """
     MODEL_UNSPECIFIED = 0
+    """ModelName not specified"""
     MODEL_PIONEER = 1
+    """Blueye Pioneer, the first model"""
     MODEL_PRO = 2
+    """Blueye Pro, features camera tilt"""
     MODEL_X1 = 4
+    """Blueye X1, features camera tilt and one guest port"""
     MODEL_X3 = 3
+    """Blueye X3, features support for peripherals"""
     MODEL_X3_ULTRA = 6
+    """Blueye X3 Ultra"""
     MODEL_NEXT = 5
+    """Blueye ?"""
 
 
 class PressureSensorType(proto.Enum):
@@ -349,10 +402,17 @@ class PressureSensorType(proto.Enum):
             02BA03 pressure sensor
     """
     PRESSURE_SENSOR_TYPE_UNSPECIFIED = 0
+    """Depth sensor type not specified"""
     PRESSURE_SENSOR_TYPE_NOT_CONNECTED = 1
+    """No se"""
     PRESSURE_SENSOR_TYPE_MS5837_30BA26 = 2
+    """Thh MS5837 30BA26 pressure sensor"""
     PRESSURE_SENSOR_TYPE_KELLER_PA7LD = 3
+    """The extended depth sensor using the Keller PA7LD pressure
+    sensor"""
     PRESSURE_SENSOR_TYPE_MS5637_02BA03 = 4
+    """The internal pressure sensor using the MS5637 02BA03 pressure
+    sensor"""
 
 
 class Resolution(proto.Enum):
@@ -367,8 +427,11 @@ class Resolution(proto.Enum):
             720p HD resolution
     """
     RESOLUTION_UNSPECIFIED = 0
+    """Resolution not specified"""
     RESOLUTION_FULLHD_1080P = 1
+    """1080p Full HD resolution"""
     RESOLUTION_HD_720P = 2
+    """720p HD resolution"""
 
 
 class Framerate(proto.Enum):
@@ -383,8 +446,11 @@ class Framerate(proto.Enum):
             25 frames per second
     """
     FRAMERATE_UNSPECIFIED = 0
+    """Framerate not specified"""
     FRAMERATE_FPS_30 = 1
+    """30 frames per second"""
     FRAMERATE_FPS_25 = 2
+    """25 frames per second"""
 
 
 class Camera(proto.Enum):
@@ -399,8 +465,11 @@ class Camera(proto.Enum):
             Guestport camera
     """
     CAMERA_UNSPECIFIED = 0
+    """Camera not specified"""
     CAMERA_MAIN = 1
+    """Main camera"""
     CAMERA_GUESTPORT = 2
+    """Guestport camera"""
 
 
 class TemperatureUnit(proto.Enum):
@@ -415,8 +484,11 @@ class TemperatureUnit(proto.Enum):
             Temperature should be displayed as Fahrenheit
     """
     TEMPERATURE_UNIT_UNSPECIFIED = 0
+    """Temperature unit not specified"""
     TEMPERATURE_UNIT_CELSIUS = 1
+    """Temperature should be displayed as Celsius"""
     TEMPERATURE_UNIT_FAHRENHEIT = 2
+    """Temperature should be displayed as Fahrenheit"""
 
 
 class LogoType(proto.Enum):
@@ -433,9 +505,13 @@ class LogoType(proto.Enum):
             Add user defined logo
     """
     LOGO_TYPE_UNSPECIFIED = 0
+    """Logo type not specified"""
     LOGO_TYPE_NONE = 1
+    """Do not add any logo"""
     LOGO_TYPE_DEFAULT = 2
+    """Add default logo"""
     LOGO_TYPE_CUSTOM = 3
+    """Add user defined logo"""
 
 
 class DepthUnit(proto.Enum):
@@ -450,8 +526,11 @@ class DepthUnit(proto.Enum):
             Depth should be displayed as feet
     """
     DEPTH_UNIT_UNSPECIFIED = 0
+    """Depth unit not specified"""
     DEPTH_UNIT_METERS = 1
+    """Depth should be displayed as meters"""
     DEPTH_UNIT_FEET = 2
+    """Depth should be displayed as feet"""
 
 
 class ThicknessUnit(proto.Enum):
@@ -466,8 +545,11 @@ class ThicknessUnit(proto.Enum):
             Thickness should be displayed as inches
     """
     THICKNESS_UNIT_UNSPECIFIED = 0
+    """Thickness unit not specified"""
     THICKNESS_UNIT_MILLIMETERS = 1
+    """Thickness should be displayed as millimeters"""
     THICKNESS_UNIT_INCHES = 2
+    """Thickness should be displayed as inches"""
 
 
 class FontSize(proto.Enum):
@@ -490,12 +572,19 @@ class FontSize(proto.Enum):
             40 px
     """
     FONT_SIZE_UNSPECIFIED = 0
+    """Font size not specified"""
     FONT_SIZE_PX15 = 1
+    """15 px"""
     FONT_SIZE_PX20 = 2
+    """20 px"""
     FONT_SIZE_PX25 = 3
+    """25 px"""
     FONT_SIZE_PX30 = 4
+    """30 px"""
     FONT_SIZE_PX35 = 5
+    """35 px"""
     FONT_SIZE_PX40 = 6
+    """40 px"""
 
 
 class GuestPortDeviceID(proto.Enum):
@@ -590,48 +679,91 @@ class GuestPortDeviceID(proto.Enum):
             Blueprint Subsea Oculus M370s
     """
     GUEST_PORT_DEVICE_ID_UNSPECIFIED = 0
+    """Unspecified"""
     GUEST_PORT_DEVICE_ID_BLIND_PLUG = 1
+    """Blueye blind plug"""
     GUEST_PORT_DEVICE_ID_TEST_STATION = 2
+    """Blueye test station"""
     GUEST_PORT_DEVICE_ID_DEBUG_SERIAL = 3
+    """Blueye debug serial"""
     GUEST_PORT_DEVICE_ID_BLUEYE_LIGHT = 4
+    """Blueye Light"""
     GUEST_PORT_DEVICE_ID_BLUEYE_CAM = 5
+    """Blueye Cam"""
     GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_LUMEN = 6
+    """Blue Robotics Lumen"""
     GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_NEWTON = 7
+    """Blue Robotics Newton"""
     GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_PING_SONAR = 8
+    """Blue Robotics Ping Sonar"""
     GUEST_PORT_DEVICE_ID_BLUEPRINT_LAB_REACH_ALPHA = 9
+    """Blueprint Lab Reach Alpha"""
     GUEST_PORT_DEVICE_ID_WATERLINKED_DVL_A50 = 10
+    """Waterlinked DVL A50"""
     GUEST_PORT_DEVICE_ID_IMPACT_SUBSEA_ISS360 = 11
+    """Impact Subsea ISS360 Sonar"""
     GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_SEATRAC_X010 = 12
+    """Blueprint Subsea Seatrac X110"""
     GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_M750D = 13
+    """Blueprint Subsea Oculus M750d"""
     GUEST_PORT_DEVICE_ID_CYGNUS_MINI_ROV_THICKNESS_GAUGE = 14
+    """Cygnus Mini ROV Thickness Gauge"""
     GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_PING360_SONAR = 15
+    """Blue Robotics Ping360 Scanning Imaging Sonar"""
     GUEST_PORT_DEVICE_ID_TRITECH_GEMINI_720IM = 16
+    """Tritech Gemini 720im Multibeam Sonar"""
     GUEST_PORT_DEVICE_ID_BLUEYE_LIGHT_PAIR = 17
+    """Blueye Light Pair"""
     GUEST_PORT_DEVICE_ID_TRITECH_GEMINI_MICRON = 18
+    """Tritech Micron Gemini"""
     GUEST_PORT_DEVICE_ID_OCEAN_TOOLS_DIGICP = 19
+    """Ocean Tools DigiCP"""
     GUEST_PORT_DEVICE_ID_TRITECH_GEMINI_720IK = 20
+    """Tritech Gemini 720ik Multibeam Sonar"""
     GUEST_PORT_DEVICE_ID_NORTEK_NUCLEUS_1000 = 21
+    """Nortek Nucleus 1000 DVL"""
     GUEST_PORT_DEVICE_ID_BLUEYE_GENERIC_SERVO = 22
+    """Blueye Generic Servo"""
     GUEST_PORT_DEVICE_ID_BLUEYE_MULTIBEAM_SERVO = 23
+    """Blueye Multibeam Skid Servo"""
     GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_DETACHABLE_NEWTON = 24
+    """Detachable Blue Robotics Newton"""
     GUEST_PORT_DEVICE_ID_INSITU_AQUA_TROLL_500 = 25
+    """In-Situ Aqua TROLL 500"""
     GUEST_PORT_DEVICE_ID_MEDUSA_RADIOMETRICS_MS100 = 26
+    """Medusa Radiometrics Gamma Ray Sensor"""
     GUEST_PORT_DEVICE_ID_LASER_TOOLS_SEA_BEAM = 27
+    """Laser Tools Sea Beam Underwater Laser"""
     GUEST_PORT_DEVICE_ID_SPOT_X_LASER_SCALERS = 28
+    """Spot X Laser Scalers"""
     GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_M1200D = 29
+    """Blueprint Subsea Oculus M1200d"""
     GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_M3000D = 30
+    """Blueprint Subsea Oculus M3000d"""
     GUEST_PORT_DEVICE_ID_INSITU_AQUA_TROLL_100 = 31
+    """In-Situ Aqua TROLL 100"""
     GUEST_PORT_DEVICE_ID_INSITU_RDO_PRO_X = 32
+    """In-Situ RDO PRO-X"""
     GUEST_PORT_DEVICE_ID_INSITU_RDO_BLUE = 33
+    """In-Situ RDO Blue"""
     GUEST_PORT_DEVICE_ID_BLUEYE_CAMERA_SERVO = 34
+    """Blueye Camera Servo"""
     GUEST_PORT_DEVICE_ID_BLUEYE_MULTIBEAM_HEAD_SERVO = 35
+    """Blueye Multibeam Head Servo"""
     GUEST_PORT_DEVICE_ID_CERULEAN_OMNISCAN_450FS = 36
+    """Cerulean Omniscan 450 FS"""
     GUEST_PORT_DEVICE_ID_CERULEAN_OMNISCAN_450SS = 37
+    """Cerulean Omniscan 450 SS"""
     GUEST_PORT_DEVICE_ID_BLUEYE_GNSS_DEVICE = 38
+    """Blueye GNSS device"""
     GUEST_PORT_DEVICE_ID_WATERLINKED_DVL_A50_600 = 39
+    """Waterlinked DVL A50 600m"""
     GUEST_PORT_DEVICE_ID_IMAGENEX_831L = 40
+    """Imagenex 831L Pipe Profiling Sonar"""
     GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_C550D = 41
+    """Blueprint Subsea Oculus C550d"""
     GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_M370S = 42
+    """Blueprint Subsea Oculus M370s"""
 
 
 class GuestPortNumber(proto.Enum):
@@ -648,9 +780,13 @@ class GuestPortNumber(proto.Enum):
             Guest port 3
     """
     GUEST_PORT_NUMBER_UNSPECIFIED = 0
+    """Unspecified"""
     GUEST_PORT_NUMBER_PORT_1 = 1
+    """Guest port 1"""
     GUEST_PORT_NUMBER_PORT_2 = 2
+    """Guest port 2"""
     GUEST_PORT_NUMBER_PORT_3 = 3
+    """Guest port 3"""
 
 
 class NavigationSensorID(proto.Enum):
@@ -672,11 +808,17 @@ class NavigationSensorID(proto.Enum):
             Nortek DVL Nucleus 1000
     """
     NAVIGATION_SENSOR_ID_UNSPECIFIED = 0
+    """Unspecified"""
     NAVIGATION_SENSOR_ID_WATERLINKED_DVL_A50 = 1
+    """Water Linked DVL A50"""
     NAVIGATION_SENSOR_ID_WATERLINKED_UGPS_G2 = 2
+    """Water Linked UGPS G2"""
     NAVIGATION_SENSOR_ID_NMEA = 3
+    """NMEA stream from external positioning system"""
     NAVIGATION_SENSOR_ID_BLUEYE_GNSS = 4
+    """Blueye GNSS device on the ROV"""
     NAVIGATION_SENSOR_ID_NORTEK_DVL_NUCLEUS = 5
+    """Nortek DVL Nucleus 1000"""
 
 
 class GuestPortDetachStatus(proto.Enum):
@@ -692,8 +834,11 @@ class GuestPortDetachStatus(proto.Enum):
             Detachable device detached
     """
     GUEST_PORT_DETACH_STATUS_UNSPECIFIED = 0
+    """Unspecified (Default for non-detachable devices)"""
     GUEST_PORT_DETACH_STATUS_ATTACHED = 1
+    """Detachable device attached"""
     GUEST_PORT_DETACH_STATUS_DETACHED = 2
+    """Detachable device detached"""
 
 
 class GuestPortError(proto.Enum):
@@ -715,11 +860,17 @@ class GuestPortError(proto.Enum):
             Protobuf message cannot be parsed
     """
     GUEST_PORT_ERROR_UNSPECIFIED = 0
+    """Unspecified value"""
     GUEST_PORT_ERROR_NOT_CONNECTED = 1
+    """Device not connected"""
     GUEST_PORT_ERROR_READ_ERROR = 2
+    """EEPROM read error"""
     GUEST_PORT_ERROR_NOT_FLASHED = 3
+    """Connector not flashed"""
     GUEST_PORT_ERROR_CRC_ERROR = 4
+    """Wrong CRC for protobuf message"""
     GUEST_PORT_ERROR_PARSE_ERROR = 5
+    """Protobuf message cannot be parsed"""
 
 
 class MultibeamFrequencyMode(proto.Enum):
@@ -739,8 +890,11 @@ class MultibeamFrequencyMode(proto.Enum):
     """
     MULTIBEAM_FREQUENCY_MODE_UNSPECIFIED = 0
     MULTIBEAM_FREQUENCY_MODE_AUTO = 1
+    """Auto switching mode (if available)"""
     MULTIBEAM_FREQUENCY_MODE_LOW_FREQUENCY = 2
+    """Low frequency mode (wide aperture, navigation)"""
     MULTIBEAM_FREQUENCY_MODE_HIGH_FREQUENCY = 3
+    """High frequency mode (narrow aperture, target identification)"""
 
 
 class BinlogRecord(proto.Message):
@@ -1317,8 +1471,11 @@ class PingerConfiguration(proto.Message):
                 perspective
         """
         MOUNTING_DIRECTION_UNSPECIFIED = 0
+        """Mounting direction is unspecified"""
         MOUNTING_DIRECTION_FORWARDS = 1
+        """Pointing forwards from the drones perspective"""
         MOUNTING_DIRECTION_DOWNWARDS = 2
+        """Pointing downwards from the drones perspective"""
 
     mounting_direction: MountingDirection = proto.Field(
         proto.ENUM,
@@ -2678,15 +2835,26 @@ class CalibrationState(proto.Message):
                 interferance
         """
         STATUS_UNSPECIFIED = 0
+        """Unspecified status"""
         STATUS_NOT_CALIBRATING = 1
+        """Compass is not currently calibrating"""
         STATUS_CALIBRATING_NO_AXIS = 2
+        """Compass is calibrating but active calibration axis cannot be
+        determined"""
         STATUS_CALIBRATING_X_POSITIVE = 3
+        """Compass is calibrating and the positive X axis is active"""
         STATUS_CALIBRATING_X_NEGATIVE = 4
+        """Compass is calibrating and the negative X axis is active"""
         STATUS_CALIBRATING_Y_POSITIVE = 5
+        """Compass is calibrating and the positive Y axis is active"""
         STATUS_CALIBRATING_Y_NEGATIVE = 6
+        """Compass is calibrating and the negative Y axis is active"""
         STATUS_CALIBRATING_Z_POSITIVE = 7
+        """Compass is calibrating and the positive Z axis is active"""
         STATUS_CALIBRATING_Z_NEGATIVE = 8
+        """Compass is calibrating and the negative Z axis is active"""
         STATUS_CALIBRATING_THRUSTER = 9
+        """Compass is calibrating for thruster interferance"""
 
     status: Status = proto.Field(
         proto.ENUM,
@@ -3982,11 +4150,17 @@ class MultibeamConfig(proto.Message):
         """
         PING_RATE_UNSPECIFIED = 0
         PING_RATE_NORMAL = 1
+        """10Hz max ping rate"""
         PING_RATE_HIGH = 2
+        """15Hz max ping rate"""
         PING_RATE_HIGHEST = 3
+        """40Hz max ping rate"""
         PING_RATE_LOW = 4
+        """5Hz max ping rate"""
         PING_RATE_LOWEST = 5
+        """2Hz max ping rate"""
         PING_RATE_STANDBY = 6
+        """Disable ping"""
 
     class MaximumNumberOfBeams(proto.Enum):
         r"""
@@ -4005,9 +4179,13 @@ class MultibeamConfig(proto.Message):
         """
         MAXIMUM_NUMBER_OF_BEAMS_UNSPECIFIED = 0
         MAXIMUM_NUMBER_OF_BEAMS_MAX_128 = 1
+        """128 beams"""
         MAXIMUM_NUMBER_OF_BEAMS_MAX_256 = 2
+        """256 beams"""
         MAXIMUM_NUMBER_OF_BEAMS_MAX_512 = 3
+        """512 beams"""
         MAXIMUM_NUMBER_OF_BEAMS_MAX_1024 = 4
+        """1024 beams"""
 
     frequency_mode: 'MultibeamFrequencyMode' = proto.Field(
         proto.ENUM,
