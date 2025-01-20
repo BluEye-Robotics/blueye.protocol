@@ -154,7 +154,7 @@ class AquaTrollQuality(proto.Enum):
 
     Values:
         AQUA_TROLL_QUALITY_NORMAL (0):
-            protolint:disable:this ENUM_FIELD_NAMES_ZERO_VALUE_END_WITH
+            No description available.
         AQUA_TROLL_QUALITY_USER_CAL_EXPIRED (1):
             No description available.
         AQUA_TROLL_QUALITY_FACTORY_CAL_EXPIRED (2):
@@ -809,7 +809,7 @@ class AquaTrollSensorStatus(proto.Enum):
 
     Values:
         AQUA_TROLL_SENSOR_STATUS_SENSOR_HIGH_ALARM (0):
-            protolint:disable:this ENUM_FIELD_NAMES_ZERO_VALUE_END_WITH
+            No description available.
         AQUA_TROLL_SENSOR_STATUS_SENSOR_HIGH_WARNING (1):
             No description available.
         AQUA_TROLL_SENSOR_STATUS_SENSOR_LOW_WARNING (2):
@@ -840,7 +840,7 @@ class AquaTrollDeviceStatus(proto.Enum):
 
     Values:
         AQUA_TROLL_DEVICE_STATUS_SENSOR_HIGH_ALARM (0):
-            protolint:disable:this ENUM_FIELD_NAMES_ZERO_VALUE_END_WITH
+            No description available.
         AQUA_TROLL_DEVICE_STATUS_SENSOR_HIGH_WARNING (1):
             No description available.
         AQUA_TROLL_DEVICE_STATUS_SENSOR_LOW_WARNING (2):
