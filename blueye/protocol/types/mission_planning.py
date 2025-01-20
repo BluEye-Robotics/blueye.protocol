@@ -56,7 +56,7 @@ class DepthZeroReference(proto.Enum):
     r"""Depth zero reference from surface for depth, and seabed for
     altitude.
 
-    Values:
+    Attributes:
         DEPTH_ZERO_REFERENCE_UNSPECIFIED (0):
             No description available.
         DEPTH_ZERO_REFERENCE_SURFACE (1):
@@ -72,7 +72,7 @@ class DepthZeroReference(proto.Enum):
 class ControlModeVertical(proto.Enum):
     r"""
 
-    Values:
+    Attributes:
         CONTROL_MODE_VERTICAL_UNSPECIFIED (0):
             Unspecified
         CONTROL_MODE_VERTICAL_MANUAL (1):
@@ -91,7 +91,7 @@ class ControlModeVertical(proto.Enum):
 class ControlModeHorizontal(proto.Enum):
     r"""
 
-    Values:
+    Attributes:
         CONTROL_MODE_HORIZONTAL_UNSPECIFIED (0):
             Unspecified
         CONTROL_MODE_HORIZONTAL_MANUAL (1):
@@ -110,7 +110,7 @@ class ControlModeHorizontal(proto.Enum):
 class CameraAction(proto.Enum):
     r"""List of available camera actions.
 
-    Values:
+    Attributes:
         CAMERA_ACTION_UNSPECIFIED (0):
             Unspecified command
         CAMERA_ACTION_TAKE_PHOTO (1):
@@ -138,7 +138,7 @@ class CameraAction(proto.Enum):
 class InstructionType(proto.Enum):
     r"""List of available instruction types.
 
-    Values:
+    Attributes:
         INSTRUCTION_TYPE_UNSPECIFIED (0):
             Unspecified
         INSTRUCTION_TYPE_NONE (1):
@@ -185,7 +185,7 @@ class InstructionType(proto.Enum):
 class MissionState(proto.Enum):
     r"""List of mission supervisor states.
 
-    Values:
+    Attributes:
         MISSION_STATE_UNSPECIFIED (0):
             Unspecified
         MISSION_STATE_INACTIVE (1):

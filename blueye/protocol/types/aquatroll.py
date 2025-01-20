@@ -48,7 +48,7 @@ __protobuf__ = proto.module(
 class Type(proto.Enum):
     r"""Type IDs
 
-    Values:
+    Attributes:
         TYPE_UNSPECIFIED (0):
             No description available.
         TYPE_SHORT (1):
@@ -85,7 +85,7 @@ class Type(proto.Enum):
 class AquaTrollDevice(proto.Enum):
     r"""Aqua Troll Device IDs
 
-    Values:
+    Attributes:
         AQUA_TROLL_DEVICE_UNSPECIFIED (0):
             No description available.
         AQUA_TROLL_DEVICE_LEVEL_TROLL_500 (1):
@@ -152,7 +152,7 @@ class AquaTrollDevice(proto.Enum):
 class AquaTrollQuality(proto.Enum):
     r"""Aqua Troll Quality IDs
 
-    Values:
+    Attributes:
         AQUA_TROLL_QUALITY_NORMAL (0):
             No description available.
         AQUA_TROLL_QUALITY_USER_CAL_EXPIRED (1):
@@ -183,7 +183,7 @@ class AquaTrollQuality(proto.Enum):
 class AquaTrollParameter(proto.Enum):
     r"""Aqua Troll Parameter IDs
 
-    Values:
+    Attributes:
         AQUA_TROLL_PARAMETER_UNSPECIFIED (0):
             No description available.
         AQUA_TROLL_PARAMETER_TEMPERATURE (1):
@@ -364,7 +364,7 @@ class AquaTrollParameter(proto.Enum):
 class AquaTrollUnit(proto.Enum):
     r"""Aqua Troll Unit IDs
 
-    Values:
+    Attributes:
         AQUA_TROLL_UNIT_UNSPECIFIED (0):
             No description available.
         AQUA_TROLL_UNIT_TEMP_CELSIUS (1):
@@ -623,7 +623,7 @@ class AquaTrollUnit(proto.Enum):
 class AquaTrollSensor(proto.Enum):
     r"""Aqua Troll Sensor IDs
 
-    Values:
+    Attributes:
         AQUA_TROLL_SENSOR_UNSPECIFIED (0):
             No description available.
         AQUA_TROLL_SENSOR_TEMPERATURE (1):
@@ -807,7 +807,7 @@ class AquaTrollSensor(proto.Enum):
 class AquaTrollSensorStatus(proto.Enum):
     r"""Aqua Troll Sensor Status IDs
 
-    Values:
+    Attributes:
         AQUA_TROLL_SENSOR_STATUS_SENSOR_HIGH_ALARM (0):
             No description available.
         AQUA_TROLL_SENSOR_STATUS_SENSOR_HIGH_WARNING (1):
@@ -838,7 +838,7 @@ class AquaTrollSensorStatus(proto.Enum):
 class AquaTrollDeviceStatus(proto.Enum):
     r"""Aqua Troll Device Status IDs
 
-    Values:
+    Attributes:
         AQUA_TROLL_DEVICE_STATUS_SENSOR_HIGH_ALARM (0):
             No description available.
         AQUA_TROLL_DEVICE_STATUS_SENSOR_HIGH_WARNING (1):

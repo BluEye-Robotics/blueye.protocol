@@ -129,7 +129,7 @@ __protobuf__ = proto.module(
 class IntervalType(proto.Enum):
     r"""Interval type for time-lapse photos.
 
-    Values:
+    Attributes:
         INTERVAL_TYPE_UNSPECIFIED (0):
             Unspecified
         INTERVAL_TYPE_TIME (1):
@@ -145,7 +145,7 @@ class IntervalType(proto.Enum):
 class HeadingSource(proto.Enum):
     r"""Heading source used during reset of the position estimate.
 
-    Values:
+    Attributes:
         HEADING_SOURCE_UNSPECIFIED (0):
             Unspecified
         HEADING_SOURCE_DRONE_COMPASS (1):
@@ -161,7 +161,7 @@ class HeadingSource(proto.Enum):
 class ResetCoordinateSource(proto.Enum):
     r"""
 
-    Values:
+    Attributes:
         RESET_COORDINATE_SOURCE_UNSPECIFIED (0):
             Unspecified, fallback to device GPS
         RESET_COORDINATE_SOURCE_DEVICE_GPS (1):
@@ -179,7 +179,7 @@ class NotificationType(proto.Enum):
     r"""Notification is used for displaying info, warnings, and
     errors to the user.
 
-    Values:
+    Attributes:
         NOTIFICATION_TYPE_UNSPECIFIED (0):
             Unspecified
         NOTIFICATION_TYPE_POSITION_ESTIMATE_IS_INACCURATE (1):
@@ -286,7 +286,7 @@ class NotificationType(proto.Enum):
 class NotificationLevel(proto.Enum):
     r"""List of available notification levels.
 
-    Values:
+    Attributes:
         NOTIFICATION_LEVEL_UNSPECIFIED (0):
             Unspecified
         NOTIFICATION_LEVEL_INFO (1):
@@ -305,7 +305,7 @@ class NotificationLevel(proto.Enum):
 class Model(proto.Enum):
     r"""Drone models produced by Blueye
 
-    Values:
+    Attributes:
         MODEL_UNSPECIFIED (0):
             ModelName not specified
         MODEL_PIONEER (1):
@@ -334,7 +334,7 @@ class Model(proto.Enum):
 class PressureSensorType(proto.Enum):
     r"""Depth sensors used by the drone.
 
-    Values:
+    Attributes:
         PRESSURE_SENSOR_TYPE_UNSPECIFIED (0):
             Depth sensor type not specified
         PRESSURE_SENSOR_TYPE_NOT_CONNECTED (1):
@@ -358,7 +358,7 @@ class PressureSensorType(proto.Enum):
 class Resolution(proto.Enum):
     r"""Available camera resolutions.
 
-    Values:
+    Attributes:
         RESOLUTION_UNSPECIFIED (0):
             Resolution not specified
         RESOLUTION_FULLHD_1080P (1):
@@ -374,7 +374,7 @@ class Resolution(proto.Enum):
 class Framerate(proto.Enum):
     r"""Available camera frame rates.
 
-    Values:
+    Attributes:
         FRAMERATE_UNSPECIFIED (0):
             Framerate not specified
         FRAMERATE_FPS_30 (1):
@@ -390,7 +390,7 @@ class Framerate(proto.Enum):
 class Camera(proto.Enum):
     r"""Which camera to control.
 
-    Values:
+    Attributes:
         CAMERA_UNSPECIFIED (0):
             Camera not specified
         CAMERA_MAIN (1):
@@ -406,7 +406,7 @@ class Camera(proto.Enum):
 class TemperatureUnit(proto.Enum):
     r"""Available temperature units.
 
-    Values:
+    Attributes:
         TEMPERATURE_UNIT_UNSPECIFIED (0):
             Temperature unit not specified
         TEMPERATURE_UNIT_CELSIUS (1):
@@ -422,7 +422,7 @@ class TemperatureUnit(proto.Enum):
 class LogoType(proto.Enum):
     r"""Available logo types.
 
-    Values:
+    Attributes:
         LOGO_TYPE_UNSPECIFIED (0):
             Logo type not specified
         LOGO_TYPE_NONE (1):
@@ -441,7 +441,7 @@ class LogoType(proto.Enum):
 class DepthUnit(proto.Enum):
     r"""Available depth units.
 
-    Values:
+    Attributes:
         DEPTH_UNIT_UNSPECIFIED (0):
             Depth unit not specified
         DEPTH_UNIT_METERS (1):
@@ -457,7 +457,7 @@ class DepthUnit(proto.Enum):
 class ThicknessUnit(proto.Enum):
     r"""Available thickness units.
 
-    Values:
+    Attributes:
         THICKNESS_UNIT_UNSPECIFIED (0):
             Thickness unit not specified
         THICKNESS_UNIT_MILLIMETERS (1):
@@ -473,7 +473,7 @@ class ThicknessUnit(proto.Enum):
 class FontSize(proto.Enum):
     r"""Available font sizes for overlay text elements.
 
-    Values:
+    Attributes:
         FONT_SIZE_UNSPECIFIED (0):
             Font size not specified
         FONT_SIZE_PX15 (1):
@@ -501,7 +501,7 @@ class FontSize(proto.Enum):
 class GuestPortDeviceID(proto.Enum):
     r"""GuestPort device ID.
 
-    Values:
+    Attributes:
         GUEST_PORT_DEVICE_ID_UNSPECIFIED (0):
             Unspecified
         GUEST_PORT_DEVICE_ID_BLIND_PLUG (1):
@@ -637,7 +637,7 @@ class GuestPortDeviceID(proto.Enum):
 class GuestPortNumber(proto.Enum):
     r"""GuestPort number.
 
-    Values:
+    Attributes:
         GUEST_PORT_NUMBER_UNSPECIFIED (0):
             Unspecified
         GUEST_PORT_NUMBER_PORT_1 (1):
@@ -657,7 +657,7 @@ class NavigationSensorID(proto.Enum):
     r"""List of navigation sensors that can be used by the position
     observer
 
-    Values:
+    Attributes:
         NAVIGATION_SENSOR_ID_UNSPECIFIED (0):
             Unspecified
         NAVIGATION_SENSOR_ID_WATERLINKED_DVL_A50 (1):
@@ -682,7 +682,7 @@ class NavigationSensorID(proto.Enum):
 class GuestPortDetachStatus(proto.Enum):
     r"""GuestPort detach status.
 
-    Values:
+    Attributes:
         GUEST_PORT_DETACH_STATUS_UNSPECIFIED (0):
             Unspecified (Default for non-detachable
             devices)
@@ -700,7 +700,7 @@ class GuestPortError(proto.Enum):
     r"""GuestPort error. Only indicated errors on the guest port
     connector itself.
 
-    Values:
+    Attributes:
         GUEST_PORT_ERROR_UNSPECIFIED (0):
             Unspecified value
         GUEST_PORT_ERROR_NOT_CONNECTED (1):
@@ -725,7 +725,7 @@ class GuestPortError(proto.Enum):
 class MultibeamFrequencyMode(proto.Enum):
     r"""
 
-    Values:
+    Attributes:
         MULTIBEAM_FREQUENCY_MODE_UNSPECIFIED (0):
             No description available.
         MULTIBEAM_FREQUENCY_MODE_AUTO (1):
@@ -1307,7 +1307,7 @@ class PingerConfiguration(proto.Message):
     class MountingDirection(proto.Enum):
         r"""
 
-        Values:
+        Attributes:
             MOUNTING_DIRECTION_UNSPECIFIED (0):
                 Mounting direction is unspecified
             MOUNTING_DIRECTION_FORWARDS (1):
@@ -1581,7 +1581,7 @@ class BatteryBQ40Z50(proto.Message):
         class BatteryError(proto.Enum):
             r"""Battery error code from BQ40Z50 BMS data sheet.
 
-            Values:
+            Attributes:
                 BATTERY_ERROR_UNSPECIFIED (0):
                     No description available.
                 BATTERY_ERROR_OK (1):
@@ -2647,7 +2647,7 @@ class CalibrationState(proto.Message):
         When calibration is started, the status will indicate the active
         (upfacing) axis.
 
-        Values:
+        Attributes:
             STATUS_UNSPECIFIED (0):
                 Unspecified status
             STATUS_NOT_CALIBRATING (1):
@@ -3964,7 +3964,7 @@ class MultibeamConfig(proto.Message):
     class PingRate(proto.Enum):
         r"""
 
-        Values:
+        Attributes:
             PING_RATE_UNSPECIFIED (0):
                 No description available.
             PING_RATE_NORMAL (1):
@@ -3991,7 +3991,7 @@ class MultibeamConfig(proto.Message):
     class MaximumNumberOfBeams(proto.Enum):
         r"""
 
-        Values:
+        Attributes:
             MAXIMUM_NUMBER_OF_BEAMS_UNSPECIFIED (0):
                 No description available.
             MAXIMUM_NUMBER_OF_BEAMS_MAX_128 (1):
