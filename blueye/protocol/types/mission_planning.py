@@ -70,49 +70,49 @@ class DepthZeroReference(proto.Enum):
 
 
 class ControlModeVertical(proto.Enum):
-    r"""
+    r"""Control mode for the vertical axis of the drone.
 
     Attributes:
         CONTROL_MODE_VERTICAL_UNSPECIFIED (0):
-            Unspecified
+            Unspecified.
         CONTROL_MODE_VERTICAL_MANUAL (1):
-            Manual control mode
+            Manual control mode.
         CONTROL_MODE_VERTICAL_AUTO_DEPTH (2):
-            Auto depth control mode
+            Auto depth control mode.
         CONTROL_MODE_VERTICAL_AUTO_ALTITUDE (3):
-            Auto altitude control mode
+            Auto altitude control mode.
     """
     CONTROL_MODE_VERTICAL_UNSPECIFIED = 0
-    """Unspecified"""
+    """Unspecified."""
     CONTROL_MODE_VERTICAL_MANUAL = 1
-    """Manual control mode"""
+    """Manual control mode."""
     CONTROL_MODE_VERTICAL_AUTO_DEPTH = 2
-    """Auto depth control mode"""
+    """Auto depth control mode."""
     CONTROL_MODE_VERTICAL_AUTO_ALTITUDE = 3
-    """Auto altitude control mode"""
+    """Auto altitude control mode."""
 
 
 class ControlModeHorizontal(proto.Enum):
-    r"""
+    r"""Control mode for the horizontal axis of the drone.
 
     Attributes:
         CONTROL_MODE_HORIZONTAL_UNSPECIFIED (0):
-            Unspecified
+            Unspecified.
         CONTROL_MODE_HORIZONTAL_MANUAL (1):
-            Manual control mode
+            Manual control mode.
         CONTROL_MODE_HORIZONTAL_AUTO_HEADING (2):
-            Auto heading control mode
+            Auto heading control mode.
         CONTROL_MODE_HORIZONTAL_STATION_KEEPING (3):
-            Station keeping control mode
+            Station keeping control mode.
     """
     CONTROL_MODE_HORIZONTAL_UNSPECIFIED = 0
-    """Unspecified"""
+    """Unspecified."""
     CONTROL_MODE_HORIZONTAL_MANUAL = 1
-    """Manual control mode"""
+    """Manual control mode."""
     CONTROL_MODE_HORIZONTAL_AUTO_HEADING = 2
-    """Auto heading control mode"""
+    """Auto heading control mode."""
     CONTROL_MODE_HORIZONTAL_STATION_KEEPING = 3
-    """Station keeping control mode"""
+    """Station keeping control mode."""
 
 
 class CameraAction(proto.Enum):
@@ -120,34 +120,34 @@ class CameraAction(proto.Enum):
 
     Attributes:
         CAMERA_ACTION_UNSPECIFIED (0):
-            Unspecified command
+            Unspecified command.
         CAMERA_ACTION_TAKE_PHOTO (1):
-            Take one photo
+            Take one photo.
         CAMERA_ACTION_TAKE_PHOTOS_TIME (2):
-            Take a photo every x second
+            Take a photo every x second.
         CAMERA_ACTION_TAKE_PHOTOS_DISTANCE (3):
-            Take a photo every x meter
+            Take a photo every x meter.
         CAMERA_ACTION_STOP_TAKING_PHOTOS (4):
-            Stop taking photos
+            Stop taking photos.
         CAMERA_ACTION_START_RECORDING (5):
-            Start recording
+            Start recording.
         CAMERA_ACTION_STOP_RECORDING (6):
-            Stop recording
+            Stop recording.
     """
     CAMERA_ACTION_UNSPECIFIED = 0
-    """Unspecified command"""
+    """Unspecified command."""
     CAMERA_ACTION_TAKE_PHOTO = 1
-    """Take one photo"""
+    """Take one photo."""
     CAMERA_ACTION_TAKE_PHOTOS_TIME = 2
-    """Take a photo every x second"""
+    """Take a photo every x second."""
     CAMERA_ACTION_TAKE_PHOTOS_DISTANCE = 3
-    """Take a photo every x meter"""
+    """Take a photo every x meter."""
     CAMERA_ACTION_STOP_TAKING_PHOTOS = 4
-    """Stop taking photos"""
+    """Stop taking photos."""
     CAMERA_ACTION_START_RECORDING = 5
-    """Start recording"""
+    """Start recording."""
     CAMERA_ACTION_STOP_RECORDING = 6
-    """Stop recording"""
+    """Stop recording."""
 
 
 class InstructionType(proto.Enum):
@@ -155,60 +155,60 @@ class InstructionType(proto.Enum):
 
     Attributes:
         INSTRUCTION_TYPE_UNSPECIFIED (0):
-            Unspecified
+            Unspecified.
         INSTRUCTION_TYPE_NONE (1):
-            None
+            None.
         INSTRUCTION_TYPE_GO_TO_WAYPOINT (2):
-            Go to waypoint
+            Go to waypoint.
         INSTRUCTION_TYPE_GO_TO_WAYPOINT_WITH_DEPTH_SET_POINT (3):
-            Go to waypoint with depth set point
+            Go to waypoint with depth set point.
         INSTRUCTION_TYPE_GO_TO_DEPTH_SET_POINT (4):
-            Go to depth set point
+            Go to depth set point.
         INSTRUCTION_TYPE_SET_CAMERA_ACTION (5):
             Command used to take photo repeatedly or
-            start, stop recording
+            start, stop recording.
         INSTRUCTION_TYPE_SET_CONTROL_MODE (6):
-            Sets a new control mode
+            Sets a new control mode.
         INSTRUCTION_TYPE_SET_TILT_MAIN_CAMERA (7):
-            Sets a new angle for the tilt servo
+            Sets a new angle for the tilt servo.
         INSTRUCTION_TYPE_SET_TILT_SERVO (8):
-            Sets a new angle for the tilt servo
+            Sets a new angle for the tilt servo.
         INSTRUCTION_TYPE_WAIT_FOR_SEC (9):
-            Waiting for requested time in seconds
+            Waiting for requested time in seconds.
         INSTRUCTION_TYPE_GO_TO_SURFACE (10):
-            Go to the surface
+            Go to the surface.
         INSTRUCTION_TYPE_GO_TO_SEABED (11):
-            Go to the seabed
+            Go to the seabed.
         INSTRUCTION_TYPE_GO_TO_HOME (12):
-            Returning to home
+            Returning to home.
     """
     INSTRUCTION_TYPE_UNSPECIFIED = 0
-    """Unspecified"""
+    """Unspecified."""
     INSTRUCTION_TYPE_NONE = 1
-    """None"""
+    """None."""
     INSTRUCTION_TYPE_GO_TO_WAYPOINT = 2
-    """Go to waypoint"""
+    """Go to waypoint."""
     INSTRUCTION_TYPE_GO_TO_WAYPOINT_WITH_DEPTH_SET_POINT = 3
-    """Go to waypoint with depth set point"""
+    """Go to waypoint with depth set point."""
     INSTRUCTION_TYPE_GO_TO_DEPTH_SET_POINT = 4
-    """Go to depth set point"""
+    """Go to depth set point."""
     INSTRUCTION_TYPE_SET_CAMERA_ACTION = 5
     """Command used to take photo repeatedly or start, stop
-    recording"""
+    recording."""
     INSTRUCTION_TYPE_SET_CONTROL_MODE = 6
-    """Sets a new control mode"""
+    """Sets a new control mode."""
     INSTRUCTION_TYPE_SET_TILT_MAIN_CAMERA = 7
-    """Sets a new angle for the tilt servo"""
+    """Sets a new angle for the tilt servo."""
     INSTRUCTION_TYPE_SET_TILT_SERVO = 8
-    """Sets a new angle for the tilt servo"""
+    """Sets a new angle for the tilt servo."""
     INSTRUCTION_TYPE_WAIT_FOR_SEC = 9
-    """Waiting for requested time in seconds"""
+    """Waiting for requested time in seconds."""
     INSTRUCTION_TYPE_GO_TO_SURFACE = 10
-    """Go to the surface"""
+    """Go to the surface."""
     INSTRUCTION_TYPE_GO_TO_SEABED = 11
-    """Go to the seabed"""
+    """Go to the seabed."""
     INSTRUCTION_TYPE_GO_TO_HOME = 12
-    """Returning to home"""
+    """Returning to home."""
 
 
 class MissionState(proto.Enum):
@@ -216,42 +216,42 @@ class MissionState(proto.Enum):
 
     Attributes:
         MISSION_STATE_UNSPECIFIED (0):
-            Unspecified
+            Unspecified.
         MISSION_STATE_INACTIVE (1):
-            Mission supervisor is inactive
+            Mission supervisor is inactive.
         MISSION_STATE_READY (2):
-            Ready to start mission
+            Ready to start mission.
         MISSION_STATE_RUNNING (3):
-            Mission is running
+            Mission is running.
         MISSION_STATE_PAUSED (4):
-            Mission is paused
+            Mission is paused.
         MISSION_STATE_COMPLETED (5):
-            Mission is completed
+            Mission is completed.
         MISSION_STATE_ABORTED (6):
-            Mission is aborted by the mission supervisor
+            Mission is aborted by the mission supervisor.
         MISSION_STATE_FAILED_TO_LOAD_MISSION (7):
-            Mission has failed to load
+            Mission has failed to load.
         MISSION_STATE_FAILED_TO_START_MISSION (8):
-            Mission has failed to start
+            Mission has failed to start.
     """
     MISSION_STATE_UNSPECIFIED = 0
-    """Unspecified"""
+    """Unspecified."""
     MISSION_STATE_INACTIVE = 1
-    """Mission supervisor is inactive"""
+    """Mission supervisor is inactive."""
     MISSION_STATE_READY = 2
-    """Ready to start mission"""
+    """Ready to start mission."""
     MISSION_STATE_RUNNING = 3
-    """Mission is running"""
+    """Mission is running."""
     MISSION_STATE_PAUSED = 4
-    """Mission is paused"""
+    """Mission is paused."""
     MISSION_STATE_COMPLETED = 5
-    """Mission is completed"""
+    """Mission is completed."""
     MISSION_STATE_ABORTED = 6
-    """Mission is aborted by the mission supervisor"""
+    """Mission is aborted by the mission supervisor."""
     MISSION_STATE_FAILED_TO_LOAD_MISSION = 7
-    """Mission has failed to load"""
+    """Mission has failed to load."""
     MISSION_STATE_FAILED_TO_START_MISSION = 8
-    """Mission has failed to start"""
+    """Mission has failed to start."""
 
 
 class Mission(proto.Message):
@@ -260,28 +260,28 @@ class Mission(proto.Message):
 
     Attributes:
         id (int):
-            Mission id
+            Mission id, defined by the client.
         name (str):
-            Mission name provided from the app
+            Mission name provided from the app.
         instructions (MutableSequence[blueye.protocol.types.Instruction]):
-            List of instructions in the mission
+            List of instructions in the mission.
         path_segments (MutableSequence[blueye.protocol.types.PathSegment]):
             Calculated path segments from the reference
-            generator (optional)
+            generator (optional).
         total_distance (int):
-            Total distance of the mission (m) (optional)
+            Total distance of the mission (m) (optional).
         total_duration_time (int):
             Total duration time of the mission (s)
-            (optional)
+            (optional).
         default_surge_speed (float):
             Default cruise speed of the mission (m/s)
-            (optional)
+            (optional).
         default_heave_speed (float):
             Default heave speed of the mission (m/s)
-            (optional)
+            (optional).
         default_circle_of_acceptance (float):
             Default circle of acceptance for waypoints
-            (m) (optional)
+            (m) (optional).
     """
 
     id: int = proto.Field(
@@ -339,48 +339,48 @@ class Instruction(proto.Message):
         id (int):
 
         group_id (int):
-            Group id used for polygons
+            Group id used for polygons.
         auto_continue (bool):
             False will pause the mission after this
-            instruction
+            instruction.
         waypoint_command (blueye.protocol.types.WaypointCommand):
-            Go to waypoint
+            Go to waypoint.
 
             This field is a member of `oneof`_ ``command``.
         depth_set_point_command (blueye.protocol.types.DepthSetPointCommand):
-            Go to depth
+            Go to depth.
 
             This field is a member of `oneof`_ ``command``.
         camera_command (blueye.protocol.types.CameraCommand):
-            Camera commands
+            Camera commands.
 
             This field is a member of `oneof`_ ``command``.
         control_mode_command (blueye.protocol.types.ControlModeCommand):
-            Set control modes
+            Set control modes.
 
             This field is a member of `oneof`_ ``command``.
         tilt_main_camera_command (blueye.protocol.types.TiltMainCameraCommand):
-            Set camera to angle x
+            Set camera to angle x.
 
             This field is a member of `oneof`_ ``command``.
         tilt_multibeam_command (blueye.protocol.types.TiltMultibeamCommand):
-            Set multibeam tilt angle
+            Set multibeam tilt angle.
 
             This field is a member of `oneof`_ ``command``.
         wait_for_command (blueye.protocol.types.WaitForCommand):
-            Wait for x seconds
+            Wait for x seconds.
 
             This field is a member of `oneof`_ ``command``.
         go_to_surface_command (blueye.protocol.types.GoToSurfaceCommand):
-            Go to surface
+            Go to surface.
 
             This field is a member of `oneof`_ ``command``.
         go_to_seabed_command (blueye.protocol.types.GoToSeabedCommand):
-            Go to seabed
+            Go to seabed.
 
             This field is a member of `oneof`_ ``command``.
         go_to_home_command (blueye.protocol.types.GoToHomeCommand):
-            Go to home position
+            Go to home position.
 
             This field is a member of `oneof`_ ``command``.
     """
@@ -465,12 +465,13 @@ class DepthSetPoint(proto.Message):
 
     Attributes:
         depth (float):
-            Desired depth at the wp (m)
+            Desired depth at the wp (m).
         speed_to_depth (float):
             Desired speed to desired depth set point
-            (m/s)
+            (m/s).
         depth_zero_reference (blueye.protocol.types.DepthZeroReference):
-            Used to distinguish desired altitude or depth
+            Used to distinguish desired altitude or
+            depth.
     """
 
     depth: float = proto.Field(
@@ -493,18 +494,18 @@ class Waypoint(proto.Message):
 
     Attributes:
         id (int):
-            Waypoint id
+            Waypoint id.
         name (str):
-            Waypoint name provided from the app
+            Waypoint name provided from the app.
         global_position (blueye.protocol.types.LatLongPosition):
-            Position if the waypoint (decimal degrees)
+            Position if the waypoint (decimal degrees).
         circle_of_acceptance (float):
             Radius of the acceptance circle around the
-            waypoint (m)
+            waypoint (m).
         speed_to_target (float):
-            Desired speed over ground to waypoint (m/s)
+            Desired speed over ground to waypoint (m/s).
         depth_set_point (blueye.protocol.types.DepthSetPoint):
-            Depth set point (optional)
+            Depth set point (optional).
     """
 
     id: int = proto.Field(
@@ -541,9 +542,9 @@ class ControlModeCommand(proto.Message):
 
     Attributes:
         control_mode_vertical (blueye.protocol.types.ControlModeVertical):
-            Desired control mode in heave
+            Desired control mode in heave.
         control_mode_horizontal (blueye.protocol.types.ControlModeHorizontal):
-            Desired control mode in surge and yaw
+            Desired control mode in surge and yaw.
     """
 
     control_mode_vertical: 'ControlModeVertical' = proto.Field(
@@ -564,7 +565,7 @@ class WaypointCommand(proto.Message):
 
     Attributes:
         waypoint (blueye.protocol.types.Waypoint):
-            Waypoint to go to
+            Waypoint to go to.
     """
 
     waypoint: 'Waypoint' = proto.Field(
@@ -580,7 +581,7 @@ class DepthSetPointCommand(proto.Message):
 
     Attributes:
         depth_set_point (blueye.protocol.types.DepthSetPoint):
-            Depth set point to go to
+            Depth set point to go to.
     """
 
     depth_set_point: 'DepthSetPoint' = proto.Field(
@@ -596,7 +597,7 @@ class TiltMainCameraCommand(proto.Message):
 
     Attributes:
         tilt_angle (blueye.protocol.types.TiltAngle):
-            Tilt angle of the camera (-30..30)
+            Tilt angle of the camera (-30..30).
     """
 
     tilt_angle: message_formats.TiltAngle = proto.Field(
@@ -612,7 +613,7 @@ class TiltMultibeamCommand(proto.Message):
 
     Attributes:
         multibeam_servo (blueye.protocol.types.MultibeamServo):
-            Tilt angle for the multibeam servo
+            Tilt angle for the multibeam servo.
     """
 
     multibeam_servo: message_formats.MultibeamServo = proto.Field(
@@ -627,7 +628,7 @@ class WaitForCommand(proto.Message):
 
     Attributes:
         wait_for_seconds (float):
-            Wait for x seconds
+            Wait for x seconds.
     """
 
     wait_for_seconds: float = proto.Field(
@@ -641,10 +642,10 @@ class CameraCommand(proto.Message):
 
     Attributes:
         camera_action (blueye.protocol.types.CameraAction):
-            Camera command
+            Camera command.
         action_param (float):
             Used for taking photos based on a time or
-            distance interval
+            distance interval.
     """
 
     camera_action: 'CameraAction' = proto.Field(
@@ -663,7 +664,7 @@ class GoToSurfaceCommand(proto.Message):
 
     Attributes:
         desired_speed (float):
-            Desired speed to surface (m/s)
+            Desired speed to surface (m/s).
     """
 
     desired_speed: float = proto.Field(
@@ -677,7 +678,7 @@ class GoToSeabedCommand(proto.Message):
 
     Attributes:
         desired_speed (float):
-            Desired speed to seabed (m/s)
+            Desired speed to seabed (m/s).
     """
 
     desired_speed: float = proto.Field(
@@ -691,7 +692,7 @@ class GoToHomeCommand(proto.Message):
 
     Attributes:
         desired_speed (float):
-            Desired speed to home (m/s)
+            Desired speed to home (m/s).
     """
 
     desired_speed: float = proto.Field(
@@ -707,24 +708,24 @@ class PathSegment(proto.Message):
     Attributes:
         id (int):
             Path segment id starting at 0, -1 for
-            inactive
+            inactive.
         speed_to_target (float):
-            Desired speed over ground in (m/s)
+            Desired speed over ground in (m/s).
         course_to_target (float):
-            Course to target relative to north (rad) [-pi, pi]
+            Course to target relative to north (rad) [-pi, pi].
         depth_speed (float):
-            Desired speed in heave (m/s)
+            Desired speed in heave (m/s).
         horizontal_length (float):
-            Horizontal length of the path segment (m)
+            Horizontal length of the path segment (m).
         vertical_length (float):
-            Vertical length of the path segment (m)
+            Vertical length of the path segment (m).
         from_wp_id (int):
-            Id of the starting waypoint
+            Id of the starting waypoint.
         to_wp_id (int):
-            Id of the ending waypoint
+            Id of the ending waypoint.
         duration_time (float):
             Estimated time it takes to complete given
-            length and desired speed (s)
+            length and desired speed (s).
     """
 
     id: int = proto.Field(
@@ -770,32 +771,32 @@ class ReferenceAutoPilot(proto.Message):
 
     Attributes:
         instruction_type (blueye.protocol.types.InstructionType):
-            Instruction type
+            Instruction type.
         active_instruction_id (int):
-            Id of the active instruction
+            Id of the active instruction.
         active_path_segment_id (int):
-            Id of the active path segment
+            Id of the active path segment.
         course_to_target (float):
-            Course to the next waypoint from north (rad) [-pi, pi]
+            Course to the next waypoint from north (rad) [-pi, pi].
         speed_over_ground (float):
-            Desired speed over ground (m/s)
+            Desired speed over ground (m/s).
         horizontal_distance_to_target (float):
-            Horizontal distance to the next waypoint (m)
+            Horizontal distance to the next waypoint (m).
         circle_of_acceptance (float):
             Circle of acceptance to mark waypoint as
-            visited (m)
+            visited (m).
         depth_set_point (float):
-            Desired depth set point (m)
+            Desired depth set point (m).
         heave_velocity (float):
-            Desired heave velocity (m/s)
+            Desired heave velocity (m/s).
         vertical_distance_to_target (float):
-            Vertical distance to the next waypoint (m)
+            Vertical distance to the next waypoint (m).
         depth_zero_reference (blueye.protocol.types.DepthZeroReference):
             Indicates if depth is measured from the
-            surface or seabed
+            surface or seabed.
         time_to_complete (float):
             Estimated time to complete the instruction
-            (s)
+            (s).
     """
 
     instruction_type: 'InstructionType' = proto.Field(
@@ -855,23 +856,23 @@ class MissionStatus(proto.Message):
 
     Attributes:
         state (blueye.protocol.types.MissionState):
-            State of the mission supervisor
+            State of the mission supervisor.
         time_elapsed (int):
-            Time elapsed since mission started (s)
+            Time elapsed since mission started (s).
         estimated_time_to_complete (int):
-            Estimated time to complete the mission (s)
+            Estimated time to complete the mission (s).
         distance_to_complete (int):
-            Distance left of the mission (m)
+            Distance left of the mission (m).
         completed_instruction_ids (MutableSequence[int]):
-            Ids of the completed instructions
+            Ids of the completed instructions.
         total_number_of_instructions (int):
-            Total number of instructions in the mission
+            Total number of instructions in the mission.
         completed_path_segment_ids (MutableSequence[int]):
-            Ids of the completed path segments
+            Ids of the completed path segments.
         total_number_of_path_segments (int):
-            Total number of path segments in the mission
+            Total number of path segments in the mission.
         id (int):
-            Mission id of the active mission
+            Mission id of the active mission.
     """
 
     state: 'MissionState' = proto.Field(

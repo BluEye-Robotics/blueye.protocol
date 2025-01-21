@@ -339,8 +339,8 @@ class SetMissionReq(proto.Message):
 
     Attributes:
         mission (blueye.protocol.types.Mission):
-            requested mission issued to the reference
-            generator
+            Requested mission issued to the reference
+            generator.
     """
 
     mission: mission_planning.Mission = proto.Field(
@@ -367,7 +367,7 @@ class GetMissionRep(proto.Message):
 
     Attributes:
         mission (blueye.protocol.types.Mission):
-            active mission with waypoints
+            Active mission with waypoints.
     """
 
     mission: mission_planning.Mission = proto.Field(
@@ -384,7 +384,7 @@ class SetInstructionUpdateReq(proto.Message):
     Attributes:
         instruction (blueye.protocol.types.Instruction):
             instruction that will replace the desired
-            instruction
+            instruction.
     """
 
     instruction: mission_planning.Instruction = proto.Field(

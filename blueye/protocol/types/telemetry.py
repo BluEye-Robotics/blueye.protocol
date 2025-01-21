@@ -122,7 +122,8 @@ class ForwardDistanceTel(proto.Message):
 
     Attributes:
         forward_distance (blueye.protocol.types.ForwardDistance):
-
+            The distance to an object in front of the
+            drone.
     """
 
     forward_distance: message_formats.ForwardDistance = proto.Field(
@@ -153,7 +154,7 @@ class PositionEstimateTel(proto.Message):
 
     Attributes:
         position_estimate (blueye.protocol.types.PositionEstimate):
-
+            Position estimate of the drone.
     """
 
     position_estimate: message_formats.PositionEstimate = proto.Field(
@@ -169,7 +170,7 @@ class DepthTel(proto.Message):
 
     Attributes:
         depth (blueye.protocol.types.Depth):
-
+            The depth of the drone.
     """
 
     depth: message_formats.Depth = proto.Field(
@@ -184,7 +185,7 @@ class ReferenceTel(proto.Message):
 
     Attributes:
         reference (blueye.protocol.types.Reference):
-
+            Reference signals.
     """
 
     reference: message_formats.Reference = proto.Field(
@@ -199,7 +200,7 @@ class ReferenceAutoPilotTel(proto.Message):
 
     Attributes:
         reference_auto_pilot (blueye.protocol.types.ReferenceAutoPilot):
-
+            Reference for the auto pilot.
     """
 
     reference_auto_pilot: mission_planning.ReferenceAutoPilot = proto.Field(
@@ -214,7 +215,7 @@ class MissionStatusTel(proto.Message):
 
     Attributes:
         mission_status (blueye.protocol.types.MissionStatus):
-
+            Mission status.
     """
 
     mission_status: mission_planning.MissionStatus = proto.Field(
@@ -229,7 +230,7 @@ class NotificationTel(proto.Message):
 
     Attributes:
         notification (blueye.protocol.types.Notification):
-
+            Notification from the control system.
     """
 
     notification: message_formats.Notification = proto.Field(
@@ -244,7 +245,7 @@ class ControlForceTel(proto.Message):
 
     Attributes:
         control_force (blueye.protocol.types.ControlForce):
-
+            Control force in all directions.
     """
 
     control_force: message_formats.ControlForce = proto.Field(
@@ -260,7 +261,7 @@ class ControllerHealthTel(proto.Message):
 
     Attributes:
         controller_health (blueye.protocol.types.ControllerHealth):
-
+            Controller health.
     """
 
     controller_health: message_formats.ControllerHealth = proto.Field(
@@ -275,7 +276,7 @@ class LightsTel(proto.Message):
 
     Attributes:
         lights (blueye.protocol.types.Lights):
-
+            Main light status.
     """
 
     lights: message_formats.Lights = proto.Field(
@@ -291,7 +292,7 @@ class GuestPortLightsTel(proto.Message):
 
     Attributes:
         lights (blueye.protocol.types.Lights):
-
+            Guest port light status.
     """
 
     lights: message_formats.Lights = proto.Field(
@@ -306,7 +307,7 @@ class LaserTel(proto.Message):
 
     Attributes:
         laser (blueye.protocol.types.Laser):
-
+            Laser status.
     """
 
     laser: message_formats.Laser = proto.Field(
@@ -321,7 +322,7 @@ class PilotGPSPositionTel(proto.Message):
 
     Attributes:
         position (blueye.protocol.types.LatLongPosition):
-
+            The GPS position of the pilot.
     """
 
     position: message_formats.LatLongPosition = proto.Field(
@@ -336,7 +337,7 @@ class RecordStateTel(proto.Message):
 
     Attributes:
         record_state (blueye.protocol.types.RecordState):
-
+            Record state.
     """
 
     record_state: message_formats.RecordState = proto.Field(
@@ -351,7 +352,7 @@ class TimeLapseStateTel(proto.Message):
 
     Attributes:
         time_lapse_state (blueye.protocol.types.TimeLapseState):
-
+            Time-lapse state.
     """
 
     time_lapse_state: message_formats.TimeLapseState = proto.Field(
@@ -435,7 +436,7 @@ class WaterTemperatureTel(proto.Message):
 
     Attributes:
         temperature (blueye.protocol.types.WaterTemperature):
-
+            Water temperature.
     """
 
     temperature: message_formats.WaterTemperature = proto.Field(
@@ -450,7 +451,7 @@ class CPUTemperatureTel(proto.Message):
 
     Attributes:
         temperature (blueye.protocol.types.CPUTemperature):
-
+            CPU temperature.
     """
 
     temperature: message_formats.CPUTemperature = proto.Field(
@@ -495,7 +496,7 @@ class CanisterTopHumidityTel(proto.Message):
 
     Attributes:
         humidity (blueye.protocol.types.CanisterHumidity):
-            Humidity information
+            Humidity information.
     """
 
     humidity: message_formats.CanisterHumidity = proto.Field(
@@ -510,7 +511,7 @@ class CanisterBottomHumidityTel(proto.Message):
 
     Attributes:
         humidity (blueye.protocol.types.CanisterHumidity):
-            Humidity information
+            Humidity information.
     """
 
     humidity: message_formats.CanisterHumidity = proto.Field(
@@ -525,7 +526,7 @@ class VideoStorageSpaceTel(proto.Message):
 
     Attributes:
         storage_space (blueye.protocol.types.StorageSpace):
-
+            Video storage information.
     """
 
     storage_space: message_formats.StorageSpace = proto.Field(
@@ -540,7 +541,7 @@ class DataStorageSpaceTel(proto.Message):
 
     Attributes:
         storage_space (blueye.protocol.types.StorageSpace):
-
+            Data storage information.
     """
 
     storage_space: message_formats.StorageSpace = proto.Field(
@@ -555,7 +556,7 @@ class CalibrationStateTel(proto.Message):
 
     Attributes:
         calibration_state (blueye.protocol.types.CalibrationState):
-
+            Calibration state.
     """
 
     calibration_state: message_formats.CalibrationState = proto.Field(
@@ -570,7 +571,7 @@ class TiltStabilizationTel(proto.Message):
 
     Attributes:
         state (blueye.protocol.types.TiltStabilizationState):
-
+            Tilt stabilization state.
     """
 
     state: message_formats.TiltStabilizationState = proto.Field(
@@ -586,7 +587,7 @@ class IperfTel(proto.Message):
 
     Attributes:
         status (blueye.protocol.types.IperfStatus):
-
+            Information about the available bandwidth.
     """
 
     status: message_formats.IperfStatus = proto.Field(
@@ -601,7 +602,8 @@ class NStreamersTel(proto.Message):
 
     Attributes:
         n_streamers (blueye.protocol.types.NStreamers):
-
+            Information about the number of connected
+            clients.
     """
 
     n_streamers: message_formats.NStreamers = proto.Field(
@@ -616,7 +618,7 @@ class TiltAngleTel(proto.Message):
 
     Attributes:
         angle (blueye.protocol.types.TiltAngle):
-
+            Main camera tilt angle.
     """
 
     angle: message_formats.TiltAngle = proto.Field(
@@ -769,11 +771,11 @@ class ConnectedClientsTel(proto.Message):
 
 
 class GenericServoTel(proto.Message):
-    r"""State of a generic servo
+    r"""State of a generic servo.
 
     Attributes:
         servo (blueye.protocol.types.GenericServo):
-            Servo state
+            Servo state.
     """
 
     servo: message_formats.GenericServo = proto.Field(
@@ -784,11 +786,11 @@ class GenericServoTel(proto.Message):
 
 
 class MultibeamServoTel(proto.Message):
-    r"""State of the servo installed in the multibeam
+    r"""State of the servo installed in the multibeam.
 
     Attributes:
         servo (blueye.protocol.types.MultibeamServo):
-            Multibeam servo state
+            Multibeam servo state.
     """
 
     servo: message_formats.MultibeamServo = proto.Field(
@@ -799,11 +801,11 @@ class MultibeamServoTel(proto.Message):
 
 
 class GuestPortCurrentTel(proto.Message):
-    r"""GuestPort current readings
+    r"""GuestPort current readings.
 
     Attributes:
         current (blueye.protocol.types.GuestPortCurrent):
-
+            Guest port current readings.
     """
 
     current: message_formats.GuestPortCurrent = proto.Field(
@@ -814,11 +816,11 @@ class GuestPortCurrentTel(proto.Message):
 
 
 class CalibratedImuTel(proto.Message):
-    r"""Calibrated IMU data
+    r"""Calibrated IMU data.
 
     Attributes:
         imu (blueye.protocol.types.Imu):
-
+            Calibrated IMU data.
     """
 
     imu: message_formats.Imu = proto.Field(
@@ -833,7 +835,7 @@ class Imu1Tel(proto.Message):
 
     Attributes:
         imu (blueye.protocol.types.Imu):
-
+            Raw IMU data.
     """
 
     imu: message_formats.Imu = proto.Field(
@@ -848,7 +850,7 @@ class Imu2Tel(proto.Message):
 
     Attributes:
         imu (blueye.protocol.types.Imu):
-
+            Raw IMU data.
     """
 
     imu: message_formats.Imu = proto.Field(
@@ -859,11 +861,11 @@ class Imu2Tel(proto.Message):
 
 
 class MedusaSpectrometerDataTel(proto.Message):
-    r"""Medusa gamma ray sensor spectrometer data
+    r"""Medusa gamma ray sensor spectrometer data.
 
     Attributes:
         data (blueye.protocol.types.MedusaSpectrometerData):
-
+            Medusa gamma ray sensor spectrometer data.
     """
 
     data: message_formats.MedusaSpectrometerData = proto.Field(
@@ -874,11 +876,11 @@ class MedusaSpectrometerDataTel(proto.Message):
 
 
 class MultibeamPingTel(proto.Message):
-    r"""Multibeam sonar ping data
+    r"""Multibeam sonar ping data.
 
     Attributes:
         ping (blueye.protocol.types.MultibeamPing):
-            Ping data from a multibeam sonar
+            Ping data from a multibeam sonar.
     """
 
     ping: message_formats.MultibeamPing = proto.Field(
@@ -889,11 +891,11 @@ class MultibeamPingTel(proto.Message):
 
 
 class MultibeamConfigTel(proto.Message):
-    r"""Multibeam sonar config
+    r"""Multibeam sonar config.
 
     Attributes:
         config (blueye.protocol.types.MultibeamConfig):
-            Config data from a multibeam sonar
+            Config data from a multibeam sonar.
     """
 
     config: message_formats.MultibeamConfig = proto.Field(
@@ -904,11 +906,11 @@ class MultibeamConfigTel(proto.Message):
 
 
 class MultibeamDiscoveryTel(proto.Message):
-    r"""Multibeam sonar status message
+    r"""Multibeam sonar status message.
 
     Attributes:
         discovery (blueye.protocol.types.MultibeamDiscovery):
-            Discovery data from a multibeam sonar
+            Discovery data from a multibeam sonar.
     """
 
     discovery: message_formats.MultibeamDiscovery = proto.Field(
@@ -919,11 +921,11 @@ class MultibeamDiscoveryTel(proto.Message):
 
 
 class CPUInfoTel(proto.Message):
-    r"""Information about cpu and memory usage
+    r"""Information about cpu and memory usage.
 
     Attributes:
         cpu_info (blueye.protocol.types.CPUInfo):
-
+            CPU information.
     """
 
     cpu_info: message_formats.CPUInfo = proto.Field(

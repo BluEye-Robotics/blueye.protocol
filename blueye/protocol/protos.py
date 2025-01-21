@@ -119,6 +119,7 @@ from .types.message_formats import MedusaSpectrometerData
 from .types.message_formats import MotionInput
 from .types.message_formats import MultibeamConfig
 from .types.message_formats import MultibeamDiscovery
+from .types.message_formats import MultibeamErrorFlags
 from .types.message_formats import MultibeamFrameOffset
 from .types.message_formats import MultibeamPing
 from .types.message_formats import MultibeamServo
@@ -445,6 +446,7 @@ __all__ = (
 'MultibeamConfigTel',
 'MultibeamDiscovery',
 'MultibeamDiscoveryTel',
+'MultibeamErrorFlags',
 'MultibeamFrameOffset',
 'MultibeamFrequencyMode',
 'MultibeamPing',

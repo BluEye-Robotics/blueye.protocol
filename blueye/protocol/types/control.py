@@ -232,7 +232,7 @@ class AutoHeadingCtrl(proto.Message):
 
     Attributes:
         state (blueye.protocol.types.AutoHeadingState):
-            State of the heading controller
+            State of the heading controller.
     """
 
     state: message_formats.AutoHeadingState = proto.Field(
@@ -247,7 +247,7 @@ class AutoDepthCtrl(proto.Message):
 
     Attributes:
         state (blueye.protocol.types.AutoDepthState):
-            State of the depth controller
+            State of the depth controller.
     """
 
     state: message_formats.AutoDepthState = proto.Field(
@@ -262,7 +262,7 @@ class AutoAltitudeCtrl(proto.Message):
 
     Attributes:
         state (blueye.protocol.types.AutoAltitudeState):
-            State of the altitude controller
+            State of the altitude controller.
     """
 
     state: message_formats.AutoAltitudeState = proto.Field(
@@ -277,7 +277,7 @@ class StationKeepingCtrl(proto.Message):
 
     Attributes:
         state (blueye.protocol.types.StationKeepingState):
-            State of the station keeping controller
+            State of the station keeping controller.
     """
 
     state: message_formats.StationKeepingState = proto.Field(
@@ -293,7 +293,7 @@ class WeatherVaningCtrl(proto.Message):
 
     Attributes:
         state (blueye.protocol.types.WeatherVaningState):
-            State of the weather vaning controller
+            State of the weather vaning controller.
     """
 
     state: message_formats.WeatherVaningState = proto.Field(
@@ -309,7 +309,7 @@ class AutoPilotSurgeYawCtrl(proto.Message):
 
     Attributes:
         state (blueye.protocol.types.AutoPilotSurgeYawState):
-            State of the auto pilot surge yaw controller
+            State of the auto pilot surge yaw controller.
     """
 
     state: message_formats.AutoPilotSurgeYawState = proto.Field(
@@ -325,7 +325,7 @@ class AutoPilotHeaveCtrl(proto.Message):
 
     Attributes:
         state (blueye.protocol.types.AutoPilotHeaveState):
-            State of the auto pilot heave controller
+            State of the auto pilot heave controller-
     """
 
     state: message_formats.AutoPilotHeaveState = proto.Field(
@@ -482,17 +482,17 @@ class MultibeamServoCtrl(proto.Message):
 
 
 class DeactivateGuestPortsCtrl(proto.Message):
-    r"""Deactivate the guest port power
+    r"""Deactivate the guest port power.
     """
 
 
 class ActivateGuestPortsCtrl(proto.Message):
-    r"""Activated the guest port power
+    r"""Activated the guest port power.
     """
 
 
 class RestartGuestPortsCtrl(proto.Message):
-    r"""Restart the guest ports by turning power on and off
+    r"""Restart the guest ports by turning power on and off.
 
     Attributes:
         restart_info (blueye.protocol.types.GuestPortRestartInfo):
@@ -508,7 +508,7 @@ class RestartGuestPortsCtrl(proto.Message):
 
 
 class SetAquaTrollParameterUnitCtrl(proto.Message):
-    r"""Request to set an In-Situ Aqua Troll parameter unit
+    r"""Request to set an In-Situ Aqua Troll parameter unit.
 
     Attributes:
         parameter_info (blueye.protocol.types.SetAquaTrollParameterUnit):
@@ -524,7 +524,7 @@ class SetAquaTrollParameterUnitCtrl(proto.Message):
 
 
 class SetAquaTrollConnectionStatusCtrl(proto.Message):
-    r"""Request to change the In-Situ Aqua Troll connection status
+    r"""Request to change the In-Situ Aqua Troll connection status.
 
     Attributes:
         connection_status (blueye.protocol.types.SetAquaTrollConnectionStatus):
@@ -540,7 +540,7 @@ class SetAquaTrollConnectionStatusCtrl(proto.Message):
 
 
 class SetMultibeamConfigCtrl(proto.Message):
-    r"""Update multibeam settings
+    r"""Update the multibeam settings.
 
     Attributes:
         config (blueye.protocol.types.MultibeamConfig):
@@ -556,12 +556,12 @@ class SetMultibeamConfigCtrl(proto.Message):
 
 
 class ActivateMultibeamCtrl(proto.Message):
-    r"""Activate multibeam
+    r"""Activate the multibeam with specified configuration.
 
     Attributes:
         config (blueye.protocol.types.MultibeamConfig):
             Message with the multibeam ping configuration
-            to set on connect
+            to set on connect.
     """
 
     config: message_formats.MultibeamConfig = proto.Field(
@@ -572,7 +572,7 @@ class ActivateMultibeamCtrl(proto.Message):
 
 
 class DeactivateMultibeamCtrl(proto.Message):
-    r"""Deactivate multibeam
+    r"""Deactivate the multibeam.
     """
 
 

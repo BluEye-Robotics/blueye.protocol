@@ -118,6 +118,7 @@ __protobuf__ = proto.module(
         'MultibeamPing',
         'MultibeamConfig',
         'MultibeamDiscovery',
+        'MultibeamErrorFlags',
         'MultibeamFrameOffset',
         'MutltibeamRecordingIndex',
         'PersistentStorageSettings',
@@ -131,18 +132,18 @@ class IntervalType(proto.Enum):
 
     Attributes:
         INTERVAL_TYPE_UNSPECIFIED (0):
-            Unspecified
+            Unspecified.
         INTERVAL_TYPE_TIME (1):
-            Time interval
+            Time interval.
         INTERVAL_TYPE_DISTANCE (2):
-            Distance interval
+            Distance interval.
     """
     INTERVAL_TYPE_UNSPECIFIED = 0
-    """Unspecified"""
+    """Unspecified."""
     INTERVAL_TYPE_TIME = 1
-    """Time interval"""
+    """Time interval."""
     INTERVAL_TYPE_DISTANCE = 2
-    """Distance interval"""
+    """Distance interval."""
 
 
 class HeadingSource(proto.Enum):
@@ -150,22 +151,23 @@ class HeadingSource(proto.Enum):
 
     Attributes:
         HEADING_SOURCE_UNSPECIFIED (0):
-            Unspecified
+            Unspecified.
         HEADING_SOURCE_DRONE_COMPASS (1):
-            Uses the drone compass to set the heading
+            Uses the drone compass to set the heading.
         HEADING_SOURCE_MANUAL_INPUT (2):
-            Used when the user sets the heading manually
+            Used when the user sets the heading manually.
     """
     HEADING_SOURCE_UNSPECIFIED = 0
-    """Unspecified"""
+    """Unspecified."""
     HEADING_SOURCE_DRONE_COMPASS = 1
-    """Uses the drone compass to set the heading"""
+    """Uses the drone compass to set the heading."""
     HEADING_SOURCE_MANUAL_INPUT = 2
-    """Used when the user sets the heading manually"""
+    """Used when the user sets the heading manually."""
 
 
 class ResetCoordinateSource(proto.Enum):
-    r"""
+    r"""The coordinate source to use when resetting the position
+    estimate.
 
     Attributes:
         RESET_COORDINATE_SOURCE_UNSPECIFIED (0):
@@ -190,139 +192,139 @@ class NotificationType(proto.Enum):
 
     Attributes:
         NOTIFICATION_TYPE_UNSPECIFIED (0):
-            Unspecified
+            Unspecified.
         NOTIFICATION_TYPE_POSITION_ESTIMATE_IS_INACCURATE (1):
-            Position estimate is inaccurate
+            Position estimate is inaccurate.
         NOTIFICATION_TYPE_DRONE_POSITION_IS_UNKNOWN (2):
-            Drone position is unknown
+            Drone position is unknown.
         NOTIFICATION_TYPE_USER_POSITION_IS_UNKNOWN (3):
-            User position is unknown
+            User position is unknown.
         NOTIFICATION_TYPE_NO_MISSION_LOADED (4):
-            No mission is loaded
+            No mission is loaded.
         NOTIFICATION_TYPE_MISSION_LOADED (5):
-            Mission is loaded
+            Mission is loaded.
         NOTIFICATION_TYPE_FAILED_TO_LOAD_MISSION (6):
-            Failed to load mission
+            Failed to load mission.
         NOTIFICATION_TYPE_MISSION_COMPLETE (7):
-            Mission is complete
+            Mission is complete.
         NOTIFICATION_TYPE_INSTRUCTION_COMPLETE (8):
-            Instruction is complete
+            Instruction is complete.
         NOTIFICATION_TYPE_WAYPOINT_REACHED (9):
-            Waypoint reached
+            Waypoint reached.
         NOTIFICATION_TYPE_DEPTH_TARGET_REACHED (10):
-            Depth set point is reached
+            Depth set point is reached.
         NOTIFICATION_TYPE_ALTITUDE_TARGET_REACHED (11):
-            Altitude set point is reached
+            Altitude set point is reached.
         NOTIFICATION_TYPE_WAYPOINT_IS_TOO_FAR_AWAY (12):
-            The waypoint is too far away
+            The waypoint is too far away.
         NOTIFICATION_TYPE_DEPTH_SET_POINT_IS_TOO_FAR_AWAY (13):
-            The depth set point is too far away
+            The depth set point is too far away.
         NOTIFICATION_TYPE_TIME_TO_COMPLETE_IS_TOO_LONG (14):
-            The time to complete the mission is too long
+            The time to complete the mission is too long.
         NOTIFICATION_TYPE_RETURNING_TO_HOME (15):
-            Returning to home
+            Returning to home.
         NOTIFICATION_TYPE_GO_TO_SURFACE (16):
-            Go to surface
+            Go to surface.
         NOTIFICATION_TYPE_GO_TO_SEABED (17):
-            Go to seabed with an altimeter
+            Go to seabed with an altimeter.
         NOTIFICATION_TYPE_GO_TO_WAYPOINT (18):
-            Go to waypoint
+            Go to waypoint.
         NOTIFICATION_TYPE_GO_TO_DEPTH_SET_POINT (19):
-            Go to depth set point
+            Go to depth set point.
         NOTIFICATION_TYPE_GO_TO_WAYPOINT_WITH_DEPTH_SET_POINT (20):
-            Go to waypoint with depth set point
+            Go to waypoint with depth set point.
         NOTIFICATION_TYPE_MISSION_STARTED (21):
-            Mission is started
+            Mission is started.
         NOTIFICATION_TYPE_MISSION_PAUSED (22):
-            Mission is paused
+            Mission is paused.
         NOTIFICATION_TYPE_MISSION_RESUMED (23):
-            Mission is resumed
+            Mission is resumed.
         NOTIFICATION_TYPE_MISSION_ABORTED (24):
-            Mission is aborted
+            Mission is aborted.
         NOTIFICATION_TYPE_DRONE_IS_STUCK (25):
-            Drone is stuck during a mission
+            Drone is stuck during a mission.
         NOTIFICATION_TYPE_WAIT_FOR (26):
-            Wait for instruction running
+            Wait for instruction running.
         NOTIFICATION_TYPE_CAMERA_ACTION (27):
-            Camera action initiated
+            Camera action initiated.
         NOTIFICATION_TYPE_SET_TILT_MAIN_CAMERA (28):
-            Set tilt for main camera
+            Set tilt for main camera.
         NOTIFICATION_TYPE_SET_TILT_MULTIBEAM (29):
-            Set tilt for multibeam
+            Set tilt for multibeam.
         NOTIFICATION_TYPE_INSTRUCTION_SKIPPED (30):
             When an instruction is not available in the
-            ROV
+            ROV.
         NOTIFICATION_TYPE_DVL_HIGH_TEMPERATURE_DETECTED (31):
-            DVL high temperature detected
+            DVL high temperature detected.
         NOTIFICATION_TYPE_DVL_THERMAL_PROTECTION_MODE_DETECTED (32):
-            DVL thermal protection mode detected
+            DVL thermal protection mode detected.
     """
     NOTIFICATION_TYPE_UNSPECIFIED = 0
-    """Unspecified"""
+    """Unspecified."""
     NOTIFICATION_TYPE_POSITION_ESTIMATE_IS_INACCURATE = 1
-    """Position estimate is inaccurate"""
+    """Position estimate is inaccurate."""
     NOTIFICATION_TYPE_DRONE_POSITION_IS_UNKNOWN = 2
-    """Drone position is unknown"""
+    """Drone position is unknown."""
     NOTIFICATION_TYPE_USER_POSITION_IS_UNKNOWN = 3
-    """User position is unknown"""
+    """User position is unknown."""
     NOTIFICATION_TYPE_NO_MISSION_LOADED = 4
-    """No mission is loaded"""
+    """No mission is loaded."""
     NOTIFICATION_TYPE_MISSION_LOADED = 5
-    """Mission is loaded"""
+    """Mission is loaded."""
     NOTIFICATION_TYPE_FAILED_TO_LOAD_MISSION = 6
-    """Failed to load mission"""
+    """Failed to load mission."""
     NOTIFICATION_TYPE_MISSION_COMPLETE = 7
-    """Mission is complete"""
+    """Mission is complete."""
     NOTIFICATION_TYPE_INSTRUCTION_COMPLETE = 8
-    """Instruction is complete"""
+    """Instruction is complete."""
     NOTIFICATION_TYPE_WAYPOINT_REACHED = 9
-    """Waypoint reached"""
+    """Waypoint reached."""
     NOTIFICATION_TYPE_DEPTH_TARGET_REACHED = 10
-    """Depth set point is reached"""
+    """Depth set point is reached."""
     NOTIFICATION_TYPE_ALTITUDE_TARGET_REACHED = 11
-    """Altitude set point is reached"""
+    """Altitude set point is reached."""
     NOTIFICATION_TYPE_WAYPOINT_IS_TOO_FAR_AWAY = 12
-    """The waypoint is too far away"""
+    """The waypoint is too far away."""
     NOTIFICATION_TYPE_DEPTH_SET_POINT_IS_TOO_FAR_AWAY = 13
-    """The depth set point is too far away"""
+    """The depth set point is too far away."""
     NOTIFICATION_TYPE_TIME_TO_COMPLETE_IS_TOO_LONG = 14
-    """The time to complete the mission is too long"""
+    """The time to complete the mission is too long."""
     NOTIFICATION_TYPE_RETURNING_TO_HOME = 15
-    """Returning to home"""
+    """Returning to home."""
     NOTIFICATION_TYPE_GO_TO_SURFACE = 16
-    """Go to surface"""
+    """Go to surface."""
     NOTIFICATION_TYPE_GO_TO_SEABED = 17
-    """Go to seabed with an altimeter"""
+    """Go to seabed with an altimeter."""
     NOTIFICATION_TYPE_GO_TO_WAYPOINT = 18
-    """Go to waypoint"""
+    """Go to waypoint."""
     NOTIFICATION_TYPE_GO_TO_DEPTH_SET_POINT = 19
-    """Go to depth set point"""
+    """Go to depth set point."""
     NOTIFICATION_TYPE_GO_TO_WAYPOINT_WITH_DEPTH_SET_POINT = 20
-    """Go to waypoint with depth set point"""
+    """Go to waypoint with depth set point."""
     NOTIFICATION_TYPE_MISSION_STARTED = 21
-    """Mission is started"""
+    """Mission is started."""
     NOTIFICATION_TYPE_MISSION_PAUSED = 22
-    """Mission is paused"""
+    """Mission is paused."""
     NOTIFICATION_TYPE_MISSION_RESUMED = 23
-    """Mission is resumed"""
+    """Mission is resumed."""
     NOTIFICATION_TYPE_MISSION_ABORTED = 24
-    """Mission is aborted"""
+    """Mission is aborted."""
     NOTIFICATION_TYPE_DRONE_IS_STUCK = 25
-    """Drone is stuck during a mission"""
+    """Drone is stuck during a mission."""
     NOTIFICATION_TYPE_WAIT_FOR = 26
-    """Wait for instruction running"""
+    """Wait for instruction running."""
     NOTIFICATION_TYPE_CAMERA_ACTION = 27
-    """Camera action initiated"""
+    """Camera action initiated."""
     NOTIFICATION_TYPE_SET_TILT_MAIN_CAMERA = 28
-    """Set tilt for main camera"""
+    """Set tilt for main camera."""
     NOTIFICATION_TYPE_SET_TILT_MULTIBEAM = 29
-    """Set tilt for multibeam"""
+    """Set tilt for multibeam."""
     NOTIFICATION_TYPE_INSTRUCTION_SKIPPED = 30
-    """When an instruction is not available in the ROV"""
+    """When an instruction is not available in the ROV."""
     NOTIFICATION_TYPE_DVL_HIGH_TEMPERATURE_DETECTED = 31
-    """DVL high temperature detected"""
+    """DVL high temperature detected."""
     NOTIFICATION_TYPE_DVL_THERMAL_PROTECTION_MODE_DETECTED = 32
-    """DVL thermal protection mode detected"""
+    """DVL thermal protection mode detected."""
 
 
 class NotificationLevel(proto.Enum):
@@ -330,56 +332,56 @@ class NotificationLevel(proto.Enum):
 
     Attributes:
         NOTIFICATION_LEVEL_UNSPECIFIED (0):
-            Unspecified
+            Unspecified.
         NOTIFICATION_LEVEL_INFO (1):
-            Info
+            Information.
         NOTIFICATION_LEVEL_WARNING (2):
-            Warning
+            Warning.
         NOTIFICATION_LEVEL_ERROR (3):
-            Error
+            Error.
     """
     NOTIFICATION_LEVEL_UNSPECIFIED = 0
-    """Unspecified"""
+    """Unspecified."""
     NOTIFICATION_LEVEL_INFO = 1
-    """Info"""
+    """Information."""
     NOTIFICATION_LEVEL_WARNING = 2
-    """Warning"""
+    """Warning."""
     NOTIFICATION_LEVEL_ERROR = 3
-    """Error"""
+    """Error."""
 
 
 class Model(proto.Enum):
-    r"""Drone models produced by Blueye
+    r"""Drone models produced by Blueye.
 
     Attributes:
         MODEL_UNSPECIFIED (0):
-            ModelName not specified
+            ModelName not specified.
         MODEL_PIONEER (1):
-            Blueye Pioneer, the first model
+            Blueye Pioneer, the first model.
         MODEL_PRO (2):
-            Blueye Pro, features camera tilt
+            Blueye Pro, features camera tilt.
         MODEL_X1 (4):
             Blueye X1, features camera tilt and one guest
-            port
+            port.
         MODEL_X3 (3):
-            Blueye X3, features support for peripherals
+            Blueye X3, features support for peripherals.
         MODEL_X3_ULTRA (6):
-            Blueye X3 Ultra
+            Blueye X3 Ultra.
         MODEL_NEXT (5):
             Blueye ?
     """
     MODEL_UNSPECIFIED = 0
-    """ModelName not specified"""
+    """ModelName not specified."""
     MODEL_PIONEER = 1
-    """Blueye Pioneer, the first model"""
+    """Blueye Pioneer, the first model."""
     MODEL_PRO = 2
-    """Blueye Pro, features camera tilt"""
+    """Blueye Pro, features camera tilt."""
     MODEL_X1 = 4
-    """Blueye X1, features camera tilt and one guest port"""
+    """Blueye X1, features camera tilt and one guest port."""
     MODEL_X3 = 3
-    """Blueye X3, features support for peripherals"""
+    """Blueye X3, features support for peripherals."""
     MODEL_X3_ULTRA = 6
-    """Blueye X3 Ultra"""
+    """Blueye X3 Ultra."""
     MODEL_NEXT = 5
     """Blueye ?"""
 
@@ -389,30 +391,30 @@ class PressureSensorType(proto.Enum):
 
     Attributes:
         PRESSURE_SENSOR_TYPE_UNSPECIFIED (0):
-            Depth sensor type not specified
+            Depth sensor type not specified.
         PRESSURE_SENSOR_TYPE_NOT_CONNECTED (1):
-            No se
+            No sensor connected.
         PRESSURE_SENSOR_TYPE_MS5837_30BA26 (2):
-            Thh MS5837 30BA26 pressure sensor
+            Thh MS5837 30BA26 pressure sensor.
         PRESSURE_SENSOR_TYPE_KELLER_PA7LD (3):
             The extended depth sensor using the Keller
-            PA7LD pressure sensor
+            PA7LD pressure sensor.
         PRESSURE_SENSOR_TYPE_MS5637_02BA03 (4):
             The internal pressure sensor using the MS5637
-            02BA03 pressure sensor
+            02BA03 pressure sensor.
     """
     PRESSURE_SENSOR_TYPE_UNSPECIFIED = 0
-    """Depth sensor type not specified"""
+    """Depth sensor type not specified."""
     PRESSURE_SENSOR_TYPE_NOT_CONNECTED = 1
-    """No se"""
+    """No sensor connected."""
     PRESSURE_SENSOR_TYPE_MS5837_30BA26 = 2
-    """Thh MS5837 30BA26 pressure sensor"""
+    """Thh MS5837 30BA26 pressure sensor."""
     PRESSURE_SENSOR_TYPE_KELLER_PA7LD = 3
     """The extended depth sensor using the Keller PA7LD pressure
-    sensor"""
+    sensor."""
     PRESSURE_SENSOR_TYPE_MS5637_02BA03 = 4
     """The internal pressure sensor using the MS5637 02BA03 pressure
-    sensor"""
+    sensor."""
 
 
 class Resolution(proto.Enum):
@@ -420,18 +422,18 @@ class Resolution(proto.Enum):
 
     Attributes:
         RESOLUTION_UNSPECIFIED (0):
-            Resolution not specified
+            Resolution not specified.
         RESOLUTION_FULLHD_1080P (1):
-            1080p Full HD resolution
+            1080p Full HD resolution.
         RESOLUTION_HD_720P (2):
-            720p HD resolution
+            720p HD resolution.
     """
     RESOLUTION_UNSPECIFIED = 0
-    """Resolution not specified"""
+    """Resolution not specified."""
     RESOLUTION_FULLHD_1080P = 1
-    """1080p Full HD resolution"""
+    """1080p Full HD resolution."""
     RESOLUTION_HD_720P = 2
-    """720p HD resolution"""
+    """720p HD resolution."""
 
 
 class Framerate(proto.Enum):
@@ -439,18 +441,18 @@ class Framerate(proto.Enum):
 
     Attributes:
         FRAMERATE_UNSPECIFIED (0):
-            Framerate not specified
+            Framerate not specified.
         FRAMERATE_FPS_30 (1):
-            30 frames per second
+            30 frames per second.
         FRAMERATE_FPS_25 (2):
-            25 frames per second
+            25 frames per second.
     """
     FRAMERATE_UNSPECIFIED = 0
-    """Framerate not specified"""
+    """Framerate not specified."""
     FRAMERATE_FPS_30 = 1
-    """30 frames per second"""
+    """30 frames per second."""
     FRAMERATE_FPS_25 = 2
-    """25 frames per second"""
+    """25 frames per second."""
 
 
 class Camera(proto.Enum):
@@ -458,18 +460,18 @@ class Camera(proto.Enum):
 
     Attributes:
         CAMERA_UNSPECIFIED (0):
-            Camera not specified
+            Camera not specified.
         CAMERA_MAIN (1):
-            Main camera
+            Main camera.
         CAMERA_GUESTPORT (2):
-            Guestport camera
+            Guest port camera.
     """
     CAMERA_UNSPECIFIED = 0
-    """Camera not specified"""
+    """Camera not specified."""
     CAMERA_MAIN = 1
-    """Main camera"""
+    """Main camera."""
     CAMERA_GUESTPORT = 2
-    """Guestport camera"""
+    """Guest port camera."""
 
 
 class TemperatureUnit(proto.Enum):
@@ -477,18 +479,19 @@ class TemperatureUnit(proto.Enum):
 
     Attributes:
         TEMPERATURE_UNIT_UNSPECIFIED (0):
-            Temperature unit not specified
+            Temperature unit not specified.
         TEMPERATURE_UNIT_CELSIUS (1):
-            Temperature should be displayed as Celsius
+            Temperature should be displayed as Celsius.
         TEMPERATURE_UNIT_FAHRENHEIT (2):
-            Temperature should be displayed as Fahrenheit
+            Temperature should be displayed as
+            Fahrenheit.
     """
     TEMPERATURE_UNIT_UNSPECIFIED = 0
-    """Temperature unit not specified"""
+    """Temperature unit not specified."""
     TEMPERATURE_UNIT_CELSIUS = 1
-    """Temperature should be displayed as Celsius"""
+    """Temperature should be displayed as Celsius."""
     TEMPERATURE_UNIT_FAHRENHEIT = 2
-    """Temperature should be displayed as Fahrenheit"""
+    """Temperature should be displayed as Fahrenheit."""
 
 
 class LogoType(proto.Enum):
@@ -498,20 +501,20 @@ class LogoType(proto.Enum):
         LOGO_TYPE_UNSPECIFIED (0):
             Logo type not specified
         LOGO_TYPE_NONE (1):
-            Do not add any logo
+            Do not add any logo.
         LOGO_TYPE_DEFAULT (2):
-            Add default logo
+            Add default logo.
         LOGO_TYPE_CUSTOM (3):
-            Add user defined logo
+            Add user defined logo.
     """
     LOGO_TYPE_UNSPECIFIED = 0
     """Logo type not specified"""
     LOGO_TYPE_NONE = 1
-    """Do not add any logo"""
+    """Do not add any logo."""
     LOGO_TYPE_DEFAULT = 2
-    """Add default logo"""
+    """Add default logo."""
     LOGO_TYPE_CUSTOM = 3
-    """Add user defined logo"""
+    """Add user defined logo."""
 
 
 class DepthUnit(proto.Enum):
@@ -519,18 +522,18 @@ class DepthUnit(proto.Enum):
 
     Attributes:
         DEPTH_UNIT_UNSPECIFIED (0):
-            Depth unit not specified
+            Depth unit not specified.
         DEPTH_UNIT_METERS (1):
-            Depth should be displayed as meters
+            Depth should be displayed as meters.
         DEPTH_UNIT_FEET (2):
-            Depth should be displayed as feet
+            Depth should be displayed as feet.
     """
     DEPTH_UNIT_UNSPECIFIED = 0
-    """Depth unit not specified"""
+    """Depth unit not specified."""
     DEPTH_UNIT_METERS = 1
-    """Depth should be displayed as meters"""
+    """Depth should be displayed as meters."""
     DEPTH_UNIT_FEET = 2
-    """Depth should be displayed as feet"""
+    """Depth should be displayed as feet."""
 
 
 class ThicknessUnit(proto.Enum):
@@ -538,18 +541,18 @@ class ThicknessUnit(proto.Enum):
 
     Attributes:
         THICKNESS_UNIT_UNSPECIFIED (0):
-            Thickness unit not specified
+            Thickness unit not specified.
         THICKNESS_UNIT_MILLIMETERS (1):
-            Thickness should be displayed as millimeters
+            Thickness should be displayed as millimeters.
         THICKNESS_UNIT_INCHES (2):
-            Thickness should be displayed as inches
+            Thickness should be displayed as inches.
     """
     THICKNESS_UNIT_UNSPECIFIED = 0
-    """Thickness unit not specified"""
+    """Thickness unit not specified."""
     THICKNESS_UNIT_MILLIMETERS = 1
-    """Thickness should be displayed as millimeters"""
+    """Thickness should be displayed as millimeters."""
     THICKNESS_UNIT_INCHES = 2
-    """Thickness should be displayed as inches"""
+    """Thickness should be displayed as inches."""
 
 
 class FontSize(proto.Enum):
@@ -557,344 +560,347 @@ class FontSize(proto.Enum):
 
     Attributes:
         FONT_SIZE_UNSPECIFIED (0):
-            Font size not specified
+            Font size not specified.
         FONT_SIZE_PX15 (1):
-            15 px
+            15 px.
         FONT_SIZE_PX20 (2):
-            20 px
+            20 px.
         FONT_SIZE_PX25 (3):
-            25 px
+            25 px.
         FONT_SIZE_PX30 (4):
-            30 px
+            30 px.
         FONT_SIZE_PX35 (5):
-            35 px
+            35 px.
         FONT_SIZE_PX40 (6):
-            40 px
+            40 px.
     """
     FONT_SIZE_UNSPECIFIED = 0
-    """Font size not specified"""
+    """Font size not specified."""
     FONT_SIZE_PX15 = 1
-    """15 px"""
+    """15 px."""
     FONT_SIZE_PX20 = 2
-    """20 px"""
+    """20 px."""
     FONT_SIZE_PX25 = 3
-    """25 px"""
+    """25 px."""
     FONT_SIZE_PX30 = 4
-    """30 px"""
+    """30 px."""
     FONT_SIZE_PX35 = 5
-    """35 px"""
+    """35 px."""
     FONT_SIZE_PX40 = 6
-    """40 px"""
+    """40 px."""
 
 
 class GuestPortDeviceID(proto.Enum):
-    r"""GuestPort device ID.
+    r"""Complete set of supported guest port devices.
 
     Attributes:
         GUEST_PORT_DEVICE_ID_UNSPECIFIED (0):
-            Unspecified
+            Unspecified.
         GUEST_PORT_DEVICE_ID_BLIND_PLUG (1):
-            Blueye blind plug
+            Blueye Blind Plug.
         GUEST_PORT_DEVICE_ID_TEST_STATION (2):
-            Blueye test station
+            Blueye Test Station.
         GUEST_PORT_DEVICE_ID_DEBUG_SERIAL (3):
-            Blueye debug serial
+            Blueye Debug Serial.
         GUEST_PORT_DEVICE_ID_BLUEYE_LIGHT (4):
-            Blueye Light
+            Blueye Light.
         GUEST_PORT_DEVICE_ID_BLUEYE_CAM (5):
-            Blueye Cam
+            Blueye Camera.
         GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_LUMEN (6):
-            Blue Robotics Lumen
+            Blue Robotics Lumen.
         GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_NEWTON (7):
-            Blue Robotics Newton
+            Blue Robotics Newton.
         GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_PING_SONAR (8):
-            Blue Robotics Ping Sonar
+            Blue Robotics Ping Sonar.
         GUEST_PORT_DEVICE_ID_BLUEPRINT_LAB_REACH_ALPHA (9):
-            Blueprint Lab Reach Alpha
+            Blueprint Lab Reach Alpha.
         GUEST_PORT_DEVICE_ID_WATERLINKED_DVL_A50 (10):
-            Waterlinked DVL A50
+            Waterlinked DVL A50.
         GUEST_PORT_DEVICE_ID_IMPACT_SUBSEA_ISS360 (11):
-            Impact Subsea ISS360 Sonar
+            Impact Subsea ISS360 Sonar.
         GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_SEATRAC_X010 (12):
-            Blueprint Subsea Seatrac X110
+            Blueprint Subsea Seatrac X110.
         GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_M750D (13):
-            Blueprint Subsea Oculus M750d
+            Blueprint Subsea Oculus M750d.
         GUEST_PORT_DEVICE_ID_CYGNUS_MINI_ROV_THICKNESS_GAUGE (14):
-            Cygnus Mini ROV Thickness Gauge
+            Cygnus Mini ROV Thickness Gauge.
         GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_PING360_SONAR (15):
-            Blue Robotics Ping360 Scanning Imaging Sonar
+            Blue Robotics Ping360 Scanning Imaging Sonar.
         GUEST_PORT_DEVICE_ID_TRITECH_GEMINI_720IM (16):
-            Tritech Gemini 720im Multibeam Sonar
+            Tritech Gemini 720im Multibeam Sonar.
         GUEST_PORT_DEVICE_ID_BLUEYE_LIGHT_PAIR (17):
-            Blueye Light Pair
+            Blueye Light Pair.
         GUEST_PORT_DEVICE_ID_TRITECH_GEMINI_MICRON (18):
-            Tritech Micron Gemini
+            Tritech Micron Gemini.
         GUEST_PORT_DEVICE_ID_OCEAN_TOOLS_DIGICP (19):
-            Ocean Tools DigiCP
+            Ocean Tools DigiCP.
         GUEST_PORT_DEVICE_ID_TRITECH_GEMINI_720IK (20):
-            Tritech Gemini 720ik Multibeam Sonar
+            Tritech Gemini 720ik Multibeam Sonar.
         GUEST_PORT_DEVICE_ID_NORTEK_NUCLEUS_1000 (21):
-            Nortek Nucleus 1000 DVL
+            Nortek Nucleus 1000 DVL.
         GUEST_PORT_DEVICE_ID_BLUEYE_GENERIC_SERVO (22):
-            Blueye Generic Servo
+            Blueye Generic Servo.
         GUEST_PORT_DEVICE_ID_BLUEYE_MULTIBEAM_SERVO (23):
-            Blueye Multibeam Skid Servo
+            Blueye Multibeam Skid Servo.
         GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_DETACHABLE_NEWTON (24):
-            Detachable Blue Robotics Newton
+            Detachable Blue Robotics Newton.
         GUEST_PORT_DEVICE_ID_INSITU_AQUA_TROLL_500 (25):
-            In-Situ Aqua TROLL 500
+            In-Situ Aqua TROLL 500.
         GUEST_PORT_DEVICE_ID_MEDUSA_RADIOMETRICS_MS100 (26):
-            Medusa Radiometrics Gamma Ray Sensor
+            Medusa Radiometrics Gamma Ray Sensor.
         GUEST_PORT_DEVICE_ID_LASER_TOOLS_SEA_BEAM (27):
-            Laser Tools Sea Beam Underwater Laser
+            Laser Tools Sea Beam Underwater Laser.
         GUEST_PORT_DEVICE_ID_SPOT_X_LASER_SCALERS (28):
-            Spot X Laser Scalers
+            Spot X Laser Scalers.
         GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_M1200D (29):
-            Blueprint Subsea Oculus M1200d
+            Blueprint Subsea Oculus M1200d.
         GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_M3000D (30):
-            Blueprint Subsea Oculus M3000d
+            Blueprint Subsea Oculus M3000d.
         GUEST_PORT_DEVICE_ID_INSITU_AQUA_TROLL_100 (31):
-            In-Situ Aqua TROLL 100
+            In-Situ Aqua TROLL 100.
         GUEST_PORT_DEVICE_ID_INSITU_RDO_PRO_X (32):
-            In-Situ RDO PRO-X
+            In-Situ RDO PRO-X.
         GUEST_PORT_DEVICE_ID_INSITU_RDO_BLUE (33):
-            In-Situ RDO Blue
+            In-Situ RDO Blue.
         GUEST_PORT_DEVICE_ID_BLUEYE_CAMERA_SERVO (34):
-            Blueye Camera Servo
+            Blueye Camera Servo.
         GUEST_PORT_DEVICE_ID_BLUEYE_MULTIBEAM_HEAD_SERVO (35):
-            Blueye Multibeam Head Servo
+            Blueye Multibeam Head Servo.
         GUEST_PORT_DEVICE_ID_CERULEAN_OMNISCAN_450FS (36):
-            Cerulean Omniscan 450 FS
+            Cerulean Omniscan 450 FS.
         GUEST_PORT_DEVICE_ID_CERULEAN_OMNISCAN_450SS (37):
-            Cerulean Omniscan 450 SS
+            Cerulean Omniscan 450 SS.
         GUEST_PORT_DEVICE_ID_BLUEYE_GNSS_DEVICE (38):
-            Blueye GNSS device
+            Blueye GNSS device.
         GUEST_PORT_DEVICE_ID_WATERLINKED_DVL_A50_600 (39):
-            Waterlinked DVL A50 600m
+            Waterlinked DVL A50 600m.
         GUEST_PORT_DEVICE_ID_IMAGENEX_831L (40):
-            Imagenex 831L Pipe Profiling Sonar
+            Imagenex 831L Pipe Profiling Sonar.
         GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_C550D (41):
-            Blueprint Subsea Oculus C550d
+            Blueprint Subsea Oculus C550d.
         GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_M370S (42):
-            Blueprint Subsea Oculus M370s
+            Blueprint Subsea Oculus M370s.
     """
     GUEST_PORT_DEVICE_ID_UNSPECIFIED = 0
-    """Unspecified"""
+    """Unspecified."""
     GUEST_PORT_DEVICE_ID_BLIND_PLUG = 1
-    """Blueye blind plug"""
+    """Blueye Blind Plug."""
     GUEST_PORT_DEVICE_ID_TEST_STATION = 2
-    """Blueye test station"""
+    """Blueye Test Station."""
     GUEST_PORT_DEVICE_ID_DEBUG_SERIAL = 3
-    """Blueye debug serial"""
+    """Blueye Debug Serial."""
     GUEST_PORT_DEVICE_ID_BLUEYE_LIGHT = 4
-    """Blueye Light"""
+    """Blueye Light."""
     GUEST_PORT_DEVICE_ID_BLUEYE_CAM = 5
-    """Blueye Cam"""
+    """Blueye Camera."""
     GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_LUMEN = 6
-    """Blue Robotics Lumen"""
+    """Blue Robotics Lumen."""
     GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_NEWTON = 7
-    """Blue Robotics Newton"""
+    """Blue Robotics Newton."""
     GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_PING_SONAR = 8
-    """Blue Robotics Ping Sonar"""
+    """Blue Robotics Ping Sonar."""
     GUEST_PORT_DEVICE_ID_BLUEPRINT_LAB_REACH_ALPHA = 9
-    """Blueprint Lab Reach Alpha"""
+    """Blueprint Lab Reach Alpha."""
     GUEST_PORT_DEVICE_ID_WATERLINKED_DVL_A50 = 10
-    """Waterlinked DVL A50"""
+    """Waterlinked DVL A50."""
     GUEST_PORT_DEVICE_ID_IMPACT_SUBSEA_ISS360 = 11
-    """Impact Subsea ISS360 Sonar"""
+    """Impact Subsea ISS360 Sonar."""
     GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_SEATRAC_X010 = 12
-    """Blueprint Subsea Seatrac X110"""
+    """Blueprint Subsea Seatrac X110."""
     GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_M750D = 13
-    """Blueprint Subsea Oculus M750d"""
+    """Blueprint Subsea Oculus M750d."""
     GUEST_PORT_DEVICE_ID_CYGNUS_MINI_ROV_THICKNESS_GAUGE = 14
-    """Cygnus Mini ROV Thickness Gauge"""
+    """Cygnus Mini ROV Thickness Gauge."""
     GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_PING360_SONAR = 15
-    """Blue Robotics Ping360 Scanning Imaging Sonar"""
+    """Blue Robotics Ping360 Scanning Imaging Sonar."""
     GUEST_PORT_DEVICE_ID_TRITECH_GEMINI_720IM = 16
-    """Tritech Gemini 720im Multibeam Sonar"""
+    """Tritech Gemini 720im Multibeam Sonar."""
     GUEST_PORT_DEVICE_ID_BLUEYE_LIGHT_PAIR = 17
-    """Blueye Light Pair"""
+    """Blueye Light Pair."""
     GUEST_PORT_DEVICE_ID_TRITECH_GEMINI_MICRON = 18
-    """Tritech Micron Gemini"""
+    """Tritech Micron Gemini."""
     GUEST_PORT_DEVICE_ID_OCEAN_TOOLS_DIGICP = 19
-    """Ocean Tools DigiCP"""
+    """Ocean Tools DigiCP."""
     GUEST_PORT_DEVICE_ID_TRITECH_GEMINI_720IK = 20
-    """Tritech Gemini 720ik Multibeam Sonar"""
+    """Tritech Gemini 720ik Multibeam Sonar."""
     GUEST_PORT_DEVICE_ID_NORTEK_NUCLEUS_1000 = 21
-    """Nortek Nucleus 1000 DVL"""
+    """Nortek Nucleus 1000 DVL."""
     GUEST_PORT_DEVICE_ID_BLUEYE_GENERIC_SERVO = 22
-    """Blueye Generic Servo"""
+    """Blueye Generic Servo."""
     GUEST_PORT_DEVICE_ID_BLUEYE_MULTIBEAM_SERVO = 23
-    """Blueye Multibeam Skid Servo"""
+    """Blueye Multibeam Skid Servo."""
     GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_DETACHABLE_NEWTON = 24
-    """Detachable Blue Robotics Newton"""
+    """Detachable Blue Robotics Newton."""
     GUEST_PORT_DEVICE_ID_INSITU_AQUA_TROLL_500 = 25
-    """In-Situ Aqua TROLL 500"""
+    """In-Situ Aqua TROLL 500."""
     GUEST_PORT_DEVICE_ID_MEDUSA_RADIOMETRICS_MS100 = 26
-    """Medusa Radiometrics Gamma Ray Sensor"""
+    """Medusa Radiometrics Gamma Ray Sensor."""
     GUEST_PORT_DEVICE_ID_LASER_TOOLS_SEA_BEAM = 27
-    """Laser Tools Sea Beam Underwater Laser"""
+    """Laser Tools Sea Beam Underwater Laser."""
     GUEST_PORT_DEVICE_ID_SPOT_X_LASER_SCALERS = 28
-    """Spot X Laser Scalers"""
+    """Spot X Laser Scalers."""
     GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_M1200D = 29
-    """Blueprint Subsea Oculus M1200d"""
+    """Blueprint Subsea Oculus M1200d."""
     GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_M3000D = 30
-    """Blueprint Subsea Oculus M3000d"""
+    """Blueprint Subsea Oculus M3000d."""
     GUEST_PORT_DEVICE_ID_INSITU_AQUA_TROLL_100 = 31
-    """In-Situ Aqua TROLL 100"""
+    """In-Situ Aqua TROLL 100."""
     GUEST_PORT_DEVICE_ID_INSITU_RDO_PRO_X = 32
-    """In-Situ RDO PRO-X"""
+    """In-Situ RDO PRO-X."""
     GUEST_PORT_DEVICE_ID_INSITU_RDO_BLUE = 33
-    """In-Situ RDO Blue"""
+    """In-Situ RDO Blue."""
     GUEST_PORT_DEVICE_ID_BLUEYE_CAMERA_SERVO = 34
-    """Blueye Camera Servo"""
+    """Blueye Camera Servo."""
     GUEST_PORT_DEVICE_ID_BLUEYE_MULTIBEAM_HEAD_SERVO = 35
-    """Blueye Multibeam Head Servo"""
+    """Blueye Multibeam Head Servo."""
     GUEST_PORT_DEVICE_ID_CERULEAN_OMNISCAN_450FS = 36
-    """Cerulean Omniscan 450 FS"""
+    """Cerulean Omniscan 450 FS."""
     GUEST_PORT_DEVICE_ID_CERULEAN_OMNISCAN_450SS = 37
-    """Cerulean Omniscan 450 SS"""
+    """Cerulean Omniscan 450 SS."""
     GUEST_PORT_DEVICE_ID_BLUEYE_GNSS_DEVICE = 38
-    """Blueye GNSS device"""
+    """Blueye GNSS device."""
     GUEST_PORT_DEVICE_ID_WATERLINKED_DVL_A50_600 = 39
-    """Waterlinked DVL A50 600m"""
+    """Waterlinked DVL A50 600m."""
     GUEST_PORT_DEVICE_ID_IMAGENEX_831L = 40
-    """Imagenex 831L Pipe Profiling Sonar"""
+    """Imagenex 831L Pipe Profiling Sonar."""
     GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_C550D = 41
-    """Blueprint Subsea Oculus C550d"""
+    """Blueprint Subsea Oculus C550d."""
     GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_M370S = 42
-    """Blueprint Subsea Oculus M370s"""
+    """Blueprint Subsea Oculus M370s."""
 
 
 class GuestPortNumber(proto.Enum):
-    r"""GuestPort number.
+    r"""Guest port number.
 
     Attributes:
         GUEST_PORT_NUMBER_UNSPECIFIED (0):
-            Unspecified
+            Unspecified.
         GUEST_PORT_NUMBER_PORT_1 (1):
-            Guest port 1
+            Guest port 1.
         GUEST_PORT_NUMBER_PORT_2 (2):
-            Guest port 2
+            Guest port 2.
         GUEST_PORT_NUMBER_PORT_3 (3):
-            Guest port 3
+            Guest port 3.
     """
     GUEST_PORT_NUMBER_UNSPECIFIED = 0
-    """Unspecified"""
+    """Unspecified."""
     GUEST_PORT_NUMBER_PORT_1 = 1
-    """Guest port 1"""
+    """Guest port 1."""
     GUEST_PORT_NUMBER_PORT_2 = 2
-    """Guest port 2"""
+    """Guest port 2."""
     GUEST_PORT_NUMBER_PORT_3 = 3
-    """Guest port 3"""
+    """Guest port 3."""
 
 
 class NavigationSensorID(proto.Enum):
     r"""List of navigation sensors that can be used by the position
-    observer
+    observer.
 
     Attributes:
         NAVIGATION_SENSOR_ID_UNSPECIFIED (0):
-            Unspecified
+            Unspecified.
         NAVIGATION_SENSOR_ID_WATERLINKED_DVL_A50 (1):
-            Water Linked DVL A50
+            Water Linked DVL A50.
         NAVIGATION_SENSOR_ID_WATERLINKED_UGPS_G2 (2):
-            Water Linked UGPS G2
+            Water Linked UGPS G2.
         NAVIGATION_SENSOR_ID_NMEA (3):
-            NMEA stream from external positioning system
+            NMEA stream from external positioning system.
         NAVIGATION_SENSOR_ID_BLUEYE_GNSS (4):
-            Blueye GNSS device on the ROV
+            Blueye GNSS device on the ROV.
         NAVIGATION_SENSOR_ID_NORTEK_DVL_NUCLEUS (5):
-            Nortek DVL Nucleus 1000
+            Nortek DVL Nucleus 1000.
     """
     NAVIGATION_SENSOR_ID_UNSPECIFIED = 0
-    """Unspecified"""
+    """Unspecified."""
     NAVIGATION_SENSOR_ID_WATERLINKED_DVL_A50 = 1
-    """Water Linked DVL A50"""
+    """Water Linked DVL A50."""
     NAVIGATION_SENSOR_ID_WATERLINKED_UGPS_G2 = 2
-    """Water Linked UGPS G2"""
+    """Water Linked UGPS G2."""
     NAVIGATION_SENSOR_ID_NMEA = 3
-    """NMEA stream from external positioning system"""
+    """NMEA stream from external positioning system."""
     NAVIGATION_SENSOR_ID_BLUEYE_GNSS = 4
-    """Blueye GNSS device on the ROV"""
+    """Blueye GNSS device on the ROV."""
     NAVIGATION_SENSOR_ID_NORTEK_DVL_NUCLEUS = 5
-    """Nortek DVL Nucleus 1000"""
+    """Nortek DVL Nucleus 1000."""
 
 
 class GuestPortDetachStatus(proto.Enum):
-    r"""GuestPort detach status.
+    r"""Status for guest port devices that can be attached and
+    detached.
 
     Attributes:
         GUEST_PORT_DETACH_STATUS_UNSPECIFIED (0):
             Unspecified (Default for non-detachable
-            devices)
+            devices).
         GUEST_PORT_DETACH_STATUS_ATTACHED (1):
-            Detachable device attached
+            Detachable device attached.
         GUEST_PORT_DETACH_STATUS_DETACHED (2):
-            Detachable device detached
+            Detachable device detached.
     """
     GUEST_PORT_DETACH_STATUS_UNSPECIFIED = 0
-    """Unspecified (Default for non-detachable devices)"""
+    """Unspecified (Default for non-detachable devices)."""
     GUEST_PORT_DETACH_STATUS_ATTACHED = 1
-    """Detachable device attached"""
+    """Detachable device attached."""
     GUEST_PORT_DETACH_STATUS_DETACHED = 2
-    """Detachable device detached"""
+    """Detachable device detached."""
 
 
 class GuestPortError(proto.Enum):
-    r"""GuestPort error. Only indicated errors on the guest port
-    connector itself.
+    r"""GuestPort error types.
+
+    Only indicated errors on the guest port connector itself.
 
     Attributes:
         GUEST_PORT_ERROR_UNSPECIFIED (0):
-            Unspecified value
+            Unspecified value.
         GUEST_PORT_ERROR_NOT_CONNECTED (1):
-            Device not connected
+            Device not connected.
         GUEST_PORT_ERROR_READ_ERROR (2):
-            EEPROM read error
+            EEPROM read error.
         GUEST_PORT_ERROR_NOT_FLASHED (3):
-            Connector not flashed
+            Connector not flashed.
         GUEST_PORT_ERROR_CRC_ERROR (4):
-            Wrong CRC for protobuf message
+            Wrong CRC for protobuf message.
         GUEST_PORT_ERROR_PARSE_ERROR (5):
-            Protobuf message cannot be parsed
+            Protobuf message cannot be parsed.
     """
     GUEST_PORT_ERROR_UNSPECIFIED = 0
-    """Unspecified value"""
+    """Unspecified value."""
     GUEST_PORT_ERROR_NOT_CONNECTED = 1
-    """Device not connected"""
+    """Device not connected."""
     GUEST_PORT_ERROR_READ_ERROR = 2
-    """EEPROM read error"""
+    """EEPROM read error."""
     GUEST_PORT_ERROR_NOT_FLASHED = 3
-    """Connector not flashed"""
+    """Connector not flashed."""
     GUEST_PORT_ERROR_CRC_ERROR = 4
-    """Wrong CRC for protobuf message"""
+    """Wrong CRC for protobuf message."""
     GUEST_PORT_ERROR_PARSE_ERROR = 5
-    """Protobuf message cannot be parsed"""
+    """Protobuf message cannot be parsed."""
 
 
 class MultibeamFrequencyMode(proto.Enum):
-    r"""
+    r"""The frequency mode to use for multibeam devices with dual
+    frequency.
 
     Attributes:
         MULTIBEAM_FREQUENCY_MODE_UNSPECIFIED (0):
             No description available.
         MULTIBEAM_FREQUENCY_MODE_AUTO (1):
-            Auto switching mode (if available)
+            Auto switching mode (if available).
         MULTIBEAM_FREQUENCY_MODE_LOW_FREQUENCY (2):
             Low frequency mode (wide aperture,
-            navigation)
+            navigation).
         MULTIBEAM_FREQUENCY_MODE_HIGH_FREQUENCY (3):
             High frequency mode (narrow aperture, target
-            identification)
+            identification).
     """
     MULTIBEAM_FREQUENCY_MODE_UNSPECIFIED = 0
     MULTIBEAM_FREQUENCY_MODE_AUTO = 1
-    """Auto switching mode (if available)"""
+    """Auto switching mode (if available)."""
     MULTIBEAM_FREQUENCY_MODE_LOW_FREQUENCY = 2
-    """Low frequency mode (wide aperture, navigation)"""
+    """Low frequency mode (wide aperture, navigation)."""
     MULTIBEAM_FREQUENCY_MODE_HIGH_FREQUENCY = 3
-    """High frequency mode (narrow aperture, target identification)"""
+    """High frequency mode (narrow aperture, target identification)."""
 
 
 class BinlogRecord(proto.Message):
@@ -940,28 +946,28 @@ class MotionInput(proto.Message):
     Attributes:
         surge (float):
             Forward (positive) and backwards (negative)
-            movement. (-1..1)
+            movement. (-1..1).
         sway (float):
             Right (positive) and left (negative) lateral
-            movement (-1..1)
+            movement (-1..1).
         heave (float):
             Descend (positive) and ascend (negative)
-            movement (-1..1)
+            movement (-1..1).
         roll (float):
             Roll left (negative) or right (positive).
-            (-1..1)
+            (-1..1).
         pitch (float):
             Pitch down (negative) or up (positive).
-            (-1..1)
+            (-1..1).
         yaw (float):
             Left (positive) and right (negative) movement
-            (-1..1)
+            (-1..1).
         slow (float):
             Modifier used to reduce the speed of the
-            motion (0..1)
+            motion (0..1).
         boost (float):
             Modifier used to increase the speed of the
-            motion (0..1)
+            motion (0..1).
     """
 
     surge: float = proto.Field(
@@ -1004,7 +1010,7 @@ class Lights(proto.Message):
 
     Attributes:
         value (float):
-            Light intensity (0..1)
+            Light intensity (0..1).
     """
 
     value: float = proto.Field(
@@ -1023,7 +1029,7 @@ class Laser(proto.Message):
     Attributes:
         value (float):
             Laser intensity, any value above 0 turns the
-            laser on (0..1)
+            laser on (0..1).
     """
 
     value: float = proto.Field(
@@ -1038,9 +1044,9 @@ class LatLongPosition(proto.Message):
 
     Attributes:
         latitude (float):
-            Latitude (°)
+            Latitude (°).
         longitude (float):
-            Longitude (°)
+            Longitude (°).
     """
 
     latitude: float = proto.Field(
@@ -1058,7 +1064,7 @@ class ConnectionDuration(proto.Message):
 
     Attributes:
         value (int):
-            time since connected to drone (s)
+            Time since connected to drone (s).
     """
 
     value: int = proto.Field(
@@ -1072,7 +1078,7 @@ class AutoHeadingState(proto.Message):
 
     Attributes:
         enabled (bool):
-            If auto heading is enabled
+            If auto heading is enabled.
     """
 
     enabled: bool = proto.Field(
@@ -1086,7 +1092,7 @@ class AutoDepthState(proto.Message):
 
     Attributes:
         enabled (bool):
-            If auto depth is enabled
+            If auto depth is enabled.
     """
 
     enabled: bool = proto.Field(
@@ -1100,7 +1106,7 @@ class AutoAltitudeState(proto.Message):
 
     Attributes:
         enabled (bool):
-            If auto altitude is enabled
+            If auto altitude is enabled.
     """
 
     enabled: bool = proto.Field(
@@ -1114,7 +1120,7 @@ class StationKeepingState(proto.Message):
 
     Attributes:
         enabled (bool):
-            If station keeping is enabled
+            If station keeping is enabled.
     """
 
     enabled: bool = proto.Field(
@@ -1128,7 +1134,7 @@ class WeatherVaningState(proto.Message):
 
     Attributes:
         enabled (bool):
-            If weather vaning is enabled
+            If weather vaning is enabled.
     """
 
     enabled: bool = proto.Field(
@@ -1142,7 +1148,7 @@ class AutoPilotSurgeYawState(proto.Message):
 
     Attributes:
         enabled (bool):
-            If auto pilot surge yaw is enabled
+            If auto pilot surge yaw is enabled.
     """
 
     enabled: bool = proto.Field(
@@ -1156,7 +1162,7 @@ class AutoPilotHeaveState(proto.Message):
 
     Attributes:
         enabled (bool):
-            If auto pilot heave is enabled
+            If auto pilot heave is enabled.
     """
 
     enabled: bool = proto.Field(
@@ -1170,19 +1176,19 @@ class ControlMode(proto.Message):
 
     Attributes:
         auto_depth (bool):
-            If auto depth is enabled
+            If auto depth is enabled.
         auto_heading (bool):
-            If auto heading is enabled
+            If auto heading is enabled.
         auto_altitude (bool):
-            If auto altitude is enabled
+            If auto altitude is enabled.
         station_keeping (bool):
-            If station keeping is enabled
+            If station keeping is enabled.
         weather_vaning (bool):
-            If weather vaning is enabled
+            If weather vaning is enabled.
         auto_pilot_surge_yaw (bool):
-            If auto pilot surge yaw is enabled
+            If auto pilot surge yaw is enabled.
         auto_pilot_heave (bool):
-            If auto pilot heave is enabled
+            If auto pilot heave is enabled.
     """
 
     auto_depth: bool = proto.Field(
@@ -1223,7 +1229,7 @@ class TiltStabilizationState(proto.Message):
 
     Attributes:
         enabled (bool):
-            If tilt stabilization is enabled
+            If tilt stabilization is enabled.
     """
 
     enabled: bool = proto.Field(
@@ -1237,7 +1243,7 @@ class SystemTime(proto.Message):
 
     Attributes:
         unix_timestamp (google.protobuf.timestamp_pb2.Timestamp):
-            Unix timestamp
+            Unix timestamp.
     """
 
     unix_timestamp: timestamp_pb2.Timestamp = proto.Field(
@@ -1250,11 +1256,13 @@ class SystemTime(proto.Message):
 class GripperVelocities(proto.Message):
     r"""Gripper velocity values.
 
+    Rotating velocity is only used if the gripper supports rotation.
+
     Attributes:
         grip_velocity (float):
-            The gripping velocity (-1.0..1.0)
+            The gripping velocity (-1.0..1.0).
         rotate_velocity (float):
-            The rotating velocity (-1.0..1.0)
+            The rotating velocity (-1.0..1.0).
     """
 
     grip_velocity: float = proto.Field(
@@ -1273,21 +1281,21 @@ class ClientInfo(proto.Message):
     Attributes:
         type_ (str):
             The type of client (such as Blueye App,
-            Observer App, SDK, etc)
+            Observer App, SDK, etc).
         version (str):
-            Client software version string
+            Client software version string.
         device_type (str):
             Device type, such as mobile, tablet, or
-            computer
+            computer.
         platform (str):
-            Platform, such as iOS, Android, Linux, etc
+            Platform, such as iOS, Android, Linux, etc.
         platform_version (str):
-            Platform software version string
+            Platform software version string.
         name (str):
-            Name of the client
+            Name of the client.
         is_observer (bool):
             If the client should be connected as an
-            observer or not
+            observer or not.
     """
 
     type_: str = proto.Field(
@@ -1326,7 +1334,7 @@ class ConnectedClient(proto.Message):
 
     Attributes:
         client_id (int):
-            The assigned client id
+            The assigned client id.
         client_info (blueye.protocol.types.ClientInfo):
             Client information.
     """
@@ -1347,23 +1355,23 @@ class RecordState(proto.Message):
 
     Attributes:
         main_is_recording (bool):
-            If the main camera is recording
+            If the main camera is recording.
         main_seconds (int):
-            Main record time (s)
+            Main record time (s).
         main_fps (float):
-            Main record fps
+            Main record fps.
         guestport_is_recording (bool):
-            If the guestport camera is recording
+            If the guestport camera is recording.
         guestport_seconds (int):
-            Guestport record time (s)
+            Guestport record time (s).
         guestport_fps (float):
-            Guestport record fps
+            Guestport record fps.
         multibeam_is_recording (bool):
-            If the multibeam is recording
+            If the multibeam is recording.
         multibeam_seconds (int):
-            Multibeam record time (s)
+            Multibeam record time (s).
         multibeam_fps (float):
-            Multibeam record fps
+            Multibeam record fps.
     """
 
     main_is_recording: bool = proto.Field(
@@ -1409,11 +1417,11 @@ class TimeLapseState(proto.Message):
 
     Attributes:
         interval (float):
-            Interval between photos
+            Interval between photos.
         photos_taken (int):
-            Number of photos taken
+            Number of photos taken.
         interval_type (blueye.protocol.types.IntervalType):
-            Interval type for photos, distance or time
+            Interval type for photos, distance or time.
     """
 
     interval: float = proto.Field(
@@ -1440,7 +1448,7 @@ class WaterDensity(proto.Message):
 
     Attributes:
         value (float):
-            Water density (g/l)
+            Water density (g/l).
     """
 
     value: float = proto.Field(
@@ -1456,26 +1464,27 @@ class PingerConfiguration(proto.Message):
 
     Attributes:
         mounting_direction (blueye.protocol.types.PingerConfiguration.MountingDirection):
-            Mounting direction of the pinger
+            Mounting direction of the pinger.
     """
     class MountingDirection(proto.Enum):
         r"""
 
         Attributes:
             MOUNTING_DIRECTION_UNSPECIFIED (0):
-                Mounting direction is unspecified
+                Mounting direction is unspecified.
             MOUNTING_DIRECTION_FORWARDS (1):
-                Pointing forwards from the drones perspective
+                Pointing forwards from the drones
+                perspective.
             MOUNTING_DIRECTION_DOWNWARDS (2):
                 Pointing downwards from the drones
-                perspective
+                perspective.
         """
         MOUNTING_DIRECTION_UNSPECIFIED = 0
-        """Mounting direction is unspecified"""
+        """Mounting direction is unspecified."""
         MOUNTING_DIRECTION_FORWARDS = 1
-        """Pointing forwards from the drones perspective"""
+        """Pointing forwards from the drones perspective."""
         MOUNTING_DIRECTION_DOWNWARDS = 2
-        """Pointing downwards from the drones perspective"""
+        """Pointing downwards from the drones perspective."""
 
     mounting_direction: MountingDirection = proto.Field(
         proto.ENUM,
@@ -1490,7 +1499,7 @@ class WaterTemperature(proto.Message):
 
     Attributes:
         value (float):
-            Water temperature (°C)
+            Water temperature (°C).
     """
 
     value: float = proto.Field(
@@ -1504,7 +1513,7 @@ class CPUTemperature(proto.Message):
 
     Attributes:
         value (float):
-            CPU temperature (°C)
+            CPU temperature (°C).
     """
 
     value: float = proto.Field(
@@ -1520,7 +1529,7 @@ class CanisterTemperature(proto.Message):
 
     Attributes:
         temperature (float):
-            Temperature (°C)
+            Temperature (°C).
     """
 
     temperature: float = proto.Field(
@@ -1536,7 +1545,7 @@ class CanisterHumidity(proto.Message):
 
     Attributes:
         humidity (float):
-            Air humidity (%)
+            Air humidity (%).
     """
 
     humidity: float = proto.Field(
@@ -1550,11 +1559,11 @@ class Battery(proto.Message):
 
     Attributes:
         voltage (float):
-            Battery voltage (V)
+            Battery voltage (V).
         level (float):
-            Battery level (0..1)
+            Battery level (0..1).
         temperature (float):
-            Battery temperature (°C)
+            Battery temperature (°C).
     """
 
     voltage: float = proto.Field(
@@ -1579,59 +1588,60 @@ class BatteryBQ40Z50(proto.Message):
 
     Attributes:
         voltage (blueye.protocol.types.BatteryBQ40Z50.Voltage):
-            Voltage of the battery cells
+            Voltage of the battery cells.
         temperature (blueye.protocol.types.BatteryBQ40Z50.Temperature):
-            Temperature of the battery cells
+            Temperature of the battery cells.
         status (blueye.protocol.types.BatteryBQ40Z50.BatteryStatus):
-            Battery status flags
+            Battery status flags.
         current (float):
-            Measured current from the coulomb counter (A)
+            Measured current from the coulomb counter
+            (A).
         average_current (float):
-            Average current (A)
+            Average current (A).
         relative_state_of_charge (float):
-            Predicted remaining battery capacity as a factor of
-            full_charge_capacity (0..1)
+            Predicted remaining battery capacity as a
+            factor of full capacity (0..1).
         absolute_state_of_charge (float):
-            Predicted remaining battery capacity (0..1)
+            Predicted remaining battery capacity (0..1).
         calculated_state_of_charge (float):
-            Calculated state of charge (0..1)
+            Calculated state of charge (0..1).
         remaining_capacity (float):
-            Predicted remaining battery capacity (Ah)
+            Predicted remaining battery capacity (Ah).
         full_charge_capacity (float):
             Predicted battery capacity when fully charged
-            (Ah)
+            (Ah).
         runtime_to_empty (int):
             Predicted remaining battery capacity based on
-            the present rate of discharge (s)
+            the present rate of discharge (s).
         average_time_to_empty (int):
             Predicted remaining battery capacity based on
-            average_current (s)
+            average_current (s).
         average_time_to_full (int):
-            Predicted time-to-full charge based on average_current (s)
+            Predicted time-to-full charge based on average_current (s).
         charging_current (float):
-            Desired charging current (A)
+            Desired charging current (A).
         charging_voltage (float):
-            Desired charging voltage (V)
+            Desired charging voltage (V).
         cycle_count (int):
-            Number of charging cycles
+            Number of charging cycles.
         design_capacity (float):
-            Design capacity (Ah)
+            Design capacity (Ah).
         manufacture_date (google.protobuf.timestamp_pb2.Timestamp):
-            Manufacture date
+            Manufacture date.
         serial_number (int):
-            Serial number
+            Serial number.
         manufacturer_name (str):
-            Manufacturer name
+            Manufacturer name.
         device_name (str):
-            Device name
+            Device name.
         device_chemistry (str):
-            Battery chemistry
+            Battery chemistry.
         lifetimes (blueye.protocol.types.BatteryBQ40Z50.BatteryLifetimes):
-            Battery lifetimes
+            Battery lifetimes.
         safety_events (blueye.protocol.types.BatteryBQ40Z50.BatterySafetyEvents):
-            Battery safety events
+            Battery safety events.
         charging_events (blueye.protocol.types.BatteryBQ40Z50.BatteryChargingEvents):
-            Battery charging events
+            Battery charging events.
     """
 
     class Voltage(proto.Message):
@@ -1639,15 +1649,15 @@ class BatteryBQ40Z50(proto.Message):
 
         Attributes:
             total (float):
-                Battery pack voltage level (V)
+                Battery pack voltage level (V).
             cell_1 (float):
-                Cell 1 voltage level (V)
+                Cell 1 voltage level (V).
             cell_2 (float):
-                Vell 2 voltage level (V)
+                Vell 2 voltage level (V).
             cell_3 (float):
-                Cell 3 voltage level (V)
+                Cell 3 voltage level (V).
             cell_4 (float):
-                Cell 4 voltage level (V)
+                Cell 4 voltage level (V).
         """
 
         total: float = proto.Field(
@@ -1676,15 +1686,15 @@ class BatteryBQ40Z50(proto.Message):
 
         Attributes:
             average (float):
-                Average temperature accross cells (°C)
+                Average temperature accross cells (°C).
             cell_1 (float):
-                Cell 1 temperature (°C)
+                Cell 1 temperature (°C).
             cell_2 (float):
-                Cell 2 temperature (°C)
+                Cell 2 temperature (°C).
             cell_3 (float):
-                Cell 3 temperature (°C)
+                Cell 3 temperature (°C).
             cell_4 (float):
-                Cell 4 temperature (°C)
+                Cell 4 temperature (°C).
         """
 
         average: float = proto.Field(
@@ -1733,7 +1743,7 @@ class BatteryBQ40Z50(proto.Message):
             fully_discharged (bool):
 
             error (blueye.protocol.types.BatteryBQ40Z50.BatteryStatus.BatteryError):
-                Battery error codes
+                Battery error codes.
         """
         class BatteryError(proto.Enum):
             r"""Battery error code from BQ40Z50 BMS data sheet.
@@ -1819,37 +1829,38 @@ class BatteryBQ40Z50(proto.Message):
 
         Attributes:
             max_cell_voltages (blueye.protocol.types.BatteryBQ40Z50.BatteryLifetimes.CellVoltages):
-                Maximum reported cell voltages
+                Maximum reported cell voltages.
             min_cell_voltages (blueye.protocol.types.BatteryBQ40Z50.BatteryLifetimes.CellVoltages):
-                Minimum reported cell voltages
+                Minimum reported cell voltages.
             max_delta_cell_voltage (float):
-                Max delta between cells (V)
+                Max delta between cells (V).
             max_charge_current (float):
                 Max reported current in the charge direction
-                (A)
+                (A).
             max_discharge_current (float):
                 Max reported current in the discharge
-                direction (A)
+                direction (A).
             max_avg_discharge_current (float):
                 Max reported average current in the discharge
-                direction (A)
+                direction (A).
             max_avg_discharge_power (float):
-                Max reported power in discharge direction (W)
+                Max reported power in discharge direction
+                (W).
             max_cell_temperature (float):
-                Max reported cell temperature (°C)
+                Max reported cell temperature (°C).
             min_cell_temperature (float):
-                Min reported cell temperature (°C)
+                Min reported cell temperature (°C).
             max_delta_cell_temperature (float):
                 Max reported temperature delta for TSx inputs
-                configured as cell temperature (°C)
+                configured as cell temperature (°C).
             max_temperature_internal_sensor (float):
                 Max reported internal temperature sensor
-                temperature (°C)
+                temperature (°C).
             min_temperature_internal_sensor (float):
                 Min reported internal temperature sensor
-                temperature (°C)
+                temperature (°C).
             max_temperature_fet (float):
-                Max reported FET temperature (°C)
+                Max reported FET temperature (°C).
         """
 
         class CellVoltages(proto.Message):
@@ -1857,13 +1868,13 @@ class BatteryBQ40Z50(proto.Message):
 
             Attributes:
                 cell_1 (float):
-                    Voltage for cell number 1 (V)
+                    Voltage for cell number 1 (V).
                 cell_2 (float):
-                    Voltage for cell number 2 (V)
+                    Voltage for cell number 2 (V).
                 cell_3 (float):
-                    Voltage for cell number 3 (V)
+                    Voltage for cell number 3 (V).
                 cell_4 (float):
-                    Voltage for cell number 4 (V)
+                    Voltage for cell number 4 (V).
             """
 
             cell_1: float = proto.Field(
@@ -1944,71 +1955,76 @@ class BatteryBQ40Z50(proto.Message):
         Attributes:
             cov_events_count (int):
                 Number of cell over voltage (COV) events
-                (events)
+                (events).
             cov_last_event (int):
-                Last COV event in cycle count cycles (cycles)
+                Last COV event in cycle count cycles
+                (cycles).
             cuv_events_count (int):
                 Number of cell under voltage (CUV) events
-                (events)
+                (events).
             cuv_last_event (int):
-                Last CUV event in cycle count cycles (cycles)
+                Last CUV event in cycle count cycles
+                (cycles).
             ocd1_events_count (int):
                 Number of over current in Discharge 1 (OCD1)
-                events (events)
+                events (events).
             ocd1_last_event (int):
                 Last OCD1 event in cycle count cycles
-                (cycles)
+                (cycles).
             ocd2_events_count (int):
                 Number of over current in Discharge 2 (OCD2)
-                events (events)
+                events (events).
             ocd2_last_event (int):
                 Last OCD2 event in cycle count cycles
-                (cycles)
+                (cycles).
             occ1_events_count (int):
                 Number of over current in Charge 1 (OCC1)
-                events (events)
+                events (events).
             occ1_last_event (int):
                 Last OCC1 event in cycle count cycles
-                (cycles)
+                (cycles).
             occ2_events_count (int):
                 Number of over current in Charge 2 (OCC2)
-                events (events)
+                events (events).
             occ2_last_event (int):
                 Last OCC2 event in cycle count cycles
-                (cycles)
+                (cycles).
             aold_events_count (int):
                 Number of Overload in discharge (AOLD) events
-                (events)
+                (events).
             aold_last_event (int):
                 Last AOLD event in cycle count cycles
-                (cycles)
+                (cycles).
             ascd_events_count (int):
                 Number of Short Circuit in Discharge (ASCD)
-                events (events)
+                events (events).
             ascd_last_event (int):
                 Last ASCD event in cycle count cycles
-                (cycles)
+                (cycles).
             ascc_events_count (int):
                 Number of Short Circuit in Charge (ASCC)
-                events (events)
+                events (events).
             ascc_last_event (int):
                 Last ASCC event in cycle count cycles
-                (cycles)
+                (cycles).
             otc_events_count (int):
                 Number of over temperature in Charge (OTC)
-                events (events)
+                events (events).
             otc_last_event (int):
-                Last OTC event in cycle count cycles (cycles)
+                Last OTC event in cycle count cycles
+                (cycles).
             otd_events_count (int):
                 Number of over temperature in Discharge (OTD)
-                events (events)
+                events (events).
             otd_last_event (int):
-                Last OTD event in cycle count cycles (cycles)
+                Last OTD event in cycle count cycles
+                (cycles).
             otf_events_count (int):
                 Number of over temperature in FET (OTF)
-                events (events)
+                events (events).
             otf_last_event (int):
-                Last OTF event in cycle count cycles (cycles)
+                Last OTF event in cycle count cycles
+                (cycles).
         """
 
         cov_events_count: int = proto.Field(
@@ -2114,10 +2130,10 @@ class BatteryBQ40Z50(proto.Message):
         Attributes:
             charge_termination_events_count (int):
                 Total number of valid charge termination
-                events (events)
+                events (events).
             charge_termination_last_event (int):
                 Last valid charge termination in cycle count
-                cycles (cycles)
+                cycles (cycles).
         """
 
         charge_termination_events_count: int = proto.Field(
@@ -2243,11 +2259,11 @@ class Attitude(proto.Message):
 
     Attributes:
         roll (float):
-            Roll angle (-180°..180°)
+            Roll angle (-180°..180°).
         pitch (float):
-            Pitch angle (-180°..180°)
+            Pitch angle (-180°..180°).
         yaw (float):
-            Yaw angle (-180°..180°)
+            Yaw angle (-180°..180°).
     """
 
     roll: float = proto.Field(
@@ -2269,9 +2285,9 @@ class Altitude(proto.Message):
 
     Attributes:
         value (float):
-            Drone altitude over seabed (m)
+            Drone altitude over seabed (m).
         is_valid (bool):
-            If altitude is valid or not
+            If altitude is valid or not.
     """
 
     value: float = proto.Field(
@@ -2285,15 +2301,15 @@ class Altitude(proto.Message):
 
 
 class ForwardDistance(proto.Message):
-    r"""Distance to an object in front of the drone
+    r"""Distance to an object in front of the drone.
 
     Typically obtained from a 1D pinger.
 
     Attributes:
         value (float):
-            Distance in front of drone (m)
+            Distance in front of drone (m).
         is_valid (bool):
-            If distance reading is valid or not
+            If distance reading is valid or not.
     """
 
     value: float = proto.Field(
@@ -2312,34 +2328,34 @@ class PositionEstimate(proto.Message):
 
     Attributes:
         northing (float):
-            Position from reset point (m)
+            Position from reset point (m).
         easting (float):
-            Position from reset point (m)
+            Position from reset point (m).
         heading (float):
-            Continuous heading estimate (rad)
+            Continuous heading estimate (rad).
         surge_rate (float):
-            Velocity in surge (m/s)
+            Velocity in surge (m/s).
         sway_rate (float):
-            Velocity in sway (m/s)
+            Velocity in sway (m/s).
         yaw_rate (float):
-            Rotaion rate in yaw (rad/s)
+            Rotaion rate in yaw (rad/s).
         ocean_current (float):
-            Estimated ocean current (m/s)
+            Estimated ocean current (m/s).
         odometer (float):
-            Travelled distance since reset (m)
+            Travelled distance since reset (m).
         is_valid (bool):
-            If the estimate can be trusted
+            If the estimate can be trusted.
         global_position (blueye.protocol.types.LatLongPosition):
             Best estimate of the global position in
-            decimal degrees
+            decimal degrees.
         navigation_sensors (MutableSequence[blueye.protocol.types.NavigationSensorStatus]):
-            List of available sensors with status
+            List of available sensors with status.
         speed_over_ground (float):
-            Speed over ground (m/s)
+            Speed over ground (m/s).
         course_over_ground (float):
-            Course over ground (°)
+            Course over ground (°).
         time_since_reset_sec (int):
-            Time since reset (s)
+            Time since reset (s).
     """
 
     northing: float = proto.Field(
@@ -2403,20 +2419,19 @@ class PositionEstimate(proto.Message):
 
 
 class ResetPositionSettings(proto.Message):
-    r"""ResetPositionSettings used during reset of the position
-    estimate.
+    r"""Settings used when resetting the position estimate.
 
     Attributes:
         heading_source_during_reset (blueye.protocol.types.HeadingSource):
             Option to use the drone compass or due North
-            as heading during reset
+            as heading during reset.
         manual_heading (float):
-            Heading in degrees (0-359)
+            Heading in degrees (0-359).
         reset_coordinate_source (blueye.protocol.types.ResetCoordinateSource):
             Option to use the device GPS or a manual
             coordinate.
         reset_coordinate (blueye.protocol.types.LatLongPosition):
-            Reset coordinate in decimal degrees
+            Reset coordinate in decimal degrees.
     """
 
     heading_source_during_reset: 'HeadingSource' = proto.Field(
@@ -2446,20 +2461,20 @@ class DvlTransducer(proto.Message):
     Attributes:
         id (int):
             Transducer ID, 3 beams for Nucleus DVL, 4
-            beams for DVL A50
+            beams for DVL A50.
         velocity (float):
-            Velocity (m/s)
+            Velocity (m/s).
         distance (float):
-            Distance (m)
+            Distance (m).
         beam_valid (bool):
-            Beam validity
+            Beam validity.
         rssi (float):
             Received signal strength indicator: strength
-            of the signal received by this transducer (dBm)
+            of the signal received by this transducer (dBm).
         nsd (float):
             Noise spectral density: strength of the
             background noise received by this transducer
-            (dBm)
+            (dBm).
     """
 
     id: int = proto.Field(
@@ -2493,20 +2508,20 @@ class DvlVelocity(proto.Message):
 
     Attributes:
         sensor_id (blueye.protocol.types.NavigationSensorID):
-            Sensor id
+            Sensor id.
         status (int):
-            Vendor-specific status of the DVL
+            Vendor-specific status of the DVL.
         delta_time (float):
-            Time since last velocity measurement (ms)
+            Time since last velocity measurement (ms).
         fom (float):
             Figure of merit, a measure of the accuracy of
-            the velocities (m/s)
+            the velocities (m/s).
         velocity (blueye.protocol.types.Vector3):
-            Velocity, x forward, y left, z down (m/s)
+            Velocity, x forward, y left, z down (m/s).
         is_water_tracking (bool):
-            Water tracking status
+            Water tracking status.
         transducers (MutableSequence[blueye.protocol.types.DvlTransducer]):
-            List of transducers
+            List of transducers.
     """
 
     sensor_id: 'NavigationSensorID' = proto.Field(
@@ -2547,7 +2562,7 @@ class Depth(proto.Message):
 
     Attributes:
         value (float):
-            Drone depth below surface (m)
+            Drone depth below surface (m).
     """
 
     value: float = proto.Field(
@@ -2563,20 +2578,20 @@ class Reference(proto.Message):
 
     Attributes:
         surge (float):
-            Reference from joystick surge input (0..1)
+            Reference from joystick surge input (0..1).
         sway (float):
-            Reference from joystick sway input (0..1)
+            Reference from joystick sway input (0..1).
         heave (float):
-            Reference from joystick heave input (0..1)
+            Reference from joystick heave input (0..1).
         yaw (float):
-            Reference from joystick yaw input (0..1)
+            Reference from joystick yaw input (0..1).
         depth (float):
-            Reference drone depth below surface (m)
+            Reference drone depth below surface (m).
         heading (float):
             Reference used in auto heading mode, gyro
-            based (°)
+            based (°).
         altitude (float):
-            Reference used in auto altitude mode (m)
+            Reference used in auto altitude mode (m).
     """
 
     surge: float = proto.Field(
@@ -2615,14 +2630,15 @@ class Notification(proto.Message):
 
     Attributes:
         type_ (blueye.protocol.types.NotificationType):
-            Notification to be displayed to the user
+            Notification to be displayed to the user.
         level (blueye.protocol.types.NotificationLevel):
             Level of the notification, info, warning or
-            error
+            error.
         value (google.protobuf.any_pb2.Any):
-            Optional value to be displayed in the message
+            Optional value to be displayed in the
+            message.
         timestamp (google.protobuf.timestamp_pb2.Timestamp):
-            Timestamp of the notification
+            Timestamp of the notification.
     """
 
     type_: 'NotificationType' = proto.Field(
@@ -2653,13 +2669,13 @@ class ControlForce(proto.Message):
 
     Attributes:
         surge (float):
-            Force in surge (N)
+            Force in surge (N).
         sway (float):
-            Force in sway (N)
+            Force in sway (N).
         heave (float):
-            Force in heave (N)
+            Force in heave (N).
         yaw (float):
-            Moment in yaw (Nm)
+            Moment in yaw (Nm).
     """
 
     surge: float = proto.Field(
@@ -2686,13 +2702,13 @@ class ControllerHealth(proto.Message):
 
     Attributes:
         depth_error (float):
-            Depth error in meters (m)
+            Depth error in meters (m).
         depth_health (float):
-            Depth controller load (0..1)
+            Depth controller load (0..1).
         heading_error (float):
-            Heading error in degrees (°)
+            Heading error in degrees (°).
         heading_health (float):
-            Heading controller load (0..1)
+            Heading controller load (0..1).
     """
 
     depth_error: float = proto.Field(
@@ -2722,7 +2738,7 @@ class DiveTime(proto.Message):
     Attributes:
         value (int):
             Number of seconds the drone has been
-            submerged
+            submerged.
     """
 
     value: int = proto.Field(
@@ -2732,15 +2748,15 @@ class DiveTime(proto.Message):
 
 
 class RecordOn(proto.Message):
-    r"""Which cameras are supposed to be recording
+    r"""Which cameras are supposed to be recording.
 
     Attributes:
         main (bool):
-            Record the main camera
+            Record the main camera.
         guestport (bool):
-            Record external camera
+            Record external camera.
         multibeam (bool):
-            Record multibeam
+            Record multibeam.
     """
 
     main: bool = proto.Field(
@@ -2762,9 +2778,9 @@ class StorageSpace(proto.Message):
 
     Attributes:
         total_space (int):
-            Total bytes of storage space (B)
+            Total bytes of storage space (B).
         free_space (int):
-            Available bytes of storage space (B)
+            Available bytes of storage space (B).
     """
 
     total_space: int = proto.Field(
@@ -2782,21 +2798,21 @@ class CalibrationState(proto.Message):
 
     Attributes:
         status (blueye.protocol.types.CalibrationState.Status):
-            Current calibration status
+            Current calibration status.
         progress_x_positive (float):
-            Progress for the positive X axis (0..1)
+            Progress for the positive X axis (0..1).
         progress_x_negative (float):
-            Progress for the negative X axis (0..1)
+            Progress for the negative X axis (0..1).
         progress_y_positive (float):
-            Progress for the positive Y axis (0..1)
+            Progress for the positive Y axis (0..1).
         progress_y_negative (float):
-            Progress for the negative X axis (0..1)
+            Progress for the negative X axis (0..1).
         progress_z_positive (float):
-            Progress for the positive Z axis (0..1)
+            Progress for the positive Z axis (0..1).
         progress_z_negative (float):
-            Progress for the negative Z axis (0..1)
+            Progress for the negative Z axis (0..1).
         progress_thruster (float):
-            Progress for the thruster calibration (0..1)
+            Progress for the thruster calibration (0..1).
     """
     class Status(proto.Enum):
         r"""Status of the compass calibration procedure.
@@ -2806,55 +2822,55 @@ class CalibrationState(proto.Message):
 
         Attributes:
             STATUS_UNSPECIFIED (0):
-                Unspecified status
+                Unspecified status.
             STATUS_NOT_CALIBRATING (1):
-                Compass is not currently calibrating
+                Compass is not currently calibrating.
             STATUS_CALIBRATING_NO_AXIS (2):
                 Compass is calibrating but active calibration
-                axis cannot be determined
+                axis cannot be determined.
             STATUS_CALIBRATING_X_POSITIVE (3):
                 Compass is calibrating and the positive X
-                axis is active
+                axis is active.
             STATUS_CALIBRATING_X_NEGATIVE (4):
                 Compass is calibrating and the negative X
-                axis is active
+                axis is active.
             STATUS_CALIBRATING_Y_POSITIVE (5):
                 Compass is calibrating and the positive Y
-                axis is active
+                axis is active.
             STATUS_CALIBRATING_Y_NEGATIVE (6):
                 Compass is calibrating and the negative Y
-                axis is active
+                axis is active.
             STATUS_CALIBRATING_Z_POSITIVE (7):
                 Compass is calibrating and the positive Z
-                axis is active
+                axis is active.
             STATUS_CALIBRATING_Z_NEGATIVE (8):
                 Compass is calibrating and the negative Z
-                axis is active
+                axis is active.
             STATUS_CALIBRATING_THRUSTER (9):
                 Compass is calibrating for thruster
-                interferance
+                interferance.
         """
         STATUS_UNSPECIFIED = 0
-        """Unspecified status"""
+        """Unspecified status."""
         STATUS_NOT_CALIBRATING = 1
-        """Compass is not currently calibrating"""
+        """Compass is not currently calibrating."""
         STATUS_CALIBRATING_NO_AXIS = 2
         """Compass is calibrating but active calibration axis cannot be
-        determined"""
+        determined."""
         STATUS_CALIBRATING_X_POSITIVE = 3
-        """Compass is calibrating and the positive X axis is active"""
+        """Compass is calibrating and the positive X axis is active."""
         STATUS_CALIBRATING_X_NEGATIVE = 4
-        """Compass is calibrating and the negative X axis is active"""
+        """Compass is calibrating and the negative X axis is active."""
         STATUS_CALIBRATING_Y_POSITIVE = 5
-        """Compass is calibrating and the positive Y axis is active"""
+        """Compass is calibrating and the positive Y axis is active."""
         STATUS_CALIBRATING_Y_NEGATIVE = 6
-        """Compass is calibrating and the negative Y axis is active"""
+        """Compass is calibrating and the negative Y axis is active."""
         STATUS_CALIBRATING_Z_POSITIVE = 7
-        """Compass is calibrating and the positive Z axis is active"""
+        """Compass is calibrating and the positive Z axis is active."""
         STATUS_CALIBRATING_Z_NEGATIVE = 8
-        """Compass is calibrating and the negative Z axis is active"""
+        """Compass is calibrating and the negative Z axis is active."""
         STATUS_CALIBRATING_THRUSTER = 9
-        """Compass is calibrating for thruster interferance"""
+        """Compass is calibrating for thruster interferance."""
 
     status: Status = proto.Field(
         proto.ENUM,
@@ -2897,10 +2913,10 @@ class IperfStatus(proto.Message):
     Attributes:
         sent (float):
             Transfer rate from drone to Surface Unit
-            (Mbit/s)
+            (Mbit/s).
         received (float):
             Transfer rate from Surface Unit to drone
-            (Mbit/s)
+            (Mbit/s).
     """
 
     sent: float = proto.Field(
@@ -2919,10 +2935,10 @@ class NStreamers(proto.Message):
     Attributes:
         main (int):
             The number of clients to the main camera
-            stream
+            stream.
         guestport (int):
             The number of clients to the guestport camera
-            stream
+            stream.
     """
 
     main: int = proto.Field(
@@ -2940,7 +2956,7 @@ class TiltAngle(proto.Message):
 
     Attributes:
         value (float):
-            Tilt angle (°)
+            Tilt angle (°).
     """
 
     value: float = proto.Field(
@@ -2950,12 +2966,12 @@ class TiltAngle(proto.Message):
 
 
 class TiltVelocity(proto.Message):
-    r"""Relative velocity of tilt
+    r"""Relative velocity of tilt.
 
     Attributes:
         value (float):
             Relative angular velocity of tilt (-1..1),
-            negative means down and positive means up
+            negative means down and positive means up.
     """
 
     value: float = proto.Field(
@@ -2973,28 +2989,28 @@ class DroneInfo(proto.Message):
 
     Attributes:
         blunux_version (str):
-            Blunux version string
+            Blunux version string.
         serial_number (bytes):
-            Drone serial number
+            Drone serial number.
         hardware_id (bytes):
-            Main computer unique identifier
+            Main computer unique identifier.
         model (blueye.protocol.types.Model):
-            Drone model
+            Drone model.
         mb_serial (bytes):
-            Motherboard serial number
+            Motherboard serial number.
         bb_serial (bytes):
-            Backbone serial number
+            Backbone serial number.
         ds_serial (bytes):
-            Drone stack serial number
+            Drone stack serial number.
         mb_uid (bytes):
-            Motherboard unique identifier
+            Motherboard unique identifier.
         bb_uid (bytes):
-            Backbone unique identifier
+            Backbone unique identifier.
         gp (blueye.protocol.types.GuestPortInfo):
-            GuestPortInfo
+            Guest port information.
         depth_sensor (blueye.protocol.types.PressureSensorType):
             Type of depth sensor that is connected to the
-            drone
+            drone.
     """
 
     blunux_version: str = proto.Field(
@@ -3052,100 +3068,100 @@ class ErrorFlags(proto.Message):
     Attributes:
         pmu_comm_ack (bool):
             Acknowledge message not received for a
-            message published to internal micro controller
+            message published to internal micro controller.
         pmu_comm_stream (bool):
             Error in communication with internal micro
-            controller
+            controller.
         depth_read (bool):
-            Error reading depth sensor value
+            Error reading depth sensor value.
         depth_spike (bool):
-            Sudden spike in value read from depth sensor
+            Sudden spike in value read from depth sensor.
         inner_pressure_read (bool):
-            Error reading inner pressure of the drone
+            Error reading inner pressure of the drone.
         inner_pressure_spike (bool):
-            Sudden spike in inner preassure
+            Sudden spike in inner preassure.
         compass_calibration (bool):
-            Compass needs calibration
+            Compass needs calibration.
         tilt_calibration (bool):
-            Error during calibration of tilt endpoints
+            Error during calibration of tilt endpoints.
         gp1_read (bool):
-            Guest port 1 read error
+            Guest port 1 read error.
         gp2_read (bool):
-            Guest port 2 read error
+            Guest port 2 read error.
         gp3_read (bool):
-            Guest port 3 read error
+            Guest port 3 read error.
         gp1_not_flashed (bool):
-            Guest port 1 not flashed
+            Guest port 1 not flashed.
         gp2_not_flashed (bool):
-            Guest port 2 not flashed
+            Guest port 2 not flashed.
         gp3_not_flashed (bool):
-            Guest port 3 not flashed
+            Guest port 3 not flashed.
         gp1_unknown_device (bool):
-            Unknown device on guest port 1
+            Unknown device on guest port 1.
         gp2_unknown_device (bool):
-            Unknown device on guest port 2
+            Unknown device on guest port 2.
         gp3_unknown_device (bool):
-            Unknown device on guest port 3
+            Unknown device on guest port 3.
         gp1_device_connection (bool):
-            Guest port 1 connection error
+            Guest port 1 connection error.
         gp2_device_connection (bool):
-            Guest port 2 connection error
+            Guest port 2 connection error.
         gp3_device_connection (bool):
-            Guest port 3 connection error
+            Guest port 3 connection error.
         gp1_device (bool):
-            Guest port 1 device error
+            Guest port 1 device error.
         gp2_device (bool):
-            Guest port 2 device error
+            Guest port 2 device error.
         gp3_device (bool):
-            Guest port 3 device error
+            Guest port 3 device error.
         drone_serial_not_set (bool):
-            Drone serial number not set
+            Drone serial number not set.
         drone_serial (bool):
-            Drone serial number error
+            Drone serial number error.
         mb_eeprom_read (bool):
-            MB eeprom read error
+            MB eeprom read error.
         bb_eeprom_read (bool):
-            BB eeprom read error
+            BB eeprom read error.
         mb_eeprom_not_flashed (bool):
-            MB eeprom not flashed
+            MB eeprom not flashed.
         bb_eeprom_not_flashed (bool):
-            BB eeprom not flashed
+            BB eeprom not flashed.
         main_camera_connection (bool):
-            We don't get buffers from the main camera
+            We don't get buffers from the main camera.
         main_camera_firmware (bool):
-            The main camera firmware is wrong
+            The main camera firmware is wrong.
         guestport_camera_connection (bool):
             We don't get buffers from the guestport
-            camera
+            camera.
         guestport_camera_firmware (bool):
-            The guestport camera firmware is wrong
+            The guestport camera firmware is wrong.
         mb_serial (bool):
-            MB serial number error
+            MB serial number error.
         bb_serial (bool):
-            BB serial number error
+            BB serial number error.
         ds_serial (bool):
-            DS serial number error
+            DS serial number error.
         gp_current_read (bool):
-            Error reading GP current
+            Error reading GP current.
         gp_current (bool):
-            Max GP current exceeded
+            Max GP current exceeded.
         gp1_bat_current (bool):
-            Max battery current exceeded on GP1
+            Max battery current exceeded on GP1.
         gp2_bat_current (bool):
-            Max battery current exceeded on GP2
+            Max battery current exceeded on GP2.
         gp3_bat_current (bool):
-            Max battery current exceeded on GP3
+            Max battery current exceeded on GP3.
         gp_20v_current (bool):
-            Max 20V current exceeded on GP
+            Max 20V current exceeded on GP.
         dvl_thermal_protection_mode (bool):
-            DVL is in thermal protection mode
+            DVL is in thermal protection mode.
         dvl_no_power (bool):
             GP protection has been triggered at boot or
-            faulty DVL
+            faulty DVL.
         usb_disconnect (bool):
-            USB disconnect
+            USB disconnect.
         video_urb_error (bool):
-            Video URB error
+            Video URB error.
     """
 
     pmu_comm_ack: bool = proto.Field(
@@ -3339,23 +3355,23 @@ class CameraParameters(proto.Message):
 
     Attributes:
         h264_bitrate (int):
-            Bitrate of the h264 stream (bit/sec)
+            Bitrate of the h264 stream (bit/sec).
         mjpg_bitrate (int):
             Bitrate of the MJPG stream used for still
-            pictures (bit/sec)
+            pictures (bit/sec).
         exposure (int):
-            Shutter speed (1/10000 \* s), -1 for automatic exposure
+            Shutter speed (1/10000 \* s), -1 for automatic exposure.
         white_balance (int):
             White balance temperature (2800..9300), -1
-            for automatic white balance
+            for automatic white balance.
         hue (int):
-            Hue (-40..40), 0 as default
+            Hue (-40..40), 0 as default.
         gain (float):
-            Iso gain (0..1)
+            Iso gain (0..1).
         resolution (blueye.protocol.types.Resolution):
-            Stream, recording and image resolution
+            Stream, recording and image resolution.
         framerate (blueye.protocol.types.Framerate):
-            Stream and recording framerate
+            Stream and recording framerate.
         camera (blueye.protocol.types.Camera):
             Which camera the parameters belong to.
     """
@@ -3409,56 +3425,56 @@ class OverlayParameters(proto.Message):
 
     Attributes:
         temperature_enabled (bool):
-            If temperature should be included
+            If temperature should be included.
         depth_enabled (bool):
-            If depth should be included
+            If depth should be included.
         heading_enabled (bool):
-            If heading should be included
+            If heading should be included.
         tilt_enabled (bool):
-            If camera tilt angle should be included
+            If camera tilt angle should be included.
         thickness_enabled (bool):
-            If camera tilt angle should be included
+            If camera tilt angle should be included.
         date_enabled (bool):
-            If date should be included
+            If date should be included.
         distance_enabled (bool):
-            If distance should be included
+            If distance should be included.
         altitude_enabled (bool):
-            If altitude should be included
+            If altitude should be included.
         cp_probe_enabled (bool):
-            If cp-probe should be included
+            If cp-probe should be included.
         medusa_enabled (bool):
-            If medusa measurement should be included
+            If medusa measurement should be included.
         drone_location_enabled (bool):
             If the drone location coordinates should be
-            included
+            included.
         logo_type (blueye.protocol.types.LogoType):
-            Which logo should be used
+            Which logo should be used.
         depth_unit (blueye.protocol.types.DepthUnit):
             Which unit should be used for depth: Meter,
-            Feet or None
+            Feet or None.
         temperature_unit (blueye.protocol.types.TemperatureUnit):
             Which unit should be used for temperature:
-            Celsius or Fahrenheit
+            Celsius or Fahrenheit.
         thickness_unit (blueye.protocol.types.ThicknessUnit):
             Which unit should be used for thickness:
-            Millimeters or Inches
+            Millimeters or Inches.
         timezone_offset (int):
-            Timezone offset from UTC (min)
+            Timezone offset from UTC (min).
         margin_width (int):
-            Horizontal margins of text elements (px)
+            Horizontal margins of text elements (px).
         margin_height (int):
-            Vertical margins of text elements (px)
+            Vertical margins of text elements (px).
         font_size (blueye.protocol.types.FontSize):
-            Font size of text elements
+            Font size of text elements.
         title (str):
-            Optional title
+            Optional title.
         subtitle (str):
-            Optional subtitle
+            Optional subtitle.
         date_format (str):
-            Posix strftime format string for time stamp
+            Posix strftime format string for time stamp.
         shading (float):
             Pixel intensity to subtract from text
-            background (0..1), 0: transparent, 1: black
+            background (0..1), 0: transparent, 1: black.
     """
 
     temperature_enabled: bool = proto.Field(
@@ -3562,25 +3578,25 @@ class OverlayParameters(proto.Message):
 
 class NavigationSensorStatus(proto.Message):
     r"""Navigation sensor used in the position observer with validity
-    state
+    state.
 
     Attributes:
         sensor_id (blueye.protocol.types.NavigationSensorID):
-            Sensor id
+            Sensor id.
         is_valid (bool):
-            Sensor validity
+            Sensor validity.
         northing (float):
-            Position from reset point (m)
+            Position from reset point (m).
         easting (float):
-            Position from reset point (m)
+            Position from reset point (m).
         heading (float):
-            Heading from sensor (-pi..pi)
+            Heading from sensor (-pi..pi).
         fom (float):
-            Figure of merit
+            Figure of merit.
         std (float):
-            Standard deviation
+            Standard deviation.
         global_position (blueye.protocol.types.LatLongPosition):
-            Global position from sensor
+            Global position from sensor.
     """
 
     sensor_id: 'NavigationSensorID' = proto.Field(
@@ -3620,23 +3636,24 @@ class NavigationSensorStatus(proto.Message):
 
 
 class GuestPortDevice(proto.Message):
-    r"""GuestPort device.
+    r"""Information about a device connected to one of the guest
+    ports.
 
     Attributes:
         device_id (blueye.protocol.types.GuestPortDeviceID):
-            Blueye device identifier
+            Blueye device identifier.
         manufacturer (str):
-            Manufacturer name
+            Manufacturer name.
         name (str):
-            Device name
+            Device name.
         serial_number (str):
-            Serial number
+            Serial number.
         depth_rating (float):
-            Depth rating (m)
+            Depth rating (m).
         required_blunux_version (str):
-            Required Blunux version (x.y.z)
+            Required Blunux version (x.y.z).
         detach_status (blueye.protocol.types.GuestPortDetachStatus):
-            Detach status based on detection pin
+            Detach status based on detection pin.
     """
 
     device_id: 'GuestPortDeviceID' = proto.Field(
@@ -3676,7 +3693,7 @@ class GuestPortDeviceList(proto.Message):
 
     Attributes:
         devices (MutableSequence[blueye.protocol.types.GuestPortDevice]):
-            List of guest port devices
+            List of guest port devices.
     """
 
     devices: MutableSequence['GuestPortDevice'] = proto.RepeatedField(
@@ -3698,15 +3715,15 @@ class GuestPortConnectorInfo(proto.Message):
 
     Attributes:
         device_list (blueye.protocol.types.GuestPortDeviceList):
-            List of devices on this connector
+            List of devices on this connector.
 
             This field is a member of `oneof`_ ``connected_device``.
         error (blueye.protocol.types.GuestPortError):
-            Guest port connector error
+            Guest port connector error.
 
             This field is a member of `oneof`_ ``connected_device``.
         guest_port_number (blueye.protocol.types.GuestPortNumber):
-            Guest port the connector is connected to
+            Guest port the connector is connected to.
     """
 
     device_list: 'GuestPortDeviceList' = proto.Field(
@@ -3733,11 +3750,11 @@ class GuestPortInfo(proto.Message):
 
     Attributes:
         gp1 (blueye.protocol.types.GuestPortConnectorInfo):
-            GuestPortConnectorInfo 1
+            Information about guest port 1.
         gp2 (blueye.protocol.types.GuestPortConnectorInfo):
-            GuestPortConnectorInfo 2
+            Information about guest port 2.
         gp3 (blueye.protocol.types.GuestPortConnectorInfo):
-            GuestPortConnectorInfo 3
+            GuestPortConnectorInfo 3.
     """
 
     gp1: 'GuestPortConnectorInfo' = proto.Field(
@@ -3762,7 +3779,7 @@ class GuestPortRestartInfo(proto.Message):
 
     Attributes:
         power_off_duration (float):
-            Duration to keep the guest ports off (s)
+            Duration to keep the guest ports off (s).
     """
 
     power_off_duration: float = proto.Field(
@@ -3776,14 +3793,14 @@ class ThicknessGauge(proto.Message):
 
     Attributes:
         thickness_measurement (float):
-            Thickness measurement of a steel plate
+            Thickness measurement of a steel plate.
         echo_count (int):
             Indicating the quality of the reading when
-            invalid (0-3)
+            invalid (0-3).
         sound_velocity (int):
-            Speed of sound in the steel member (m/s)
+            Speed of sound in the steel member (m/s).
         is_measurement_valid (bool):
-            Indicating if the measurement is valid
+            Indicating if the measurement is valid.
     """
 
     thickness_measurement: float = proto.Field(
@@ -3809,9 +3826,9 @@ class CpProbe(proto.Message):
 
     Attributes:
         measurement (float):
-            Potential measurement (V)
+            Potential measurement (V).
         is_measurement_valid (bool):
-            Indicating if the measurement is valid
+            Indicating if the measurement is valid.
     """
 
     measurement: float = proto.Field(
@@ -3829,9 +3846,9 @@ class GenericServo(proto.Message):
 
     Attributes:
         value (float):
-            Servo value (0..1)
+            Servo value (0..1).
         guest_port_number (blueye.protocol.types.GuestPortNumber):
-            Guest port the servo is on
+            Guest port the servo is on.
     """
 
     value: float = proto.Field(
@@ -3850,7 +3867,7 @@ class MultibeamServo(proto.Message):
 
     Attributes:
         angle (float):
-            Servo degrees (-30..30)
+            Servo degrees (-30..30).
     """
 
     angle: float = proto.Field(
@@ -3864,13 +3881,13 @@ class GuestPortCurrent(proto.Message):
 
     Attributes:
         gp1_bat (float):
-            Current on GP1 battery voltage (A)
+            Current on GP1 battery voltage (A).
         gp2_bat (float):
-            Current on GP2 battery voltage (A)
+            Current on GP2 battery voltage (A).
         gp3_bat (float):
-            Current on GP3 battery voltage (A)
+            Current on GP3 battery voltage (A).
         gp_20v (float):
-            Current on common 20V supply (A)
+            Current on common 20V supply (A).
     """
 
     gp1_bat: float = proto.Field(
@@ -3892,15 +3909,15 @@ class GuestPortCurrent(proto.Message):
 
 
 class Vector3(proto.Message):
-    r"""Vector with 3 elements
+    r"""Vector with 3 elements.
 
     Attributes:
         x (float):
-            x-component
+            X-component.
         y (float):
-            y-component
+            Y-component.
         z (float):
-            z-component
+            Z-component.
     """
 
     x: float = proto.Field(
@@ -3918,7 +3935,7 @@ class Vector3(proto.Message):
 
 
 class Imu(proto.Message):
-    r"""Imu data in drone body frame
+    r"""Imu data in drone body frame:
 
     x - forward
     y - right
@@ -3926,13 +3943,13 @@ class Imu(proto.Message):
 
     Attributes:
         accelerometer (blueye.protocol.types.Vector3):
-            Acceleration (g)
+            Acceleration (g).
         gyroscope (blueye.protocol.types.Vector3):
-            Angular velocity (rad/s)
+            Angular velocity (rad/s).
         magnetometer (blueye.protocol.types.Vector3):
-            Magnetic field (μT)
+            Magnetic field (μT).
         temperature (float):
-            Temperature (°C)
+            Temperature (°C).
     """
 
     accelerometer: 'Vector3' = proto.Field(
@@ -3957,24 +3974,24 @@ class Imu(proto.Message):
 
 
 class MedusaSpectrometerData(proto.Message):
-    r"""Medusa gamma ray sensor spectrometer data
+    r"""Medusa gamma ray sensor spectrometer data.
 
     Attributes:
         drone_time (google.protobuf.timestamp_pb2.Timestamp):
-            Time stamp when the data is received
+            Time stamp when the data is received.
         sensor_time (google.protobuf.timestamp_pb2.Timestamp):
-            Time stamp the sensor reports
+            Time stamp the sensor reports.
         realtime (float):
-            Time the sensor actually measured (s)
+            Time the sensor actually measured (s).
         livetime (float):
-            Time the measurement took (s)
+            Time the measurement took (s).
         total (int):
-            Total counts inside the spectrum
+            Total counts inside the spectrum.
         countrate (int):
             Counts per second inside the spectrum
-            (rounded)
+            (rounded).
         cosmics (int):
-            Detected counts above the last channel
+            Detected counts above the last channel.
     """
 
     drone_time: timestamp_pb2.Timestamp = proto.Field(
@@ -4010,24 +4027,24 @@ class MedusaSpectrometerData(proto.Message):
 
 
 class MultibeamPing(proto.Message):
-    r"""Multibeam sonar ping
+    r"""Multibeam sonar ping.
 
     Contains all the information for rendering a multibeam sonar
-    frame
+    frame.
 
     Attributes:
         range_ (float):
-            Maximum range value (m)
+            Maximum range value (m).
         gain (float):
-            Percentage of gain (0 to 1)
+            Percentage of gain (0 to 1).
         frequency (float):
-            Ping acoustic frequency (Hz)
+            Ping acoustic frequency (Hz).
         speed_of_sound_used (float):
             Speed of sound used by the sonar for range
-            calculations (m/s)
+            calculations (m/s).
         frequency_mode (blueye.protocol.types.MultibeamFrequencyMode):
             Frequency mode used by the sonar for this
-            frame
+            frame.
         number_of_ranges (int):
             Height of the ping image data.
         number_of_beams (int):
@@ -4039,13 +4056,13 @@ class MultibeamPing(proto.Message):
             Bearing angle of each column of the sonar
             data (in 100th of a degree, multiply by 0.01 to
             get a value in degrees). The sonar image is not
-            sampled uniformly in the bearing direction.
+            sampled uniformly in the bearing direction..
         ping_data (bytes):
-            Ping data (row major, 2D, grayscale image)
+            Ping data (row major, 2D, grayscale image).
         device_id (blueye.protocol.types.GuestPortDeviceID):
-            Device ID of the sonar
+            Device ID of the sonar.
         frame_generation_timestamp (google.protobuf.timestamp_pb2.Timestamp):
-            Timestamp when the frame was generated
+            Timestamp when the frame was generated.
     """
 
     range_: float = proto.Field(
@@ -4102,90 +4119,95 @@ class MultibeamPing(proto.Message):
 
 
 class MultibeamConfig(proto.Message):
-    r"""Configuration message for sonar devices
+    r"""Configuration message for sonar devices.
 
     Attributes:
         frequency_mode (blueye.protocol.types.MultibeamFrequencyMode):
-            Frequency mode used by the sonar if supported
+            Frequency mode used by the sonar if
+            supported.
         ping_rate (blueye.protocol.types.MultibeamConfig.PingRate):
             Sets the maximum ping rate.
         gamma_correction (float):
-            Gamma correction (0..1.0)
+            Gamma correction (0..1.0).
         gain_assist (bool):
-            Enable gain assist
+            Enable gain assist.
+        gain_boost (bool):
+            Enable gain boost (only available on
+            Blueprint devices).
         maximum_number_of_beams (blueye.protocol.types.MultibeamConfig.MaximumNumberOfBeams):
             Maximum number of beams. Used to throttle
             bandwidth.
         range_ (float):
-            The range demand (m)
+            The range demand (m).
         gain (float):
-            The gain demand (0..1)
+            The gain demand (0..1).
         salinity (float):
             Set water salinity (ppt). Defaults to zero in
-            fresh water
+            fresh water.
         device_id (blueye.protocol.types.GuestPortDeviceID):
-            Device ID of the sonar
+            Device ID of the sonar.
         bandwidth_limit (int):
-            Network bandwidth limit (Mbit/s). Applies
+            Network bandwidth limit (Mbit/s), applies
             only to Oculus devices.
     """
     class PingRate(proto.Enum):
-        r"""
+        r"""Defines the desired ping rate to use when capturing sonar
+        data.
 
         Attributes:
             PING_RATE_UNSPECIFIED (0):
                 No description available.
             PING_RATE_NORMAL (1):
-                10Hz max ping rate
+                10Hz max ping rate.
             PING_RATE_HIGH (2):
-                15Hz max ping rate
+                15Hz max ping rate.
             PING_RATE_HIGHEST (3):
-                40Hz max ping rate
+                40Hz max ping rate.
             PING_RATE_LOW (4):
-                5Hz max ping rate
+                5Hz max ping rate.
             PING_RATE_LOWEST (5):
-                2Hz max ping rate
+                2Hz max ping rate.
             PING_RATE_STANDBY (6):
-                Disable ping
+                Disable ping.
         """
         PING_RATE_UNSPECIFIED = 0
         PING_RATE_NORMAL = 1
-        """10Hz max ping rate"""
+        """10Hz max ping rate."""
         PING_RATE_HIGH = 2
-        """15Hz max ping rate"""
+        """15Hz max ping rate."""
         PING_RATE_HIGHEST = 3
-        """40Hz max ping rate"""
+        """40Hz max ping rate."""
         PING_RATE_LOW = 4
-        """5Hz max ping rate"""
+        """5Hz max ping rate."""
         PING_RATE_LOWEST = 5
-        """2Hz max ping rate"""
+        """2Hz max ping rate."""
         PING_RATE_STANDBY = 6
-        """Disable ping"""
+        """Disable ping."""
 
     class MaximumNumberOfBeams(proto.Enum):
-        r"""
+        r"""The maximum number of beams to use by the multibeam sonar.
 
         Attributes:
             MAXIMUM_NUMBER_OF_BEAMS_UNSPECIFIED (0):
                 No description available.
             MAXIMUM_NUMBER_OF_BEAMS_MAX_128 (1):
-                128 beams
+                128 beams.
             MAXIMUM_NUMBER_OF_BEAMS_MAX_256 (2):
-                256 beams
+                256 beams.
             MAXIMUM_NUMBER_OF_BEAMS_MAX_512 (3):
-                512 beams
+                512 beams.
             MAXIMUM_NUMBER_OF_BEAMS_MAX_1024 (4):
-                1024 beams
+                1024 beams.
         """
         MAXIMUM_NUMBER_OF_BEAMS_UNSPECIFIED = 0
         MAXIMUM_NUMBER_OF_BEAMS_MAX_128 = 1
-        """128 beams"""
+        """128 beams."""
         MAXIMUM_NUMBER_OF_BEAMS_MAX_256 = 2
-        """256 beams"""
+        """256 beams."""
         MAXIMUM_NUMBER_OF_BEAMS_MAX_512 = 3
-        """512 beams"""
+        """512 beams."""
         MAXIMUM_NUMBER_OF_BEAMS_MAX_1024 = 4
-        """1024 beams"""
+        """1024 beams."""
 
     frequency_mode: 'MultibeamFrequencyMode' = proto.Field(
         proto.ENUM,
@@ -4204,6 +4226,10 @@ class MultibeamConfig(proto.Message):
     gain_assist: bool = proto.Field(
         proto.BOOL,
         number=4,
+    )
+    gain_boost: bool = proto.Field(
+        proto.BOOL,
+        number=11,
     )
     maximum_number_of_beams: MaximumNumberOfBeams = proto.Field(
         proto.ENUM,
@@ -4234,23 +4260,26 @@ class MultibeamConfig(proto.Message):
 
 
 class MultibeamDiscovery(proto.Message):
-    r"""Discovery message for sonar devices
+    r"""Discovery message for multibeam sonar devices.
 
     Attributes:
         enabled (bool):
-            If the sonar driver is enabled
+            If the sonar driver is enabled.
         ip (str):
-            IP address of the sonar
+            IP address of the sonar.
         mask (str):
-            Subnet mask of the sonar
+            Subnet mask of the sonar.
         serial_number (str):
-            Serial number of the sonar
+            Serial number of the sonar.
         fw_version (str):
-            Firmware version of the sonar
+            Firmware version of the sonar.
         connected_ip (str):
-            IP address of the connected device
+            IP address of the connected device.
         device_id (blueye.protocol.types.GuestPortDeviceID):
-            Device ID of the sonar
+            Device ID of the sonar.
+        error_flags (blueye.protocol.types.MultibeamErrorFlags):
+            Error flags specific for the connceted
+            multibeam device.
     """
 
     enabled: bool = proto.Field(
@@ -4282,16 +4311,50 @@ class MultibeamDiscovery(proto.Message):
         number=7,
         enum='GuestPortDeviceID',
     )
+    error_flags: 'MultibeamErrorFlags' = proto.Field(
+        proto.MESSAGE,
+        number=8,
+        message='MultibeamErrorFlags',
+    )
+
+
+class MultibeamErrorFlags(proto.Message):
+    r"""Error flags for multibeam sonar devices.
+
+    Attributes:
+        connected_to_another_client (bool):
+            If the sonar is captured by another client than the drone.
+            The connected client IP is reported in connected_ip
+            property.
+        device_overheating (bool):
+            If the multibeam is reporting to overheat.
+        out_of_water (bool):
+            If a TriTech multibeam is reporting to be out
+            of water.
+    """
+
+    connected_to_another_client: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    device_overheating: bool = proto.Field(
+        proto.BOOL,
+        number=2,
+    )
+    out_of_water: bool = proto.Field(
+        proto.BOOL,
+        number=3,
+    )
 
 
 class MultibeamFrameOffset(proto.Message):
-    r"""Frame offset for multibeam recordings index cache
+    r"""Frame offset for multibeam recordings index cache.
 
     Attributes:
         duration (google.protobuf.duration_pb2.Duration):
-            Duration from the start of the recording
+            Duration from the start of the recording.
         offset (int):
-            Offset in bytes from the start of the file
+            Offset in bytes from the start of the file.
     """
 
     duration: duration_pb2.Duration = proto.Field(
@@ -4306,11 +4369,11 @@ class MultibeamFrameOffset(proto.Message):
 
 
 class MutltibeamRecordingIndex(proto.Message):
-    r"""Multibeam recording index cache
+    r"""Multibeam recording index cache.
 
     Attributes:
         frame_offsets (MutableSequence[blueye.protocol.types.MultibeamFrameOffset]):
-            List of frame offsets
+            List of frame offsets.
     """
 
     frame_offsets: MutableSequence['MultibeamFrameOffset'] = proto.RepeatedField(
@@ -4322,7 +4385,7 @@ class MutltibeamRecordingIndex(proto.Message):
 
 class PersistentStorageSettings(proto.Message):
     r"""PersistentStorageSettings defines settings for writing
-    various types of data in the persistent storage on the drone
+    various types of data in the persistent storage on the drone.
     Some of the data is written during factory calibration (acc
     calibration), while other data is written during user
     calubration or during normal operation.
@@ -4396,20 +4459,20 @@ class PersistentStorageSettings(proto.Message):
 
 
 class CPUInfo(proto.Message):
-    r"""CPU information
+    r"""CPU information.
 
     Contains information about the CPU load and memory usage of the
     drone.
 
     Attributes:
         cpu_load (float):
-            CPU load (0..1)
+            CPU load (0..1).
         memory_bus_load (float):
-            Memory bus load (0..1)
+            Memory bus load (0..1).
         main_queue_load (float):
-            Main queue load (0..1)
+            Main queue load (0..1).
         guestport_queue_load (float):
-            Guestport queue load (0..1)
+            Guestport queue load (0..1).
     """
 
     cpu_load: float = proto.Field(

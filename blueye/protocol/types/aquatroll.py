@@ -83,7 +83,7 @@ class Type(proto.Enum):
 
 
 class AquaTrollDevice(proto.Enum):
-    r"""Aqua Troll Device IDs
+    r"""Aqua Troll Device IDs.
 
     Attributes:
         AQUA_TROLL_DEVICE_UNSPECIFIED (0):
@@ -150,7 +150,7 @@ class AquaTrollDevice(proto.Enum):
 
 
 class AquaTrollQuality(proto.Enum):
-    r"""Aqua Troll Quality IDs
+    r"""Aqua Troll Quality IDs.
 
     Attributes:
         AQUA_TROLL_QUALITY_NORMAL (0):
@@ -181,7 +181,7 @@ class AquaTrollQuality(proto.Enum):
 
 
 class AquaTrollParameter(proto.Enum):
-    r"""Aqua Troll Parameter IDs
+    r"""Aqua Troll Parameter IDs.
 
     Attributes:
         AQUA_TROLL_PARAMETER_UNSPECIFIED (0):
@@ -362,7 +362,7 @@ class AquaTrollParameter(proto.Enum):
 
 
 class AquaTrollUnit(proto.Enum):
-    r"""Aqua Troll Unit IDs
+    r"""Aqua Troll Unit IDs.
 
     Attributes:
         AQUA_TROLL_UNIT_UNSPECIFIED (0):
@@ -621,7 +621,7 @@ class AquaTrollUnit(proto.Enum):
 
 
 class AquaTrollSensor(proto.Enum):
-    r"""Aqua Troll Sensor IDs
+    r"""Aqua Troll Sensor IDs.
 
     Attributes:
         AQUA_TROLL_SENSOR_UNSPECIFIED (0):
@@ -882,9 +882,9 @@ class AquaTrollDeviceStatus(proto.Enum):
 
 
 class AquaTrollParameterBlock(proto.Message):
-    r"""In-Situ Parameter Block
+    r"""In-Situ Parameter Block.
 
-    Up to NUMBER_OF_SENSOR_PARAMETERS blocks may be part of a sensor
+    Up to NUMBER_OF_SENSOR_PARAMETERS blocks may be part of a sensor.
 
     Attributes:
         measured_value (float):
@@ -932,12 +932,12 @@ class AquaTrollParameterBlock(proto.Message):
 
 
 class AquaTrollSensorMetadata(proto.Message):
-    r"""In-Situ AquaTroll 500 sensor metadata
+    r"""In-Situ AquaTroll 500 sensor metadata.
 
     (Mostly) static information about a connected sensor.
 
     Refer to Section 7 Sensor Common Registers in the In-Situ Modbus
-    Communication Protocol
+    Communication Protocol.
 
     Attributes:
         timestamp (google.protobuf.timestamp_pb2.Timestamp):
@@ -1304,7 +1304,7 @@ class AquaTrollSensorParametersArray(proto.Message):
 
 
 class SetAquaTrollParameterUnit(proto.Message):
-    r"""Request to set an In-Situ Aqua Troll parameter unit
+    r"""Request to set an In-Situ Aqua Troll parameter unit.
 
     Attributes:
         sensor_id (blueye.protocol.types.AquaTrollSensor):
@@ -1333,11 +1333,11 @@ class SetAquaTrollParameterUnit(proto.Message):
 
 
 class SetAquaTrollConnectionStatus(proto.Message):
-    r"""Request to change the In-Situ Aqua Troll connection status
+    r"""Request to change the In-Situ Aqua Troll connection status.
 
     Attributes:
         connected (bool):
-            True to connect, false to disconnect
+            True to connect, false to disconnect.
     """
 
     connected: bool = proto.Field(
