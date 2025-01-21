@@ -680,6 +680,8 @@ class GuestPortDeviceID(proto.Enum):
             Blueprint Subsea Oculus C550d.
         GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_M370S (42):
             Blueprint Subsea Oculus M370s.
+        GUEST_PORT_DEVICE_ID_WATERLINKED_SONAR_3D15 (43):
+            Waterlinked Sonar 3D-15.
     """
     GUEST_PORT_DEVICE_ID_UNSPECIFIED = 0
     """Unspecified."""
@@ -767,6 +769,8 @@ class GuestPortDeviceID(proto.Enum):
     """Blueprint Subsea Oculus C550d."""
     GUEST_PORT_DEVICE_ID_BLUEPRINT_SUBSEA_OCULUS_M370S = 42
     """Blueprint Subsea Oculus M370s."""
+    GUEST_PORT_DEVICE_ID_WATERLINKED_SONAR_3D15 = 43
+    """Waterlinked Sonar 3D-15."""
 
 
 class GuestPortNumber(proto.Enum):
