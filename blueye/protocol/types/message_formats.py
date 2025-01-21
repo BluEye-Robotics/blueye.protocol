@@ -3754,7 +3754,7 @@ class GuestPortInfo(proto.Message):
         gp2 (blueye.protocol.types.GuestPortConnectorInfo):
             Information about guest port 2.
         gp3 (blueye.protocol.types.GuestPortConnectorInfo):
-            GuestPortConnectorInfo 3.
+            Information about guest port 3.
     """
 
     gp1: 'GuestPortConnectorInfo' = proto.Field(
@@ -3935,7 +3935,7 @@ class Vector3(proto.Message):
 
 
 class Imu(proto.Message):
-    r"""Imu data in drone body frame:
+    r"""Imu data in drone body frame.
 
     x - forward
     y - right
@@ -4056,7 +4056,7 @@ class MultibeamPing(proto.Message):
             Bearing angle of each column of the sonar
             data (in 100th of a degree, multiply by 0.01 to
             get a value in degrees). The sonar image is not
-            sampled uniformly in the bearing direction..
+            sampled uniformly in the bearing direction.
         ping_data (bytes):
             Ping data (row major, 2D, grayscale image).
         device_id (blueye.protocol.types.GuestPortDeviceID):
@@ -4278,7 +4278,7 @@ class MultibeamDiscovery(proto.Message):
         device_id (blueye.protocol.types.GuestPortDeviceID):
             Device ID of the sonar.
         error_flags (blueye.protocol.types.MultibeamErrorFlags):
-            Error flags specific for the connceted
+            Error flags specific for the connected
             multibeam device.
     """
 
