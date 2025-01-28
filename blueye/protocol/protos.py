@@ -195,6 +195,8 @@ from .types.req_rep import ConnectClientRep
 from .types.req_rep import ConnectClientReq
 from .types.req_rep import DisconnectClientRep
 from .types.req_rep import DisconnectClientReq
+from .types.req_rep import FlashEscSettingsRep
+from .types.req_rep import FlashEscSettingsReq
 from .types.req_rep import GetBatteryRep
 from .types.req_rep import GetBatteryReq
 from .types.req_rep import GetCameraParametersRep
@@ -375,6 +377,8 @@ __all__ = (
 'ErrorFlags',
 'ErrorFlagsTel',
 'FinishCalibrationCtrl',
+'FlashEscSettingsRep',
+'FlashEscSettingsReq',
 'FontSize',
 'ForwardDistance',
 'ForwardDistanceTel',

@@ -61,6 +61,8 @@ __protobuf__ = proto.module(
         'SetPersistentStorageSettingsRep',
         'GetPersistentStorageSettingsReq',
         'GetPersistentStorageSettingsRep',
+        'FlashEscSettingsReq',
+        'FlashEscSettingsRep',
     },
 )
 
@@ -514,6 +516,35 @@ class GetPersistentStorageSettingsRep(proto.Message):
         proto.MESSAGE,
         number=1,
         message=message_formats.PersistentStorageSettings,
+    )
+
+
+class FlashEscSettingsReq(proto.Message):
+    r"""Request to flash ESC settings.
+
+    Attributes:
+        silent (bool):
+            If startup sounds should be disabled.
+    """
+
+    silent: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+
+
+class FlashEscSettingsRep(proto.Message):
+    r"""Response after flashing ESC settings.
+
+    Attributes:
+        success (bool):
+            If the ESC settings were flashed
+            successfully.
+    """
+
+    success: bool = proto.Field(
+        proto.BOOL,
+        number=1,
     )
 
 
