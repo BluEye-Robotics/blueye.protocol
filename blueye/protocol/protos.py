@@ -236,8 +236,6 @@ from .types.telemetry import CalibratedImuTel
 from .types.telemetry import CalibrationStateTel
 from .types.telemetry import CanisterBottomHumidityTel
 from .types.telemetry import CanisterBottomTemperatureTel
-from .types.telemetry import CanisterTopHumidityTel
-from .types.telemetry import CanisterTopTemperatureTel
 from .types.telemetry import ConnectedClientsTel
 from .types.telemetry import ControlForceTel
 from .types.telemetry import ControllerHealthTel
@@ -336,8 +334,6 @@ __all__ = (
 'CanisterBottomTemperatureTel',
 'CanisterHumidity',
 'CanisterTemperature',
-'CanisterTopHumidityTel',
-'CanisterTopTemperatureTel',
 'ClearMissionCtrl',
 'ClientInfo',
 'ConnectClientRep',

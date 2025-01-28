@@ -51,9 +51,7 @@ __protobuf__ = proto.module(
         'DroneTimeTel',
         'WaterTemperatureTel',
         'CPUTemperatureTel',
-        'CanisterTopTemperatureTel',
         'CanisterBottomTemperatureTel',
-        'CanisterTopHumidityTel',
         'CanisterBottomHumidityTel',
         'VideoStorageSpaceTel',
         'DataStorageSpaceTel',
@@ -461,21 +459,6 @@ class CPUTemperatureTel(proto.Message):
     )
 
 
-class CanisterTopTemperatureTel(proto.Message):
-    r"""Receive temperature information from the top canister.
-
-    Attributes:
-        temperature (blueye.protocol.types.CanisterTemperature):
-            Temperature information.
-    """
-
-    temperature: message_formats.CanisterTemperature = proto.Field(
-        proto.MESSAGE,
-        number=1,
-        message=message_formats.CanisterTemperature,
-    )
-
-
 class CanisterBottomTemperatureTel(proto.Message):
     r"""Receive temperature information from the bottom canister.
 
@@ -488,21 +471,6 @@ class CanisterBottomTemperatureTel(proto.Message):
         proto.MESSAGE,
         number=1,
         message=message_formats.CanisterTemperature,
-    )
-
-
-class CanisterTopHumidityTel(proto.Message):
-    r"""Receive humidity information from the top canister.
-
-    Attributes:
-        humidity (blueye.protocol.types.CanisterHumidity):
-            Humidity information.
-    """
-
-    humidity: message_formats.CanisterHumidity = proto.Field(
-        proto.MESSAGE,
-        number=1,
-        message=message_formats.CanisterHumidity,
     )
 
 
