@@ -3166,6 +3166,9 @@ class ErrorFlags(proto.Message):
             USB disconnect.
         video_urb_error (bool):
             Video URB error.
+        hardware_not_supported (bool):
+            Hardware not supported on current blunux
+            version.
     """
 
     pmu_comm_ack: bool = proto.Field(
@@ -3351,6 +3354,10 @@ class ErrorFlags(proto.Message):
     video_urb_error: bool = proto.Field(
         proto.BOOL,
         number=46,
+    )
+    hardware_not_supported: bool = proto.Field(
+        proto.BOOL,
+        number=47,
     )
 
 
