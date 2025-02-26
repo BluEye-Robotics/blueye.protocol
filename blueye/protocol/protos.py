@@ -155,6 +155,7 @@ from .types.message_formats import GuestPortDetachStatus
 from .types.message_formats import GuestPortDeviceID
 from .types.message_formats import GuestPortError
 from .types.message_formats import GuestPortNumber
+from .types.message_formats import HeadingMode
 from .types.message_formats import HeadingSource
 from .types.message_formats import IntervalType
 from .types.message_formats import LogoType
@@ -416,6 +417,7 @@ __all__ = (
 'GuestPortNumber',
 'GuestPortRestartInfo',
 'GuestportLightsCtrl',
+'HeadingMode',
 'HeadingSource',
 'Imu',
 'Imu1Tel',

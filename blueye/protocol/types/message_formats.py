@@ -29,6 +29,7 @@ __protobuf__ = proto.module(
     manifest={
         'IntervalType',
         'HeadingSource',
+        'HeadingMode',
         'ResetCoordinateSource',
         'NotificationType',
         'NotificationLevel',
@@ -153,16 +154,37 @@ class HeadingSource(proto.Enum):
         HEADING_SOURCE_UNSPECIFIED (0):
             Unspecified.
         HEADING_SOURCE_DRONE_COMPASS (1):
-            Uses the drone compass to set the heading.
+            Uses the drone magnetic compass to set the
+            heading.
         HEADING_SOURCE_MANUAL_INPUT (2):
             Used when the user sets the heading manually.
     """
     HEADING_SOURCE_UNSPECIFIED = 0
     """Unspecified."""
     HEADING_SOURCE_DRONE_COMPASS = 1
-    """Uses the drone compass to set the heading."""
+    """Uses the drone magnetic compass to set the heading."""
     HEADING_SOURCE_MANUAL_INPUT = 2
     """Used when the user sets the heading manually."""
+
+
+class HeadingMode(proto.Enum):
+    r"""Heading mode used during dead reckoning with a DVL.
+
+    Attributes:
+        HEADING_MODE_UNSPECIFIED (0):
+            Unspecified.
+        HEADING_MODE_MAGNETIC_COMPASS (1):
+            Uses the best available magnetic compass
+            heading.
+        HEADING_MODE_GYRO_ONLY (2):
+            Uses the best available gyro based heading.
+    """
+    HEADING_MODE_UNSPECIFIED = 0
+    """Unspecified."""
+    HEADING_MODE_MAGNETIC_COMPASS = 1
+    """Uses the best available magnetic compass heading."""
+    HEADING_MODE_GYRO_ONLY = 2
+    """Uses the best available gyro based heading."""
 
 
 class ResetCoordinateSource(proto.Enum):
@@ -177,6 +199,8 @@ class ResetCoordinateSource(proto.Enum):
         RESET_COORDINATE_SOURCE_MANUAL (2):
             Uses a coordinate in decimal degrees to set
             the reset point
+        RESET_COORDINATE_SOURCE_BLUEYE_GNSS (3):
+            Uses the Blueye GNSS to set the reset point
     """
     RESET_COORDINATE_SOURCE_UNSPECIFIED = 0
     """Unspecified, fallback to device GPS"""
@@ -184,6 +208,8 @@ class ResetCoordinateSource(proto.Enum):
     """Uses the device GPS to set the reset point"""
     RESET_COORDINATE_SOURCE_MANUAL = 2
     """Uses a coordinate in decimal degrees to set the reset point"""
+    RESET_COORDINATE_SOURCE_BLUEYE_GNSS = 3
+    """Uses the Blueye GNSS to set the reset point"""
 
 
 class NotificationType(proto.Enum):
@@ -2436,6 +2462,8 @@ class ResetPositionSettings(proto.Message):
             coordinate.
         reset_coordinate (blueye.protocol.types.LatLongPosition):
             Reset coordinate in decimal degrees.
+        heading_mode (blueye.protocol.types.HeadingMode):
+            Heading mode used in dead reckoning.
     """
 
     heading_source_during_reset: 'HeadingSource' = proto.Field(
@@ -2456,6 +2484,11 @@ class ResetPositionSettings(proto.Message):
         proto.MESSAGE,
         number=4,
         message='LatLongPosition',
+    )
+    heading_mode: 'HeadingMode' = proto.Field(
+        proto.ENUM,
+        number=5,
+        enum='HeadingMode',
     )
 
 
