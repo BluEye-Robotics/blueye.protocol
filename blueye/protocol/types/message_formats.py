@@ -2386,6 +2386,8 @@ class PositionEstimate(proto.Message):
             Course over ground (°).
         time_since_reset_sec (int):
             Time since reset (s).
+        accuracy (float):
+            Accuracy of the position estimate (m).
     """
 
     northing: float = proto.Field(
@@ -2445,6 +2447,10 @@ class PositionEstimate(proto.Message):
     time_since_reset_sec: int = proto.Field(
         proto.INT32,
         number=14,
+    )
+    accuracy: float = proto.Field(
+        proto.FLOAT,
+        number=15,
     )
 
 
