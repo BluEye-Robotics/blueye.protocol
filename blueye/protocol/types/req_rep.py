@@ -54,6 +54,7 @@ __protobuf__ = proto.module(
         'SetInstructionUpdateReq',
         'SetInstructionUpdateRep',
         'SetHeadingModeReq',
+        'SetHeadingModeRep',
         'SetPubFrequencyReq',
         'SetPubFrequencyRep',
         'GetTelemetryReq',
@@ -417,6 +418,11 @@ class SetHeadingModeReq(proto.Message):
         number=1,
         enum=message_formats.HeadingMode,
     )
+
+
+class SetHeadingModeRep(proto.Message):
+    r"""Response after setting the heading mode.
+    """
 
 
 class SetPubFrequencyReq(proto.Message):
