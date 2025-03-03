@@ -214,6 +214,7 @@ from .types.req_rep import PingRep
 from .types.req_rep import PingReq
 from .types.req_rep import SetCameraParametersRep
 from .types.req_rep import SetCameraParametersReq
+from .types.req_rep import SetHeadingModeReq
 from .types.req_rep import SetInstructionUpdateRep
 from .types.req_rep import SetInstructionUpdateReq
 from .types.req_rep import SetMissionRep
@@ -499,6 +500,7 @@ __all__ = (
 'SetAquaTrollParameterUnitCtrl',
 'SetCameraParametersRep',
 'SetCameraParametersReq',
+'SetHeadingModeReq',
 'SetInstructionUpdateRep',
 'SetInstructionUpdateReq',
 'SetMissionRep',

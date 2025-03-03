@@ -53,6 +53,7 @@ __protobuf__ = proto.module(
         'GetMissionRep',
         'SetInstructionUpdateReq',
         'SetInstructionUpdateRep',
+        'SetHeadingModeReq',
         'SetPubFrequencyReq',
         'SetPubFrequencyRep',
         'GetTelemetryReq',
@@ -401,6 +402,21 @@ class SetInstructionUpdateRep(proto.Message):
     mission.
 
     """
+
+
+class SetHeadingModeReq(proto.Message):
+    r"""Set the heading mode used in dead reckoning.
+
+    Attributes:
+        heading_mode (blueye.protocol.types.HeadingMode):
+            The heading mode to set.
+    """
+
+    heading_mode: message_formats.HeadingMode = proto.Field(
+        proto.ENUM,
+        number=1,
+        enum=message_formats.HeadingMode,
+    )
 
 
 class SetPubFrequencyReq(proto.Message):
