@@ -2387,7 +2387,8 @@ class PositionEstimate(proto.Message):
         time_since_reset_sec (int):
             Time since reset (s).
         accuracy (float):
-            Accuracy of the position estimate (m).
+            Accuracy radius of this position at the 95th
+            percentile confidence level (m).
     """
 
     northing: float = proto.Field(
