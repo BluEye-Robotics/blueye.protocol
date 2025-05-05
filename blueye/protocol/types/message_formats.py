@@ -453,6 +453,8 @@ class Resolution(proto.Enum):
             1080p Full HD resolution.
         RESOLUTION_HD_720P (2):
             720p HD resolution.
+        RESOLUTION_UHD_4K (3):
+            4K Ultra HD resolution.
     """
     RESOLUTION_UNSPECIFIED = 0
     """Resolution not specified."""
@@ -460,6 +462,8 @@ class Resolution(proto.Enum):
     """1080p Full HD resolution."""
     RESOLUTION_HD_720P = 2
     """720p HD resolution."""
+    RESOLUTION_UHD_4K = 3
+    """4K Ultra HD resolution."""
 
 
 class Framerate(proto.Enum):
@@ -3407,9 +3411,6 @@ class CameraParameters(proto.Message):
     Attributes:
         h264_bitrate (int):
             Bitrate of the h264 stream (bit/sec).
-        mjpg_bitrate (int):
-            Bitrate of the MJPG stream used for still
-            pictures (bit/sec).
         exposure (int):
             Shutter speed (1/10000 \* s), -1 for automatic exposure.
         white_balance (int):
@@ -3420,7 +3421,12 @@ class CameraParameters(proto.Message):
         gain (float):
             Iso gain (0..1).
         resolution (blueye.protocol.types.Resolution):
-            Stream, recording and image resolution.
+            Stream, recording and image resolution
+            (deprecated).
+        stream_resolution (blueye.protocol.types.Resolution):
+            Stream resolution.
+        recording_resolution (blueye.protocol.types.Resolution):
+            Recording and image resolution.
         framerate (blueye.protocol.types.Framerate):
             Stream and recording framerate.
         camera (blueye.protocol.types.Camera):
@@ -3430,10 +3436,6 @@ class CameraParameters(proto.Message):
     h264_bitrate: int = proto.Field(
         proto.INT32,
         number=1,
-    )
-    mjpg_bitrate: int = proto.Field(
-        proto.INT32,
-        number=2,
     )
     exposure: int = proto.Field(
         proto.INT32,
@@ -3454,6 +3456,16 @@ class CameraParameters(proto.Message):
     resolution: 'Resolution' = proto.Field(
         proto.ENUM,
         number=6,
+        enum='Resolution',
+    )
+    stream_resolution: 'Resolution' = proto.Field(
+        proto.ENUM,
+        number=10,
+        enum='Resolution',
+    )
+    recording_resolution: 'Resolution' = proto.Field(
+        proto.ENUM,
+        number=11,
         enum='Resolution',
     )
     framerate: 'Framerate' = proto.Field(
