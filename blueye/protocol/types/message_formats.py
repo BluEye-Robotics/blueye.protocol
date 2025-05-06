@@ -3411,6 +3411,9 @@ class CameraParameters(proto.Message):
     Attributes:
         h264_bitrate (int):
             Bitrate of the h264 stream (bit/sec).
+        mjpg_bitrate (int):
+            Bitrate of the MJPG stream used for still
+            pictures (bit/sec).
         exposure (int):
             Shutter speed (1/10000 \* s), -1 for automatic exposure.
         white_balance (int):
@@ -3436,6 +3439,10 @@ class CameraParameters(proto.Message):
     h264_bitrate: int = proto.Field(
         proto.INT32,
         number=1,
+    )
+    mjpg_bitrate: int = proto.Field(
+        proto.INT32,
+        number=2,
     )
     exposure: int = proto.Field(
         proto.INT32,
