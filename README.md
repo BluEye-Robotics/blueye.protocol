@@ -23,7 +23,7 @@ pip install blueye.protocol
 ## Development
 
 ### Dependency/Package management
-We use Poetry for dependency/package management, see the [Poetry docs](https://python-poetry.org/docs/) for installation instructions.
+We use `uv` for dependency/package management, see the [uv docs](https://docs.astral.sh/uv/getting-started/installation/) for installation instructions.
 
 
 ### Code generators

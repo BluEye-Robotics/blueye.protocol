@@ -1,41 +1,38 @@
-[tool.poetry]
+[project]
 name = "blueye.protocol"
+version = "3.0.0"
 description = "Python protocol definition for the Blueye drones"
-version = "2.7.1"
-authors = ["Sindre Hansen <sindre.hansen@blueye.no>",
-           "Johannes Schrimpf <johannes.schrimpf@blueye.no>",
-           "Aksel Lenes <aksel.lenes@blueye.no>",
-           "Alexander Vedeler <alexander.vedeler@blueye.no>",
-          ]
-license = "LGPL-3.0"
-packages = [
-    { include = "blueye" },
+authors = [
+    { name = "Sindre Hansen", email = "sindre.hansen@blueye.no" },
+    { name = "Johannes Schrimpf", email = "johannes.schrimpf@blueye.no" },
+    { name = "Aksel Lenes", email = "aksel.lenes@blueye.no" },
+    { name = "Alexander Vedeler", email = "alexander.vedeler@blueye.no" },
 ]
+requires-python = "~=3.10"
 readme = "README.md"
-repository="https://github.com/blueye-robotics/blueye.protocol"
-homepage ="https://www.blueyerobotics.com"
+license = "LGPL-3.0"
 keywords = ["Blueye", "Robotics", "Protocol"]
+dependencies = ["numpy~=2.2", "setuptools>=75.8", "proto-plus~=1.25"]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-numpy = { version = "^2.2" }
-setuptools = ">=75.8"
-proto-plus = "^1.25"
+[project.urls]
+Homepage = "https://www.blueyerobotics.com"
+Repository = "https://github.com/blueye-robotics/blueye.protocol"
 
-[tool.poetry.group.dev.dependencies]
-Jinja2 = "^3.0"
-pytest = "^8.3"
-pytest-mock = "^3.14"
-pytest-timeout = "^2.3"
-invoke = "^2.1.1"
-pytest-cov = "^6.0"
-toml = "^0.10.0"
-flake8 = "^7.1"
-packaging = ">=24.0"
+[dependency-groups]
+dev = [
+    "Jinja2~=3.0",
+    "pytest~=8.3",
+    "pytest-mock~=3.14",
+    "pytest-timeout~=2.3",
+    "invoke>=2.1.1,<3",
+    "pytest-cov~=6.0",
+    "toml>=0.10.0,<0.11",
+    "flake8~=7.1",
+    "packaging>=24.0",
+]
 
-[tool.poetry.build]
-generate-setup-file = true
+[tool.hatch.build.targets.sdist]
+include = ["blueye"]
 
-[build-system]
-requires = ["poetry>=2.0"]
-build-backend = "poetry.masonry.api"
+[tool.hatch.build.targets.wheel]
+include = ["blueye"]
