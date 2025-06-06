@@ -1,0 +1,17 @@
+[project]
+name = "workspace"
+version = "0.1.0"
+description = "Local workspace project"
+requires-python = ">=3.10"
+dependencies = ["blueye.protocol", "blueye.legacyprotocol"]
+
+
+[tool.uv.sources]
+"blueye.protocol" = { workspace = true }
+"blueye.legacyprotocol" = { workspace = true }
+
+[tool.uv.workspace]
+members = ["protocol", "legacyprotocol"]
+
+[dependency-groups]
+dev = ["invoke>=2.2.0", "jinja2>=3.1.6", "packaging>=25.0", "toml>=0.10.2"]
