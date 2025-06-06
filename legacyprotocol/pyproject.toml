@@ -1,6 +1,6 @@
 [project]
 name = "blueye.legacyprotocol"
-version = "0.1.0"
+version = "1.0.0"
 description = "Legacy UDP/TCP protocol for Blueye drones"
 license = { file = "LICENSE" }
 authors = [{ name = "Blueye Robotics", email = "contact@blueye.no" }]
