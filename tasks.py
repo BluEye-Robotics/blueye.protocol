@@ -77,12 +77,8 @@ def generate_proto(context):
     installed.
     """
     with context.cd(get_project_root_path()):
-        context.run(
-            "rm -rf build && mkdir -p build && mkdir -p build/protobuf_definitions"
-        )
-        context.run(
-            "cp -r ProtocolDefinitions/protobuf_definitions/* build/protobuf_definitions/"
-        )
+        context.run("rm -rf build && mkdir -p build && mkdir -p build/protobuf_definitions")
+        context.run("cp -r ProtocolDefinitions/protobuf_definitions/* build/protobuf_definitions/")
         proto_dir = get_project_root_path() / "build" / "protobuf_definitions"
         proto_files = gather_proto_files(proto_dir)
         for file in proto_files:
@@ -99,11 +95,10 @@ def generate_proto(context):
             --python-gapic-templates DEFAULT"  # noqa F501
         )
         context.run("cp -r build/blueye/protocol/types protocol/blueye/protocol/")
-        context.run(
-            "cp -r build/blueye/protocol/__init__.py protocol/blueye/protocol/protos.py"
-        )
+        context.run("cp -r build/blueye/protocol/__init__.py protocol/blueye/protocol/protos.py")
 
 
 @task(pre=[generate_tcp, generate_udp])
 def test(context):
-    context.run("pytest legacyprotocol/tests")
+    with context.cd(get_project_root_path()):
+        context.run("pytest legacyprotocol/tests")
