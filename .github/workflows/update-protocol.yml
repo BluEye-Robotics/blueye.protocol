@@ -10,30 +10,28 @@ jobs:
         with:
           submodules: true
           token: ${{ secrets.GIT_TOKEN }}
-      - name: Set up Python 3.13
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
-      - name: Install Poetry
-        uses: abatilo/actions-poetry@v3.0.2
+          python-version-file: "pyproject.toml"
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
         with:
-          poetry-version: "2.0.1"
+          version: "0.7.11"
       - name: Install dependencies
-        run: poetry install
+        run: uv sync --all-packages
       - name: Update ProtocolDefinitions
         working-directory: ProtocolDefinitions
         run: git fetch && git checkout ${{ github.event.client_payload.sha }}
       - name: Generate UDP protocol
-        run: poetry run invoke generate-udp
+        run: uv run invoke generate-udp
       - name: Generate TCP protocol
-        run: poetry run invoke generate-tcp
+        run: uv run invoke generate-tcp
       - name: Generate Protobuf protocol
-        run: poetry run invoke generate-proto
-      - name: Generate setup.py
-        run: poetry run invoke generate-setup-py
+        run: uv run invoke generate-proto
       - name: Add & Commit
         uses: EndBug/add-and-commit@v9
         with:
-          add: "blueye ProtocolDefinitions setup.py"
+          add: "protocol legacyprotocol ProtocolDefinitions"
           message: "Update ProtocolDefinitions"
           default_author: github_actions

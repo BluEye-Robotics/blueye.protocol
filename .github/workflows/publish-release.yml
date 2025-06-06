@@ -14,15 +14,14 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version-file: "pyproject.toml"
 
-      - name: Install Poetry
-        uses: abatilo/actions-poetry@v3.0.2
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
         with:
-          poetry-version: "2.0.1"
-
+          version: "0.7.11"
       - name: Build package with poetry
-        run: poetry build
+        run: uv build protocol
 
       - name: Publish to PyPi
-        run: poetry publish --username __token__ --password ${{ secrets.PYPI_TOKEN }}
+        run: uv publish --username __token__ --password ${{ secrets.PYPI_TOKEN }} dist/blueye_protocol-*
