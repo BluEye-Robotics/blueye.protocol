@@ -14,4 +14,12 @@ dependencies = ["blueye.protocol", "blueye.legacyprotocol"]
 members = ["protocol", "legacyprotocol"]
 
 [dependency-groups]
-dev = ["invoke>=2.2.0", "jinja2>=3.1.6"]
+dev = ["invoke>=2.2.0", "jinja2>=3.1.6", "ruff>=0.11.13"]
+
+[tool.ruff]
+line-length = 100
+exclude = [
+  "legacyprotocol/blueye/legacyprotocol/tcp_protocol_class.py",
+  "protocol/blueye/protocol/protos.py",
+  "protocol/blueye/protocol/types/*",
+]

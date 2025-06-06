@@ -27,4 +27,4 @@ jobs:
       - name: Run tests
         run: uv run invoke test
       - name: Run style checker
-        run: poetry run flake8
+        run: uv run ruff check

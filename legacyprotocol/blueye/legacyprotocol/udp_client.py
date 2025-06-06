@@ -6,7 +6,6 @@ import socket
 import time
 
 from .exceptions import UnknownUDPPacketTypeError
-
 from .udp_protocol_parser import AppProtocol
 
 
@@ -24,8 +23,7 @@ class UdpClient:
 
         self._sock = None
 
-        self._sock = socket.socket(socket.AF_INET,
-                                   socket.SOCK_DGRAM)
+        self._sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         # To able to run multiple UdpClients on MacOS one needs to set
         # SO_REUSEPORT, however on Windows that option does not exist,
         # so we use SO_REUSEADDR for Windows and Linux.

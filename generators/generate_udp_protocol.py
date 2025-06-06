@@ -29,9 +29,7 @@ protocol_data = {str(data)}
 
 """
     with open(
-        os.path.join(
-            "legacyprotocol", "blueye", "legacyprotocol", "udp_protocol_dict.py"
-        ),
+        os.path.join("legacyprotocol", "blueye", "legacyprotocol", "udp_protocol_dict.py"),
         "w",
     ) as f:
         f.write(data_file)

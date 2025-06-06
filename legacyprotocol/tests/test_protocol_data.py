@@ -13,7 +13,7 @@ def md5(fname):
 
 class TestAppProtocol:
     def test_protocol_data_import(self):
-        from blueye.legacyprotocol import protocol_data
+        from blueye.legacyprotocol import protocol_data # noqa: F401
 
     def test_protocol_data_hash(self, request):
         from blueye.legacyprotocol import _generator_hash, _json_hash
