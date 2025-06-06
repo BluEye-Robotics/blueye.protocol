@@ -4,13 +4,15 @@ import json
 import struct
 import tempfile
 import unittest
-from unittest.mock import *
 
-from blueye.protocol import AppProtocol
-from blueye.protocol.exceptions import UnknownUDPVersionError, UnknownUDPPacketTypeError
+from blueye.legacyprotocol import AppProtocol
+from blueye.legacyprotocol.exceptions import (
+    UnknownUDPPacketTypeError,
+    UnknownUDPVersionError,
+)
 
-
-fake_data = json.loads("""
+fake_data = json.loads(
+    """
 [
     {
         "version": "1",
@@ -67,9 +69,11 @@ fake_data = json.loads("""
         ]
     }
 ]
-""")
+"""
+)
 
-fake_data_endianess = json.loads("""
+fake_data_endianess = json.loads(
+    """
 [
     {
         "version": "1",
@@ -85,7 +89,8 @@ fake_data_endianess = json.loads("""
             }
         ]
     }
-]""")
+]"""
+)
 
 
 class TestAppProtocol(unittest.TestCase):
@@ -97,13 +102,13 @@ class TestAppProtocol(unittest.TestCase):
         self.assertEqual(ap.get_struct_format(1, 1), "<BBbHhIiQqfd")
 
     def test_struct_unpack_v1_t1(self):
-        data = (1, 1, 2, 3, 4, 5, 6, 7, 8, 9., 10.)
+        data = (1, 1, 2, 3, 4, 5, 6, 7, 8, 9.0, 10.0)
         data_packet = struct.pack("<BBbHhIiQqfd", *data)
         ap = AppProtocol(fake_data)
         self.assertEqual(ap.unpack_data(data_packet), data)
 
     def test_struct_unpack_v2_t1(self):
-        data = (2, 1, 2, 3, 4, 5, 6, 7, 8, 9., 10., 11.)
+        data = (2, 1, 2, 3, 4, 5, 6, 7, 8, 9.0, 10.0, 11.0)
         data_packet = struct.pack("<BBbHhIiQqfdd", *data)
         ap = AppProtocol(fake_data)
         self.assertEqual(ap.unpack_data(data_packet), data)
@@ -116,7 +121,7 @@ class TestAppProtocol(unittest.TestCase):
 
     def test_struct_unpack_data_dict_v2_t2(self):
         data = (2, 2, 2)
-        data_dict = {'u1-2-v': 2, 'u1-2-t': 2, 'i1-2': 2}
+        data_dict = {"u1-2-v": 2, "u1-2-t": 2, "i1-2": 2}
         data_packet = struct.pack("<BBb", *data)
         ap = AppProtocol(fake_data)
         self.assertEqual(ap.unpack_data_dict(data_packet), data_dict)
@@ -136,7 +141,7 @@ class TestAppProtocol(unittest.TestCase):
 
     def test_protocol_version_none(self):
         ap = AppProtocol(fake_data)
-        self.assertEqual(ap._last_version, '2')
+        self.assertEqual(ap._last_version, "2")
 
     def test_wrong_endianess(self):
         ap = AppProtocol(fake_data_endianess)
@@ -152,31 +157,109 @@ class TestAppProtocol(unittest.TestCase):
 
     def test_nptypes(self):
         ap = AppProtocol(fake_data)
-        self.assertEqual(ap.get_numpy_field_dtypes(1, 1), [
-                         '<u1', '<u1', '<i1', '<u2', '<i2',
-                         '<u4', '<i4', '<u8', '<i8', '<f4', '<f8'])
+        self.assertEqual(
+            ap.get_numpy_field_dtypes(1, 1),
+            [
+                "<u1",
+                "<u1",
+                "<i1",
+                "<u2",
+                "<i2",
+                "<u4",
+                "<i4",
+                "<u8",
+                "<i8",
+                "<f4",
+                "<f8",
+            ],
+        )
 
     def test_field_names_v1_t1(self):
         ap = AppProtocol(fake_data)
-        self.assertEqual(ap.get_field_names(1, 1), [
-                         'u1-1-v', 'u1-1-t', 'i1-1', 'u2-1', 'i2-1',
-                         'u4-1', 'i4-1', 'u8-1', 'i8-1', 'f4-1', 'f8-1'])
+        self.assertEqual(
+            ap.get_field_names(1, 1),
+            [
+                "u1-1-v",
+                "u1-1-t",
+                "i1-1",
+                "u2-1",
+                "i2-1",
+                "u4-1",
+                "i4-1",
+                "u8-1",
+                "i8-1",
+                "f4-1",
+                "f8-1",
+            ],
+        )
 
     def test_field_names_v2_t1(self):
         ap = AppProtocol(fake_data)
-        self.assertEqual(ap.get_field_names(1, 2), [
-                         'u1-2-v', 'u1-2-t', 'i1-2', 'u2-2', 'i2-2', 'u4-2',
-                         'i4-2', 'u8-2', 'i8-2', 'f4-2', 'f8-2-a', 'f8-2-b'])
+        self.assertEqual(
+            ap.get_field_names(1, 2),
+            [
+                "u1-2-v",
+                "u1-2-t",
+                "i1-2",
+                "u2-2",
+                "i2-2",
+                "u4-2",
+                "i4-2",
+                "u8-2",
+                "i8-2",
+                "f4-2",
+                "f8-2-a",
+                "f8-2-b",
+            ],
+        )
 
     def test_field_names_None_t1(self):
         ap = AppProtocol(fake_data)
-        self.assertEqual(ap.get_field_names(1), [
-                         'u1-2-v', 'u1-2-t', 'i1-2', 'u2-2', 'i2-2', 'u4-2',
-                         'i4-2', 'u8-2', 'i8-2', 'f4-2', 'f8-2-a', 'f8-2-b'])
+        self.assertEqual(
+            ap.get_field_names(1),
+            [
+                "u1-2-v",
+                "u1-2-t",
+                "i1-2",
+                "u2-2",
+                "i2-2",
+                "u4-2",
+                "i4-2",
+                "u8-2",
+                "i8-2",
+                "f4-2",
+                "f8-2-a",
+                "f8-2-b",
+            ],
+        )
 
     def test_np_array_from_file(self):
-        data = (2, 1, 2, 3, 4, 5, 6, 7, 8, 9., 10., 11.,
-                2, 1, 12, 13, 14, 15, 16, 17, 18, 19., 20., 21.)
+        data = (
+            2,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9.0,
+            10.0,
+            11.0,
+            2,
+            1,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19.0,
+            20.0,
+            21.0,
+        )
         data_packet = struct.pack("<BBbHhIiQqfddBBbHhIiQqfdd", *data)
         ap = AppProtocol(fake_data)
         tmp = tempfile.mkstemp()[1]
@@ -187,8 +270,32 @@ class TestAppProtocol(unittest.TestCase):
         self.assertEqual([data[:12], data[12:]], np_data.tolist())
 
     def test_np_array_from_gz_file(self):
-        data = (2, 1, 2, 3, 4, 5, 6, 7, 8, 9., 10., 11.,
-                2, 1, 12, 13, 14, 15, 16, 17, 18, 19., 20., 21.)
+        data = (
+            2,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9.0,
+            10.0,
+            11.0,
+            2,
+            1,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19.0,
+            20.0,
+            21.0,
+        )
         data_packet = struct.pack("<BBbHhIiQqfddBBbHhIiQqfdd", *data)
         ap = AppProtocol(fake_data)
         tmp = tempfile.mkstemp(suffix=".gz")[1]
@@ -201,11 +308,11 @@ class TestAppProtocol(unittest.TestCase):
     def test_np_array_from_empty_file(self):
         ap = AppProtocol(fake_data)
         tmp = tempfile.mkstemp()[1]
-        with open(tmp, "wb") as f:
+        with open(tmp, "wb"):
             pass
         np_data = ap.np_array_from_file(tmp)
         self.assertIsNone(np_data)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

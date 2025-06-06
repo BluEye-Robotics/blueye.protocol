@@ -1,41 +1,25 @@
-[tool.poetry]
-name = "blueye.protocol"
-description = "Python protocol definition for the Blueye drones"
-version = "2.7.1"
-authors = ["Sindre Hansen <sindre.hansen@blueye.no>",
-           "Johannes Schrimpf <johannes.schrimpf@blueye.no>",
-           "Aksel Lenes <aksel.lenes@blueye.no>",
-           "Alexander Vedeler <alexander.vedeler@blueye.no>",
-          ]
-license = "LGPL-3.0"
-packages = [
-    { include = "blueye" },
+[project]
+name = "workspace"
+version = "0.1.0"
+description = "Local workspace project"
+requires-python = ">=3.10"
+dependencies = ["blueye.protocol", "blueye.legacyprotocol"]
+
+
+[tool.uv.sources]
+"blueye.protocol" = { workspace = true }
+"blueye.legacyprotocol" = { workspace = true }
+
+[tool.uv.workspace]
+members = ["protocol", "legacyprotocol"]
+
+[dependency-groups]
+dev = ["invoke>=2.2.0", "jinja2>=3.1.6", "ruff>=0.11.13"]
+
+[tool.ruff]
+line-length = 100
+exclude = [
+  "legacyprotocol/blueye/legacyprotocol/tcp_protocol_class.py",
+  "protocol/blueye/protocol/protos.py",
+  "protocol/blueye/protocol/types/*",
 ]
-readme = "README.md"
-repository="https://github.com/blueye-robotics/blueye.protocol"
-homepage ="https://www.blueyerobotics.com"
-keywords = ["Blueye", "Robotics", "Protocol"]
-
-[tool.poetry.dependencies]
-python = "^3.10"
-numpy = { version = "^2.2" }
-setuptools = ">=75.8"
-proto-plus = "^1.25"
-
-[tool.poetry.group.dev.dependencies]
-Jinja2 = "^3.0"
-pytest = "^8.3"
-pytest-mock = "^3.14"
-pytest-timeout = "^2.3"
-invoke = "^2.1.1"
-pytest-cov = "^6.0"
-toml = "^0.10.0"
-flake8 = "^7.1"
-packaging = ">=24.0"
-
-[tool.poetry.build]
-generate-setup-file = true
-
-[build-system]
-requires = ["poetry>=2.0"]
-build-backend = "poetry.masonry.api"

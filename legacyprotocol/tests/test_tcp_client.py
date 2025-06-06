@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-import pytest
 import socket
-import struct
-from blueye.protocol.exceptions import (
-    ResponseTimeout,
+
+import pytest
+from blueye.legacyprotocol.exceptions import (
     MismatchedReply,
     NoConnectionToDrone,
+    ResponseTimeout,
 )
 
 
@@ -26,7 +26,7 @@ def mocked_logger(mocker):
 
 @pytest.fixture
 def tcp_client_v1(mocked_socket, mocked_logger):
-    from blueye.protocol import TcpClient
+    from blueye.legacyprotocol import TcpClient
 
     tc = TcpClient(protocol_version=1, autoConnect=False)
     tc.connect()
@@ -36,7 +36,7 @@ def tcp_client_v1(mocked_socket, mocked_logger):
 
 @pytest.fixture
 def tcp_client_v2(mocked_socket, mocked_logger):
-    from blueye.protocol import TcpClient
+    from blueye.legacyprotocol import TcpClient
 
     tc = TcpClient(protocol_version=2, autoConnect=False)
     tc.connect()
@@ -80,7 +80,7 @@ def test_take_still_picture_produces_correct_message(tcp_client_v2):
 
 @pytest.mark.parametrize(
     "top_lights, bottom_lights, expected_message",
-    [(0, 0, b"l\x00\x00"), (50, 50, b"l\x32\x32"), (255, 255, b"l\xFF\xFF")],
+    [(0, 0, b"l\x00\x00"), (50, 50, b"l\x32\x32"), (255, 255, b"l\xff\xff")],
 )
 def test_set_light_command_produces_correct_message(
     tcp_client, top_lights, bottom_lights, expected_message
@@ -105,10 +105,36 @@ def test_exception_raised_on_wrong_reply(tcp_client, mocked_socket):
 @pytest.mark.parametrize(
     "surge_input, sway_input, heave_input, yaw_input, slow_input, boost_input, tilt_speed_input, expected_message",
     [
-        (0, 0, 0, 0, 0, 0, 0, b'J\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'),
-        (1, 1, 1, 1, 1, 1, 1, b'J\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?'),
-        (0.555, 0.555, 0.555, 0.555, 0.555, 0.555, 0.555,
-         b'J{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?'),
+        (
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            b"J\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00",
+        ),
+        (
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            b"J\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?",
+        ),
+        (
+            0.555,
+            0.555,
+            0.555,
+            0.555,
+            0.555,
+            0.555,
+            0.555,
+            b"J{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?",
+        ),
     ],
 )
 def test_motion_tilt_command_produces_correct_message(
@@ -159,10 +185,33 @@ def test_motion_tilt_commmand_does_not_raise_exception_when_input_arguments_are_
 @pytest.mark.parametrize(
     "surge_input, sway_input, heave_input, yaw_input, slow_input, boost_input, expected_message",
     [
-        (0, 0, 0, 0, 0, 0, b"j\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"),
-        (1, 1, 1, 1, 1, 1, b"j\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?"),
-        (0.555, 0.555, 0.555, 0.555, 0.555, 0.555,
-         b"j{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?"),
+        (
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            b"j\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00",
+        ),
+        (
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            b"j\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?\x00\x00\x80?",
+        ),
+        (
+            0.555,
+            0.555,
+            0.555,
+            0.555,
+            0.555,
+            0.555,
+            b"j{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?{\x14\x0e?",
+        ),
     ],
 )
 def test_motion_command_produces_correct_message(
@@ -246,29 +295,19 @@ def test_user_geo_location_produces_correct_message(
 @pytest.mark.parametrize(
     "connection_duration, expected_message", [(1000, b"w\xe8\x03"), (0, b"w\x00\x00")]
 )
-def test_watchdog_produces_correct_message(
-    tcp_client, connection_duration, expected_message
-):
+def test_watchdog_produces_correct_message(tcp_client, connection_duration, expected_message):
     tcp_client.watchdog(connection_duration)
     tcp_client._sock.send.assert_called_with(expected_message)
 
 
-@pytest.mark.parametrize(
-    "direction, expected_message", [(-1, b"a\xff\xff"), (1, b"a\x01\x00")]
-)
-def test_auto_depth_step_produces_correct_message(
-    tcp_client_v2, direction, expected_message
-):
+@pytest.mark.parametrize("direction, expected_message", [(-1, b"a\xff\xff"), (1, b"a\x01\x00")])
+def test_auto_depth_step_produces_correct_message(tcp_client_v2, direction, expected_message):
     tcp_client_v2.auto_depth_step(direction)
     tcp_client_v2._sock.send.assert_called_with(expected_message)
 
 
-@pytest.mark.parametrize(
-    "direction, expected_message", [(-1, b"A\xff\xff"), (1, b"A\x01\x00")]
-)
-def test_auto_heading_step_produces_correct_message(
-    tcp_client_v2, direction, expected_message
-):
+@pytest.mark.parametrize("direction, expected_message", [(-1, b"A\xff\xff"), (1, b"A\x01\x00")])
+def test_auto_heading_step_produces_correct_message(tcp_client_v2, direction, expected_message):
     tcp_client_v2.auto_heading_step(direction)
     tcp_client_v2._sock.send.assert_called_with(expected_message)
 
@@ -349,26 +388,23 @@ def test_camera_setting_functions_v2_produce_correct_messages(
     tcp_client_v2._sock.send.assert_called_with(expected_message)
 
 
-def test_get_camera_parameters_produces_correct_message(
-    tcp_client, mocked_socket, mocked_struct
-):
+def test_get_camera_parameters_produces_correct_message(tcp_client, mocked_socket, mocked_struct):
     tcp_client.get_camera_parameters()
     tcp_client._sock.send.assert_called_with(b"Va")
 
 
-def test_not_specifying_protocol_results_in_latest_protocol(
-    mocked_socket, mocked_logger
-):
-    from blueye.protocol import TcpClient
+def test_not_specifying_protocol_results_in_latest_protocol(mocked_socket, mocked_logger):
+    from blueye.legacyprotocol import TcpClient
 
     tc = TcpClient(autoConnect=False)
     assert tc.protocol_version == 2
 
 
 @pytest.mark.parametrize("density, expected_message", [(0, b"W\x00\x00"), (1000, b"W\xe8\x03")])
-def test_set_water_density_produces_correct_message(tcp_client_v2,
-                                                    mocked_socket,
-                                                    density,
-                                                    expected_message):
+def test_set_water_density_produces_correct_message(
+    tcp_client_v2, mocked_socket, density, expected_message
+):
     tcp_client_v2.set_water_density(density)
+    tcp_client_v2._sock.send.assert_called_with(expected_message)
+    tcp_client_v2._sock.send.assert_called_with(expected_message)
     tcp_client_v2._sock.send.assert_called_with(expected_message)

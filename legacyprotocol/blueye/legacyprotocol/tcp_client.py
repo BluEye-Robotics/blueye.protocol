@@ -3,7 +3,7 @@ import logging
 import socket
 import threading
 
-from blueye.protocol.exceptions import (MismatchedReply, NoConnectionToDrone,
+from .exceptions import (MismatchedReply, NoConnectionToDrone,
                                         ResponseTimeout, SocketNotConnected)
 
 

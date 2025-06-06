@@ -1,10 +1,6 @@
 # blueye.protocol
 [![Tests](https://github.com/BluEye-Robotics/blueye.protocol/workflows/Tests/badge.svg)](https://github.com/BluEye-Robotics/blueye.protocol/actions)
 
-**Deprecation notice**
-
-Blunux 3.0 introduces a new protocol based on [Protobuf](https://developers.google.com/protocol-buffers/) messages passed over a [ZeroMQ](https://zeromq.org/) layer. Starting with Blunux 3.1 the old TCP/UDP based protocol will no longer be supported/compatible.
-
 
 ## About
 This repository contains a python library that defines how to communicate with the underwater drones made by [Blueye Robotics](https://blueyerobotics.com).
@@ -23,7 +19,7 @@ pip install blueye.protocol
 ## Development
 
 ### Dependency/Package management
-We use Poetry for dependency/package management, see the [Poetry docs](https://python-poetry.org/docs/) for installation instructions.
+We use `uv` for dependency/package management, see the [uv docs](https://docs.astral.sh/uv/getting-started/installation/) for installation instructions.
 
 
 ### Code generators
@@ -49,24 +45,3 @@ or directly using pytest (if you don't want to generate the definitions)
 ``` shell
 pytest
 ```
-
-### `setup.py`
-Since bitbake doesn't have support for pyproject.toml files yet, we need to include a
-`setup.py` file to specify the dependencies needed. There's an invoke task for
-generating the file that can be run with
-``` shell
-invoke generate-setup-py
-```
-
-If you are running MacOS, you need to install gnu-tar
-``` shell
-brew install gnu-tar
-```
-
-and then run the follwing line before the invoke command:
-``` shell
-PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
-```
-
-**Be sure to run this script and commit the `setup.py` file when the dependencies have
-changed.**

@@ -1,9 +1,7 @@
 import re
 from pathlib import Path
 
-import toml
 from invoke import task
-from packaging.utils import canonicalize_name
 
 
 def strip_protolint_comments(file_path: Path):
@@ -79,12 +77,8 @@ def generate_proto(context):
     installed.
     """
     with context.cd(get_project_root_path()):
-        context.run(
-            "rm -rf build && mkdir -p build && mkdir -p build/protobuf_definitions"
-        )
-        context.run(
-            "cp -r ProtocolDefinitions/protobuf_definitions/* build/protobuf_definitions/"
-        )
+        context.run("rm -rf build && mkdir -p build && mkdir -p build/protobuf_definitions")
+        context.run("cp -r ProtocolDefinitions/protobuf_definitions/* build/protobuf_definitions/")
         proto_dir = get_project_root_path() / "build" / "protobuf_definitions"
         proto_files = gather_proto_files(proto_dir)
         for file in proto_files:
@@ -100,24 +94,11 @@ def generate_proto(context):
             --python-gapic-templates /templates/ \
             --python-gapic-templates DEFAULT"  # noqa F501
         )
-        context.run("cp -r build/blueye/protocol/types blueye/protocol/")
-        context.run("cp -r build/blueye/protocol/__init__.py blueye/protocol/protos.py")
+        context.run("cp -r build/blueye/protocol/types protocol/blueye/protocol/")
+        context.run("cp -r build/blueye/protocol/__init__.py protocol/blueye/protocol/protos.py")
 
 
 @task(pre=[generate_tcp, generate_udp])
 def test(context):
-    context.run("pytest tests")
-
-
-@task
-def generate_setup_py(context):
-    context.run("poetry build")
-    pyproject = toml.load("pyproject.toml")
-    package_name = pyproject["tool"]["poetry"]["name"]
-    package_version = pyproject["tool"]["poetry"]["version"]
-    canonicalized_name = canonicalize_name(package_name)
-    distribution_name = canonicalized_name.replace("-", "_")
-    context.run(
-        f"tar --extract --file=dist/{distribution_name}-{package_version}.tar.gz "
-        + '--no-anchored "setup.py" --strip-components 1'
-    )
+    with context.cd(get_project_root_path()):
+        context.run("pytest legacyprotocol/tests")

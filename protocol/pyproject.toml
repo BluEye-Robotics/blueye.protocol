@@ -1,0 +1,24 @@
+[project]
+name = "blueye.protocol"
+version = "3.1.0"
+description = "Python protocol definition for the Blueye drones"
+authors = [{ name = "Blueye Robotics", email = "contact@blueye.no" }]
+requires-python = ">=3.10, <4"
+readme = "README.md"
+license = { file = "LICENSE" }
+keywords = ["Blueye", "Robotics", "Protocol"]
+dependencies = ["proto-plus~=1.25"]
+
+[project.optional-dependencies]
+legacy = ["blueye.legacyprotocol >= 0.1"]
+
+[project.urls]
+Homepage = "https://www.blueyerobotics.com"
+Repository = "https://github.com/blueye-robotics/blueye.protocol"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+namespaces = true

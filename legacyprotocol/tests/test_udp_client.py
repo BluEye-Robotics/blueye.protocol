@@ -4,7 +4,7 @@ import struct
 import pytest
 from unittest.mock import Mock
 
-from blueye.protocol import UdpClient
+from blueye.legacyprotocol import UdpClient
 
 UDP_PORT = 32011
 
