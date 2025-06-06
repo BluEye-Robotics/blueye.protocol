@@ -5,7 +5,7 @@ import platform
 import socket
 import time
 
-from blueye.protocol.exceptions import UnknownUDPPacketTypeError
+from .exceptions import UnknownUDPPacketTypeError
 
 from .udp_protocol_parser import AppProtocol
 

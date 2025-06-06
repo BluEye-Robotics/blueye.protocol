@@ -1,10 +1,6 @@
 # blueye.protocol
 [![Tests](https://github.com/BluEye-Robotics/blueye.protocol/workflows/Tests/badge.svg)](https://github.com/BluEye-Robotics/blueye.protocol/actions)
 
-**Deprecation notice**
-
-Blunux 3.0 introduces a new protocol based on [Protobuf](https://developers.google.com/protocol-buffers/) messages passed over a [ZeroMQ](https://zeromq.org/) layer. Starting with Blunux 3.1 the old TCP/UDP based protocol will no longer be supported/compatible.
-
 
 ## About
 This repository contains a python library that defines how to communicate with the underwater drones made by [Blueye Robotics](https://blueyerobotics.com).

@@ -1,0 +1,15 @@
+[project]
+name = "blueye.legacyprotocol"
+version = "0.1.0"
+description = "Legacy UDP/TCP protocol for Blueye drones"
+authors = [{ name = "Blueye Robotics", email = "contact@blueye.no" }]
+readme = "README.md"
+requires-python = ">=3.10, <4"
+dependencies = ["numpy~=2.2", "setuptools>=75.8"]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+namespaces = true

@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 import gzip
 import struct
+
 import numpy as np
 
+from .exceptions import UnknownUDPPacketTypeError, UnknownUDPVersionError
 from .udp_protocol_dict import protocol_data
-from blueye.protocol.exceptions import UnknownUDPVersionError, UnknownUDPPacketTypeError
 
 
 class AppProtocol:
