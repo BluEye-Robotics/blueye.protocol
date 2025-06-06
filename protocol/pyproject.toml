@@ -2,17 +2,15 @@
 name = "blueye.protocol"
 version = "3.0.0"
 description = "Python protocol definition for the Blueye drones"
-authors = [
-    { name = "Sindre Hansen", email = "sindre.hansen@blueye.no" },
-    { name = "Johannes Schrimpf", email = "johannes.schrimpf@blueye.no" },
-    { name = "Aksel Lenes", email = "aksel.lenes@blueye.no" },
-    { name = "Alexander Vedeler", email = "alexander.vedeler@blueye.no" },
-]
-requires-python = "~=3.10"
+authors = [{ name = "Blueye Robotics", email = "contact@blueye.no" }]
+requires-python = ">=3.10, <4"
 readme = "README.md"
 license = "LGPL-3.0"
 keywords = ["Blueye", "Robotics", "Protocol"]
-dependencies = ["numpy~=2.2", "setuptools>=75.8", "proto-plus~=1.25"]
+dependencies = ["proto-plus~=1.25"]
+
+[project.optional-dependencies]
+legacy = ["blueye.legacyprotocol >= 0.1"]
 
 [project.urls]
 Homepage = "https://www.blueyerobotics.com"
@@ -31,8 +29,10 @@ dev = [
     "packaging>=24.0",
 ]
 
-[tool.hatch.build.targets.sdist]
-include = ["blueye"]
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
 
-[tool.hatch.build.targets.wheel]
-include = ["blueye"]
+[tool.setuptools.packages.find]
+namespaces = true
+#where = ["blueye"]
