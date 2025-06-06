@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
+import hashlib
 import json
 import os
-import pickle
-import hashlib
 from collections import OrderedDict
 
 
@@ -15,8 +14,10 @@ def md5(fname):
 
 
 def generate():
-    data = json.loads(open("ProtocolDefinitions/udp_protocol.json").read(),
-                      object_pairs_hook=OrderedDict)
+    data = json.loads(
+        open("ProtocolDefinitions/udp_protocol.json").read(),
+        object_pairs_hook=OrderedDict,
+    )
     protocol_md5 = md5("ProtocolDefinitions/udp_protocol.json")
     generator_script_md5 = md5("generators/generate_udp_protocol.py")
     data_file = f"""# -*- coding: utf-8 -*-
@@ -27,5 +28,10 @@ _generator_hash = "{generator_script_md5}"
 protocol_data = {str(data)}
 
 """
-    with open(os.path.join("blueye", "protocol", "v2", "udp_protocol_dict.py"), "w") as f:
+    with open(
+        os.path.join(
+            "legacyprotocol", "blueye", "legacyprotocol", "udp_protocol_dict.py"
+        ),
+        "w",
+    ) as f:
         f.write(data_file)

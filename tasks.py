@@ -100,8 +100,10 @@ def generate_proto(context):
             --python-gapic-templates /templates/ \
             --python-gapic-templates DEFAULT"  # noqa F501
         )
-        context.run("cp -r build/blueye/protocol/types blueye/protocol/")
-        context.run("cp -r build/blueye/protocol/__init__.py blueye/protocol/protos.py")
+        context.run("cp -r build/blueye/protocol/types protocol/blueye/protocol/")
+        context.run(
+            "cp -r build/blueye/protocol/__init__.py protocol/blueye/protocol/protos.py"
+        )
 
 
 @task(pre=[generate_tcp, generate_udp])
