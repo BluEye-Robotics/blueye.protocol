@@ -5,7 +5,7 @@ description = "Python protocol definition for the Blueye drones"
 authors = [{ name = "Blueye Robotics", email = "contact@blueye.no" }]
 requires-python = ">=3.10, <4"
 readme = "README.md"
-license = "LGPL-3.0"
+license = { file = "LICENSE" }
 keywords = ["Blueye", "Robotics", "Protocol"]
 dependencies = ["proto-plus~=1.25"]
 
