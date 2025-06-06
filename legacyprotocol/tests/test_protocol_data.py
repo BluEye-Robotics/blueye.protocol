@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import hashlib
 import os
-import pytest
 
 
 def md5(fname):
@@ -12,15 +11,17 @@ def md5(fname):
     return hash_md5.hexdigest()
 
 
-class TestAppProtocol():
+class TestAppProtocol:
     def test_protocol_data_import(self):
         from blueye.legacyprotocol import protocol_data
 
     def test_protocol_data_hash(self, request):
-        from blueye.legacyprotocol import _json_hash, _generator_hash
-        root_dir_path = request.fspath.dirname + "/../"
-        assert(_json_hash == md5(os.path.join(root_dir_path,
-                                              "ProtocolDefinitions",
-                                              "udp_protocol.json")))
-        assert(_generator_hash == md5(os.path.join(
-            root_dir_path, "generators", "generate_udp_protocol.py")))
+        from blueye.legacyprotocol import _generator_hash, _json_hash
+
+        root_dir_path = request.fspath.dirname + "/../../"
+        assert _json_hash == md5(
+            os.path.join(root_dir_path, "ProtocolDefinitions", "udp_protocol.json")
+        )
+        assert _generator_hash == md5(
+            os.path.join(root_dir_path, "generators", "generate_udp_protocol.py")
+        )

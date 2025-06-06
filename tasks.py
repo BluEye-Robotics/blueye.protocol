@@ -1,9 +1,7 @@
 import re
 from pathlib import Path
 
-import toml
 from invoke import task
-from packaging.utils import canonicalize_name
 
 
 def strip_protolint_comments(file_path: Path):
@@ -108,4 +106,4 @@ def generate_proto(context):
 
 @task(pre=[generate_tcp, generate_udp])
 def test(context):
-    context.run("pytest tests")
+    context.run("pytest legacyprotocol/tests")
