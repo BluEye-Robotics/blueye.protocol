@@ -107,17 +107,3 @@ def generate_proto(context):
 @task(pre=[generate_tcp, generate_udp])
 def test(context):
     context.run("pytest tests")
-
-
-@task
-def generate_setup_py(context):
-    context.run("poetry build")
-    pyproject = toml.load("pyproject.toml")
-    package_name = pyproject["tool"]["poetry"]["name"]
-    package_version = pyproject["tool"]["poetry"]["version"]
-    canonicalized_name = canonicalize_name(package_name)
-    distribution_name = canonicalized_name.replace("-", "_")
-    context.run(
-        f"tar --extract --file=dist/{distribution_name}-{package_version}.tar.gz "
-        + '--no-anchored "setup.py" --strip-components 1'
-    )
