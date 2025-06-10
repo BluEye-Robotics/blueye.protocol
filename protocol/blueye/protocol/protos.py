@@ -115,6 +115,7 @@ from .types.message_formats import IperfStatus
 from .types.message_formats import Laser
 from .types.message_formats import LatLongPosition
 from .types.message_formats import Lights
+from .types.message_formats import MagneticDeclination
 from .types.message_formats import MedusaSpectrometerData
 from .types.message_formats import MotionInput
 from .types.message_formats import MultibeamConfig
@@ -158,6 +159,7 @@ from .types.message_formats import GuestPortNumber
 from .types.message_formats import HeadingMode
 from .types.message_formats import HeadingSource
 from .types.message_formats import IntervalType
+from .types.message_formats import LocationSource
 from .types.message_formats import LogoType
 from .types.message_formats import Model
 from .types.message_formats import MultibeamFrequencyMode
@@ -264,6 +266,7 @@ from .types.telemetry import Imu2Tel
 from .types.telemetry import IperfTel
 from .types.telemetry import LaserTel
 from .types.telemetry import LightsTel
+from .types.telemetry import MagneticDeclinationTel
 from .types.telemetry import MedusaSpectrometerDataTel
 from .types.telemetry import MissionStatusTel
 from .types.telemetry import MultibeamConfigTel
@@ -436,7 +439,10 @@ __all__ = (
 'Lights',
 'LightsCtrl',
 'LightsTel',
+'LocationSource',
 'LogoType',
+'MagneticDeclination',
+'MagneticDeclinationTel',
 'MedusaSpectrometerData',
 'MedusaSpectrometerDataTel',
 'Mission',

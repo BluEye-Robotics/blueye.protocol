@@ -28,6 +28,7 @@ __protobuf__ = proto.module(
     package='blueye.protocol',
     manifest={
         'AttitudeTel',
+        'MagneticDeclinationTel',
         'AltitudeTel',
         'ForwardDistanceTel',
         'DvlVelocityTel',
@@ -96,6 +97,23 @@ class AttitudeTel(proto.Message):
         proto.MESSAGE,
         number=1,
         message=message_formats.Attitude,
+    )
+
+
+class MagneticDeclinationTel(proto.Message):
+    r"""Current Magnetic Declination status. Used to get true North
+    compass readings based on location.
+
+    Attributes:
+        magnetic_declination (blueye.protocol.types.MagneticDeclination):
+            The current magnetic declination status of
+            the drone.
+    """
+
+    magnetic_declination: message_formats.MagneticDeclination = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.MagneticDeclination,
     )
 
 

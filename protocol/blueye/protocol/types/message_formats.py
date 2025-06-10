@@ -28,6 +28,7 @@ __protobuf__ = proto.module(
     package='blueye.protocol',
     manifest={
         'IntervalType',
+        'LocationSource',
         'HeadingSource',
         'HeadingMode',
         'ResetCoordinateSource',
@@ -79,6 +80,7 @@ __protobuf__ = proto.module(
         'Battery',
         'BatteryBQ40Z50',
         'Attitude',
+        'MagneticDeclination',
         'Altitude',
         'ForwardDistance',
         'PositionEstimate',
@@ -145,6 +147,25 @@ class IntervalType(proto.Enum):
     """Time interval."""
     INTERVAL_TYPE_DISTANCE = 2
     """Distance interval."""
+
+
+class LocationSource(proto.Enum):
+    r"""Location source used in magnetic declination look-up.
+
+    Attributes:
+        LOCATION_SOURCE_UNSPECIFIED (0):
+            The position is not set.
+        LOCATION_SOURCE_USER (1):
+            Typically pilot device GPS.
+        LOCATION_SOURCE_DRONE (2):
+            Blueye GPS, DVL, or a USBL system.
+    """
+    LOCATION_SOURCE_UNSPECIFIED = 0
+    """The position is not set."""
+    LOCATION_SOURCE_USER = 1
+    """Typically pilot device GPS."""
+    LOCATION_SOURCE_DRONE = 2
+    """Blueye GPS, DVL, or a USBL system."""
 
 
 class HeadingSource(proto.Enum):
@@ -2311,6 +2332,38 @@ class Attitude(proto.Message):
     yaw: float = proto.Field(
         proto.FLOAT,
         number=3,
+    )
+
+
+class MagneticDeclination(proto.Message):
+    r"""The Magnetic Declination status used to get true North
+    compass readings based on location.
+
+    Attributes:
+        location_source (blueye.protocol.types.LocationSource):
+            Location source used for the magnetic
+            declination look-up in geographiclib.
+        declination (float):
+            The declination which is applied to the yaw
+            field in the Attitude msg.
+        location (blueye.protocol.types.LatLongPosition):
+            The location used for the magnetic
+            declination look-up.
+    """
+
+    location_source: 'LocationSource' = proto.Field(
+        proto.ENUM,
+        number=1,
+        enum='LocationSource',
+    )
+    declination: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    location: 'LatLongPosition' = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message='LatLongPosition',
     )
 
 
