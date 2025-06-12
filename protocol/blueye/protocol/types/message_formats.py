@@ -733,6 +733,8 @@ class GuestPortDeviceID(proto.Enum):
             Blueprint Subsea Oculus M370s.
         GUEST_PORT_DEVICE_ID_WATERLINKED_SONAR_3D15 (43):
             Waterlinked Sonar 3D-15.
+        GUEST_PORT_DEVICE_ID_CERULEAN_TRACKER_650 (44):
+            Cerulean Tracker 650.
     """
     GUEST_PORT_DEVICE_ID_UNSPECIFIED = 0
     """Unspecified."""
@@ -822,6 +824,8 @@ class GuestPortDeviceID(proto.Enum):
     """Blueprint Subsea Oculus M370s."""
     GUEST_PORT_DEVICE_ID_WATERLINKED_SONAR_3D15 = 43
     """Waterlinked Sonar 3D-15."""
+    GUEST_PORT_DEVICE_ID_CERULEAN_TRACKER_650 = 44
+    """Cerulean Tracker 650."""
 
 
 class GuestPortNumber(proto.Enum):
@@ -864,6 +868,8 @@ class NavigationSensorID(proto.Enum):
             Blueye GNSS device on the ROV.
         NAVIGATION_SENSOR_ID_NORTEK_DVL_NUCLEUS (5):
             Nortek DVL Nucleus 1000.
+        NAVIGATION_SENSOR_ID_CERULEAN_TRACKER_650 (6):
+            Cerulean Tracker 650.
     """
     NAVIGATION_SENSOR_ID_UNSPECIFIED = 0
     """Unspecified."""
@@ -877,6 +883,8 @@ class NavigationSensorID(proto.Enum):
     """Blueye GNSS device on the ROV."""
     NAVIGATION_SENSOR_ID_NORTEK_DVL_NUCLEUS = 5
     """Nortek DVL Nucleus 1000."""
+    NAVIGATION_SENSOR_ID_CERULEAN_TRACKER_650 = 6
+    """Cerulean Tracker 650."""
 
 
 class GuestPortDetachStatus(proto.Enum):
