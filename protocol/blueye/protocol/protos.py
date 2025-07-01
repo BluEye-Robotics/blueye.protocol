@@ -44,6 +44,7 @@ from .types.control import DeactivateGuestPortsCtrl
 from .types.control import DeactivateMultibeamCtrl
 from .types.control import EndDiveCtrl
 from .types.control import FinishCalibrationCtrl
+from .types.control import FormatRemovableStorageDeviceCtrl
 from .types.control import GenericServoCtrl
 from .types.control import GripperCtrl
 from .types.control import GuestportLightsCtrl
@@ -135,8 +136,11 @@ from .types.message_formats import PositionEstimate
 from .types.message_formats import RecordOn
 from .types.message_formats import RecordState
 from .types.message_formats import Reference
+from .types.message_formats import RemovableStorageDevice
+from .types.message_formats import RemovableStorageErrorFlags
 from .types.message_formats import ResetPositionSettings
 from .types.message_formats import StationKeepingState
+from .types.message_formats import StoragePartition
 from .types.message_formats import StorageSpace
 from .types.message_formats import SystemTime
 from .types.message_formats import ThicknessGauge
@@ -280,6 +284,7 @@ from .types.telemetry import PositionEstimateTel
 from .types.telemetry import RecordStateTel
 from .types.telemetry import ReferenceAutoPilotTel
 from .types.telemetry import ReferenceTel
+from .types.telemetry import RemovableStorageTel
 from .types.telemetry import ThicknessGaugeTel
 from .types.telemetry import TiltAngleTel
 from .types.telemetry import TiltStabilizationTel
@@ -386,6 +391,7 @@ __all__ = (
 'FlashEscSettingsRep',
 'FlashEscSettingsReq',
 'FontSize',
+'FormatRemovableStorageDeviceCtrl',
 'ForwardDistance',
 'ForwardDistanceTel',
 'Framerate',
@@ -494,6 +500,9 @@ __all__ = (
 'ReferenceAutoPilot',
 'ReferenceAutoPilotTel',
 'ReferenceTel',
+'RemovableStorageDevice',
+'RemovableStorageErrorFlags',
+'RemovableStorageTel',
 'ResetCoordinateSource',
 'ResetOdometerCtrl',
 'ResetPositionCtrl',
@@ -526,6 +535,7 @@ __all__ = (
 'StartDiveCtrl',
 'StationKeepingCtrl',
 'StationKeepingState',
+'StoragePartition',
 'StorageSpace',
 'SyncTimeRep',
 'SyncTimeReq',

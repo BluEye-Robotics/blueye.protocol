@@ -55,6 +55,7 @@ __protobuf__ = proto.module(
         'CanisterBottomTemperatureTel',
         'CanisterBottomHumidityTel',
         'VideoStorageSpaceTel',
+        'RemovableStorageTel',
         'DataStorageSpaceTel',
         'CalibrationStateTel',
         'TiltStabilizationTel',
@@ -512,13 +513,37 @@ class VideoStorageSpaceTel(proto.Message):
 
     Attributes:
         storage_space (blueye.protocol.types.StorageSpace):
-            Video storage information.
+            Internal Video storage information.
+        removable_space (blueye.protocol.types.StorageSpace):
+            Removable Video storage information. Can be
+            empty.
     """
 
     storage_space: message_formats.StorageSpace = proto.Field(
         proto.MESSAGE,
         number=1,
         message=message_formats.StorageSpace,
+    )
+    removable_space: message_formats.StorageSpace = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=message_formats.StorageSpace,
+    )
+
+
+class RemovableStorageTel(proto.Message):
+    r"""Information about removable storage device.
+
+    Attributes:
+        storage_device (blueye.protocol.types.RemovableStorageDevice):
+            Information about the storage device (such as
+            partitions)
+    """
+
+    storage_device: message_formats.RemovableStorageDevice = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.RemovableStorageDevice,
     )
 
 

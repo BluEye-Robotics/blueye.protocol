@@ -95,6 +95,9 @@ __protobuf__ = proto.module(
         'DiveTime',
         'RecordOn',
         'StorageSpace',
+        'StoragePartition',
+        'RemovableStorageDevice',
+        'RemovableStorageErrorFlags',
         'CalibrationState',
         'IperfStatus',
         'NStreamers',
@@ -2902,6 +2905,157 @@ class StorageSpace(proto.Message):
     )
 
 
+class StoragePartition(proto.Message):
+    r"""Storage partition.
+
+    Attributes:
+        storage_space (blueye.protocol.types.StorageSpace):
+            The amount of storage space on the device.
+        file_system_type (str):
+            File system type of the removable storage
+            device.
+        device_path (str):
+            Partition device path
+        mount_path (str):
+            Mount path of the partition.
+    """
+
+    storage_space: 'StorageSpace' = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message='StorageSpace',
+    )
+    file_system_type: str = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    device_path: str = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    mount_path: str = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+
+
+class RemovableStorageDevice(proto.Message):
+    r"""Removable storage device.
+
+    Attributes:
+        vendor_name (str):
+            USB vendor name.
+        model_name (str):
+            Model name of the USB storage device.
+        device_path (str):
+            Mount path of the storage device.
+        status (blueye.protocol.types.RemovableStorageDevice.Status):
+            Status of the storage device.
+        error_flags (blueye.protocol.types.RemovableStorageErrorFlags):
+            Any active error flags for the storage
+            device.
+        partitions (MutableSequence[blueye.protocol.types.StoragePartition]):
+            List of partitions on the storage device.
+    """
+    class Status(proto.Enum):
+        r"""Overall status of the storage device.
+
+        Attributes:
+            STATUS_UNSPECIFIED (0):
+                Unspecified.
+            STATUS_READY (1):
+                The storage device is valid and ready for
+                use.
+            STATUS_FORMATTING (2):
+                The storage device is being formatted
+            STATUS_ERROR (3):
+                The storage device is in an error state.
+        """
+        STATUS_UNSPECIFIED = 0
+        """Unspecified."""
+        STATUS_READY = 1
+        """The storage device is valid and ready for use."""
+        STATUS_FORMATTING = 2
+        """The storage device is being formatted"""
+        STATUS_ERROR = 3
+        """The storage device is in an error state."""
+
+    vendor_name: str = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    model_name: str = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    device_path: str = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    status: Status = proto.Field(
+        proto.ENUM,
+        number=4,
+        enum=Status,
+    )
+    error_flags: 'RemovableStorageErrorFlags' = proto.Field(
+        proto.MESSAGE,
+        number=5,
+        message='RemovableStorageErrorFlags',
+    )
+    partitions: MutableSequence['StoragePartition'] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=6,
+        message='StoragePartition',
+    )
+
+
+class RemovableStorageErrorFlags(proto.Message):
+    r"""Error flags related to a removable storage device.
+
+    Attributes:
+        error_message (str):
+            Optional error message to give additional
+            information from the drone to a client about
+            active error flags.
+        no_partitions_found (bool):
+            Device is attached but no partitions are
+            found.
+        multiple_partitions_found (bool):
+            Multiple partitions are found.
+        wrong_file_system_found (bool):
+            The wrong file system is found.
+        device_is_read_only (bool):
+            The device is in read-only mode.
+        formatting_failed (bool):
+            Formatting of the device failed.
+    """
+
+    error_message: str = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    no_partitions_found: bool = proto.Field(
+        proto.BOOL,
+        number=2,
+    )
+    multiple_partitions_found: bool = proto.Field(
+        proto.BOOL,
+        number=3,
+    )
+    wrong_file_system_found: bool = proto.Field(
+        proto.BOOL,
+        number=4,
+    )
+    device_is_read_only: bool = proto.Field(
+        proto.BOOL,
+        number=5,
+    )
+    formatting_failed: bool = proto.Field(
+        proto.BOOL,
+        number=6,
+    )
+
+
 class CalibrationState(proto.Message):
     r"""Compass calibration state.
 
@@ -2927,7 +3081,7 @@ class CalibrationState(proto.Message):
         r"""Status of the compass calibration procedure.
 
         When calibration is started, the status will indicate the active
-        (upfacing) axis.
+        (up facing) axis.
 
         Attributes:
             STATUS_UNSPECIFIED (0):
@@ -2957,7 +3111,7 @@ class CalibrationState(proto.Message):
                 axis is active.
             STATUS_CALIBRATING_THRUSTER (9):
                 Compass is calibrating for thruster
-                interferance.
+                interference.
         """
         STATUS_UNSPECIFIED = 0
         """Unspecified status."""
@@ -2979,7 +3133,7 @@ class CalibrationState(proto.Message):
         STATUS_CALIBRATING_Z_NEGATIVE = 8
         """Compass is calibrating and the negative Z axis is active."""
         STATUS_CALIBRATING_THRUSTER = 9
-        """Compass is calibrating for thruster interferance."""
+        """Compass is calibrating for thruster interference."""
 
     status: Status = proto.Field(
         proto.ENUM,

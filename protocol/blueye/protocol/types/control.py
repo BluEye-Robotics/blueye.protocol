@@ -68,6 +68,7 @@ __protobuf__ = proto.module(
         'DeactivateMultibeamCtrl',
         'StartDiveCtrl',
         'EndDiveCtrl',
+        'FormatRemovableStorageDeviceCtrl',
     },
 )
 
@@ -592,6 +593,19 @@ class EndDiveCtrl(proto.Message):
     The message does not do anything, but is included in the log
     files so we can see at which point the user exited the dive
     view.
+
+    """
+
+
+class FormatRemovableStorageDeviceCtrl(proto.Message):
+    r"""Message sent when the user wants to format a connected
+    removable storage device.
+    The app will receive a RemovableStorageTel message with
+    information about the newly formatted drive.
+
+    Warning: The drone will delete any partitions and format the
+    drive with a single exFat partition. Any data on the drive will
+    be lost.
 
     """
 
