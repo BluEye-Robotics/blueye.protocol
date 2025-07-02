@@ -116,6 +116,7 @@ from .types.message_formats import IperfStatus
 from .types.message_formats import Laser
 from .types.message_formats import LatLongPosition
 from .types.message_formats import Lights
+from .types.message_formats import LogEntry
 from .types.message_formats import MagneticDeclination
 from .types.message_formats import MedusaSpectrometerData
 from .types.message_formats import MotionInput
@@ -446,6 +447,7 @@ __all__ = (
 'LightsCtrl',
 'LightsTel',
 'LocationSource',
+'LogEntry',
 'LogoType',
 'MagneticDeclination',
 'MagneticDeclinationTel',

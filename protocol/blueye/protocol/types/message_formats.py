@@ -51,6 +51,7 @@ __protobuf__ = proto.module(
         'GuestPortError',
         'MultibeamFrequencyMode',
         'BinlogRecord',
+        'LogEntry',
         'MotionInput',
         'Lights',
         'Laser',
@@ -1002,6 +1003,95 @@ class BinlogRecord(proto.Message):
         proto.MESSAGE,
         number=3,
         message=timestamp_pb2.Timestamp,
+    )
+
+
+class LogEntry(proto.Message):
+    r"""Log entry
+
+    Used to store ROS log entries in the bez file
+
+    Attributes:
+        timestamp (google.protobuf.timestamp_pb2.Timestamp):
+            Timestamp of the log entry.
+        process_name (str):
+            Name of the process that generated the log
+            entry.
+        process_id (int):
+            Process ID of the log entry.
+        thread_id (int):
+            Thread ID of the log entry.
+        source (str):
+            Source of the log entry (specific class or
+            named logger).
+        level (blueye.protocol.types.LogEntry.LogLevel):
+            Log level, info, warning, error, etc.
+        message (str):
+            Log message.
+    """
+    class LogLevel(proto.Enum):
+        r"""
+
+        Attributes:
+            LOG_LEVEL_UNSPECIFIED (0):
+                Unspecified log level.
+            LOG_LEVEL_TRACE (1):
+                Trace log level.
+            LOG_LEVEL_DEBUG (2):
+                Debug log level.
+            LOG_LEVEL_INFO (3):
+                Info log level.
+            LOG_LEVEL_WARNING (4):
+                Warning log level.
+            LOG_LEVEL_ERROR (5):
+                Error log level.
+            LOG_LEVEL_CRITICAL (6):
+                Critical log level.
+        """
+        LOG_LEVEL_UNSPECIFIED = 0
+        """Unspecified log level."""
+        LOG_LEVEL_TRACE = 1
+        """Trace log level."""
+        LOG_LEVEL_DEBUG = 2
+        """Debug log level."""
+        LOG_LEVEL_INFO = 3
+        """Info log level."""
+        LOG_LEVEL_WARNING = 4
+        """Warning log level."""
+        LOG_LEVEL_ERROR = 5
+        """Error log level."""
+        LOG_LEVEL_CRITICAL = 6
+        """Critical log level."""
+
+    timestamp: timestamp_pb2.Timestamp = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=timestamp_pb2.Timestamp,
+    )
+    process_name: str = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    process_id: int = proto.Field(
+        proto.UINT64,
+        number=3,
+    )
+    thread_id: int = proto.Field(
+        proto.UINT64,
+        number=4,
+    )
+    source: str = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    level: LogLevel = proto.Field(
+        proto.ENUM,
+        number=6,
+        enum=LogLevel,
+    )
+    message: str = proto.Field(
+        proto.STRING,
+        number=7,
     )
 
 
