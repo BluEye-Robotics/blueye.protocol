@@ -4852,6 +4852,8 @@ class CPUInfo(proto.Message):
             Main queue load (0..1).
         guestport_queue_load (float):
             Guestport queue load (0..1).
+        comm_queue_load (float):
+            Communication queue load (0..1).
     """
 
     cpu_load: float = proto.Field(
@@ -4869,6 +4871,10 @@ class CPUInfo(proto.Message):
     guestport_queue_load: float = proto.Field(
         proto.FLOAT,
         number=4,
+    )
+    comm_queue_load: float = proto.Field(
+        proto.FLOAT,
+        number=5,
     )
 
 
