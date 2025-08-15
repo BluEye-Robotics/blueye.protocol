@@ -82,6 +82,7 @@ __protobuf__ = proto.module(
         'MultibeamConfigTel',
         'MultibeamDiscoveryTel',
         'CPUInfoTel',
+        'SurfaceUnitTel',
     },
 )
 
@@ -943,6 +944,28 @@ class CPUInfoTel(proto.Message):
         proto.MESSAGE,
         number=1,
         message=message_formats.CPUInfo,
+    )
+
+
+class SurfaceUnitTel(proto.Message):
+    r"""Surface Unit telemetry message.
+
+    Attributes:
+        battery_info (blueye.protocol.types.SurfaceUnitBatteryInfo):
+            Battery information.
+        version_info (blueye.protocol.types.SurfaceUnitVersionInfo):
+            Version information.
+    """
+
+    battery_info: message_formats.SurfaceUnitBatteryInfo = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.SurfaceUnitBatteryInfo,
+    )
+    version_info: message_formats.SurfaceUnitVersionInfo = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=message_formats.SurfaceUnitVersionInfo,
     )
 
 

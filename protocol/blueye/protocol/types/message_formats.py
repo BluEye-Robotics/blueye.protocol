@@ -130,6 +130,8 @@ __protobuf__ = proto.module(
         'MutltibeamRecordingIndex',
         'PersistentStorageSettings',
         'CPUInfo',
+        'SurfaceUnitBatteryInfo',
+        'SurfaceUnitVersionInfo',
     },
 )
 
@@ -4875,6 +4877,64 @@ class CPUInfo(proto.Message):
     comm_queue_load: float = proto.Field(
         proto.FLOAT,
         number=5,
+    )
+
+
+class SurfaceUnitBatteryInfo(proto.Message):
+    r"""Surface Unit battery information.
+
+    This message is published by the Surface Unit, and re-published
+    by the drone over the communication protocol.
+
+    Attributes:
+        status (blueye.protocol.types.SurfaceUnitBatteryInfo.ChargeStatus):
+            Battery charge status.
+        level (float):
+            Battery level (0..1).
+    """
+    class ChargeStatus(proto.Enum):
+        r"""
+
+        Attributes:
+            CHARGE_STATUS_UNSPECIFIED (0):
+                No description available.
+            CHARGE_STATUS_DISCHARGE (1):
+                No description available.
+            CHARGE_STATUS_CHARGE (2):
+                No description available.
+            CHARGE_STATUS_CHARGE_ERROR (3):
+                No description available.
+        """
+        CHARGE_STATUS_UNSPECIFIED = 0
+        CHARGE_STATUS_DISCHARGE = 1
+        CHARGE_STATUS_CHARGE = 2
+        CHARGE_STATUS_CHARGE_ERROR = 3
+
+    status: ChargeStatus = proto.Field(
+        proto.ENUM,
+        number=1,
+        enum=ChargeStatus,
+    )
+    level: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+
+
+class SurfaceUnitVersionInfo(proto.Message):
+    r"""Surface Unit version information.
+
+    This message is published by the Surface Unit, and re-published
+    by the drone over the communication protocol.
+
+    Attributes:
+        version (str):
+            Surface Unit firmware version (x.y.z).
+    """
+
+    version: str = proto.Field(
+        proto.STRING,
+        number=1,
     )
 
 

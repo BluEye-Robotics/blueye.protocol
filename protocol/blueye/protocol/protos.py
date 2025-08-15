@@ -143,6 +143,8 @@ from .types.message_formats import ResetPositionSettings
 from .types.message_formats import StationKeepingState
 from .types.message_formats import StoragePartition
 from .types.message_formats import StorageSpace
+from .types.message_formats import SurfaceUnitBatteryInfo
+from .types.message_formats import SurfaceUnitVersionInfo
 from .types.message_formats import SystemTime
 from .types.message_formats import ThicknessGauge
 from .types.message_formats import TiltAngle
@@ -286,6 +288,7 @@ from .types.telemetry import RecordStateTel
 from .types.telemetry import ReferenceAutoPilotTel
 from .types.telemetry import ReferenceTel
 from .types.telemetry import RemovableStorageTel
+from .types.telemetry import SurfaceUnitTel
 from .types.telemetry import ThicknessGaugeTel
 from .types.telemetry import TiltAngleTel
 from .types.telemetry import TiltStabilizationTel
@@ -539,6 +542,9 @@ __all__ = (
 'StationKeepingState',
 'StoragePartition',
 'StorageSpace',
+'SurfaceUnitBatteryInfo',
+'SurfaceUnitTel',
+'SurfaceUnitVersionInfo',
 'SyncTimeRep',
 'SyncTimeReq',
 'SystemTime',
