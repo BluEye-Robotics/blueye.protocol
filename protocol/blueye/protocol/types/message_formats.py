@@ -3728,12 +3728,35 @@ class CameraParameters(proto.Message):
         exposure (int):
             Shutter speed (1/10000 \* s), -1 for automatic exposure.
         white_balance (int):
-            White balance temperature (2800..9300), -1
-            for automatic white balance.
+            White balance temperature (Pioneer/Pro/X1/X3:
+            2800..9300, Ultra: 2300..15000), -1 for auto.
         hue (int):
-            Hue (-40..40), 0 as default.
+            Hue (-40..40), 0 as default. Only available
+            on Pioneer/Pro/X1/X3.
         gain (float):
-            Iso gain (0..1).
+            Iso gain (0..1). Only available on
+            Pioneer/Pro/X1/X3.
+        brightness (int):
+            Brightness (-10..10), 0 as default. Only
+            available on Ultra
+        contrast (int):
+            Contrast (-50..50), 0 as default. Only
+            available on Ultra.
+        saturation (int):
+            Saturation (-0..50), 8 as default. Only
+            available on Ultra.
+        gamma (int):
+            Gamma (4..79), 22 as default. Only available
+            on Ultra.
+        sharpness (int):
+            Sharpness (-20..20), -20 as default. Only
+            available on Ultra.
+        backlight_compensation (int):
+            Backlight compensation (-150..150), 10 as
+            default. Only available on Ultra.
+        denoise (int):
+            Noise reduction (-20..20), -20 as default.
+            Only available on Ultra.
         resolution (blueye.protocol.types.Resolution):
             Stream, recording and image resolution
             (deprecated).
@@ -3745,6 +3768,9 @@ class CameraParameters(proto.Message):
             Stream and recording framerate.
         camera (blueye.protocol.types.Camera):
             Which camera the parameters belong to.
+        fixed_framerate (bool):
+            Prioritize fixed frame rate over quality on
+            Ultra.
     """
 
     h264_bitrate: int = proto.Field(
@@ -3771,6 +3797,34 @@ class CameraParameters(proto.Message):
         proto.FLOAT,
         number=9,
     )
+    brightness: int = proto.Field(
+        proto.INT32,
+        number=12,
+    )
+    contrast: int = proto.Field(
+        proto.INT32,
+        number=13,
+    )
+    saturation: int = proto.Field(
+        proto.INT32,
+        number=14,
+    )
+    gamma: int = proto.Field(
+        proto.INT32,
+        number=15,
+    )
+    sharpness: int = proto.Field(
+        proto.INT32,
+        number=16,
+    )
+    backlight_compensation: int = proto.Field(
+        proto.INT32,
+        number=17,
+    )
+    denoise: int = proto.Field(
+        proto.INT32,
+        number=18,
+    )
     resolution: 'Resolution' = proto.Field(
         proto.ENUM,
         number=6,
@@ -3795,6 +3849,10 @@ class CameraParameters(proto.Message):
         proto.ENUM,
         number=8,
         enum='Camera',
+    )
+    fixed_framerate: bool = proto.Field(
+        proto.BOOL,
+        number=19,
     )
 
 
