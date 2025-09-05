@@ -176,6 +176,7 @@ from .types.message_formats import NotificationType
 from .types.message_formats import PressureSensorType
 from .types.message_formats import ResetCoordinateSource
 from .types.message_formats import Resolution
+from .types.message_formats import StreamingProtocol
 from .types.message_formats import TemperatureUnit
 from .types.message_formats import ThicknessUnit
 from .types.mission_planning import CameraCommand
@@ -542,6 +543,7 @@ __all__ = (
 'StationKeepingState',
 'StoragePartition',
 'StorageSpace',
+'StreamingProtocol',
 'SurfaceUnitBatteryInfo',
 'SurfaceUnitTel',
 'SurfaceUnitVersionInfo',

@@ -180,6 +180,7 @@ from .message_formats import (
     PressureSensorType,
     ResetCoordinateSource,
     Resolution,
+    StreamingProtocol,
     TemperatureUnit,
     ThicknessUnit,
 )
@@ -470,6 +471,7 @@ __all__ = (
     'PressureSensorType',
     'ResetCoordinateSource',
     'Resolution',
+    'StreamingProtocol',
     'TemperatureUnit',
     'ThicknessUnit',
     'CameraCommand',

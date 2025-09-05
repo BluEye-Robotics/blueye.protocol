@@ -39,6 +39,7 @@ __protobuf__ = proto.module(
         'Resolution',
         'Framerate',
         'Camera',
+        'StreamingProtocol',
         'TemperatureUnit',
         'LogoType',
         'DepthUnit',
@@ -476,21 +477,29 @@ class Resolution(proto.Enum):
     Attributes:
         RESOLUTION_UNSPECIFIED (0):
             Resolution not specified.
-        RESOLUTION_FULLHD_1080P (1):
-            1080p Full HD resolution.
+        RESOLUTION_VGA (4):
+            VGA (640x480).
+        RESOLUTION_SVGA (5):
+            SVGA (800x600).
         RESOLUTION_HD_720P (2):
-            720p HD resolution.
+            720p HD (1280x720).
+        RESOLUTION_FULLHD_1080P (1):
+            1080p Full HD (1920x1080).
         RESOLUTION_UHD_4K (3):
-            4K Ultra HD resolution.
+            4K Ultra HD (3840x2160).
     """
     RESOLUTION_UNSPECIFIED = 0
     """Resolution not specified."""
-    RESOLUTION_FULLHD_1080P = 1
-    """1080p Full HD resolution."""
+    RESOLUTION_VGA = 4
+    """VGA (640x480)."""
+    RESOLUTION_SVGA = 5
+    """SVGA (800x600)."""
     RESOLUTION_HD_720P = 2
-    """720p HD resolution."""
+    """720p HD (1280x720)."""
+    RESOLUTION_FULLHD_1080P = 1
+    """1080p Full HD (1920x1080)."""
     RESOLUTION_UHD_4K = 3
-    """4K Ultra HD resolution."""
+    """4K Ultra HD (3840x2160)."""
 
 
 class Framerate(proto.Enum):
@@ -529,6 +538,25 @@ class Camera(proto.Enum):
     """Main camera."""
     CAMERA_GUESTPORT = 2
     """Guest port camera."""
+
+
+class StreamingProtocol(proto.Enum):
+    r"""
+
+    Attributes:
+        STREAMING_PROTOCOL_UNSPECIFIED (0):
+            Streaming protocol not specified.
+        STREAMING_PROTOCOL_RTSP_H264 (1):
+            RTSP streaming protocol using H264 codec.
+        STREAMING_PROTOCOL_RTSP_MJPEG (2):
+            RTSP streaming protocol using MJPEG codec.
+    """
+    STREAMING_PROTOCOL_UNSPECIFIED = 0
+    """Streaming protocol not specified."""
+    STREAMING_PROTOCOL_RTSP_H264 = 1
+    """RTSP streaming protocol using H264 codec."""
+    STREAMING_PROTOCOL_RTSP_MJPEG = 2
+    """RTSP streaming protocol using MJPEG codec."""
 
 
 class TemperatureUnit(proto.Enum):
@@ -3728,7 +3756,7 @@ class CameraParameters(proto.Message):
         exposure (int):
             Shutter speed (1/10000 \* s), -1 for automatic exposure.
         white_balance (int):
-            White balance temperature (Pioneer/Pro/X1/X3:
+            White balance temp (Pioneer/Pro/X1/X3:
             2800..9300, Ultra: 2300..15000), -1 for auto.
         hue (int):
             Hue (-40..40), 0 as default. Only available
@@ -3764,6 +3792,8 @@ class CameraParameters(proto.Message):
             Stream resolution.
         recording_resolution (blueye.protocol.types.Resolution):
             Recording and image resolution.
+        streaming_protocol (blueye.protocol.types.StreamingProtocol):
+            Streaming protocol.
         framerate (blueye.protocol.types.Framerate):
             Stream and recording framerate.
         camera (blueye.protocol.types.Camera):
@@ -3839,6 +3869,11 @@ class CameraParameters(proto.Message):
         proto.ENUM,
         number=11,
         enum='Resolution',
+    )
+    streaming_protocol: 'StreamingProtocol' = proto.Field(
+        proto.ENUM,
+        number=20,
+        enum='StreamingProtocol',
     )
     framerate: 'Framerate' = proto.Field(
         proto.ENUM,
