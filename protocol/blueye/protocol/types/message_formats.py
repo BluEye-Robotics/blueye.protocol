@@ -3771,7 +3771,7 @@ class CameraParameters(proto.Message):
             Contrast (-50..50), 0 as default. Only
             available on Ultra.
         saturation (int):
-            Saturation (-0..50), 8 as default. Only
+            Saturation (0..50), 8 as default. Only
             available on Ultra.
         gamma (int):
             Gamma (4..79), 22 as default. Only available
