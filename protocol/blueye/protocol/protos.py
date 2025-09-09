@@ -176,6 +176,7 @@ from .types.message_formats import NotificationType
 from .types.message_formats import PressureSensorType
 from .types.message_formats import ResetCoordinateSource
 from .types.message_formats import Resolution
+from .types.message_formats import StorageLocation
 from .types.message_formats import StreamingProtocol
 from .types.message_formats import TemperatureUnit
 from .types.message_formats import ThicknessUnit
@@ -541,6 +542,7 @@ __all__ = (
 'StartDiveCtrl',
 'StationKeepingCtrl',
 'StationKeepingState',
+'StorageLocation',
 'StoragePartition',
 'StorageSpace',
 'StreamingProtocol',

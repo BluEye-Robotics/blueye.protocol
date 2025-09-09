@@ -34,6 +34,7 @@ __protobuf__ = proto.module(
         'ResetCoordinateSource',
         'NotificationType',
         'NotificationLevel',
+        'StorageLocation',
         'Model',
         'PressureSensorType',
         'Resolution',
@@ -402,6 +403,28 @@ class NotificationLevel(proto.Enum):
     """Warning."""
     NOTIFICATION_LEVEL_ERROR = 3
     """Error."""
+
+
+class StorageLocation(proto.Enum):
+    r"""Storage location.
+
+    Used to specify which storage location to use for recording
+    photos and videos.
+
+    Attributes:
+        STORAGE_LOCATION_UNSPECIFIED (0):
+            Unspecified.
+        STORAGE_LOCATION_INTERNAL (1):
+            Internal storage of the drone.
+        STORAGE_LOCATION_REMOVABLE (2):
+            Removable storage device.
+    """
+    STORAGE_LOCATION_UNSPECIFIED = 0
+    """Unspecified."""
+    STORAGE_LOCATION_INTERNAL = 1
+    """Internal storage of the drone."""
+    STORAGE_LOCATION_REMOVABLE = 2
+    """Removable storage device."""
 
 
 class Model(proto.Enum):
@@ -2984,7 +3007,7 @@ class DiveTime(proto.Message):
 
 
 class RecordOn(proto.Message):
-    r"""Which cameras are supposed to be recording.
+    r"""Which cameras or multibeam are supposed to be recording.
 
     Attributes:
         main (bool):

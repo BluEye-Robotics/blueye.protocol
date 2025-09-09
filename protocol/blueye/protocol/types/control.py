@@ -194,11 +194,13 @@ class WatchdogCtrl(proto.Message):
 
 
 class RecordCtrl(proto.Message):
-    r"""Issue a command to start video recording.
+    r"""Issue a command to start video or multibeam recording.
 
     Attributes:
         record_on (blueye.protocol.types.RecordOn):
             Message specifying which cameras to record.
+        storage_location (blueye.protocol.types.StorageLocation):
+            Storage location to use for the recordings.
     """
 
     record_on: message_formats.RecordOn = proto.Field(
@@ -206,11 +208,26 @@ class RecordCtrl(proto.Message):
         number=1,
         message=message_formats.RecordOn,
     )
+    storage_location: message_formats.StorageLocation = proto.Field(
+        proto.ENUM,
+        number=2,
+        enum=message_formats.StorageLocation,
+    )
 
 
 class TakePictureCtrl(proto.Message):
     r"""Issue a command to take a picture.
+
+    Attributes:
+        storage_location (blueye.protocol.types.StorageLocation):
+            Storage location to use for the picture.
     """
+
+    storage_location: message_formats.StorageLocation = proto.Field(
+        proto.ENUM,
+        number=1,
+        enum=message_formats.StorageLocation,
+    )
 
 
 class StartCalibrationCtrl(proto.Message):
