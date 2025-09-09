@@ -500,10 +500,8 @@ class Resolution(proto.Enum):
     Attributes:
         RESOLUTION_UNSPECIFIED (0):
             Resolution not specified.
-        RESOLUTION_VGA (4):
+        RESOLUTION_VGA_480P (4):
             VGA (640x480).
-        RESOLUTION_SVGA (5):
-            SVGA (800x600).
         RESOLUTION_HD_720P (2):
             720p HD (1280x720).
         RESOLUTION_FULLHD_1080P (1):
@@ -513,10 +511,8 @@ class Resolution(proto.Enum):
     """
     RESOLUTION_UNSPECIFIED = 0
     """Resolution not specified."""
-    RESOLUTION_VGA = 4
+    RESOLUTION_VGA_480P = 4
     """VGA (640x480)."""
-    RESOLUTION_SVGA = 5
-    """SVGA (800x600)."""
     RESOLUTION_HD_720P = 2
     """720p HD (1280x720)."""
     RESOLUTION_FULLHD_1080P = 1
