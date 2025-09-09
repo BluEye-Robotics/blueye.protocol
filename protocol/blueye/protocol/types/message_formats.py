@@ -507,7 +507,8 @@ class Resolution(proto.Enum):
         RESOLUTION_FULLHD_1080P (1):
             1080p Full HD (1920x1080).
         RESOLUTION_UHD_4K (3):
-            4K Ultra HD (3840x2160).
+            4K Ultra HD (3840x2160, Only supported on X3
+            Ultra).
     """
     RESOLUTION_UNSPECIFIED = 0
     """Resolution not specified."""
@@ -518,7 +519,7 @@ class Resolution(proto.Enum):
     RESOLUTION_FULLHD_1080P = 1
     """1080p Full HD (1920x1080)."""
     RESOLUTION_UHD_4K = 3
-    """4K Ultra HD (3840x2160)."""
+    """4K Ultra HD (3840x2160, Only supported on X3 Ultra)."""
 
 
 class Framerate(proto.Enum):
@@ -530,14 +531,15 @@ class Framerate(proto.Enum):
         FRAMERATE_FPS_30 (1):
             30 frames per second.
         FRAMERATE_FPS_25 (2):
-            25 frames per second.
+            25 frames per second. (Only supported on
+            Pioneer/Pro/X1/X3)
     """
     FRAMERATE_UNSPECIFIED = 0
     """Framerate not specified."""
     FRAMERATE_FPS_30 = 1
     """30 frames per second."""
     FRAMERATE_FPS_25 = 2
-    """25 frames per second."""
+    """25 frames per second. (Only supported on Pioneer/Pro/X1/X3)"""
 
 
 class Camera(proto.Enum):
@@ -568,14 +570,16 @@ class StreamingProtocol(proto.Enum):
         STREAMING_PROTOCOL_RTSP_H264 (1):
             RTSP streaming protocol using H264 codec.
         STREAMING_PROTOCOL_RTSP_MJPEG (2):
-            RTSP streaming protocol using MJPEG codec.
+            RTSP streaming protocol using MJPEG codec. No
+            recording when activated.
     """
     STREAMING_PROTOCOL_UNSPECIFIED = 0
     """Streaming protocol not specified."""
     STREAMING_PROTOCOL_RTSP_H264 = 1
     """RTSP streaming protocol using H264 codec."""
     STREAMING_PROTOCOL_RTSP_MJPEG = 2
-    """RTSP streaming protocol using MJPEG codec."""
+    """RTSP streaming protocol using MJPEG codec. No recording when
+    activated."""
 
 
 class TemperatureUnit(proto.Enum):
@@ -3804,6 +3808,16 @@ class CameraParameters(proto.Message):
         denoise (int):
             Noise reduction (-20..20), -20 as default.
             Only available on Ultra.
+        ehdr_enabled (bool):
+            Enable eHDR mode. Default true. Only
+            available on Ultra.
+        ehdr_exposure_min_number (int):
+            Minimum number of eHDR frames. (1..4),
+            default 1. Only available on Ultra.
+        ehdr_exposure_max_number (int):
+            Maximum number of eHDR frames. (1..4),
+            default 2. Only on Ultra. Setting larger than 2
+            can reduce the framerate.
         resolution (blueye.protocol.types.Resolution):
             Stream, recording and image resolution
             (deprecated).
@@ -3817,9 +3831,6 @@ class CameraParameters(proto.Message):
             Stream and recording framerate.
         camera (blueye.protocol.types.Camera):
             Which camera the parameters belong to.
-        fixed_framerate (bool):
-            Prioritize fixed frame rate over quality on
-            Ultra.
     """
 
     h264_bitrate: int = proto.Field(
@@ -3874,6 +3885,18 @@ class CameraParameters(proto.Message):
         proto.INT32,
         number=18,
     )
+    ehdr_enabled: bool = proto.Field(
+        proto.BOOL,
+        number=21,
+    )
+    ehdr_exposure_min_number: int = proto.Field(
+        proto.INT32,
+        number=22,
+    )
+    ehdr_exposure_max_number: int = proto.Field(
+        proto.INT32,
+        number=23,
+    )
     resolution: 'Resolution' = proto.Field(
         proto.ENUM,
         number=6,
@@ -3903,10 +3926,6 @@ class CameraParameters(proto.Message):
         proto.ENUM,
         number=8,
         enum='Camera',
-    )
-    fixed_framerate: bool = proto.Field(
-        proto.BOOL,
-        number=19,
     )
 
 
