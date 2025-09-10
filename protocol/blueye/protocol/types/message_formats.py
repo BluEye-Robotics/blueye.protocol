@@ -1585,6 +1585,8 @@ class RecordState(proto.Message):
             Multibeam record time (s).
         multibeam_fps (float):
             Multibeam record fps.
+        storage_location (blueye.protocol.types.StorageLocation):
+            Storage location used for recording.
     """
 
     main_is_recording: bool = proto.Field(
@@ -1622,6 +1624,11 @@ class RecordState(proto.Message):
     multibeam_fps: float = proto.Field(
         proto.FLOAT,
         number=9,
+    )
+    storage_location: 'StorageLocation' = proto.Field(
+        proto.ENUM,
+        number=10,
+        enum='StorageLocation',
     )
 
 
