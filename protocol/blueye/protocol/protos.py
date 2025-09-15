@@ -113,6 +113,7 @@ from .types.message_formats import GuestPortInfo
 from .types.message_formats import GuestPortRestartInfo
 from .types.message_formats import Imu
 from .types.message_formats import IperfStatus
+from .types.message_formats import KernelLogEntry
 from .types.message_formats import Laser
 from .types.message_formats import LatLongPosition
 from .types.message_formats import Lights
@@ -275,6 +276,7 @@ from .types.telemetry import Imu2Tel
 from .types.telemetry import IperfTel
 from .types.telemetry import LaserTel
 from .types.telemetry import LightsTel
+from .types.telemetry import LogEntryTel
 from .types.telemetry import MagneticDeclinationTel
 from .types.telemetry import MedusaSpectrometerDataTel
 from .types.telemetry import MissionStatusTel
@@ -444,6 +446,7 @@ __all__ = (
 'IntervalType',
 'IperfStatus',
 'IperfTel',
+'KernelLogEntry',
 'Laser',
 'LaserCtrl',
 'LaserTel',
@@ -453,6 +456,7 @@ __all__ = (
 'LightsTel',
 'LocationSource',
 'LogEntry',
+'LogEntryTel',
 'LogoType',
 'MagneticDeclination',
 'MagneticDeclinationTel',

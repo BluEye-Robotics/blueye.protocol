@@ -54,6 +54,7 @@ __protobuf__ = proto.module(
         'MultibeamFrequencyMode',
         'BinlogRecord',
         'LogEntry',
+        'KernelLogEntry',
         'MotionInput',
         'Lights',
         'Laser',
@@ -1149,6 +1150,107 @@ class LogEntry(proto.Message):
     message: str = proto.Field(
         proto.STRING,
         number=7,
+    )
+
+
+class KernelLogEntry(proto.Message):
+    r"""
+
+    Attributes:
+        level (blueye.protocol.types.KernelLogEntry.KernelLogLevel):
+            Log level, info, warning, error, etc.
+        seqnum (int):
+            Sequence number of the log entry.
+        timestamp (google.protobuf.timestamp_pb2.Timestamp):
+            Timestamp of the log entry.
+        messages (MutableSequence[str]):
+            Log messages.
+        fields (MutableSequence[blueye.protocol.types.KernelLogEntry.KeyValuePair]):
+            List of key-value pairs.
+    """
+    class KernelLogLevel(proto.Enum):
+        r"""Kernel log level.
+
+        Attributes:
+            KERNEL_LOG_LEVEL_UNSPECIFIED (0):
+                Unspecified log level.
+            KERNEL_LOG_LEVEL_EMERG (1):
+                Emergency log level.
+            KERNEL_LOG_LEVEL_ALERT (2):
+                Alert log level.
+            KERNEL_LOG_LEVEL_CRIT (3):
+                Critical log level.
+            KERNEL_LOG_LEVEL_ERR (4):
+                Error log level.
+            KERNEL_LOG_LEVEL_WARNING (5):
+                Warning log level.
+            KERNEL_LOG_LEVEL_NOTICE (6):
+                Notice log level.
+            KERNEL_LOG_LEVEL_INFO (7):
+                Informational log level.
+            KERNEL_LOG_LEVEL_DEBUG (8):
+                Debug log level.
+        """
+        KERNEL_LOG_LEVEL_UNSPECIFIED = 0
+        """Unspecified log level."""
+        KERNEL_LOG_LEVEL_EMERG = 1
+        """Emergency log level."""
+        KERNEL_LOG_LEVEL_ALERT = 2
+        """Alert log level."""
+        KERNEL_LOG_LEVEL_CRIT = 3
+        """Critical log level."""
+        KERNEL_LOG_LEVEL_ERR = 4
+        """Error log level."""
+        KERNEL_LOG_LEVEL_WARNING = 5
+        """Warning log level."""
+        KERNEL_LOG_LEVEL_NOTICE = 6
+        """Notice log level."""
+        KERNEL_LOG_LEVEL_INFO = 7
+        """Informational log level."""
+        KERNEL_LOG_LEVEL_DEBUG = 8
+        """Debug log level."""
+
+    class KeyValuePair(proto.Message):
+        r"""Key-value pair used for structured logging.
+
+        Attributes:
+            key (str):
+                Key of the key-value pair.
+            value (str):
+                Value of the key-value pair.
+        """
+
+        key: str = proto.Field(
+            proto.STRING,
+            number=1,
+        )
+        value: str = proto.Field(
+            proto.STRING,
+            number=2,
+        )
+
+    level: KernelLogLevel = proto.Field(
+        proto.ENUM,
+        number=1,
+        enum=KernelLogLevel,
+    )
+    seqnum: int = proto.Field(
+        proto.UINT32,
+        number=2,
+    )
+    timestamp: timestamp_pb2.Timestamp = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=timestamp_pb2.Timestamp,
+    )
+    messages: MutableSequence[str] = proto.RepeatedField(
+        proto.STRING,
+        number=4,
+    )
+    fields: MutableSequence[KeyValuePair] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=5,
+        message=KeyValuePair,
     )
 
 

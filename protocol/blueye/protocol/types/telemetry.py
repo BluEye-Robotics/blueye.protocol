@@ -83,6 +83,7 @@ __protobuf__ = proto.module(
         'MultibeamDiscoveryTel',
         'CPUInfoTel',
         'SurfaceUnitTel',
+        'LogEntryTel',
     },
 )
 
@@ -966,6 +967,41 @@ class SurfaceUnitTel(proto.Message):
         proto.MESSAGE,
         number=2,
         message=message_formats.SurfaceUnitVersionInfo,
+    )
+
+
+class LogEntryTel(proto.Message):
+    r"""Log entry telemetry message.
+
+    This message has `oneof`_ fields (mutually exclusive fields).
+    For each oneof, at most one member field can be set at the same time.
+    Setting any member of the oneof automatically clears all other
+    members.
+
+    .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
+
+    Attributes:
+        blunux (blueye.protocol.types.LogEntry):
+            Blunux log entry.
+
+            This field is a member of `oneof`_ ``log_entry``.
+        kernel (blueye.protocol.types.KernelLogEntry):
+            Kernel log entry.
+
+            This field is a member of `oneof`_ ``log_entry``.
+    """
+
+    blunux: message_formats.LogEntry = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        oneof='log_entry',
+        message=message_formats.LogEntry,
+    )
+    kernel: message_formats.KernelLogEntry = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        oneof='log_entry',
+        message=message_formats.KernelLogEntry,
     )
 
 
