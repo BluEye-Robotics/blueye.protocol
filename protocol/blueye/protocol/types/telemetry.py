@@ -77,6 +77,8 @@ __protobuf__ = proto.module(
         'CalibratedImuTel',
         'Imu1Tel',
         'Imu2Tel',
+        'ImuHpTel',
+        'CalibratedImuHpTel',
         'MedusaSpectrometerDataTel',
         'MultibeamPingTel',
         'MultibeamConfigTel',
@@ -864,6 +866,37 @@ class Imu2Tel(proto.Message):
     Attributes:
         imu (blueye.protocol.types.Imu):
             Raw IMU data.
+    """
+
+    imu: message_formats.Imu = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.Imu,
+    )
+
+
+class ImuHpTel(proto.Message):
+    r"""Raw IMU data from High Precision IMU
+
+    Attributes:
+        imu (blueye.protocol.types.Imu):
+            Raw High Precision IMU data (no magnetometer)
+    """
+
+    imu: message_formats.Imu = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.Imu,
+    )
+
+
+class CalibratedImuHpTel(proto.Message):
+    r"""Calibrated High Precision IMU data
+
+    Attributes:
+        imu (blueye.protocol.types.Imu):
+            Calibrated High Precision IMU (no
+            magnetometer)
     """
 
     imu: message_formats.Imu = proto.Field(

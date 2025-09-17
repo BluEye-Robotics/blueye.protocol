@@ -249,6 +249,7 @@ from .types.telemetry import AquaTrollSensorParametersTel
 from .types.telemetry import AttitudeTel
 from .types.telemetry import BatteryBQ40Z50Tel
 from .types.telemetry import BatteryTel
+from .types.telemetry import CalibratedImuHpTel
 from .types.telemetry import CalibratedImuTel
 from .types.telemetry import CalibrationStateTel
 from .types.telemetry import CanisterBottomHumidityTel
@@ -273,6 +274,7 @@ from .types.telemetry import GuestPortCurrentTel
 from .types.telemetry import GuestPortLightsTel
 from .types.telemetry import Imu1Tel
 from .types.telemetry import Imu2Tel
+from .types.telemetry import ImuHpTel
 from .types.telemetry import IperfTel
 from .types.telemetry import LaserTel
 from .types.telemetry import LightsTel
@@ -343,6 +345,7 @@ __all__ = (
 'CPUTemperature',
 'CPUTemperatureTel',
 'CalibrateDvlGyroCtrl',
+'CalibratedImuHpTel',
 'CalibratedImuTel',
 'CalibrationState',
 'CalibrationStateTel',
@@ -441,6 +444,7 @@ __all__ = (
 'Imu',
 'Imu1Tel',
 'Imu2Tel',
+'ImuHpTel',
 'Instruction',
 'InstructionType',
 'IntervalType',
