@@ -3174,6 +3174,8 @@ class StoragePartition(proto.Message):
             Partition device path
         mount_path (str):
             Mount path of the partition.
+        label (str):
+            Label of the partition.
     """
 
     storage_space: 'StorageSpace' = proto.Field(
@@ -3192,6 +3194,10 @@ class StoragePartition(proto.Message):
     mount_path: str = proto.Field(
         proto.STRING,
         number=4,
+    )
+    label: str = proto.Field(
+        proto.STRING,
+        number=5,
     )
 
 
