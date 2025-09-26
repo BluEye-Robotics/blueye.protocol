@@ -794,7 +794,9 @@ class GuestPortDeviceID(proto.Enum):
         GUEST_PORT_DEVICE_ID_CERULEAN_TRACKER_650 (44):
             Cerulean Tracker 650.
         GUEST_PORT_DEVICE_ID_BLUEYE_EXTERNAL_USB_STORAGE (45):
-            Blueye External USB Storage
+            Blueye External USB Storage.
+        GUEST_PORT_DEVICE_ID_BLUEYE_MULTIBEAM_SERVO_V2 (46):
+            Blueye Multibeam Skid Servo V2.
     """
     GUEST_PORT_DEVICE_ID_UNSPECIFIED = 0
     """Unspecified."""
@@ -887,7 +889,9 @@ class GuestPortDeviceID(proto.Enum):
     GUEST_PORT_DEVICE_ID_CERULEAN_TRACKER_650 = 44
     """Cerulean Tracker 650."""
     GUEST_PORT_DEVICE_ID_BLUEYE_EXTERNAL_USB_STORAGE = 45
-    """Blueye External USB Storage"""
+    """Blueye External USB Storage."""
+    GUEST_PORT_DEVICE_ID_BLUEYE_MULTIBEAM_SERVO_V2 = 46
+    """Blueye Multibeam Skid Servo V2."""
 
 
 class GuestPortNumber(proto.Enum):
