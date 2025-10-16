@@ -65,6 +65,10 @@ __protobuf__ = proto.module(
         'GetPersistentStorageSettingsRep',
         'FlashEscSettingsReq',
         'FlashEscSettingsRep',
+        'SetIperfStatusReq',
+        'SetIperfStatusRep',
+        'GetIperfStatusReq',
+        'GetIperfStatusRep',
     },
 )
 
@@ -565,6 +569,56 @@ class FlashEscSettingsRep(proto.Message):
     """
 
     success: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+
+
+class SetIperfStatusReq(proto.Message):
+    r"""Request to set iperf task status.
+
+    Attributes:
+        enabled (bool):
+            If background iperf task should be enabled or
+            disabled.
+    """
+
+    enabled: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+
+
+class SetIperfStatusRep(proto.Message):
+    r"""Response after setting iperf status.
+
+    Attributes:
+        enabled (bool):
+            If background iperf task is enabled or
+            disabled.
+    """
+
+    enabled: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+
+
+class GetIperfStatusReq(proto.Message):
+    r"""Request to get current iperf task status.
+    """
+
+
+class GetIperfStatusRep(proto.Message):
+    r"""Response with current iperf status.
+
+    Attributes:
+        enabled (bool):
+            If background iperf task is enabled or
+            disabled.
+    """
+
+    enabled: bool = proto.Field(
         proto.BOOL,
         number=1,
     )

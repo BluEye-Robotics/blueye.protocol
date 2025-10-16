@@ -214,6 +214,8 @@ from .types.req_rep import GetBatteryRep
 from .types.req_rep import GetBatteryReq
 from .types.req_rep import GetCameraParametersRep
 from .types.req_rep import GetCameraParametersReq
+from .types.req_rep import GetIperfStatusRep
+from .types.req_rep import GetIperfStatusReq
 from .types.req_rep import GetMissionRep
 from .types.req_rep import GetMissionReq
 from .types.req_rep import GetOverlayParametersRep
@@ -230,6 +232,8 @@ from .types.req_rep import SetHeadingModeRep
 from .types.req_rep import SetHeadingModeReq
 from .types.req_rep import SetInstructionUpdateRep
 from .types.req_rep import SetInstructionUpdateReq
+from .types.req_rep import SetIperfStatusRep
+from .types.req_rep import SetIperfStatusReq
 from .types.req_rep import SetMissionRep
 from .types.req_rep import SetMissionReq
 from .types.req_rep import SetOverlayParametersRep
@@ -413,6 +417,8 @@ __all__ = (
 'GetBatteryReq',
 'GetCameraParametersRep',
 'GetCameraParametersReq',
+'GetIperfStatusRep',
+'GetIperfStatusReq',
 'GetMissionRep',
 'GetMissionReq',
 'GetOverlayParametersRep',
@@ -535,6 +541,8 @@ __all__ = (
 'SetHeadingModeReq',
 'SetInstructionUpdateRep',
 'SetInstructionUpdateReq',
+'SetIperfStatusRep',
+'SetIperfStatusReq',
 'SetMissionRep',
 'SetMissionReq',
 'SetMultibeamConfigCtrl',
