@@ -4685,9 +4685,8 @@ class MultibeamPing(proto.Message):
             image.
         bearings (MutableSequence[float]):
             Bearing angle of each column of the sonar
-            data (in 100th of a degree, multiply by 0.01 to
-            get a value in degrees). The sonar image is not
-            sampled uniformly in the bearing direction.
+            data in degrees. The sonar image is not sampled
+            uniformly in the bearing direction.
         ping_data (bytes):
             Ping data (row major, 2D, grayscale image).
         device_id (blueye.protocol.types.GuestPortDeviceID):
