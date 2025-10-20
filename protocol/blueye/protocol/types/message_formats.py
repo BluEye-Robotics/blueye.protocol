@@ -797,6 +797,8 @@ class GuestPortDeviceID(proto.Enum):
             Blueye External USB Storage.
         GUEST_PORT_DEVICE_ID_BLUEYE_MULTIBEAM_SERVO_V2 (46):
             Blueye Multibeam Skid Servo V2.
+        GUEST_PORT_DEVICE_ID_CERULEAN_OMNISCAN_450_COMPACT (47):
+            Cerulean Omniscan 450 Compact.
     """
     GUEST_PORT_DEVICE_ID_UNSPECIFIED = 0
     """Unspecified."""
@@ -892,6 +894,8 @@ class GuestPortDeviceID(proto.Enum):
     """Blueye External USB Storage."""
     GUEST_PORT_DEVICE_ID_BLUEYE_MULTIBEAM_SERVO_V2 = 46
     """Blueye Multibeam Skid Servo V2."""
+    GUEST_PORT_DEVICE_ID_CERULEAN_OMNISCAN_450_COMPACT = 47
+    """Cerulean Omniscan 450 Compact."""
 
 
 class GuestPortNumber(proto.Enum):
