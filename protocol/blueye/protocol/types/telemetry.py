@@ -791,12 +791,18 @@ class GenericServoTel(proto.Message):
     Attributes:
         servo (blueye.protocol.types.GenericServo):
             Servo state.
+        set_point (float):
+            Servo set point (0..1).
     """
 
     servo: message_formats.GenericServo = proto.Field(
         proto.MESSAGE,
         number=1,
         message=message_formats.GenericServo,
+    )
+    set_point: float = proto.Field(
+        proto.FLOAT,
+        number=2,
     )
 
 
@@ -806,12 +812,18 @@ class MultibeamServoTel(proto.Message):
     Attributes:
         servo (blueye.protocol.types.MultibeamServo):
             Multibeam servo state.
+        set_point (float):
+            Servo set point (-30..30).
     """
 
     servo: message_formats.MultibeamServo = proto.Field(
         proto.MESSAGE,
         number=1,
         message=message_formats.MultibeamServo,
+    )
+    set_point: float = proto.Field(
+        proto.FLOAT,
+        number=2,
     )
 
 
