@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.10, <4"
 
 [manifest]
@@ -11,7 +11,7 @@ members = [
 
 [[package]]
 name = "blueye-legacyprotocol"
-version = "0.1.0"
+version = "1.0.0"
 source = { editable = "legacyprotocol" }
 dependencies = [
     { name = "numpy" },
@@ -40,7 +40,7 @@ dev = [
 
 [[package]]
 name = "blueye-protocol"
-version = "3.0.0"
+version = "3.2.0"
 source = { editable = "protocol" }
 dependencies = [
     { name = "proto-plus" },
