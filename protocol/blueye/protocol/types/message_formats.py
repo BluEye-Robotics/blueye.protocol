@@ -3237,18 +3237,22 @@ class RemovableStorageDevice(proto.Message):
                 The storage device is valid and ready for
                 use.
             STATUS_FORMATTING (2):
-                The storage device is being formatted
+                The storage device is being formatted.
             STATUS_ERROR (3):
                 The storage device is in an error state.
+            STATUS_UNPLUGGED (4):
+                The storage device is not present.
         """
         STATUS_UNSPECIFIED = 0
         """Unspecified."""
         STATUS_READY = 1
         """The storage device is valid and ready for use."""
         STATUS_FORMATTING = 2
-        """The storage device is being formatted"""
+        """The storage device is being formatted."""
         STATUS_ERROR = 3
         """The storage device is in an error state."""
+        STATUS_UNPLUGGED = 4
+        """The storage device is not present."""
 
     vendor_name: str = proto.Field(
         proto.STRING,
