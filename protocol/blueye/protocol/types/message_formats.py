@@ -3975,6 +3975,10 @@ class CameraParameters(proto.Message):
             Stream and recording framerate.
         camera (blueye.protocol.types.Camera):
             Which camera the parameters belong to.
+        mtu_size (int):
+            Network MTU size for video streaming (bytes).
+            If 0 or unset, the system will use a default of
+            1400.
     """
 
     h264_bitrate: int = proto.Field(
@@ -4070,6 +4074,10 @@ class CameraParameters(proto.Message):
         proto.ENUM,
         number=8,
         enum='Camera',
+    )
+    mtu_size: int = proto.Field(
+        proto.UINT32,
+        number=24,
     )
 
 
