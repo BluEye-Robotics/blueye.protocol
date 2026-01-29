@@ -3976,9 +3976,11 @@ class CameraParameters(proto.Message):
         camera (blueye.protocol.types.Camera):
             Which camera the parameters belong to.
         mtu_size (int):
-            Network MTU size for video streaming (bytes).
-            If 0 or unset, the system will use a default of
-            1400.
+            Network MTU (Maximum Transmission Unit) size
+            for video streaming in bytes (68..65535).  If 0
+            or unset, the system will use a default of 1400.
+            The Blueye App allows users to set values
+            between 500 and 1460.
     """
 
     h264_bitrate: int = proto.Field(
