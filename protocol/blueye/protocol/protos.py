@@ -63,7 +63,7 @@ from .types.control import RunMissionCtrl
 from .types.control import SetAquaTrollConnectionStatusCtrl
 from .types.control import SetAquaTrollParameterUnitCtrl
 from .types.control import SetMultibeamConfigCtrl
-from .types.control import SetTurbidityFilter
+from .types.control import SetTurbidityFilterCtrl
 from .types.control import StartCalibrationCtrl
 from .types.control import StartDiveCtrl
 from .types.control import StationKeepingCtrl
@@ -557,7 +557,7 @@ __all__ = (
 'SetPubFrequencyReq',
 'SetThicknessGaugeParametersRep',
 'SetThicknessGaugeParametersReq',
-'SetTurbidityFilter',
+'SetTurbidityFilterCtrl',
 'StartCalibrationCtrl',
 'StartDiveCtrl',
 'StationKeepingCtrl',

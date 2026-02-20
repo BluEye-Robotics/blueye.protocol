@@ -69,7 +69,7 @@ __protobuf__ = proto.module(
         'StartDiveCtrl',
         'EndDiveCtrl',
         'FormatRemovableStorageDeviceCtrl',
-        'SetTurbidityFilter',
+        'SetTurbidityFilterCtrl',
     },
 )
 
@@ -628,7 +628,7 @@ class FormatRemovableStorageDeviceCtrl(proto.Message):
     """
 
 
-class SetTurbidityFilter(proto.Message):
+class SetTurbidityFilterCtrl(proto.Message):
     r"""Message sent when the user wants to set turbidity filter
     settings.
 
