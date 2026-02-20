@@ -135,6 +135,7 @@ __protobuf__ = proto.module(
         'CPUInfo',
         'SurfaceUnitBatteryInfo',
         'SurfaceUnitVersionInfo',
+        'TurbidityFilter',
     },
 )
 
@@ -5219,6 +5220,26 @@ class SurfaceUnitVersionInfo(proto.Message):
     version: str = proto.Field(
         proto.STRING,
         number=1,
+    )
+
+
+class TurbidityFilter(proto.Message):
+    r"""Turbidity filter settings.
+
+    Attributes:
+        enabled (bool):
+            If the turbidity filter is enabled.
+        intensity (float):
+            Intensity of the turbidity filter (0..1).
+    """
+
+    enabled: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    intensity: float = proto.Field(
+        proto.FLOAT,
+        number=2,
     )
 
 

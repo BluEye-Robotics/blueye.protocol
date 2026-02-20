@@ -86,6 +86,7 @@ __protobuf__ = proto.module(
         'CPUInfoTel',
         'SurfaceUnitTel',
         'LogEntryTel',
+        'TurbidityFilterTel',
     },
 )
 
@@ -1047,6 +1048,23 @@ class LogEntryTel(proto.Message):
         number=2,
         oneof='log_entry',
         message=message_formats.KernelLogEntry,
+    )
+
+
+class TurbidityFilterTel(proto.Message):
+    r"""Turbidity filter settings telemetry message.
+
+    Message is published when the filter settings are changed.
+
+    Attributes:
+        turbidity_filter (blueye.protocol.types.TurbidityFilter):
+            Turbidity filter settings.
+    """
+
+    turbidity_filter: message_formats.TurbidityFilter = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.TurbidityFilter,
     )
 
 

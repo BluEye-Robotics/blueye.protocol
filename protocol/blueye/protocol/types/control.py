@@ -69,6 +69,7 @@ __protobuf__ = proto.module(
         'StartDiveCtrl',
         'EndDiveCtrl',
         'FormatRemovableStorageDeviceCtrl',
+        'SetTurbidityFilter',
     },
 )
 
@@ -625,6 +626,23 @@ class FormatRemovableStorageDeviceCtrl(proto.Message):
     be lost.
 
     """
+
+
+class SetTurbidityFilter(proto.Message):
+    r"""Message sent when the user wants to set turbidity filter
+    settings.
+
+    Attributes:
+        turbidity_filter (blueye.protocol.types.TurbidityFilter):
+            Message with the turbidity filter settings to
+            set.
+    """
+
+    turbidity_filter: message_formats.TurbidityFilter = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.TurbidityFilter,
+    )
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

@@ -63,6 +63,7 @@ from .types.control import RunMissionCtrl
 from .types.control import SetAquaTrollConnectionStatusCtrl
 from .types.control import SetAquaTrollParameterUnitCtrl
 from .types.control import SetMultibeamConfigCtrl
+from .types.control import SetTurbidityFilter
 from .types.control import StartCalibrationCtrl
 from .types.control import StartDiveCtrl
 from .types.control import StationKeepingCtrl
@@ -152,6 +153,7 @@ from .types.message_formats import TiltAngle
 from .types.message_formats import TiltStabilizationState
 from .types.message_formats import TiltVelocity
 from .types.message_formats import TimeLapseState
+from .types.message_formats import TurbidityFilter
 from .types.message_formats import Vector3
 from .types.message_formats import WaterDensity
 from .types.message_formats import WaterTemperature
@@ -303,6 +305,7 @@ from .types.telemetry import ThicknessGaugeTel
 from .types.telemetry import TiltAngleTel
 from .types.telemetry import TiltStabilizationTel
 from .types.telemetry import TimeLapseStateTel
+from .types.telemetry import TurbidityFilterTel
 from .types.telemetry import VideoStorageSpaceTel
 from .types.telemetry import WaterTemperatureTel
 
@@ -554,6 +557,7 @@ __all__ = (
 'SetPubFrequencyReq',
 'SetThicknessGaugeParametersRep',
 'SetThicknessGaugeParametersReq',
+'SetTurbidityFilter',
 'StartCalibrationCtrl',
 'StartDiveCtrl',
 'StationKeepingCtrl',
@@ -585,6 +589,8 @@ __all__ = (
 'TiltVelocityCtrl',
 'TimeLapseState',
 'TimeLapseStateTel',
+'TurbidityFilter',
+'TurbidityFilterTel',
 'Type',
 'Vector3',
 'VideoStorageSpaceTel',
