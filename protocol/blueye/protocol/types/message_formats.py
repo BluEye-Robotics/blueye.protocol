@@ -446,6 +446,8 @@ class Model(proto.Enum):
             Blueye X3, features support for peripherals.
         MODEL_X3_ULTRA (6):
             Blueye X3 Ultra.
+        MODEL_X7 (7):
+            Blueye X7.
         MODEL_NEXT (5):
             Blueye ?
     """
@@ -461,6 +463,8 @@ class Model(proto.Enum):
     """Blueye X3, features support for peripherals."""
     MODEL_X3_ULTRA = 6
     """Blueye X3 Ultra."""
+    MODEL_X7 = 7
+    """Blueye X7."""
     MODEL_NEXT = 5
     """Blueye ?"""
 
