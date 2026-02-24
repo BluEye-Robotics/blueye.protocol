@@ -135,7 +135,7 @@ __protobuf__ = proto.module(
         'CPUInfo',
         'SurfaceUnitBatteryInfo',
         'SurfaceUnitVersionInfo',
-        'TurbidityFilter',
+        'FilterMessage',
     },
 )
 
@@ -3978,7 +3978,7 @@ class CameraParameters(proto.Message):
             Which camera the parameters belong to.
         mtu_size (int):
             Network MTU (Maximum Transmission Unit) size
-            for video streaming in bytes (68..65535).  If 0
+            for video streaming in bytes (68..65535). If 0
             or unset, the system will use a default of 1400.
             The Blueye App allows users to set values
             between 500 and 1460.
@@ -5223,14 +5223,14 @@ class SurfaceUnitVersionInfo(proto.Message):
     )
 
 
-class TurbidityFilter(proto.Message):
-    r"""Turbidity filter settings.
+class FilterMessage(proto.Message):
+    r"""Generic filter settings.
 
     Attributes:
         enabled (bool):
-            If the turbidity filter is enabled.
+            If the filter is enabled.
         intensity (float):
-            Intensity of the turbidity filter (0..1).
+            Intensity of the filter (0..1).
     """
 
     enabled: bool = proto.Field(

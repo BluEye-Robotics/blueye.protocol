@@ -103,6 +103,7 @@ from .types.message_formats import DroneInfo
 from .types.message_formats import DvlTransducer
 from .types.message_formats import DvlVelocity
 from .types.message_formats import ErrorFlags
+from .types.message_formats import FilterMessage
 from .types.message_formats import ForwardDistance
 from .types.message_formats import GenericServo
 from .types.message_formats import GripperVelocities
@@ -153,7 +154,6 @@ from .types.message_formats import TiltAngle
 from .types.message_formats import TiltStabilizationState
 from .types.message_formats import TiltVelocity
 from .types.message_formats import TimeLapseState
-from .types.message_formats import TurbidityFilter
 from .types.message_formats import Vector3
 from .types.message_formats import WaterDensity
 from .types.message_formats import WaterTemperature
@@ -405,6 +405,7 @@ __all__ = (
 'EndDiveCtrl',
 'ErrorFlags',
 'ErrorFlagsTel',
+'FilterMessage',
 'FinishCalibrationCtrl',
 'FlashEscSettingsRep',
 'FlashEscSettingsReq',
@@ -589,7 +590,6 @@ __all__ = (
 'TiltVelocityCtrl',
 'TimeLapseState',
 'TimeLapseStateTel',
-'TurbidityFilter',
 'TurbidityFilterTel',
 'Type',
 'Vector3',

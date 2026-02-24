@@ -633,15 +633,15 @@ class SetTurbidityFilterCtrl(proto.Message):
     settings.
 
     Attributes:
-        turbidity_filter (blueye.protocol.types.TurbidityFilter):
+        turbidity_filter (blueye.protocol.types.FilterMessage):
             Message with the turbidity filter settings to
             set.
     """
 
-    turbidity_filter: message_formats.TurbidityFilter = proto.Field(
+    turbidity_filter: message_formats.FilterMessage = proto.Field(
         proto.MESSAGE,
         number=1,
-        message=message_formats.TurbidityFilter,
+        message=message_formats.FilterMessage,
     )
 
 

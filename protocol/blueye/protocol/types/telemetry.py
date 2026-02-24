@@ -1057,14 +1057,14 @@ class TurbidityFilterTel(proto.Message):
     Message is published when the filter settings are changed.
 
     Attributes:
-        turbidity_filter (blueye.protocol.types.TurbidityFilter):
+        turbidity_filter (blueye.protocol.types.FilterMessage):
             Turbidity filter settings.
     """
 
-    turbidity_filter: message_formats.TurbidityFilter = proto.Field(
+    turbidity_filter: message_formats.FilterMessage = proto.Field(
         proto.MESSAGE,
         number=1,
-        message=message_formats.TurbidityFilter,
+        message=message_formats.FilterMessage,
     )
 
 
