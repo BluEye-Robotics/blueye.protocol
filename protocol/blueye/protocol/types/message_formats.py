@@ -136,6 +136,7 @@ __protobuf__ = proto.module(
         'SurfaceUnitBatteryInfo',
         'SurfaceUnitVersionInfo',
         'FilterMessage',
+        'CameraPanTiltZoom',
     },
 )
 
@@ -515,6 +516,9 @@ class Resolution(proto.Enum):
         RESOLUTION_UHD_4K (3):
             4K Ultra HD (3840x2160, Only supported on X3
             Ultra).
+        RESOLUTION_QHD_2K (5):
+            2K QHD (2560x1440, Only supported on X3
+            Ultra).
     """
     RESOLUTION_UNSPECIFIED = 0
     """Resolution not specified."""
@@ -526,10 +530,16 @@ class Resolution(proto.Enum):
     """1080p Full HD (1920x1080)."""
     RESOLUTION_UHD_4K = 3
     """4K Ultra HD (3840x2160, Only supported on X3 Ultra)."""
+    RESOLUTION_QHD_2K = 5
+    """2K QHD (2560x1440, Only supported on X3 Ultra)."""
 
 
 class Framerate(proto.Enum):
     r"""Available camera frame rates.
+
+    If the requested frame rate is higher than what is supported at
+    the current resolution, the frame rate will be reduced while the
+    resolution is respected.
 
     Attributes:
         FRAMERATE_UNSPECIFIED (0):
@@ -539,6 +549,9 @@ class Framerate(proto.Enum):
         FRAMERATE_FPS_25 (2):
             25 frames per second. (Only supported on
             Pioneer/Pro/X1/X3)
+        FRAMERATE_FPS_60 (3):
+            60 frames per second. (Only supported on X3
+            Ultra at QHD, 1080p and 720p)
     """
     FRAMERATE_UNSPECIFIED = 0
     """Framerate not specified."""
@@ -546,6 +559,9 @@ class Framerate(proto.Enum):
     """30 frames per second."""
     FRAMERATE_FPS_25 = 2
     """25 frames per second. (Only supported on Pioneer/Pro/X1/X3)"""
+    FRAMERATE_FPS_60 = 3
+    """60 frames per second. (Only supported on X3 Ultra at QHD,
+    1080p and 720p)"""
 
 
 class Camera(proto.Enum):
@@ -5244,6 +5260,38 @@ class FilterMessage(proto.Message):
     intensity: float = proto.Field(
         proto.FLOAT,
         number=2,
+    )
+
+
+class CameraPanTiltZoom(proto.Message):
+    r"""Digital pan, tilt, and zoom state for the main camera.
+
+    Only supported on X3 Ultra. Controls digital (not mechanical)
+    zoom.
+
+    Attributes:
+        pan (float):
+            Horizontal pan (-1.0..1.0), where 0.0 is
+            center.
+        tilt (float):
+            Vertical tilt (-1.0..1.0), where 0.0 is
+            center.
+        zoom (float):
+            Zoom level (0.0..1.0), where 0.0 is no zoom
+            and 1.0 is maximum zoom.
+    """
+
+    pan: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    tilt: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    zoom: float = proto.Field(
+        proto.FLOAT,
+        number=3,
     )
 
 

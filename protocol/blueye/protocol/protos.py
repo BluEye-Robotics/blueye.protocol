@@ -38,6 +38,7 @@ from .types.control import AutoHeadingCtrl
 from .types.control import AutoPilotHeaveCtrl
 from .types.control import AutoPilotSurgeYawCtrl
 from .types.control import CalibrateDvlGyroCtrl
+from .types.control import CameraPanTiltZoomCtrl
 from .types.control import CancelCalibrationCtrl
 from .types.control import ClearMissionCtrl
 from .types.control import DeactivateGuestPortsCtrl
@@ -85,6 +86,7 @@ from .types.message_formats import Battery
 from .types.message_formats import BatteryBQ40Z50
 from .types.message_formats import BinlogRecord
 from .types.message_formats import CalibrationState
+from .types.message_formats import CameraPanTiltZoom
 from .types.message_formats import CameraParameters
 from .types.message_formats import CanisterHumidity
 from .types.message_formats import CanisterTemperature
@@ -258,6 +260,7 @@ from .types.telemetry import BatteryTel
 from .types.telemetry import CalibratedImuHpTel
 from .types.telemetry import CalibratedImuTel
 from .types.telemetry import CalibrationStateTel
+from .types.telemetry import CameraPanTiltZoomTel
 from .types.telemetry import CanisterBottomHumidityTel
 from .types.telemetry import CanisterBottomTemperatureTel
 from .types.telemetry import ConnectedClientsTel
@@ -359,6 +362,9 @@ __all__ = (
 'Camera',
 'CameraAction',
 'CameraCommand',
+'CameraPanTiltZoom',
+'CameraPanTiltZoomCtrl',
+'CameraPanTiltZoomTel',
 'CameraParameters',
 'CancelCalibrationCtrl',
 'CanisterBottomHumidityTel',

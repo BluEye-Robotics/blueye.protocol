@@ -87,6 +87,7 @@ __protobuf__ = proto.module(
         'SurfaceUnitTel',
         'LogEntryTel',
         'TurbidityFilterTel',
+        'CameraPanTiltZoomTel',
     },
 )
 
@@ -1065,6 +1066,24 @@ class TurbidityFilterTel(proto.Message):
         proto.MESSAGE,
         number=1,
         message=message_formats.FilterMessage,
+    )
+
+
+class CameraPanTiltZoomTel(proto.Message):
+    r"""Digital pan, tilt, and zoom telemetry from the main camera.
+
+    Reports the actual pan, tilt, and zoom state of the camera. Only
+    supported on X3 Ultra.
+
+    Attributes:
+        camera_pan_tilt_zoom (blueye.protocol.types.CameraPanTiltZoom):
+            Current pan, tilt, and zoom state.
+    """
+
+    camera_pan_tilt_zoom: message_formats.CameraPanTiltZoom = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.CameraPanTiltZoom,
     )
 
 

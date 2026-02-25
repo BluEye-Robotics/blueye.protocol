@@ -70,6 +70,7 @@ __protobuf__ = proto.module(
         'EndDiveCtrl',
         'FormatRemovableStorageDeviceCtrl',
         'SetTurbidityFilterCtrl',
+        'CameraPanTiltZoomCtrl',
     },
 )
 
@@ -642,6 +643,23 @@ class SetTurbidityFilterCtrl(proto.Message):
         proto.MESSAGE,
         number=1,
         message=message_formats.FilterMessage,
+    )
+
+
+class CameraPanTiltZoomCtrl(proto.Message):
+    r"""Issue a command to set the digital pan, tilt, and zoom of the
+    main camera.
+    Only supported on X3 Ultra.
+
+    Attributes:
+        camera_pan_tilt_zoom (blueye.protocol.types.CameraPanTiltZoom):
+            The desired pan, tilt, and zoom state.
+    """
+
+    camera_pan_tilt_zoom: message_formats.CameraPanTiltZoom = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.CameraPanTiltZoom,
     )
 
 
