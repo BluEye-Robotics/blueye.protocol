@@ -86,6 +86,7 @@ __protobuf__ = proto.module(
         'CPUInfoTel',
         'SurfaceUnitTel',
         'LogEntryTel',
+        'ObjectDetectionsTel',
         'TurbidityFilterTel',
         'CameraPanTiltZoomTel',
     },
@@ -1049,6 +1050,21 @@ class LogEntryTel(proto.Message):
         number=2,
         oneof='log_entry',
         message=message_formats.KernelLogEntry,
+    )
+
+
+class ObjectDetectionsTel(proto.Message):
+    r"""Object detections from a computer vision model.
+
+    Attributes:
+        object_detections (blueye.protocol.types.ObjectDetections):
+            List of object detections from a video frame.
+    """
+
+    object_detections: message_formats.ObjectDetections = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.ObjectDetections,
     )
 
 

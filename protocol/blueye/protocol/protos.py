@@ -85,6 +85,7 @@ from .types.message_formats import AutoPilotSurgeYawState
 from .types.message_formats import Battery
 from .types.message_formats import BatteryBQ40Z50
 from .types.message_formats import BinlogRecord
+from .types.message_formats import BoundingBox
 from .types.message_formats import CalibrationState
 from .types.message_formats import CameraPanTiltZoom
 from .types.message_formats import CameraParameters
@@ -135,6 +136,8 @@ from .types.message_formats import MutltibeamRecordingIndex
 from .types.message_formats import NavigationSensorStatus
 from .types.message_formats import Notification
 from .types.message_formats import NStreamers
+from .types.message_formats import ObjectDetection
+from .types.message_formats import ObjectDetections
 from .types.message_formats import OverlayParameters
 from .types.message_formats import PersistentStorageSettings
 from .types.message_formats import PingerConfiguration
@@ -297,6 +300,7 @@ from .types.telemetry import MultibeamPingTel
 from .types.telemetry import MultibeamServoTel
 from .types.telemetry import NotificationTel
 from .types.telemetry import NStreamersTel
+from .types.telemetry import ObjectDetectionsTel
 from .types.telemetry import PilotGPSPositionTel
 from .types.telemetry import PositionEstimateTel
 from .types.telemetry import RecordStateTel
@@ -350,6 +354,7 @@ __all__ = (
 'BatteryBQ40Z50Tel',
 'BatteryTel',
 'BinlogRecord',
+'BoundingBox',
 'CPUInfo',
 'CPUInfoTel',
 'CPUTemperature',
@@ -510,6 +515,9 @@ __all__ = (
 'NotificationLevel',
 'NotificationTel',
 'NotificationType',
+'ObjectDetection',
+'ObjectDetections',
+'ObjectDetectionsTel',
 'OverlayParameters',
 'PathSegment',
 'PauseMissionCtrl',

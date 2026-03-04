@@ -135,6 +135,9 @@ __protobuf__ = proto.module(
         'CPUInfo',
         'SurfaceUnitBatteryInfo',
         'SurfaceUnitVersionInfo',
+        'BoundingBox',
+        'ObjectDetection',
+        'ObjectDetections',
         'FilterMessage',
         'CameraPanTiltZoom',
     },
@@ -5240,6 +5243,104 @@ class SurfaceUnitVersionInfo(proto.Message):
     version: str = proto.Field(
         proto.STRING,
         number=1,
+    )
+
+
+class BoundingBox(proto.Message):
+    r"""Bounding box for object detection.
+
+    Coordinates are in pixels relative to the camera image, where
+    (x, y) is the top-left corner of the bounding box.
+
+    Attributes:
+        x (int):
+            Horizontal offset of the top-left corner
+            (px).
+        y (int):
+            Vertical offset of the top-left corner (px).
+        width (int):
+            Width of the bounding box (px).
+        height (int):
+            Height of the bounding box (px).
+    """
+
+    x: int = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    y: int = proto.Field(
+        proto.UINT32,
+        number=2,
+    )
+    width: int = proto.Field(
+        proto.UINT32,
+        number=3,
+    )
+    height: int = proto.Field(
+        proto.UINT32,
+        number=4,
+    )
+
+
+class ObjectDetection(proto.Message):
+    r"""A single object detection from a computer vision model.
+
+    Attributes:
+        bounding_box (blueye.protocol.types.BoundingBox):
+            Bounding box of the detected object.
+        confidence (float):
+            Detection confidence score (0..1).
+        class_id (int):
+            Numeric class identifier from the model.
+        class_name (str):
+            Human-readable class name.
+        tracking_id (int):
+            Unique ID for tracking the same object across
+            frames.
+    """
+
+    bounding_box: 'BoundingBox' = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message='BoundingBox',
+    )
+    confidence: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    class_id: int = proto.Field(
+        proto.UINT32,
+        number=3,
+    )
+    class_name: str = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    tracking_id: int = proto.Field(
+        proto.UINT32,
+        number=5,
+    )
+
+
+class ObjectDetections(proto.Message):
+    r"""A list of object detections from a single video frame.
+
+    Attributes:
+        detections (MutableSequence[blueye.protocol.types.ObjectDetection]):
+            List of detections in the frame.
+        camera (blueye.protocol.types.Camera):
+            Which camera the detections are from.
+    """
+
+    detections: MutableSequence['ObjectDetection'] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
+        message='ObjectDetection',
+    )
+    camera: 'Camera' = proto.Field(
+        proto.ENUM,
+        number=2,
+        enum='Camera',
     )
 
 
