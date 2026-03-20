@@ -200,6 +200,7 @@ from .types.mission_planning import Mission
 from .types.mission_planning import MissionStatus
 from .types.mission_planning import PathSegment
 from .types.mission_planning import ReferenceAutoPilot
+from .types.mission_planning import SurveyCommand
 from .types.mission_planning import TiltMainCameraCommand
 from .types.mission_planning import TiltMultibeamCommand
 from .types.mission_planning import WaitForCommand
@@ -584,6 +585,7 @@ __all__ = (
 'SurfaceUnitBatteryInfo',
 'SurfaceUnitTel',
 'SurfaceUnitVersionInfo',
+'SurveyCommand',
 'SyncTimeRep',
 'SyncTimeReq',
 'SystemTime',
