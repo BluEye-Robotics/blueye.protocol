@@ -603,7 +603,17 @@ class StartDiveCtrl(proto.Message):
     files so we can see at which point the user entered the dive
     view.
 
+    Attributes:
+        operator_info (blueye.protocol.types.OperatorInfo):
+            Optional information about the operator who
+            started the dive.
     """
+
+    operator_info: message_formats.OperatorInfo = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.OperatorInfo,
+    )
 
 
 class EndDiveCtrl(proto.Message):

@@ -140,6 +140,7 @@ __protobuf__ = proto.module(
         'ObjectDetections',
         'FilterMessage',
         'CameraPanTiltZoom',
+        'OperatorInfo',
     },
 )
 
@@ -5393,6 +5394,29 @@ class CameraPanTiltZoom(proto.Message):
     zoom: float = proto.Field(
         proto.FLOAT,
         number=3,
+    )
+
+
+class OperatorInfo(proto.Message):
+    r"""Information about the operator controlling the drone.
+
+    Used to identify who started a dive, for reporting and when
+    importing dives to Blueye Cloud.
+
+    Attributes:
+        name (str):
+            Full name of the operator.
+        email (str):
+            E-mail address of the operator.
+    """
+
+    name: str = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    email: str = proto.Field(
+        proto.STRING,
+        number=2,
     )
 
 

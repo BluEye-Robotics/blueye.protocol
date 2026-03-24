@@ -138,6 +138,7 @@ from .types.message_formats import Notification
 from .types.message_formats import NStreamers
 from .types.message_formats import ObjectDetection
 from .types.message_formats import ObjectDetections
+from .types.message_formats import OperatorInfo
 from .types.message_formats import OverlayParameters
 from .types.message_formats import PersistentStorageSettings
 from .types.message_formats import PingerConfiguration
@@ -519,6 +520,7 @@ __all__ = (
 'ObjectDetection',
 'ObjectDetections',
 'ObjectDetectionsTel',
+'OperatorInfo',
 'OverlayParameters',
 'PathSegment',
 'PauseMissionCtrl',
