@@ -84,6 +84,7 @@ __protobuf__ = proto.module(
         'MultibeamConfigTel',
         'MultibeamDiscoveryTel',
         'CPUInfoTel',
+        'SystemPerformanceInfoTel',
         'SurfaceUnitTel',
         'LogEntryTel',
         'ObjectDetectionsTel',
@@ -982,7 +983,8 @@ class MultibeamDiscoveryTel(proto.Message):
 
 
 class CPUInfoTel(proto.Message):
-    r"""Information about cpu and memory usage.
+    r"""Information about CPU and memory usage (deprecated, use
+    SystemPerformanceInfoTel instead).
 
     Attributes:
         cpu_info (blueye.protocol.types.CPUInfo):
@@ -993,6 +995,24 @@ class CPUInfoTel(proto.Message):
         proto.MESSAGE,
         number=1,
         message=message_formats.CPUInfo,
+    )
+
+
+class SystemPerformanceInfoTel(proto.Message):
+    r"""System performance telemetry message.
+
+    Comprehensive performance metrics including per-core CPU, GPU,
+    DLA, memory, thermals, and video codec utilization.
+
+    Attributes:
+        system_performance_info (blueye.protocol.types.SystemPerformanceInfo):
+            System performance information.
+    """
+
+    system_performance_info: message_formats.SystemPerformanceInfo = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.SystemPerformanceInfo,
     )
 
 

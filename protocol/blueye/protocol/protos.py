@@ -98,10 +98,12 @@ from .types.message_formats import ControlForce
 from .types.message_formats import ControllerHealth
 from .types.message_formats import ControlMode
 from .types.message_formats import CpProbe
+from .types.message_formats import CpuCoreLoad
 from .types.message_formats import CPUInfo
 from .types.message_formats import CPUTemperature
 from .types.message_formats import Depth
 from .types.message_formats import DiveTime
+from .types.message_formats import DlaInfo
 from .types.message_formats import DroneInfo
 from .types.message_formats import DvlTransducer
 from .types.message_formats import DvlVelocity
@@ -109,6 +111,7 @@ from .types.message_formats import ErrorFlags
 from .types.message_formats import FilterMessage
 from .types.message_formats import ForwardDistance
 from .types.message_formats import GenericServo
+from .types.message_formats import GpuInfo
 from .types.message_formats import GripperVelocities
 from .types.message_formats import GuestPortConnectorInfo
 from .types.message_formats import GuestPortCurrent
@@ -125,6 +128,7 @@ from .types.message_formats import Lights
 from .types.message_formats import LogEntry
 from .types.message_formats import MagneticDeclination
 from .types.message_formats import MedusaSpectrometerData
+from .types.message_formats import MemoryInfo
 from .types.message_formats import MotionInput
 from .types.message_formats import MultibeamConfig
 from .types.message_formats import MultibeamDiscovery
@@ -154,13 +158,16 @@ from .types.message_formats import StoragePartition
 from .types.message_formats import StorageSpace
 from .types.message_formats import SurfaceUnitBatteryInfo
 from .types.message_formats import SurfaceUnitVersionInfo
+from .types.message_formats import SystemPerformanceInfo
 from .types.message_formats import SystemTime
+from .types.message_formats import ThermalZone
 from .types.message_formats import ThicknessGauge
 from .types.message_formats import TiltAngle
 from .types.message_formats import TiltStabilizationState
 from .types.message_formats import TiltVelocity
 from .types.message_formats import TimeLapseState
 from .types.message_formats import Vector3
+from .types.message_formats import VideoCodecInfo
 from .types.message_formats import WaterDensity
 from .types.message_formats import WaterTemperature
 from .types.message_formats import WeatherVaningState
@@ -188,6 +195,7 @@ from .types.message_formats import Resolution
 from .types.message_formats import StorageLocation
 from .types.message_formats import StreamingProtocol
 from .types.message_formats import TemperatureUnit
+from .types.message_formats import ThermalZoneId
 from .types.message_formats import ThicknessUnit
 from .types.mission_planning import CameraCommand
 from .types.mission_planning import ControlModeCommand
@@ -310,6 +318,7 @@ from .types.telemetry import ReferenceAutoPilotTel
 from .types.telemetry import ReferenceTel
 from .types.telemetry import RemovableStorageTel
 from .types.telemetry import SurfaceUnitTel
+from .types.telemetry import SystemPerformanceInfoTel
 from .types.telemetry import ThicknessGaugeTel
 from .types.telemetry import TiltAngleTel
 from .types.telemetry import TiltStabilizationTel
@@ -396,6 +405,7 @@ __all__ = (
 'ControllerHealthTel',
 'CpProbe',
 'CpProbeTel',
+'CpuCoreLoad',
 'DataStorageSpaceTel',
 'DeactivateGuestPortsCtrl',
 'DeactivateMultibeamCtrl',
@@ -409,6 +419,7 @@ __all__ = (
 'DisconnectClientReq',
 'DiveTime',
 'DiveTimeTel',
+'DlaInfo',
 'DroneInfo',
 'DroneInfoTel',
 'DroneTimeTel',
@@ -447,6 +458,7 @@ __all__ = (
 'GoToHomeCommand',
 'GoToSeabedCommand',
 'GoToSurfaceCommand',
+'GpuInfo',
 'GripperCtrl',
 'GripperVelocities',
 'GuestPortConnectorInfo',
@@ -489,6 +501,7 @@ __all__ = (
 'MagneticDeclinationTel',
 'MedusaSpectrometerData',
 'MedusaSpectrometerDataTel',
+'MemoryInfo',
 'Mission',
 'MissionState',
 'MissionStatus',
@@ -590,10 +603,14 @@ __all__ = (
 'SurveyCommand',
 'SyncTimeRep',
 'SyncTimeReq',
+'SystemPerformanceInfo',
+'SystemPerformanceInfoTel',
 'SystemTime',
 'SystemTimeCtrl',
 'TakePictureCtrl',
 'TemperatureUnit',
+'ThermalZone',
+'ThermalZoneId',
 'ThicknessGauge',
 'ThicknessGaugeTel',
 'ThicknessUnit',
@@ -611,6 +628,7 @@ __all__ = (
 'TurbidityFilterTel',
 'Type',
 'Vector3',
+'VideoCodecInfo',
 'VideoStorageSpaceTel',
 'WaitForCommand',
 'WatchdogCtrl',

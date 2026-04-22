@@ -52,6 +52,7 @@ __protobuf__ = proto.module(
         'GuestPortDetachStatus',
         'GuestPortError',
         'MultibeamFrequencyMode',
+        'ThermalZoneId',
         'BinlogRecord',
         'LogEntry',
         'KernelLogEntry',
@@ -133,6 +134,13 @@ __protobuf__ = proto.module(
         'MutltibeamRecordingIndex',
         'PersistentStorageSettings',
         'CPUInfo',
+        'CpuCoreLoad',
+        'GpuInfo',
+        'DlaInfo',
+        'MemoryInfo',
+        'ThermalZone',
+        'VideoCodecInfo',
+        'SystemPerformanceInfo',
         'SurfaceUnitBatteryInfo',
         'SurfaceUnitVersionInfo',
         'BoundingBox',
@@ -1061,6 +1069,25 @@ class MultibeamFrequencyMode(proto.Enum):
     """High frequency mode (narrow aperture, target identification)."""
 
 
+class ThermalZoneId(proto.Enum):
+    r"""Thermal zone identifiers.
+
+    Attributes:
+        THERMAL_ZONE_ID_UNSPECIFIED (0):
+            Unspecified thermal zone.
+        THERMAL_ZONE_ID_TJ (1):
+            Junction temperature (Tj).
+        THERMAL_ZONE_ID_CANISTER (2):
+            Canister temperature.
+    """
+    THERMAL_ZONE_ID_UNSPECIFIED = 0
+    """Unspecified thermal zone."""
+    THERMAL_ZONE_ID_TJ = 1
+    """Junction temperature (Tj)."""
+    THERMAL_ZONE_ID_CANISTER = 2
+    """Canister temperature."""
+
+
 class BinlogRecord(proto.Message):
     r"""Wrapper message for each entry in the drone telemetry
     logfile.
@@ -1881,7 +1908,8 @@ class WaterTemperature(proto.Message):
 
 
 class CPUTemperature(proto.Message):
-    r"""CPU temperature.
+    r"""CPU temperature (deprecated, use SystemPerformanceInfo.thermal_zones
+    instead).
 
     Attributes:
         value (float):
@@ -5149,8 +5177,8 @@ class PersistentStorageSettings(proto.Message):
 
 
 class CPUInfo(proto.Message):
-    r"""CPU information.
-
+    r"""CPU information (deprecated, use SystemPerformanceInfo
+    instead).
     Contains information about the CPU load and memory usage of the
     drone.
 
@@ -5186,6 +5214,324 @@ class CPUInfo(proto.Message):
     comm_queue_load: float = proto.Field(
         proto.FLOAT,
         number=5,
+    )
+
+
+class CpuCoreLoad(proto.Message):
+    r"""Per-core CPU utilization.
+
+    Attributes:
+        core_index (int):
+            Core index (0-based).
+        load (float):
+            Core load (0..1).
+        frequency_mhz (float):
+            Current clock frequency (MHz).
+    """
+
+    core_index: int = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    load: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    frequency_mhz: float = proto.Field(
+        proto.FLOAT,
+        number=3,
+    )
+
+
+class GpuInfo(proto.Message):
+    r"""GPU utilization and status.
+
+    Attributes:
+        load (float):
+            GPU load (0..1).
+        frequency_mhz (float):
+            Current GPU clock frequency (MHz).
+    """
+
+    load: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    frequency_mhz: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+
+
+class DlaInfo(proto.Message):
+    r"""Deep Learning Accelerator (DLA) utilization.
+
+    Jetson Orin NX has two DLA engines used for inference offload.
+
+    Attributes:
+        engine_index (int):
+            DLA engine index (0-based).
+        load (float):
+            DLA engine load (0..1).
+        frequency_mhz (float):
+            Core clock frequency (MHz). 0 when disabled.
+        enabled (bool):
+            True when the DLA engine is actively
+            processing.
+        falcon_frequency_mhz (float):
+            Falcon microcontroller clock frequency (MHz).
+            0 when disabled.
+    """
+
+    engine_index: int = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    load: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    frequency_mhz: float = proto.Field(
+        proto.FLOAT,
+        number=3,
+    )
+    enabled: bool = proto.Field(
+        proto.BOOL,
+        number=4,
+    )
+    falcon_frequency_mhz: float = proto.Field(
+        proto.FLOAT,
+        number=5,
+    )
+
+
+class MemoryInfo(proto.Message):
+    r"""System memory information.
+
+    Attributes:
+        total_bytes (int):
+            Total RAM (bytes).
+        used_bytes (int):
+            Used RAM (bytes).
+        cached_bytes (int):
+            Cached RAM (bytes).
+        bus_load (float):
+            Memory bus utilization (0..1). i.MX only.
+    """
+
+    total_bytes: int = proto.Field(
+        proto.UINT64,
+        number=1,
+    )
+    used_bytes: int = proto.Field(
+        proto.UINT64,
+        number=2,
+    )
+    cached_bytes: int = proto.Field(
+        proto.UINT64,
+        number=3,
+    )
+    bus_load: float = proto.Field(
+        proto.FLOAT,
+        number=4,
+    )
+
+
+class ThermalZone(proto.Message):
+    r"""Thermal zone reading.
+
+    Attributes:
+        zone (blueye.protocol.types.ThermalZoneId):
+            Thermal zone identifier.
+        temperature (float):
+            Temperature (°C).
+    """
+
+    zone: 'ThermalZoneId' = proto.Field(
+        proto.ENUM,
+        number=1,
+        enum='ThermalZoneId',
+    )
+    temperature: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+
+
+class VideoCodecInfo(proto.Message):
+    r"""Video codec engine status.
+
+    Attributes:
+        encoder_active (bool):
+            Jetson only (NVENC/NVDEC/NVJPG/VIC devfreq).
+        encoder_frequency_mhz (float):
+            Video encoder clock frequency (MHz).
+        decoder_active (bool):
+            Video decoder (NVDEC) is active.
+        decoder_frequency_mhz (float):
+            Video decoder clock frequency (MHz).
+        nvjpg_active (bool):
+            JPEG engine (NVJPG) is active.
+        nvjpg_frequency_mhz (float):
+            JPEG engine clock frequency (MHz).
+        vic_active (bool):
+            Video Image Compositor (VIC) is active.
+        vic_frequency_mhz (float):
+            VIC clock frequency (MHz).
+        vpu_active (bool):
+            i.MX only (CODA VPU).
+        vpu_frequency_mhz (float):
+            VPU AXI clock frequency (MHz).
+        vpu_codec_irq_count (int):
+            Cumulative VPU_CODEC_IRQ count.
+        vpu_jpg_irq_count (int):
+            Cumulative VPU_JPG_IRQ count.
+    """
+
+    encoder_active: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    encoder_frequency_mhz: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    decoder_active: bool = proto.Field(
+        proto.BOOL,
+        number=3,
+    )
+    decoder_frequency_mhz: float = proto.Field(
+        proto.FLOAT,
+        number=4,
+    )
+    nvjpg_active: bool = proto.Field(
+        proto.BOOL,
+        number=5,
+    )
+    nvjpg_frequency_mhz: float = proto.Field(
+        proto.FLOAT,
+        number=6,
+    )
+    vic_active: bool = proto.Field(
+        proto.BOOL,
+        number=7,
+    )
+    vic_frequency_mhz: float = proto.Field(
+        proto.FLOAT,
+        number=8,
+    )
+    vpu_active: bool = proto.Field(
+        proto.BOOL,
+        number=9,
+    )
+    vpu_frequency_mhz: float = proto.Field(
+        proto.FLOAT,
+        number=10,
+    )
+    vpu_codec_irq_count: int = proto.Field(
+        proto.UINT32,
+        number=11,
+    )
+    vpu_jpg_irq_count: int = proto.Field(
+        proto.UINT32,
+        number=12,
+    )
+
+
+class SystemPerformanceInfo(proto.Message):
+    r"""System performance information.
+
+    Comprehensive performance metrics for the drone's compute
+    platform. Covers CPU, GPU, DLA, memory, thermals, and video
+    codec utilization. Fields not applicable to a platform are left
+    at their zero/empty defaults.
+
+    Attributes:
+        cpu_cores (MutableSequence[blueye.protocol.types.CpuCoreLoad]):
+            Per-core CPU utilization.
+        cpu_utilization (float):
+            Mean CPU utilization across all cores (0..1).
+        gpu (blueye.protocol.types.GpuInfo):
+            GPU utilization.
+        dla_engines (MutableSequence[blueye.protocol.types.DlaInfo]):
+            DLA engine utilization (Jetson only).
+        memory (blueye.protocol.types.MemoryInfo):
+            RAM usage.
+        thermal_zones (MutableSequence[blueye.protocol.types.ThermalZone]):
+            All thermal zone readings.
+        video_codec (blueye.protocol.types.VideoCodecInfo):
+            Video encoder/decoder status.
+        main_queue_load (float):
+            Main queue load (0..1).
+        guestport_queue_load (float):
+            Guestport queue load (0..1).
+        comm_queue_load (float):
+            Communication queue load (0..1).
+        camera_queue_load (float):
+            Camera queue load (0..1).
+        overlay_queue_load (float):
+            Overlay queue load (0..1).
+        position_observer_queue_load (float):
+            Position observer queue load (0..1).
+    """
+
+    cpu_cores: MutableSequence['CpuCoreLoad'] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
+        message='CpuCoreLoad',
+    )
+    cpu_utilization: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    gpu: 'GpuInfo' = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message='GpuInfo',
+    )
+    dla_engines: MutableSequence['DlaInfo'] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=4,
+        message='DlaInfo',
+    )
+    memory: 'MemoryInfo' = proto.Field(
+        proto.MESSAGE,
+        number=5,
+        message='MemoryInfo',
+    )
+    thermal_zones: MutableSequence['ThermalZone'] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=6,
+        message='ThermalZone',
+    )
+    video_codec: 'VideoCodecInfo' = proto.Field(
+        proto.MESSAGE,
+        number=7,
+        message='VideoCodecInfo',
+    )
+    main_queue_load: float = proto.Field(
+        proto.FLOAT,
+        number=8,
+    )
+    guestport_queue_load: float = proto.Field(
+        proto.FLOAT,
+        number=9,
+    )
+    comm_queue_load: float = proto.Field(
+        proto.FLOAT,
+        number=10,
+    )
+    camera_queue_load: float = proto.Field(
+        proto.FLOAT,
+        number=11,
+    )
+    overlay_queue_load: float = proto.Field(
+        proto.FLOAT,
+        number=12,
+    )
+    position_observer_queue_load: float = proto.Field(
+        proto.FLOAT,
+        number=13,
     )
 
 
