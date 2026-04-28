@@ -41,6 +41,7 @@ __protobuf__ = proto.module(
         'Framerate',
         'Camera',
         'StreamingProtocol',
+        'RecordingCodec',
         'TemperatureUnit',
         'LogoType',
         'DepthUnit',
@@ -614,6 +615,28 @@ class StreamingProtocol(proto.Enum):
     STREAMING_PROTOCOL_RTSP_MJPEG = 2
     """RTSP streaming protocol using MJPEG codec. No recording when
     activated."""
+
+
+class RecordingCodec(proto.Enum):
+    r"""Recording video codec.
+
+    Attributes:
+        RECORDING_CODEC_UNSPECIFIED (0):
+            Use platform default (H.264).
+        RECORDING_CODEC_H264 (1):
+            H.264/AVC codec. Wider compatibility with
+            players/editors.
+        RECORDING_CODEC_H265 (2):
+            H.265/HEVC codec. Better compression, limited
+            compatibility. Ultra only.
+    """
+    RECORDING_CODEC_UNSPECIFIED = 0
+    """Use platform default (H.264)."""
+    RECORDING_CODEC_H264 = 1
+    """H.264/AVC codec. Wider compatibility with players/editors."""
+    RECORDING_CODEC_H265 = 2
+    """H.265/HEVC codec. Better compression, limited compatibility.
+    Ultra only."""
 
 
 class TemperatureUnit(proto.Enum):
@@ -4034,6 +4057,14 @@ class CameraParameters(proto.Message):
             or unset, the system will use a default of 1400.
             The Blueye App allows users to set values
             between 500 and 1460.
+        recording_codec (blueye.protocol.types.RecordingCodec):
+            Recording video codec. If unset, uses
+            platform default.
+        recording_bitrate (int):
+            Recording bitrate in bits/sec. If 0 or unset,
+            a default is computed based on resolution,
+            framerate, and encoding. Set explicitly to
+            override.
     """
 
     h264_bitrate: int = proto.Field(
@@ -4133,6 +4164,15 @@ class CameraParameters(proto.Message):
     mtu_size: int = proto.Field(
         proto.UINT32,
         number=24,
+    )
+    recording_codec: 'RecordingCodec' = proto.Field(
+        proto.ENUM,
+        number=25,
+        enum='RecordingCodec',
+    )
+    recording_bitrate: int = proto.Field(
+        proto.INT32,
+        number=26,
     )
 
 

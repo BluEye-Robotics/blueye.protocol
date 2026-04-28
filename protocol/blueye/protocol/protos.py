@@ -190,6 +190,7 @@ from .types.message_formats import NavigationSensorID
 from .types.message_formats import NotificationLevel
 from .types.message_formats import NotificationType
 from .types.message_formats import PressureSensorType
+from .types.message_formats import RecordingCodec
 from .types.message_formats import ResetCoordinateSource
 from .types.message_formats import Resolution
 from .types.message_formats import StorageLocation
@@ -551,6 +552,7 @@ __all__ = (
 'RecordOn',
 'RecordState',
 'RecordStateTel',
+'RecordingCodec',
 'Reference',
 'ReferenceAutoPilot',
 'ReferenceAutoPilotTel',
