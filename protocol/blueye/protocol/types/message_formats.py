@@ -5717,6 +5717,10 @@ class ObjectDetections(proto.Message):
             List of detections in the frame.
         camera (blueye.protocol.types.Camera):
             Which camera the detections are from.
+        image_width (int):
+            Width of the source image (px).
+        image_height (int):
+            Height of the source image (px).
     """
 
     detections: MutableSequence['ObjectDetection'] = proto.RepeatedField(
@@ -5728,6 +5732,14 @@ class ObjectDetections(proto.Message):
         proto.ENUM,
         number=2,
         enum='Camera',
+    )
+    image_width: int = proto.Field(
+        proto.UINT32,
+        number=3,
+    )
+    image_height: int = proto.Field(
+        proto.UINT32,
+        number=4,
     )
 
 
