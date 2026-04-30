@@ -67,7 +67,9 @@ from .types.control import SetMultibeamConfigCtrl
 from .types.control import SetTurbidityFilterCtrl
 from .types.control import StartCalibrationCtrl
 from .types.control import StartDiveCtrl
+from .types.control import StartLogStreamingCtrl
 from .types.control import StationKeepingCtrl
+from .types.control import StopLogStreamingCtrl
 from .types.control import SystemTimeCtrl
 from .types.control import TakePictureCtrl
 from .types.control import TiltStabilizationCtrl
@@ -234,6 +236,8 @@ from .types.req_rep import GetCameraParametersRep
 from .types.req_rep import GetCameraParametersReq
 from .types.req_rep import GetIperfStatusRep
 from .types.req_rep import GetIperfStatusReq
+from .types.req_rep import GetLogStreamingStatusRep
+from .types.req_rep import GetLogStreamingStatusReq
 from .types.req_rep import GetMissionRep
 from .types.req_rep import GetMissionReq
 from .types.req_rep import GetOverlayParametersRep
@@ -448,6 +452,8 @@ __all__ = (
 'GetCameraParametersReq',
 'GetIperfStatusRep',
 'GetIperfStatusReq',
+'GetLogStreamingStatusRep',
+'GetLogStreamingStatusReq',
 'GetMissionRep',
 'GetMissionReq',
 'GetOverlayParametersRep',
@@ -593,8 +599,10 @@ __all__ = (
 'SetTurbidityFilterCtrl',
 'StartCalibrationCtrl',
 'StartDiveCtrl',
+'StartLogStreamingCtrl',
 'StationKeepingCtrl',
 'StationKeepingState',
+'StopLogStreamingCtrl',
 'StorageLocation',
 'StoragePartition',
 'StorageSpace',

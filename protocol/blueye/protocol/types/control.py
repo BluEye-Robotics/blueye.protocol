@@ -71,6 +71,8 @@ __protobuf__ = proto.module(
         'FormatRemovableStorageDeviceCtrl',
         'SetTurbidityFilterCtrl',
         'CameraPanTiltZoomCtrl',
+        'StartLogStreamingCtrl',
+        'StopLogStreamingCtrl',
     },
 )
 
@@ -671,6 +673,16 @@ class CameraPanTiltZoomCtrl(proto.Message):
         number=1,
         message=message_formats.CameraPanTiltZoom,
     )
+
+
+class StartLogStreamingCtrl(proto.Message):
+    r"""Message sent to start streaming log entries to the client.
+    """
+
+
+class StopLogStreamingCtrl(proto.Message):
+    r"""Message sent to stop streaming log entries to the client.
+    """
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

@@ -69,6 +69,8 @@ __protobuf__ = proto.module(
         'SetIperfStatusRep',
         'GetIperfStatusReq',
         'GetIperfStatusRep',
+        'GetLogStreamingStatusReq',
+        'GetLogStreamingStatusRep',
     },
 )
 
@@ -616,6 +618,25 @@ class GetIperfStatusRep(proto.Message):
         enabled (bool):
             If background iperf task is enabled or
             disabled.
+    """
+
+    enabled: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+
+
+class GetLogStreamingStatusReq(proto.Message):
+    r"""Request to get the current log streaming status.
+    """
+
+
+class GetLogStreamingStatusRep(proto.Message):
+    r"""Response with the current log streaming status.
+
+    Attributes:
+        enabled (bool):
+            If log streaming is enabled or disabled.
     """
 
     enabled: bool = proto.Field(
