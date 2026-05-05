@@ -131,6 +131,7 @@ from .types.message_formats import LogEntry
 from .types.message_formats import MagneticDeclination
 from .types.message_formats import MedusaSpectrometerData
 from .types.message_formats import MemoryInfo
+from .types.message_formats import ModelDetections
 from .types.message_formats import MotionInput
 from .types.message_formats import MultibeamConfig
 from .types.message_formats import MultibeamDiscovery
@@ -143,7 +144,6 @@ from .types.message_formats import NavigationSensorStatus
 from .types.message_formats import Notification
 from .types.message_formats import NStreamers
 from .types.message_formats import ObjectDetection
-from .types.message_formats import ObjectDetections
 from .types.message_formats import OperatorInfo
 from .types.message_formats import OverlayParameters
 from .types.message_formats import PersistentStorageSettings
@@ -514,6 +514,7 @@ __all__ = (
 'MissionStatus',
 'MissionStatusTel',
 'Model',
+'ModelDetections',
 'MotionInput',
 'MotionInputCtrl',
 'MultibeamConfig',
@@ -538,7 +539,6 @@ __all__ = (
 'NotificationTel',
 'NotificationType',
 'ObjectDetection',
-'ObjectDetections',
 'ObjectDetectionsTel',
 'OperatorInfo',
 'OverlayParameters',

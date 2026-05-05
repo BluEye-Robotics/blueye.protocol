@@ -1074,17 +1074,17 @@ class LogEntryTel(proto.Message):
 
 
 class ObjectDetectionsTel(proto.Message):
-    r"""Object detections from a computer vision model.
+    r"""Object detections from all active computer vision models.
 
     Attributes:
-        object_detections (blueye.protocol.types.ObjectDetections):
-            List of object detections from a video frame.
+        model_detections (MutableSequence[blueye.protocol.types.ModelDetections]):
+            Per-model detection results.
     """
 
-    object_detections: message_formats.ObjectDetections = proto.Field(
+    model_detections: MutableSequence[message_formats.ModelDetections] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
-        message=message_formats.ObjectDetections,
+        message=message_formats.ModelDetections,
     )
 
 

@@ -146,7 +146,7 @@ __protobuf__ = proto.module(
         'SurfaceUnitVersionInfo',
         'BoundingBox',
         'ObjectDetection',
-        'ObjectDetections',
+        'ModelDetections',
         'FilterMessage',
         'CameraPanTiltZoom',
         'OperatorInfo',
@@ -5713,8 +5713,9 @@ class ObjectDetection(proto.Message):
     )
 
 
-class ObjectDetections(proto.Message):
-    r"""A list of object detections from a single video frame.
+class ModelDetections(proto.Message):
+    r"""A list of object detections from a single model for a single
+    video frame.
 
     Attributes:
         detections (MutableSequence[blueye.protocol.types.ObjectDetection]):
@@ -5725,6 +5726,9 @@ class ObjectDetections(proto.Message):
             Width of the source image (px).
         image_height (int):
             Height of the source image (px).
+        model_name (str):
+            Name of the computer vision model that
+            produced the detections.
     """
 
     detections: MutableSequence['ObjectDetection'] = proto.RepeatedField(
@@ -5744,6 +5748,10 @@ class ObjectDetections(proto.Message):
     image_height: int = proto.Field(
         proto.UINT32,
         number=4,
+    )
+    model_name: str = proto.Field(
+        proto.STRING,
+        number=5,
     )
 
 
