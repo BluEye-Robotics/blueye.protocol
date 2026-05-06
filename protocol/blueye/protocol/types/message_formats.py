@@ -738,6 +738,8 @@ class FontSize(proto.Enum):
             35 px.
         FONT_SIZE_PX40 (6):
             40 px.
+        FONT_SIZE_PX50 (7):
+            50 px.
     """
     FONT_SIZE_UNSPECIFIED = 0
     """Font size not specified."""
@@ -753,6 +755,8 @@ class FontSize(proto.Enum):
     """35 px."""
     FONT_SIZE_PX40 = 6
     """40 px."""
+    FONT_SIZE_PX50 = 7
+    """50 px."""
 
 
 class GuestPortDeviceID(proto.Enum):
