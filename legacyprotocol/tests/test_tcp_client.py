@@ -320,9 +320,8 @@ def test_connect_logs_error_on_failure(tcp_client):
 
 
 def test_connect_retries_on_failure(tcp_client, mocker):
+    tcp_client._sock.connect.reset_mock()
     tcp_client._sock.connect.side_effect = socket.timeout
-    # Resetting call count as connect is called when creating the mock
-    tcp_client._sock.connect.call_count = 0
     with pytest.raises(NoConnectionToDrone):
         tcp_client.connect(max_retries=3)
     assert tcp_client._sock.connect.call_count == 4
