@@ -40,7 +40,7 @@ dev = [
 
 [[package]]
 name = "blueye-protocol"
-version = "3.2.0"
+version = "3.3.0"
 source = { editable = "protocol" }
 dependencies = [
     { name = "proto-plus" },
