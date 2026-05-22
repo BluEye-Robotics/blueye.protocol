@@ -41,6 +41,7 @@ from .types.control import CalibrateDvlGyroCtrl
 from .types.control import CameraPanTiltZoomCtrl
 from .types.control import CancelCalibrationCtrl
 from .types.control import ClearMissionCtrl
+from .types.control import ClearSotTargetCtrl
 from .types.control import DeactivateGuestPortsCtrl
 from .types.control import DeactivateMultibeamCtrl
 from .types.control import EndDiveCtrl
@@ -64,6 +65,7 @@ from .types.control import RunMissionCtrl
 from .types.control import SetAquaTrollConnectionStatusCtrl
 from .types.control import SetAquaTrollParameterUnitCtrl
 from .types.control import SetMultibeamConfigCtrl
+from .types.control import SetSotTargetCtrl
 from .types.control import SetTurbidityFilterCtrl
 from .types.control import StartCalibrationCtrl
 from .types.control import StartDiveCtrl
@@ -103,6 +105,7 @@ from .types.message_formats import CpProbe
 from .types.message_formats import CpuCoreLoad
 from .types.message_formats import CPUInfo
 from .types.message_formats import CPUTemperature
+from .types.message_formats import CvModelInfo
 from .types.message_formats import Depth
 from .types.message_formats import DiveTime
 from .types.message_formats import DlaInfo
@@ -155,6 +158,8 @@ from .types.message_formats import Reference
 from .types.message_formats import RemovableStorageDevice
 from .types.message_formats import RemovableStorageErrorFlags
 from .types.message_formats import ResetPositionSettings
+from .types.message_formats import SegmentationMask
+from .types.message_formats import SotState
 from .types.message_formats import StationKeepingState
 from .types.message_formats import StoragePartition
 from .types.message_formats import StorageSpace
@@ -322,6 +327,7 @@ from .types.telemetry import RecordStateTel
 from .types.telemetry import ReferenceAutoPilotTel
 from .types.telemetry import ReferenceTel
 from .types.telemetry import RemovableStorageTel
+from .types.telemetry import SotStateTel
 from .types.telemetry import SurfaceUnitTel
 from .types.telemetry import SystemPerformanceInfoTel
 from .types.telemetry import ThicknessGaugeTel
@@ -393,6 +399,7 @@ __all__ = (
 'CanisterHumidity',
 'CanisterTemperature',
 'ClearMissionCtrl',
+'ClearSotTargetCtrl',
 'ClientInfo',
 'ConnectClientRep',
 'ConnectClientReq',
@@ -411,6 +418,7 @@ __all__ = (
 'CpProbe',
 'CpProbeTel',
 'CpuCoreLoad',
+'CvModelInfo',
 'DataStorageSpaceTel',
 'DeactivateGuestPortsCtrl',
 'DeactivateMultibeamCtrl',
@@ -573,6 +581,7 @@ __all__ = (
 'Resolution',
 'RestartGuestPortsCtrl',
 'RunMissionCtrl',
+'SegmentationMask',
 'SetAquaTrollConnectionStatus',
 'SetAquaTrollConnectionStatusCtrl',
 'SetAquaTrollParameterUnit',
@@ -594,9 +603,12 @@ __all__ = (
 'SetPersistentStorageSettingsReq',
 'SetPubFrequencyRep',
 'SetPubFrequencyReq',
+'SetSotTargetCtrl',
 'SetThicknessGaugeParametersRep',
 'SetThicknessGaugeParametersReq',
 'SetTurbidityFilterCtrl',
+'SotState',
+'SotStateTel',
 'StartCalibrationCtrl',
 'StartDiveCtrl',
 'StartLogStreamingCtrl',

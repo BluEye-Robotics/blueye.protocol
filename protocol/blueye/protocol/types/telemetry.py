@@ -90,6 +90,7 @@ __protobuf__ = proto.module(
         'ObjectDetectionsTel',
         'TurbidityFilterTel',
         'CameraPanTiltZoomTel',
+        'SotStateTel',
     },
 )
 
@@ -1120,6 +1121,25 @@ class CameraPanTiltZoomTel(proto.Message):
         proto.MESSAGE,
         number=1,
         message=message_formats.CameraPanTiltZoom,
+    )
+
+
+class SotStateTel(proto.Message):
+    r"""Single-object tracking (SOT) state telemetry from the
+    computer vision pipeline.
+    Reports the current tracking state and the tracked bounding box
+    when active. Published periodically while the SOT pipeline is
+    running.
+
+    Attributes:
+        sot_state (blueye.protocol.types.SotState):
+            Current SOT state and bounding box.
+    """
+
+    sot_state: message_formats.SotState = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.SotState,
     )
 
 

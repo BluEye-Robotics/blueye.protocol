@@ -109,6 +109,7 @@ __protobuf__ = proto.module(
         'NStreamers',
         'TiltAngle',
         'TiltVelocity',
+        'CvModelInfo',
         'DroneInfo',
         'ErrorFlags',
         'CameraParameters',
@@ -145,11 +146,13 @@ __protobuf__ = proto.module(
         'SurfaceUnitBatteryInfo',
         'SurfaceUnitVersionInfo',
         'BoundingBox',
+        'SegmentationMask',
         'ObjectDetection',
         'ModelDetections',
         'FilterMessage',
         'CameraPanTiltZoom',
         'OperatorInfo',
+        'SotState',
     },
 )
 
@@ -3618,11 +3621,71 @@ class TiltVelocity(proto.Message):
     )
 
 
-class DroneInfo(proto.Message):
+class CvModelInfo(proto.Message):
     r"""Information about the drone.
 
-    This message contains serial numbers and version information for
-    internal components in the drone. Primarily used for
+    Information about a loaded computer vision model.
+
+    Attributes:
+        name (str):
+            Human-readable model name (from model_meta.json).
+        type_ (blueye.protocol.types.CvModelInfo.ModelType):
+            Type of CV model.
+        running (bool):
+            Whether the model is currently running.
+        device (str):
+            Execution provider (e.g. "cuda", "tensorrt").
+        package_id (str):
+            Package directory name (e.g. "tinyyolov2_package"). Stable
+            identifier.
+        labels (MutableSequence[str]):
+            Class names the model can detect (indexed by class_id).
+    """
+    class ModelType(proto.Enum):
+        r"""
+
+        Attributes:
+            MODEL_TYPE_UNSPECIFIED (0):
+                No description available.
+            MODEL_TYPE_DETECTION (1):
+                No description available.
+            MODEL_TYPE_SOT (2):
+                No description available.
+        """
+        MODEL_TYPE_UNSPECIFIED = 0
+        MODEL_TYPE_DETECTION = 1
+        MODEL_TYPE_SOT = 2
+
+    name: str = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    type_: ModelType = proto.Field(
+        proto.ENUM,
+        number=2,
+        enum=ModelType,
+    )
+    running: bool = proto.Field(
+        proto.BOOL,
+        number=3,
+    )
+    device: str = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    package_id: str = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    labels: MutableSequence[str] = proto.RepeatedField(
+        proto.STRING,
+        number=6,
+    )
+
+
+class DroneInfo(proto.Message):
+    r"""This message contains serial numbers and version information
+    for internal components in the drone. Primarily used for
     diagnostics, or to determine the origin of a logfile.
 
     Attributes:
@@ -3649,6 +3712,8 @@ class DroneInfo(proto.Message):
         depth_sensor (blueye.protocol.types.PressureSensorType):
             Type of depth sensor that is connected to the
             drone.
+        cv_models (MutableSequence[blueye.protocol.types.CvModelInfo]):
+            List of loaded computer vision models.
     """
 
     blunux_version: str = proto.Field(
@@ -3697,6 +3762,11 @@ class DroneInfo(proto.Message):
         proto.ENUM,
         number=11,
         enum='PressureSensorType',
+    )
+    cv_models: MutableSequence['CvModelInfo'] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=12,
+        message='CvModelInfo',
     )
 
 
@@ -5677,6 +5747,37 @@ class BoundingBox(proto.Message):
     )
 
 
+class SegmentationMask(proto.Message):
+    r"""RLE-encoded binary segmentation mask relative to the bounding box.
+
+    The mask bitmap has dimensions (mask_width x mask_height) covering
+    the detection's bounding box area. The counts field stores
+    run-length encoded data as packed uint16 little-endian: alternating
+    background/foreground pixel runs starting with background.
+
+    Attributes:
+        mask_width (int):
+            Width of the RLE bitmap.
+        mask_height (int):
+            Height of the RLE bitmap.
+        counts (bytes):
+            RLE counts as packed uint16 little-endian.
+    """
+
+    mask_width: int = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    mask_height: int = proto.Field(
+        proto.UINT32,
+        number=2,
+    )
+    counts: bytes = proto.Field(
+        proto.BYTES,
+        number=3,
+    )
+
+
 class ObjectDetection(proto.Message):
     r"""A single object detection from a computer vision model.
 
@@ -5692,6 +5793,9 @@ class ObjectDetection(proto.Message):
         tracking_id (int):
             Unique ID for tracking the same object across
             frames.
+        mask (blueye.protocol.types.SegmentationMask):
+            Instance segmentation mask (absent if model
+            has no segmentation).
     """
 
     bounding_box: 'BoundingBox' = proto.Field(
@@ -5714,6 +5818,11 @@ class ObjectDetection(proto.Message):
     tracking_id: int = proto.Field(
         proto.UINT32,
         number=5,
+    )
+    mask: 'SegmentationMask' = proto.Field(
+        proto.MESSAGE,
+        number=6,
+        message='SegmentationMask',
     )
 
 
@@ -5831,6 +5940,65 @@ class OperatorInfo(proto.Message):
     email: str = proto.Field(
         proto.STRING,
         number=2,
+    )
+
+
+class SotState(proto.Message):
+    r"""Single-object tracking (SOT) state reported by the computer
+    vision pipeline.
+
+    Attributes:
+        state (blueye.protocol.types.SotState.State):
+            Current tracking state.
+        bounding_box (blueye.protocol.types.BoundingBox):
+            Current tracked bounding box (valid when
+            TRACKING).
+        image_width (int):
+            Width of the source frame in pixels.
+        image_height (int):
+            Height of the source frame in pixels.
+    """
+    class State(proto.Enum):
+        r"""Current state of the SOT tracker.
+
+        Attributes:
+            STATE_UNSPECIFIED (0):
+                Unspecified state.
+            STATE_IDLE (1):
+                No target selected, waiting for a target
+                bounding box.
+            STATE_TRACKING (2):
+                Actively tracking a target.
+            STATE_LOST (3):
+                Target was lost (tracker failed to follow the
+                object).
+        """
+        STATE_UNSPECIFIED = 0
+        """Unspecified state."""
+        STATE_IDLE = 1
+        """No target selected, waiting for a target bounding box."""
+        STATE_TRACKING = 2
+        """Actively tracking a target."""
+        STATE_LOST = 3
+        """Target was lost (tracker failed to follow the object)."""
+
+    state: State = proto.Field(
+        proto.ENUM,
+        number=1,
+        enum=State,
+    )
+    bounding_box: 'BoundingBox' = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message='BoundingBox',
+    )
+    image_width: int = proto.Field(
+        proto.UINT32,
+        number=3,
+    )
+    image_height: int = proto.Field(
+        proto.UINT32,
+        number=4,
     )
 
 

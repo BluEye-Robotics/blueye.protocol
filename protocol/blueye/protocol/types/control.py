@@ -73,6 +73,8 @@ __protobuf__ = proto.module(
         'CameraPanTiltZoomCtrl',
         'StartLogStreamingCtrl',
         'StopLogStreamingCtrl',
+        'SetSotTargetCtrl',
+        'ClearSotTargetCtrl',
     },
 )
 
@@ -682,6 +684,46 @@ class StartLogStreamingCtrl(proto.Message):
 
 class StopLogStreamingCtrl(proto.Message):
     r"""Message sent to stop streaming log entries to the client.
+    """
+
+
+class SetSotTargetCtrl(proto.Message):
+    r"""Issue a command to set the single-object tracking (SOT)
+    target.
+    Send a bounding box to start tracking a new target. The CV
+    pipeline will initialize the SOT tracker on the specified region
+    of the video frame.
+
+    Attributes:
+        bounding_box (blueye.protocol.types.BoundingBox):
+            Target bounding box.
+        image_width (int):
+            Width of the frame the bounding box was drawn
+            on.
+        image_height (int):
+            Height of the frame the bounding box was
+            drawn on.
+    """
+
+    bounding_box: message_formats.BoundingBox = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.BoundingBox,
+    )
+    image_width: int = proto.Field(
+        proto.UINT32,
+        number=2,
+    )
+    image_height: int = proto.Field(
+        proto.UINT32,
+        number=3,
+    )
+
+
+class ClearSotTargetCtrl(proto.Message):
+    r"""Issue a command to clear the single-object tracking (SOT)
+    target (stop tracking).
+
     """
 
 
