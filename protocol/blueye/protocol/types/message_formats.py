@@ -332,6 +332,8 @@ class NotificationType(proto.Enum):
             DVL high temperature detected.
         NOTIFICATION_TYPE_DVL_THERMAL_PROTECTION_MODE_DETECTED (32):
             DVL thermal protection mode detected.
+        NOTIFICATION_TYPE_VIDEO_PARTITION_NOT_MOUNTED (33):
+            Video partition not mounted.
     """
     NOTIFICATION_TYPE_UNSPECIFIED = 0
     """Unspecified."""
@@ -399,6 +401,8 @@ class NotificationType(proto.Enum):
     """DVL high temperature detected."""
     NOTIFICATION_TYPE_DVL_THERMAL_PROTECTION_MODE_DETECTED = 32
     """DVL thermal protection mode detected."""
+    NOTIFICATION_TYPE_VIDEO_PARTITION_NOT_MOUNTED = 33
+    """Video partition not mounted."""
 
 
 class NotificationLevel(proto.Enum):
