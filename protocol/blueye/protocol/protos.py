@@ -263,6 +263,8 @@ from .types.req_rep import SetInstructionUpdateRep
 from .types.req_rep import SetInstructionUpdateReq
 from .types.req_rep import SetIperfStatusRep
 from .types.req_rep import SetIperfStatusReq
+from .types.req_rep import SetLogFrequencyRep
+from .types.req_rep import SetLogFrequencyReq
 from .types.req_rep import SetMissionRep
 from .types.req_rep import SetMissionReq
 from .types.req_rep import SetOverlayParametersRep
@@ -598,6 +600,8 @@ __all__ = (
 'SetInstructionUpdateReq',
 'SetIperfStatusRep',
 'SetIperfStatusReq',
+'SetLogFrequencyRep',
+'SetLogFrequencyReq',
 'SetMissionRep',
 'SetMissionReq',
 'SetMultibeamConfigCtrl',

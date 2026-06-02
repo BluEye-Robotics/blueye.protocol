@@ -57,6 +57,8 @@ __protobuf__ = proto.module(
         'SetHeadingModeRep',
         'SetPubFrequencyReq',
         'SetPubFrequencyRep',
+        'SetLogFrequencyReq',
+        'SetLogFrequencyRep',
         'GetTelemetryReq',
         'GetTelemetryRep',
         'SetPersistentStorageSettingsReq',
@@ -453,6 +455,41 @@ class SetPubFrequencyReq(proto.Message):
 
 class SetPubFrequencyRep(proto.Message):
     r"""Response after updating publish frequency
+
+    Attributes:
+        success (bool):
+            True if message name valid and frequency
+            successfully updated.
+    """
+
+    success: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+
+
+class SetLogFrequencyReq(proto.Message):
+    r"""Request to update the logging frequency
+
+    Attributes:
+        message_type (str):
+            Message name, f. ex. "AttitudeTel".
+        frequency (float):
+            Logging frequency (max 100 Hz).
+    """
+
+    message_type: str = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    frequency: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+
+
+class SetLogFrequencyRep(proto.Message):
+    r"""Response after updating logging frequency
 
     Attributes:
         success (bool):
