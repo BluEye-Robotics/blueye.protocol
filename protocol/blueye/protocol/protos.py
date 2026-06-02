@@ -128,6 +128,7 @@ from .types.message_formats import Imu
 from .types.message_formats import IperfStatus
 from .types.message_formats import KernelLogEntry
 from .types.message_formats import Laser
+from .types.message_formats import LaserDetection
 from .types.message_formats import LatLongPosition
 from .types.message_formats import Lights
 from .types.message_formats import LogEntry
@@ -151,6 +152,7 @@ from .types.message_formats import OperatorInfo
 from .types.message_formats import OverlayParameters
 from .types.message_formats import PersistentStorageSettings
 from .types.message_formats import PingerConfiguration
+from .types.message_formats import Point2D
 from .types.message_formats import PositionEstimate
 from .types.message_formats import RecordOn
 from .types.message_formats import RecordState
@@ -503,6 +505,7 @@ __all__ = (
 'KernelLogEntry',
 'Laser',
 'LaserCtrl',
+'LaserDetection',
 'LaserTel',
 'LatLongPosition',
 'Lights',
@@ -559,6 +562,7 @@ __all__ = (
 'PingReq',
 'PingerConfiguration',
 'PingerConfigurationCtrl',
+'Point2D',
 'PositionEstimate',
 'PositionEstimateTel',
 'PressureSensorType',

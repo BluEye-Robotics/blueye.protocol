@@ -60,6 +60,8 @@ __protobuf__ = proto.module(
         'MotionInput',
         'Lights',
         'Laser',
+        'Point2D',
+        'LaserDetection',
         'LatLongPosition',
         'ConnectionDuration',
         'AutoHeadingState',
@@ -1443,11 +1445,117 @@ class Laser(proto.Message):
         value (float):
             Laser intensity, any value above 0 turns the
             laser on (0..1).
+        modulated (bool):
+            Modulate the laser at 5Hz for tracking. Only
+            available on Ultra.
     """
 
     value: float = proto.Field(
         proto.FLOAT,
         number=1,
+    )
+    modulated: bool = proto.Field(
+        proto.BOOL,
+        number=2,
+    )
+
+
+class Point2D(proto.Message):
+    r"""Point in 2D space.
+
+    Attributes:
+        x (float):
+            X coordinate of the point (px).
+        y (float):
+            Y coordinate of the point (px).
+    """
+
+    x: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    y: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+
+
+class LaserDetection(proto.Message):
+    r"""Message representing the detection of scaling lasers in the
+    main camera.
+    The message contains the centroids of the detected dots, the
+    distance between them in pixels, and the confidence of the
+    detection. The dots are detected through temporal DFT analysis
+    of 5 Hz laser modulation, isolating flickering pixels from the
+    static scene background.
+
+    Only available on Ultra.
+
+    Attributes:
+        detected (bool):
+            True if the laser is detected by the drone.
+        dot1 (blueye.protocol.types.Point2D):
+            First dot centroid (leftmost).
+        dot2 (blueye.protocol.types.Point2D):
+            Second dot centroid (rightmost).
+        pixel_distance (float):
+            Distance between dots in pixels.
+        confidence (float):
+            Confidence of the detection (0..1).
+        image_width (int):
+            Source frame width.
+        image_height (int):
+            Source frame height.
+        laser_width (float):
+            Real world distance between the two laser
+            dots (m).
+        corrected_pixel_distance (float):
+            Distance after lens undistortion (px).
+        estimated_distance (float):
+            Estimated subject distance (m).
+    """
+
+    detected: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    dot1: 'Point2D' = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message='Point2D',
+    )
+    dot2: 'Point2D' = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message='Point2D',
+    )
+    pixel_distance: float = proto.Field(
+        proto.FLOAT,
+        number=4,
+    )
+    confidence: float = proto.Field(
+        proto.FLOAT,
+        number=5,
+    )
+    image_width: int = proto.Field(
+        proto.UINT32,
+        number=6,
+    )
+    image_height: int = proto.Field(
+        proto.UINT32,
+        number=7,
+    )
+    laser_width: float = proto.Field(
+        proto.FLOAT,
+        number=8,
+    )
+    corrected_pixel_distance: float = proto.Field(
+        proto.FLOAT,
+        number=9,
+    )
+    estimated_distance: float = proto.Field(
+        proto.FLOAT,
+        number=10,
     )
 
 

@@ -334,12 +334,20 @@ class LaserTel(proto.Message):
     Attributes:
         laser (blueye.protocol.types.Laser):
             Laser status.
+        laser_detection (blueye.protocol.types.LaserDetection):
+            Detection of the laser by the computer vision
+            pipeline. Only
     """
 
     laser: message_formats.Laser = proto.Field(
         proto.MESSAGE,
         number=1,
         message=message_formats.Laser,
+    )
+    laser_detection: message_formats.LaserDetection = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=message_formats.LaserDetection,
     )
 
 
