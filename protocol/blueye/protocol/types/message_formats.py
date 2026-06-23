@@ -1119,6 +1119,22 @@ class ThermalZoneId(proto.Enum):
             Junction temperature (Tj).
         THERMAL_ZONE_ID_CANISTER (2):
             Canister temperature.
+        THERMAL_ZONE_ID_CPU (3):
+            CPU thermal zone.
+        THERMAL_ZONE_ID_GPU (4):
+            GPU thermal zone.
+        THERMAL_ZONE_ID_CV0 (5):
+            Vision accelerator 0 thermal zone.
+        THERMAL_ZONE_ID_CV1 (6):
+            Vision accelerator 1 thermal zone.
+        THERMAL_ZONE_ID_CV2 (7):
+            Vision accelerator 2 thermal zone.
+        THERMAL_ZONE_ID_SOC0 (8):
+            SoC 0 thermal zone.
+        THERMAL_ZONE_ID_SOC1 (9):
+            SoC 1 thermal zone.
+        THERMAL_ZONE_ID_SOC2 (10):
+            SoC 2 thermal zone.
     """
     THERMAL_ZONE_ID_UNSPECIFIED = 0
     """Unspecified thermal zone."""
@@ -1126,6 +1142,22 @@ class ThermalZoneId(proto.Enum):
     """Junction temperature (Tj)."""
     THERMAL_ZONE_ID_CANISTER = 2
     """Canister temperature."""
+    THERMAL_ZONE_ID_CPU = 3
+    """CPU thermal zone."""
+    THERMAL_ZONE_ID_GPU = 4
+    """GPU thermal zone."""
+    THERMAL_ZONE_ID_CV0 = 5
+    """Vision accelerator 0 thermal zone."""
+    THERMAL_ZONE_ID_CV1 = 6
+    """Vision accelerator 1 thermal zone."""
+    THERMAL_ZONE_ID_CV2 = 7
+    """Vision accelerator 2 thermal zone."""
+    THERMAL_ZONE_ID_SOC0 = 8
+    """SoC 0 thermal zone."""
+    THERMAL_ZONE_ID_SOC1 = 9
+    """SoC 1 thermal zone."""
+    THERMAL_ZONE_ID_SOC2 = 10
+    """SoC 2 thermal zone."""
 
 
 class BinlogRecord(proto.Message):
@@ -5616,6 +5648,16 @@ class VideoCodecInfo(proto.Message):
             Cumulative VPU_CODEC_IRQ count.
         vpu_jpg_irq_count (int):
             Cumulative VPU_JPG_IRQ count.
+        encoder_load (float):
+            Jetson only (host1x actmon engine
+            utilization, 0..1).
+        decoder_load (float):
+            Video decoder (NVDEC) utilization (0..1).
+        nvjpg_load (float):
+            JPEG engine (NVJPG) utilization (0..1).
+        vic_load (float):
+            Video Image Compositor (VIC) utilization
+            (0..1).
     """
 
     encoder_active: bool = proto.Field(
@@ -5665,6 +5707,22 @@ class VideoCodecInfo(proto.Message):
     vpu_jpg_irq_count: int = proto.Field(
         proto.UINT32,
         number=12,
+    )
+    encoder_load: float = proto.Field(
+        proto.FLOAT,
+        number=13,
+    )
+    decoder_load: float = proto.Field(
+        proto.FLOAT,
+        number=14,
+    )
+    nvjpg_load: float = proto.Field(
+        proto.FLOAT,
+        number=15,
+    )
+    vic_load: float = proto.Field(
+        proto.FLOAT,
+        number=16,
     )
 
 
