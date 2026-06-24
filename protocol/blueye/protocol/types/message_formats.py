@@ -37,6 +37,7 @@ __protobuf__ = proto.module(
         'StorageLocation',
         'Model',
         'PressureSensorType',
+        'PowerSource',
         'Resolution',
         'Framerate',
         'Camera',
@@ -521,6 +522,30 @@ class PressureSensorType(proto.Enum):
     PRESSURE_SENSOR_TYPE_MS5637_02BA03 = 4
     """The internal pressure sensor using the MS5637 02BA03 pressure
     sensor."""
+
+
+class PowerSource(proto.Enum):
+    r"""How the drone is powered.
+
+    Lets clients determine the power configuration (e.g. parallel
+    batteries on the X7) directly from DroneInfo, without waiting
+    for telemetry. May be extended in the future, e.g. with topside
+    power.
+
+    Attributes:
+        POWER_SOURCE_UNSPECIFIED (0):
+            Power source unknown / not determined.
+        POWER_SOURCE_SINGLE_BATTERY (1):
+            A single battery.
+        POWER_SOURCE_PARALLEL_BATTERIES (2):
+            Two batteries running in parallel (e.g. X7).
+    """
+    POWER_SOURCE_UNSPECIFIED = 0
+    """Power source unknown / not determined."""
+    POWER_SOURCE_SINGLE_BATTERY = 1
+    """A single battery."""
+    POWER_SOURCE_PARALLEL_BATTERIES = 2
+    """Two batteries running in parallel (e.g. X7)."""
 
 
 class Resolution(proto.Enum):
@@ -3870,6 +3895,8 @@ class DroneInfo(proto.Message):
             drone.
         cv_models (MutableSequence[blueye.protocol.types.CvModelInfo]):
             List of loaded computer vision models.
+        power_source (blueye.protocol.types.PowerSource):
+            How the drone is powered.
     """
 
     blunux_version: str = proto.Field(
@@ -3923,6 +3950,11 @@ class DroneInfo(proto.Message):
         proto.MESSAGE,
         number=12,
         message='CvModelInfo',
+    )
+    power_source: 'PowerSource' = proto.Field(
+        proto.ENUM,
+        number=13,
+        enum='PowerSource',
     )
 
 

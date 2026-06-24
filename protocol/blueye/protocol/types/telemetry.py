@@ -399,9 +399,17 @@ class TimeLapseStateTel(proto.Message):
 class BatteryTel(proto.Message):
     r"""Receive essential information about the battery status.
 
+    On models with two batteries running in parallel (e.g. the X7),
+    second_battery holds the essential information for the second
+    battery. When only a single battery is used, second_battery is
+    undefined (not set).
+
     Attributes:
         battery (blueye.protocol.types.Battery):
             Essential battery information.
+        second_battery (blueye.protocol.types.Battery):
+            Second battery, when present. Not set if only
+            one battery is used.
     """
 
     battery: message_formats.Battery = proto.Field(
@@ -409,20 +417,38 @@ class BatteryTel(proto.Message):
         number=1,
         message=message_formats.Battery,
     )
+    second_battery: message_formats.Battery = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=message_formats.Battery,
+    )
 
 
 class BatteryBQ40Z50Tel(proto.Message):
-    r"""Receive detailed information about a battery using the
-    BQ40Z50 battery management system.
+    r"""Receive detailed information about a battery using the BQ40Z50
+    battery management system.
+
+    On models with two batteries running in parallel (e.g. the X7),
+    second_battery holds the detailed information for the second
+    battery. When only a single battery is used, second_battery is
+    undefined (not set).
 
     Attributes:
         battery (blueye.protocol.types.BatteryBQ40Z50):
             Detailed battery information.
+        second_battery (blueye.protocol.types.BatteryBQ40Z50):
+            Second battery, when present. Not set if only
+            one battery is used.
     """
 
     battery: message_formats.BatteryBQ40Z50 = proto.Field(
         proto.MESSAGE,
         number=1,
+        message=message_formats.BatteryBQ40Z50,
+    )
+    second_battery: message_formats.BatteryBQ40Z50 = proto.Field(
+        proto.MESSAGE,
+        number=2,
         message=message_formats.BatteryBQ40Z50,
     )
 

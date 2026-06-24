@@ -198,6 +198,7 @@ from .types.message_formats import MultibeamFrequencyMode
 from .types.message_formats import NavigationSensorID
 from .types.message_formats import NotificationLevel
 from .types.message_formats import NotificationType
+from .types.message_formats import PowerSource
 from .types.message_formats import PressureSensorType
 from .types.message_formats import RecordingCodec
 from .types.message_formats import ResetCoordinateSource
@@ -567,6 +568,7 @@ __all__ = (
 'Point2D',
 'PositionEstimate',
 'PositionEstimateTel',
+'PowerSource',
 'PressureSensorType',
 'RecordCtrl',
 'RecordOn',
