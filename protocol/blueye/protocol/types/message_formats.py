@@ -983,6 +983,12 @@ class GuestPortNumber(proto.Enum):
             Guest port 2.
         GUEST_PORT_NUMBER_PORT_3 (3):
             Guest port 3.
+        GUEST_PORT_NUMBER_PORT_4 (4):
+            Guest port 4.
+        GUEST_PORT_NUMBER_PORT_5 (5):
+            Guest port 5.
+        GUEST_PORT_NUMBER_PORT_6 (6):
+            Guest port 6.
     """
     GUEST_PORT_NUMBER_UNSPECIFIED = 0
     """Unspecified."""
@@ -992,6 +998,12 @@ class GuestPortNumber(proto.Enum):
     """Guest port 2."""
     GUEST_PORT_NUMBER_PORT_3 = 3
     """Guest port 3."""
+    GUEST_PORT_NUMBER_PORT_4 = 4
+    """Guest port 4."""
+    GUEST_PORT_NUMBER_PORT_5 = 5
+    """Guest port 5."""
+    GUEST_PORT_NUMBER_PORT_6 = 6
+    """Guest port 6."""
 
 
 class NavigationSensorID(proto.Enum):
@@ -3942,30 +3954,60 @@ class ErrorFlags(proto.Message):
             Guest port 2 read error.
         gp3_read (bool):
             Guest port 3 read error.
+        gp4_read (bool):
+            Guest port 4 read error.
+        gp5_read (bool):
+            Guest port 5 read error.
+        gp6_read (bool):
+            Guest port 6 read error.
         gp1_not_flashed (bool):
             Guest port 1 not flashed.
         gp2_not_flashed (bool):
             Guest port 2 not flashed.
         gp3_not_flashed (bool):
             Guest port 3 not flashed.
+        gp4_not_flashed (bool):
+            Guest port 4 not flashed.
+        gp5_not_flashed (bool):
+            Guest port 5 not flashed.
+        gp6_not_flashed (bool):
+            Guest port 6 not flashed.
         gp1_unknown_device (bool):
             Unknown device on guest port 1.
         gp2_unknown_device (bool):
             Unknown device on guest port 2.
         gp3_unknown_device (bool):
             Unknown device on guest port 3.
+        gp4_unknown_device (bool):
+            Unknown device on guest port 4.
+        gp5_unknown_device (bool):
+            Unknown device on guest port 5.
+        gp6_unknown_device (bool):
+            Unknown device on guest port 6.
         gp1_device_connection (bool):
             Guest port 1 connection error.
         gp2_device_connection (bool):
             Guest port 2 connection error.
         gp3_device_connection (bool):
             Guest port 3 connection error.
+        gp4_device_connection (bool):
+            Guest port 4 connection error.
+        gp5_device_connection (bool):
+            Guest port 5 connection error.
+        gp6_device_connection (bool):
+            Guest port 6 connection error.
         gp1_device (bool):
             Guest port 1 device error.
         gp2_device (bool):
             Guest port 2 device error.
         gp3_device (bool):
             Guest port 3 device error.
+        gp4_device (bool):
+            Guest port 4 device error.
+        gp5_device (bool):
+            Guest port 5 device error.
+        gp6_device (bool):
+            Guest port 6 device error.
         drone_serial_not_set (bool):
             Drone serial number not set.
         drone_serial (bool):
@@ -3998,13 +4040,44 @@ class ErrorFlags(proto.Message):
         gp_current (bool):
             Max GP current exceeded.
         gp1_bat_current (bool):
-            Max battery current exceeded on GP1.
+            Max battery current exceeded on guest port 1.
         gp2_bat_current (bool):
-            Max battery current exceeded on GP2.
+            Max battery current exceeded on guest port 2.
         gp3_bat_current (bool):
-            Max battery current exceeded on GP3.
-        gp_20v_current (bool):
-            Max 20V current exceeded on GP.
+            Max battery current exceeded on guest port 3.
+        gp4_bat_current (bool):
+            Max battery current exceeded on guest port 4.
+        gp5_bat_current (bool):
+            Max battery current exceeded on guest port 5.
+        gp6_bat_current (bool):
+            Max battery current exceeded on guest port 6.
+        gp_24v_current (bool):
+            Max 24V current exceeded on GP. Only present
+            on X1/X3 (not X3 Ultra or X7).
+        gp1_24v_current (bool):
+            Max 24V current exceeded on guest port 1.
+        gp2_24v_current (bool):
+            Max 24V current exceeded on guest port 2.
+        gp3_24v_current (bool):
+            Max 24V current exceeded on guest port 3.
+        gp4_24v_current (bool):
+            Max 24V current exceeded on guest port 4.
+        gp5_24v_current (bool):
+            Max 24V current exceeded on guest port 5.
+        gp6_24v_current (bool):
+            Max 24V current exceeded on guest port 6.
+        gp1_5v_current (bool):
+            Max 5V current exceeded on guest port 1.
+        gp2_5v_current (bool):
+            Max 5V current exceeded on guest port 2.
+        gp3_5v_current (bool):
+            Max 5V current exceeded on guest port 3.
+        gp4_5v_current (bool):
+            Max 5V current exceeded on guest port 4.
+        gp5_5v_current (bool):
+            Max 5V current exceeded on guest port 5.
+        gp6_5v_current (bool):
+            Max 5V current exceeded on guest port 6.
         dvl_thermal_protection_mode (bool):
             DVL is in thermal protection mode.
         dvl_no_power (bool):
@@ -4063,6 +4136,18 @@ class ErrorFlags(proto.Message):
         proto.BOOL,
         number=11,
     )
+    gp4_read: bool = proto.Field(
+        proto.BOOL,
+        number=48,
+    )
+    gp5_read: bool = proto.Field(
+        proto.BOOL,
+        number=49,
+    )
+    gp6_read: bool = proto.Field(
+        proto.BOOL,
+        number=50,
+    )
     gp1_not_flashed: bool = proto.Field(
         proto.BOOL,
         number=12,
@@ -4074,6 +4159,18 @@ class ErrorFlags(proto.Message):
     gp3_not_flashed: bool = proto.Field(
         proto.BOOL,
         number=14,
+    )
+    gp4_not_flashed: bool = proto.Field(
+        proto.BOOL,
+        number=51,
+    )
+    gp5_not_flashed: bool = proto.Field(
+        proto.BOOL,
+        number=52,
+    )
+    gp6_not_flashed: bool = proto.Field(
+        proto.BOOL,
+        number=53,
     )
     gp1_unknown_device: bool = proto.Field(
         proto.BOOL,
@@ -4087,6 +4184,18 @@ class ErrorFlags(proto.Message):
         proto.BOOL,
         number=17,
     )
+    gp4_unknown_device: bool = proto.Field(
+        proto.BOOL,
+        number=54,
+    )
+    gp5_unknown_device: bool = proto.Field(
+        proto.BOOL,
+        number=55,
+    )
+    gp6_unknown_device: bool = proto.Field(
+        proto.BOOL,
+        number=56,
+    )
     gp1_device_connection: bool = proto.Field(
         proto.BOOL,
         number=18,
@@ -4099,6 +4208,18 @@ class ErrorFlags(proto.Message):
         proto.BOOL,
         number=20,
     )
+    gp4_device_connection: bool = proto.Field(
+        proto.BOOL,
+        number=57,
+    )
+    gp5_device_connection: bool = proto.Field(
+        proto.BOOL,
+        number=58,
+    )
+    gp6_device_connection: bool = proto.Field(
+        proto.BOOL,
+        number=59,
+    )
     gp1_device: bool = proto.Field(
         proto.BOOL,
         number=21,
@@ -4110,6 +4231,18 @@ class ErrorFlags(proto.Message):
     gp3_device: bool = proto.Field(
         proto.BOOL,
         number=23,
+    )
+    gp4_device: bool = proto.Field(
+        proto.BOOL,
+        number=60,
+    )
+    gp5_device: bool = proto.Field(
+        proto.BOOL,
+        number=61,
+    )
+    gp6_device: bool = proto.Field(
+        proto.BOOL,
+        number=62,
     )
     drone_serial_not_set: bool = proto.Field(
         proto.BOOL,
@@ -4183,9 +4316,69 @@ class ErrorFlags(proto.Message):
         proto.BOOL,
         number=41,
     )
-    gp_20v_current: bool = proto.Field(
+    gp4_bat_current: bool = proto.Field(
+        proto.BOOL,
+        number=63,
+    )
+    gp5_bat_current: bool = proto.Field(
+        proto.BOOL,
+        number=64,
+    )
+    gp6_bat_current: bool = proto.Field(
+        proto.BOOL,
+        number=65,
+    )
+    gp_24v_current: bool = proto.Field(
         proto.BOOL,
         number=42,
+    )
+    gp1_24v_current: bool = proto.Field(
+        proto.BOOL,
+        number=66,
+    )
+    gp2_24v_current: bool = proto.Field(
+        proto.BOOL,
+        number=67,
+    )
+    gp3_24v_current: bool = proto.Field(
+        proto.BOOL,
+        number=68,
+    )
+    gp4_24v_current: bool = proto.Field(
+        proto.BOOL,
+        number=69,
+    )
+    gp5_24v_current: bool = proto.Field(
+        proto.BOOL,
+        number=70,
+    )
+    gp6_24v_current: bool = proto.Field(
+        proto.BOOL,
+        number=71,
+    )
+    gp1_5v_current: bool = proto.Field(
+        proto.BOOL,
+        number=72,
+    )
+    gp2_5v_current: bool = proto.Field(
+        proto.BOOL,
+        number=73,
+    )
+    gp3_5v_current: bool = proto.Field(
+        proto.BOOL,
+        number=74,
+    )
+    gp4_5v_current: bool = proto.Field(
+        proto.BOOL,
+        number=75,
+    )
+    gp5_5v_current: bool = proto.Field(
+        proto.BOOL,
+        number=76,
+    )
+    gp6_5v_current: bool = proto.Field(
+        proto.BOOL,
+        number=77,
     )
     dvl_thermal_protection_mode: bool = proto.Field(
         proto.BOOL,
@@ -4736,6 +4929,12 @@ class GuestPortInfo(proto.Message):
             Information about guest port 2.
         gp3 (blueye.protocol.types.GuestPortConnectorInfo):
             Information about guest port 3.
+        gp4 (blueye.protocol.types.GuestPortConnectorInfo):
+            Information about guest port 4.
+        gp5 (blueye.protocol.types.GuestPortConnectorInfo):
+            Information about guest port 5.
+        gp6 (blueye.protocol.types.GuestPortConnectorInfo):
+            Information about guest port 6.
     """
 
     gp1: 'GuestPortConnectorInfo' = proto.Field(
@@ -4751,6 +4950,21 @@ class GuestPortInfo(proto.Message):
     gp3: 'GuestPortConnectorInfo' = proto.Field(
         proto.MESSAGE,
         number=3,
+        message='GuestPortConnectorInfo',
+    )
+    gp4: 'GuestPortConnectorInfo' = proto.Field(
+        proto.MESSAGE,
+        number=4,
+        message='GuestPortConnectorInfo',
+    )
+    gp5: 'GuestPortConnectorInfo' = proto.Field(
+        proto.MESSAGE,
+        number=5,
+        message='GuestPortConnectorInfo',
+    )
+    gp6: 'GuestPortConnectorInfo' = proto.Field(
+        proto.MESSAGE,
+        number=6,
         message='GuestPortConnectorInfo',
     )
 
@@ -4867,8 +5081,39 @@ class GuestPortCurrent(proto.Message):
             Current on GP2 battery voltage (A).
         gp3_bat (float):
             Current on GP3 battery voltage (A).
-        gp_20v (float):
-            Current on common 20V supply (A).
+        gp_24v (float):
+            Current on common/input 24V supply (A). Only
+            present on X1/X3 (not X3 Ultra or X7).
+        gp4_bat (float):
+            Current on GP4 battery voltage (A).
+        gp5_bat (float):
+            Current on GP5 battery voltage (A).
+        gp6_bat (float):
+            Current on GP6 battery voltage (A).
+        gp1_24v (float):
+            Current on GP1 24V supply (A).
+        gp2_24v (float):
+            Current on GP2 24V supply (A).
+        gp3_24v (float):
+            Current on GP3 24V supply (A).
+        gp4_24v (float):
+            Current on GP4 24V supply (A).
+        gp5_24v (float):
+            Current on GP5 24V supply (A).
+        gp6_24v (float):
+            Current on GP6 24V supply (A).
+        gp1_5v (float):
+            Current on GP1 5V supply (A).
+        gp2_5v (float):
+            Current on GP2 5V supply (A).
+        gp3_5v (float):
+            Current on GP3 5V supply (A).
+        gp4_5v (float):
+            Current on GP4 5V supply (A).
+        gp5_5v (float):
+            Current on GP5 5V supply (A).
+        gp6_5v (float):
+            Current on GP6 5V supply (A).
     """
 
     gp1_bat: float = proto.Field(
@@ -4883,9 +5128,69 @@ class GuestPortCurrent(proto.Message):
         proto.DOUBLE,
         number=3,
     )
-    gp_20v: float = proto.Field(
+    gp_24v: float = proto.Field(
         proto.DOUBLE,
         number=4,
+    )
+    gp4_bat: float = proto.Field(
+        proto.DOUBLE,
+        number=5,
+    )
+    gp5_bat: float = proto.Field(
+        proto.DOUBLE,
+        number=6,
+    )
+    gp6_bat: float = proto.Field(
+        proto.DOUBLE,
+        number=7,
+    )
+    gp1_24v: float = proto.Field(
+        proto.DOUBLE,
+        number=8,
+    )
+    gp2_24v: float = proto.Field(
+        proto.DOUBLE,
+        number=9,
+    )
+    gp3_24v: float = proto.Field(
+        proto.DOUBLE,
+        number=10,
+    )
+    gp4_24v: float = proto.Field(
+        proto.DOUBLE,
+        number=11,
+    )
+    gp5_24v: float = proto.Field(
+        proto.DOUBLE,
+        number=12,
+    )
+    gp6_24v: float = proto.Field(
+        proto.DOUBLE,
+        number=13,
+    )
+    gp1_5v: float = proto.Field(
+        proto.DOUBLE,
+        number=14,
+    )
+    gp2_5v: float = proto.Field(
+        proto.DOUBLE,
+        number=15,
+    )
+    gp3_5v: float = proto.Field(
+        proto.DOUBLE,
+        number=16,
+    )
+    gp4_5v: float = proto.Field(
+        proto.DOUBLE,
+        number=17,
+    )
+    gp5_5v: float = proto.Field(
+        proto.DOUBLE,
+        number=18,
+    )
+    gp6_5v: float = proto.Field(
+        proto.DOUBLE,
+        number=19,
     )
 
 
