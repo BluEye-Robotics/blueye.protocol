@@ -145,6 +145,7 @@ __protobuf__ = proto.module(
         'MemoryInfo',
         'ThermalZone',
         'VideoCodecInfo',
+        'NvmeInfo',
         'SystemPerformanceInfo',
         'SurfaceUnitBatteryInfo',
         'SurfaceUnitVersionInfo',
@@ -6063,13 +6064,174 @@ class VideoCodecInfo(proto.Message):
     )
 
 
+class NvmeInfo(proto.Message):
+    r"""NVMe SSD health, wear and identity (Jetson only; i.MX drones
+    boot/store on an SD card and have no NVMe device, so this
+    message is omitted there).
+
+    Attributes:
+        composite_temperature (float):
+            Tier 1 — health & safety.
+        critical_warning (int):
+            NVMe critical-warning bitfield.
+        percentage_used (int):
+            Wear indicator (%, may exceed 100).
+        available_spare (int):
+            Remaining spare capacity (%).
+        available_spare_threshold (int):
+            Spare alarm threshold (%).
+        media_errors (int):
+            Uncorrected data-integrity errors.
+        unsafe_shutdowns (int):
+            Power-loss / unsafe shutdown count.
+        warning_temp_time_min (int):
+            Tier 2 — thermal throttling.
+        critical_temp_time_min (int):
+            Minutes above the critical temperature.
+        thermal_mgmt_t1_trans_count (int):
+            Times entered light throttling.
+        thermal_mgmt_t2_trans_count (int):
+            Times entered heavy throttling.
+        thermal_mgmt_t1_total_time_s (int):
+            Total seconds in light throttling.
+        thermal_mgmt_t2_total_time_s (int):
+            Total seconds in heavy throttling.
+        data_units_written_bytes (int):
+            Tier 3 — endurance / workload.
+        data_units_read_bytes (int):
+            Host data read (B).
+        host_write_commands (int):
+            Host write command count.
+        host_read_commands (int):
+            Host read command count.
+        power_on_hours (int):
+            Power-on hours.
+        power_cycles (int):
+            Power cycle count.
+        controller_busy_time_min (int):
+            Controller busy time (min).
+        num_err_log_entries (int):
+            Error-log entry count.
+        model (str):
+            Tier 4 — identity & capacity.
+        serial (str):
+            Drive serial number.
+        firmware_rev (str):
+            Firmware revision.
+        capacity_bytes (int):
+            Total drive capacity (B). Partition used/free
+            is
+    """
+
+    composite_temperature: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    critical_warning: int = proto.Field(
+        proto.UINT32,
+        number=2,
+    )
+    percentage_used: int = proto.Field(
+        proto.UINT32,
+        number=3,
+    )
+    available_spare: int = proto.Field(
+        proto.UINT32,
+        number=4,
+    )
+    available_spare_threshold: int = proto.Field(
+        proto.UINT32,
+        number=5,
+    )
+    media_errors: int = proto.Field(
+        proto.UINT64,
+        number=6,
+    )
+    unsafe_shutdowns: int = proto.Field(
+        proto.UINT64,
+        number=7,
+    )
+    warning_temp_time_min: int = proto.Field(
+        proto.UINT32,
+        number=8,
+    )
+    critical_temp_time_min: int = proto.Field(
+        proto.UINT32,
+        number=9,
+    )
+    thermal_mgmt_t1_trans_count: int = proto.Field(
+        proto.UINT32,
+        number=10,
+    )
+    thermal_mgmt_t2_trans_count: int = proto.Field(
+        proto.UINT32,
+        number=11,
+    )
+    thermal_mgmt_t1_total_time_s: int = proto.Field(
+        proto.UINT32,
+        number=12,
+    )
+    thermal_mgmt_t2_total_time_s: int = proto.Field(
+        proto.UINT32,
+        number=13,
+    )
+    data_units_written_bytes: int = proto.Field(
+        proto.UINT64,
+        number=14,
+    )
+    data_units_read_bytes: int = proto.Field(
+        proto.UINT64,
+        number=15,
+    )
+    host_write_commands: int = proto.Field(
+        proto.UINT64,
+        number=16,
+    )
+    host_read_commands: int = proto.Field(
+        proto.UINT64,
+        number=17,
+    )
+    power_on_hours: int = proto.Field(
+        proto.UINT64,
+        number=18,
+    )
+    power_cycles: int = proto.Field(
+        proto.UINT64,
+        number=19,
+    )
+    controller_busy_time_min: int = proto.Field(
+        proto.UINT64,
+        number=20,
+    )
+    num_err_log_entries: int = proto.Field(
+        proto.UINT64,
+        number=21,
+    )
+    model: str = proto.Field(
+        proto.STRING,
+        number=22,
+    )
+    serial: str = proto.Field(
+        proto.STRING,
+        number=23,
+    )
+    firmware_rev: str = proto.Field(
+        proto.STRING,
+        number=24,
+    )
+    capacity_bytes: int = proto.Field(
+        proto.UINT64,
+        number=25,
+    )
+
+
 class SystemPerformanceInfo(proto.Message):
     r"""System performance information.
 
     Comprehensive performance metrics for the drone's compute
-    platform. Covers CPU, GPU, DLA, memory, thermals, and video
-    codec utilization. Fields not applicable to a platform are left
-    at their zero/empty defaults.
+    platform. Covers CPU, GPU, DLA, memory, thermals, video codec
+    utilization and NVMe SSD state. Fields not applicable to a
+    platform are left at their zero/empty defaults.
 
     Attributes:
         cpu_cores (MutableSequence[blueye.protocol.types.CpuCoreLoad]):
@@ -6098,6 +6260,8 @@ class SystemPerformanceInfo(proto.Message):
             Overlay queue load (0..1).
         position_observer_queue_load (float):
             Position observer queue load (0..1).
+        nvme (blueye.protocol.types.NvmeInfo):
+            NVMe SSD health/identity (Jetson only).
     """
 
     cpu_cores: MutableSequence['CpuCoreLoad'] = proto.RepeatedField(
@@ -6157,6 +6321,11 @@ class SystemPerformanceInfo(proto.Message):
     position_observer_queue_load: float = proto.Field(
         proto.FLOAT,
         number=13,
+    )
+    nvme: 'NvmeInfo' = proto.Field(
+        proto.MESSAGE,
+        number=14,
+        message='NvmeInfo',
     )
 
 
