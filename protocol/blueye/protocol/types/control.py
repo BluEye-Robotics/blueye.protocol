@@ -75,6 +75,7 @@ __protobuf__ = proto.module(
         'StopLogStreamingCtrl',
         'SetSotTargetCtrl',
         'ClearSotTargetCtrl',
+        'AnnotationCtrl',
     },
 )
 
@@ -725,6 +726,28 @@ class ClearSotTargetCtrl(proto.Message):
     target (stop tracking).
 
     """
+
+
+class AnnotationCtrl(proto.Message):
+    r"""Request to add an annotation to the current dive.
+
+    Sent by the app when a diver picks a type from the in-dive
+    command palette. The drone stamps the authoritative time,
+    publishes the result as an AnnotationTel to every connected
+    client, and writes it to the dive logfile, so all clients
+    converge on the same set. Fire-and-forget, like LightsCtrl.
+
+    Attributes:
+        annotation (blueye.protocol.types.Annotation):
+            The annotation to record. The drone owns the
+            timestamp, not this message.
+    """
+
+    annotation: message_formats.Annotation = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.Annotation,
+    )
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

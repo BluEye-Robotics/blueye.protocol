@@ -91,6 +91,7 @@ __protobuf__ = proto.module(
         'TurbidityFilterTel',
         'CameraPanTiltZoomTel',
         'SotStateTel',
+        'AnnotationTel',
     },
 )
 
@@ -1174,6 +1175,28 @@ class SotStateTel(proto.Message):
         proto.MESSAGE,
         number=1,
         message=message_formats.SotState,
+    )
+
+
+class AnnotationTel(proto.Message):
+    r"""An annotation that now exists on the dive.
+
+    Either added by a client (the drone echoes its AnnotationCtrl
+    here, source APP) or emitted by the drone itself (source DRONE);
+    CLOUD is the post-dive Blueye Cloud path and is not seen here.
+    Published to every connected client and written to the dive
+    logfile. A late-joining client can fetch the most recent one
+    with GetTelemetryReq("AnnotationTel").
+
+    Attributes:
+        annotation (blueye.protocol.types.Annotation):
+            The annotation that was added.
+    """
+
+    annotation: message_formats.Annotation = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.Annotation,
     )
 
 

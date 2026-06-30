@@ -32,6 +32,7 @@ from .types.aquatroll import AquaTrollUnit
 from .types.aquatroll import Type
 from .types.control import ActivateGuestPortsCtrl
 from .types.control import ActivateMultibeamCtrl
+from .types.control import AnnotationCtrl
 from .types.control import AutoAltitudeCtrl
 from .types.control import AutoDepthCtrl
 from .types.control import AutoHeadingCtrl
@@ -80,6 +81,7 @@ from .types.control import WatchdogCtrl
 from .types.control import WaterDensityCtrl
 from .types.control import WeatherVaningCtrl
 from .types.message_formats import Altitude
+from .types.message_formats import Annotation
 from .types.message_formats import Attitude
 from .types.message_formats import AutoAltitudeState
 from .types.message_formats import AutoDepthState
@@ -181,6 +183,7 @@ from .types.message_formats import VideoCodecInfo
 from .types.message_formats import WaterDensity
 from .types.message_formats import WaterTemperature
 from .types.message_formats import WeatherVaningState
+from .types.message_formats import AnnotationSource
 from .types.message_formats import Camera
 from .types.message_formats import DepthUnit
 from .types.message_formats import FontSize
@@ -280,6 +283,7 @@ from .types.req_rep import SetThicknessGaugeParametersReq
 from .types.req_rep import SyncTimeRep
 from .types.req_rep import SyncTimeReq
 from .types.telemetry import AltitudeTel
+from .types.telemetry import AnnotationTel
 from .types.telemetry import AquaTrollProbeMetadataTel
 from .types.telemetry import AquaTrollSensorMetadataTel
 from .types.telemetry import AquaTrollSensorParametersTel
@@ -349,6 +353,10 @@ __all__ = (
 'ActivateMultibeamCtrl',
 'Altitude',
 'AltitudeTel',
+'Annotation',
+'AnnotationCtrl',
+'AnnotationSource',
+'AnnotationTel',
 'AquaTrollDevice',
 'AquaTrollDeviceStatus',
 'AquaTrollParameter',

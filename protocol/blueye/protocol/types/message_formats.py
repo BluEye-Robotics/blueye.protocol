@@ -55,6 +55,7 @@ __protobuf__ = proto.module(
         'GuestPortError',
         'MultibeamFrequencyMode',
         'ThermalZoneId',
+        'AnnotationSource',
         'BinlogRecord',
         'LogEntry',
         'KernelLogEntry',
@@ -157,6 +158,7 @@ __protobuf__ = proto.module(
         'CameraPanTiltZoom',
         'OperatorInfo',
         'SotState',
+        'Annotation',
     },
 )
 
@@ -1196,6 +1198,30 @@ class ThermalZoneId(proto.Enum):
     """SoC 1 thermal zone."""
     THERMAL_ZONE_ID_SOC2 = 10
     """SoC 2 thermal zone."""
+
+
+class AnnotationSource(proto.Enum):
+    r"""Origin of an annotation. Mirrors the AnnotationSource enum in
+    Blueye Cloud.
+
+    Attributes:
+        ANNOTATION_SOURCE_UNSPECIFIED (0):
+            Origin not specified.
+        ANNOTATION_SOURCE_CLOUD (1):
+            Created in Blueye Cloud after the dive.
+        ANNOTATION_SOURCE_APP (2):
+            Created in the app during the dive.
+        ANNOTATION_SOURCE_DRONE (3):
+            Emitted by the drone itself.
+    """
+    ANNOTATION_SOURCE_UNSPECIFIED = 0
+    """Origin not specified."""
+    ANNOTATION_SOURCE_CLOUD = 1
+    """Created in Blueye Cloud after the dive."""
+    ANNOTATION_SOURCE_APP = 2
+    """Created in the app during the dive."""
+    ANNOTATION_SOURCE_DRONE = 3
+    """Emitted by the drone itself."""
 
 
 class BinlogRecord(proto.Message):
@@ -6675,6 +6701,84 @@ class SotState(proto.Message):
     image_height: int = proto.Field(
         proto.UINT32,
         number=4,
+    )
+
+
+class Annotation(proto.Message):
+    r"""A single annotation added during a dive, e.g. by a diver tapping a
+    type in the app command palette, or emitted by the drone itself.
+
+    Self-contained: it carries the type's display fields
+    (name/icon/color) inline, so the drone, any connected client, and
+    the dive logfile can render it without a separate catalog. The app
+    keeps the full catalog locally (synced from Blueye Cloud) to drive
+    its palette, but only complete annotations go over the wire.
+    type_slug lets Blueye Cloud correlate the annotation to its type on
+    import.
+
+    The drone owns the timestamp: when this is logged the enclosing
+    BinlogRecord carries the time, like any other sample, so there is no
+    time field here.
+
+    Attributes:
+        type_slug (str):
+            Stable type id for grouping / Cloud
+            correlation. Empty for a free-form annotation.
+        type_name (str):
+            Type display name, e.g. "Hazard". Snapshot of
+            the type at creation time.
+        type_icon (str):
+            Font Awesome solid icon name, kebab-case
+            (e.g. "triangle-exclamation").
+        type_color (str):
+            Type color, RGB hex incl. leading '#', 7
+            chars (e.g. "#DC2626").
+        title (str):
+            Optional annotation title; Cloud falls back to type_name if
+            empty. Max 200 chars.
+        body (str):
+            Optional free-form note. Unbounded.
+        duration (google.protobuf.duration_pb2.Duration):
+            Optional span; omit for a point-in-time
+            marker.
+        source (blueye.protocol.types.AnnotationSource):
+            Origin of the annotation; the app sets APP,
+            the drone sets DRONE for its own.
+    """
+
+    type_slug: str = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    type_name: str = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    type_icon: str = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    type_color: str = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    title: str = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    body: str = proto.Field(
+        proto.STRING,
+        number=6,
+    )
+    duration: duration_pb2.Duration = proto.Field(
+        proto.MESSAGE,
+        number=7,
+        message=duration_pb2.Duration,
+    )
+    source: 'AnnotationSource' = proto.Field(
+        proto.ENUM,
+        number=8,
+        enum='AnnotationSource',
     )
 
 

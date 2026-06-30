@@ -34,6 +34,7 @@ from .aquatroll import (
 from .control import (
     ActivateGuestPortsCtrl,
     ActivateMultibeamCtrl,
+    AnnotationCtrl,
     AutoAltitudeCtrl,
     AutoDepthCtrl,
     AutoHeadingCtrl,
@@ -84,6 +85,7 @@ from .control import (
 )
 from .message_formats import (
     Altitude,
+    Annotation,
     Attitude,
     AutoAltitudeState,
     AutoDepthState,
@@ -185,6 +187,7 @@ from .message_formats import (
     WaterDensity,
     WaterTemperature,
     WeatherVaningState,
+    AnnotationSource,
     Camera,
     DepthUnit,
     FontSize,
@@ -290,6 +293,7 @@ from .req_rep import (
 )
 from .telemetry import (
     AltitudeTel,
+    AnnotationTel,
     AquaTrollProbeMetadataTel,
     AquaTrollSensorMetadataTel,
     AquaTrollSensorParametersTel,
@@ -374,6 +378,7 @@ __all__ = (
     'Type',
     'ActivateGuestPortsCtrl',
     'ActivateMultibeamCtrl',
+    'AnnotationCtrl',
     'AutoAltitudeCtrl',
     'AutoDepthCtrl',
     'AutoHeadingCtrl',
@@ -422,6 +427,7 @@ __all__ = (
     'WaterDensityCtrl',
     'WeatherVaningCtrl',
     'Altitude',
+    'Annotation',
     'Attitude',
     'AutoAltitudeState',
     'AutoDepthState',
@@ -523,6 +529,7 @@ __all__ = (
     'WaterDensity',
     'WaterTemperature',
     'WeatherVaningState',
+    'AnnotationSource',
     'Camera',
     'DepthUnit',
     'FontSize',
@@ -622,6 +629,7 @@ __all__ = (
     'SyncTimeRep',
     'SyncTimeReq',
     'AltitudeTel',
+    'AnnotationTel',
     'AquaTrollProbeMetadataTel',
     'AquaTrollSensorMetadataTel',
     'AquaTrollSensorParametersTel',
