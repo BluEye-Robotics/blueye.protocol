@@ -89,6 +89,7 @@ __protobuf__ = proto.module(
         'LogEntryTel',
         'ObjectDetectionsTel',
         'TurbidityFilterTel',
+        'ColorCorrectionTel',
         'CameraPanTiltZoomTel',
         'SotStateTel',
         'AnnotationTel',
@@ -1135,6 +1136,23 @@ class TurbidityFilterTel(proto.Message):
     """
 
     turbidity_filter: message_formats.FilterMessage = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.FilterMessage,
+    )
+
+
+class ColorCorrectionTel(proto.Message):
+    r"""Color correction settings telemetry message.
+
+    Message is published when the filter settings are changed.
+
+    Attributes:
+        color_correction_filter (blueye.protocol.types.FilterMessage):
+            Color correction settings.
+    """
+
+    color_correction_filter: message_formats.FilterMessage = proto.Field(
         proto.MESSAGE,
         number=1,
         message=message_formats.FilterMessage,

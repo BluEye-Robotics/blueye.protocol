@@ -65,6 +65,7 @@ from .types.control import RestartGuestPortsCtrl
 from .types.control import RunMissionCtrl
 from .types.control import SetAquaTrollConnectionStatusCtrl
 from .types.control import SetAquaTrollParameterUnitCtrl
+from .types.control import SetColorCorrectionCtrl
 from .types.control import SetMultibeamConfigCtrl
 from .types.control import SetSotTargetCtrl
 from .types.control import SetTurbidityFilterCtrl
@@ -296,6 +297,7 @@ from .types.telemetry import CalibrationStateTel
 from .types.telemetry import CameraPanTiltZoomTel
 from .types.telemetry import CanisterBottomHumidityTel
 from .types.telemetry import CanisterBottomTemperatureTel
+from .types.telemetry import ColorCorrectionTel
 from .types.telemetry import ConnectedClientsTel
 from .types.telemetry import ControlForceTel
 from .types.telemetry import ControllerHealthTel
@@ -415,6 +417,7 @@ __all__ = (
 'ClearMissionCtrl',
 'ClearSotTargetCtrl',
 'ClientInfo',
+'ColorCorrectionTel',
 'ConnectClientRep',
 'ConnectClientReq',
 'ConnectedClient',
@@ -606,6 +609,7 @@ __all__ = (
 'SetAquaTrollParameterUnitCtrl',
 'SetCameraParametersRep',
 'SetCameraParametersReq',
+'SetColorCorrectionCtrl',
 'SetHeadingModeRep',
 'SetHeadingModeReq',
 'SetInstructionUpdateRep',

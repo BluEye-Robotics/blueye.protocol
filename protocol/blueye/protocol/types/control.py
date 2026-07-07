@@ -70,6 +70,7 @@ __protobuf__ = proto.module(
         'EndDiveCtrl',
         'FormatRemovableStorageDeviceCtrl',
         'SetTurbidityFilterCtrl',
+        'SetColorCorrectionCtrl',
         'CameraPanTiltZoomCtrl',
         'StartLogStreamingCtrl',
         'StopLogStreamingCtrl',
@@ -646,7 +647,9 @@ class FormatRemovableStorageDeviceCtrl(proto.Message):
 
 class SetTurbidityFilterCtrl(proto.Message):
     r"""Message sent when the user wants to set turbidity filter
-    settings.
+    settings. Uses CLAHE to enhance the contrast of the video, which
+    can make it easier to see details in turbid water. Only
+    supported on X3 Ultra.
 
     Attributes:
         turbidity_filter (blueye.protocol.types.FilterMessage):
@@ -655,6 +658,27 @@ class SetTurbidityFilterCtrl(proto.Message):
     """
 
     turbidity_filter: message_formats.FilterMessage = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.FilterMessage,
+    )
+
+
+class SetColorCorrectionCtrl(proto.Message):
+    r"""Message sent when the user wants to set color correction
+    settings. Applies depth- and scene-driven underwater color
+    correction, restoring the red/blue balance lost with depth. The
+    intensity field scales the correction (0.0 = off/identity, 1.0 =
+    full).
+    Only supported on X3 Ultra.
+
+    Attributes:
+        color_correction_filter (blueye.protocol.types.FilterMessage):
+            Message with the color correction settings to
+            set.
+    """
+
+    color_correction_filter: message_formats.FilterMessage = proto.Field(
         proto.MESSAGE,
         number=1,
         message=message_formats.FilterMessage,
