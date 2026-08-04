@@ -189,6 +189,7 @@ from .types.message_formats import Camera
 from .types.message_formats import DepthUnit
 from .types.message_formats import FontSize
 from .types.message_formats import Framerate
+from .types.message_formats import GuestPortCapability
 from .types.message_formats import GuestPortDetachStatus
 from .types.message_formats import GuestPortDeviceID
 from .types.message_formats import GuestPortError
@@ -493,6 +494,7 @@ __all__ = (
 'GpuInfo',
 'GripperCtrl',
 'GripperVelocities',
+'GuestPortCapability',
 'GuestPortConnectorInfo',
 'GuestPortCurrent',
 'GuestPortCurrentTel',

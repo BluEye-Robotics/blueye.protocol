@@ -50,6 +50,7 @@ __protobuf__ = proto.module(
         'FontSize',
         'GuestPortDeviceID',
         'GuestPortNumber',
+        'GuestPortCapability',
         'NavigationSensorID',
         'GuestPortDetachStatus',
         'GuestPortError',
@@ -1032,6 +1033,44 @@ class GuestPortNumber(proto.Enum):
     """Guest port 5."""
     GUEST_PORT_NUMBER_PORT_6 = 6
     """Guest port 6."""
+
+
+class GuestPortCapability(proto.Enum):
+    r"""Physical interfaces a guest port can provide.
+
+    Used both for the interfaces a port provides and for the
+    interfaces a device requires from the port it is connected to.
+
+    Attributes:
+        GUEST_PORT_CAPABILITY_UNSPECIFIED (0):
+            Unspecified.
+        GUEST_PORT_CAPABILITY_ETHERNET (1):
+            Ethernet.
+        GUEST_PORT_CAPABILITY_I2C (2):
+            I2C.
+        GUEST_PORT_CAPABILITY_RS232 (3):
+            RS232 serial.
+        GUEST_PORT_CAPABILITY_RS485 (4):
+            RS485 serial.
+        GUEST_PORT_CAPABILITY_USB2 (5):
+            USB 2.0.
+        GUEST_PORT_CAPABILITY_PWM (6):
+            PWM.
+    """
+    GUEST_PORT_CAPABILITY_UNSPECIFIED = 0
+    """Unspecified."""
+    GUEST_PORT_CAPABILITY_ETHERNET = 1
+    """Ethernet."""
+    GUEST_PORT_CAPABILITY_I2C = 2
+    """I2C."""
+    GUEST_PORT_CAPABILITY_RS232 = 3
+    """RS232 serial."""
+    GUEST_PORT_CAPABILITY_RS485 = 4
+    """RS485 serial."""
+    GUEST_PORT_CAPABILITY_USB2 = 5
+    """USB 2.0."""
+    GUEST_PORT_CAPABILITY_PWM = 6
+    """PWM."""
 
 
 class NavigationSensorID(proto.Enum):
@@ -4067,6 +4106,24 @@ class ErrorFlags(proto.Message):
             Guest port 5 device error.
         gp6_device (bool):
             Guest port 6 device error.
+        gp1_incompatible_device (bool):
+            Device on guest port 1 requires interfaces
+            the port does not provide.
+        gp2_incompatible_device (bool):
+            Device on guest port 2 requires interfaces
+            the port does not provide.
+        gp3_incompatible_device (bool):
+            Device on guest port 3 requires interfaces
+            the port does not provide.
+        gp4_incompatible_device (bool):
+            Device on guest port 4 requires interfaces
+            the port does not provide.
+        gp5_incompatible_device (bool):
+            Device on guest port 5 requires interfaces
+            the port does not provide.
+        gp6_incompatible_device (bool):
+            Device on guest port 6 requires interfaces
+            the port does not provide.
         drone_serial_not_set (bool):
             Drone serial number not set.
         drone_serial (bool):
@@ -4302,6 +4359,30 @@ class ErrorFlags(proto.Message):
     gp6_device: bool = proto.Field(
         proto.BOOL,
         number=62,
+    )
+    gp1_incompatible_device: bool = proto.Field(
+        proto.BOOL,
+        number=78,
+    )
+    gp2_incompatible_device: bool = proto.Field(
+        proto.BOOL,
+        number=79,
+    )
+    gp3_incompatible_device: bool = proto.Field(
+        proto.BOOL,
+        number=80,
+    )
+    gp4_incompatible_device: bool = proto.Field(
+        proto.BOOL,
+        number=81,
+    )
+    gp5_incompatible_device: bool = proto.Field(
+        proto.BOOL,
+        number=82,
+    )
+    gp6_incompatible_device: bool = proto.Field(
+        proto.BOOL,
+        number=83,
     )
     drone_serial_not_set: bool = proto.Field(
         proto.BOOL,
@@ -4887,6 +4968,12 @@ class GuestPortDevice(proto.Message):
             Required Blunux version (x.y.z).
         detach_status (blueye.protocol.types.GuestPortDetachStatus):
             Detach status based on detection pin.
+        required_capabilities (MutableSequence[blueye.protocol.types.GuestPortCapability]):
+            Interfaces the device requires from the port.
+        compatible_guest_ports (MutableSequence[blueye.protocol.types.GuestPortNumber]):
+            Ports on this drone where the device is fully
+            supported. Computed by the drone from the port
+            capabilities and the device requirements.
     """
 
     device_id: 'GuestPortDeviceID' = proto.Field(
@@ -4918,6 +5005,16 @@ class GuestPortDevice(proto.Message):
         proto.ENUM,
         number=7,
         enum='GuestPortDetachStatus',
+    )
+    required_capabilities: MutableSequence['GuestPortCapability'] = proto.RepeatedField(
+        proto.ENUM,
+        number=8,
+        enum='GuestPortCapability',
+    )
+    compatible_guest_ports: MutableSequence['GuestPortNumber'] = proto.RepeatedField(
+        proto.ENUM,
+        number=9,
+        enum='GuestPortNumber',
     )
 
 
@@ -4957,6 +5054,8 @@ class GuestPortConnectorInfo(proto.Message):
             This field is a member of `oneof`_ ``connected_device``.
         guest_port_number (blueye.protocol.types.GuestPortNumber):
             Guest port the connector is connected to.
+        capabilities (MutableSequence[blueye.protocol.types.GuestPortCapability]):
+            Interfaces this port provides.
     """
 
     device_list: 'GuestPortDeviceList' = proto.Field(
@@ -4975,6 +5074,11 @@ class GuestPortConnectorInfo(proto.Message):
         proto.ENUM,
         number=3,
         enum='GuestPortNumber',
+    )
+    capabilities: MutableSequence['GuestPortCapability'] = proto.RepeatedField(
+        proto.ENUM,
+        number=4,
+        enum='GuestPortCapability',
     )
 
 
