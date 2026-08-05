@@ -899,6 +899,11 @@ class GuestPortDeviceID(proto.Enum):
             Cerulean Omniscan 450 Compact.
         GUEST_PORT_DEVICE_ID_BLUEYE_SCALING_LASER (48):
             Blueye Scaling Laser.
+        GUEST_PORT_DEVICE_ID_CYGNUS_MINI_ROV_THICKNESS_GAUGE_RS232 (49):
+            Cygnus Mini ROV Thickness Gauge on a
+            connector that converts its RS485 to RS232,
+            letting it be used on drones with no RS485, such
+            as the X7.
     """
     GUEST_PORT_DEVICE_ID_UNSPECIFIED = 0
     """Unspecified."""
@@ -998,6 +1003,10 @@ class GuestPortDeviceID(proto.Enum):
     """Cerulean Omniscan 450 Compact."""
     GUEST_PORT_DEVICE_ID_BLUEYE_SCALING_LASER = 48
     """Blueye Scaling Laser."""
+    GUEST_PORT_DEVICE_ID_CYGNUS_MINI_ROV_THICKNESS_GAUGE_RS232 = 49
+    """Cygnus Mini ROV Thickness Gauge on a connector that converts
+    its RS485 to RS232, letting it be used on drones with no RS485,
+    such as the X7."""
 
 
 class GuestPortNumber(proto.Enum):
