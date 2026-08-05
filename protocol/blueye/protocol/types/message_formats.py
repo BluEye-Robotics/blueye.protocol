@@ -1065,6 +1065,8 @@ class GuestPortCapability(proto.Enum):
             USB 2.0.
         GUEST_PORT_CAPABILITY_PWM (6):
             PWM.
+        GUEST_PORT_CAPABILITY_ETHERNET_1G (7):
+            Gigabit Ethernet.
     """
     GUEST_PORT_CAPABILITY_UNSPECIFIED = 0
     """Unspecified."""
@@ -1080,6 +1082,8 @@ class GuestPortCapability(proto.Enum):
     """USB 2.0."""
     GUEST_PORT_CAPABILITY_PWM = 6
     """PWM."""
+    GUEST_PORT_CAPABILITY_ETHERNET_1G = 7
+    """Gigabit Ethernet."""
 
 
 class NavigationSensorID(proto.Enum):
