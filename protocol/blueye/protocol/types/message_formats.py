@@ -5524,6 +5524,16 @@ class MultibeamPing(proto.Message):
             Device ID of the sonar.
         frame_generation_timestamp (google.protobuf.timestamp_pb2.Timestamp):
             Timestamp when the frame was generated.
+        heading (float):
+            Heading (°).
+        pitch (float):
+            Pitch (°).
+        roll (float):
+            Roll (°).
+        temperature (float):
+            External temperature (°C).
+        pressure (float):
+            External pressure (bar).
     """
 
     range_: float = proto.Field(
@@ -5576,6 +5586,26 @@ class MultibeamPing(proto.Message):
         proto.MESSAGE,
         number=12,
         message=timestamp_pb2.Timestamp,
+    )
+    heading: float = proto.Field(
+        proto.DOUBLE,
+        number=13,
+    )
+    pitch: float = proto.Field(
+        proto.DOUBLE,
+        number=14,
+    )
+    roll: float = proto.Field(
+        proto.DOUBLE,
+        number=15,
+    )
+    temperature: float = proto.Field(
+        proto.DOUBLE,
+        number=16,
+    )
+    pressure: float = proto.Field(
+        proto.DOUBLE,
+        number=17,
     )
 
 
