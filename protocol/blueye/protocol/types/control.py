@@ -45,6 +45,7 @@ __protobuf__ = proto.module(
         'WeatherVaningCtrl',
         'AutoPilotSurgeYawCtrl',
         'AutoPilotHeaveCtrl',
+        'VisionTrackingCtrl',
         'RunMissionCtrl',
         'PauseMissionCtrl',
         'ClearMissionCtrl',
@@ -358,6 +359,28 @@ class AutoPilotHeaveCtrl(proto.Message):
         proto.MESSAGE,
         number=1,
         message=message_formats.AutoPilotHeaveState,
+    )
+
+
+class VisionTrackingCtrl(proto.Message):
+    r"""Issue a command to set the vision-based tracking mode.
+
+    Setting a mode requires an actively tracked
+    single-object-tracking (SOT) target; the drone refuses to enable
+    a mode otherwise. Setting a different mode while one is active
+    switches atomically. Sending a state with no mode set disables
+    vision tracking. An OrbitState with a zero rate is rejected.
+
+    Attributes:
+        state (blueye.protocol.types.VisionTrackingState):
+            The desired vision tracking mode, or none to
+            disable.
+    """
+
+    state: message_formats.VisionTrackingState = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.VisionTrackingState,
     )
 
 

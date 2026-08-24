@@ -78,9 +78,11 @@ from .types.control import SystemTimeCtrl
 from .types.control import TakePictureCtrl
 from .types.control import TiltStabilizationCtrl
 from .types.control import TiltVelocityCtrl
+from .types.control import VisionTrackingCtrl
 from .types.control import WatchdogCtrl
 from .types.control import WaterDensityCtrl
 from .types.control import WeatherVaningCtrl
+from .types.message_formats import ActiveTrackState
 from .types.message_formats import Altitude
 from .types.message_formats import Annotation
 from .types.message_formats import Attitude
@@ -153,6 +155,7 @@ from .types.message_formats import NStreamers
 from .types.message_formats import NvmeInfo
 from .types.message_formats import ObjectDetection
 from .types.message_formats import OperatorInfo
+from .types.message_formats import OrbitState
 from .types.message_formats import OverlayParameters
 from .types.message_formats import PersistentStorageSettings
 from .types.message_formats import PingerConfiguration
@@ -166,6 +169,7 @@ from .types.message_formats import RemovableStorageErrorFlags
 from .types.message_formats import ResetPositionSettings
 from .types.message_formats import SegmentationMask
 from .types.message_formats import SotState
+from .types.message_formats import SpotlightState
 from .types.message_formats import StationKeepingState
 from .types.message_formats import StoragePartition
 from .types.message_formats import StorageSpace
@@ -181,6 +185,7 @@ from .types.message_formats import TiltVelocity
 from .types.message_formats import TimeLapseState
 from .types.message_formats import Vector3
 from .types.message_formats import VideoCodecInfo
+from .types.message_formats import VisionTrackingState
 from .types.message_formats import WaterDensity
 from .types.message_formats import WaterTemperature
 from .types.message_formats import WeatherVaningState
@@ -354,6 +359,7 @@ from .types.telemetry import WaterTemperatureTel
 __all__ = (
 'ActivateGuestPortsCtrl',
 'ActivateMultibeamCtrl',
+'ActiveTrackState',
 'Altitude',
 'AltitudeTel',
 'Annotation',
@@ -570,6 +576,7 @@ __all__ = (
 'ObjectDetection',
 'ObjectDetectionsTel',
 'OperatorInfo',
+'OrbitState',
 'OverlayParameters',
 'PathSegment',
 'PauseMissionCtrl',
@@ -635,6 +642,7 @@ __all__ = (
 'SetTurbidityFilterCtrl',
 'SotState',
 'SotStateTel',
+'SpotlightState',
 'StartCalibrationCtrl',
 'StartDiveCtrl',
 'StartLogStreamingCtrl',
@@ -678,6 +686,8 @@ __all__ = (
 'Vector3',
 'VideoCodecInfo',
 'VideoStorageSpaceTel',
+'VisionTrackingCtrl',
+'VisionTrackingState',
 'WaitForCommand',
 'WatchdogCtrl',
 'WaterDensity',

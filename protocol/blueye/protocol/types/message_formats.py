@@ -74,6 +74,10 @@ __protobuf__ = proto.module(
         'WeatherVaningState',
         'AutoPilotSurgeYawState',
         'AutoPilotHeaveState',
+        'SpotlightState',
+        'ActiveTrackState',
+        'OrbitState',
+        'VisionTrackingState',
         'ControlMode',
         'TiltStabilizationState',
         'SystemTime',
@@ -1840,6 +1844,113 @@ class AutoPilotHeaveState(proto.Message):
     )
 
 
+class SpotlightState(proto.Message):
+    r"""Spotlight mode parameters.
+
+    Vision-based mode that keeps the tracked object centred in the
+    frame while the pilot flies around it. Currently carries no
+    parameters.
+
+    Automatically controlled: yaw (horizontal centring) and depth
+    (vertical centring).
+    Pilot controlled: surge and sway.
+
+    """
+
+
+class ActiveTrackState(proto.Message):
+    r"""Active track mode parameters.
+
+    Vision-based mode that follows the tracked object, keeping it
+    centred and at a constant apparent size in the frame. Currently
+    carries no parameters.
+
+    Automatically controlled: yaw (horizontal centring), depth
+    (vertical centring), and surge (distance keeping).
+    Pilot controlled: sway.
+
+    """
+
+
+class OrbitState(proto.Message):
+    r"""Orbit mode parameters.
+
+    Vision-based mode that circles the tracked object while keeping
+    it centred in the frame.
+
+    Automatically controlled: yaw (horizontal centring), depth
+    (vertical centring), surge (distance keeping), and sway
+    (tangential motion at the commanded angular rate). No degree of
+    freedom is pilot controlled while orbit is active.
+
+    Attributes:
+        rate (float):
+            Orbit angular rate (deg/s); positive orbits
+            clockwise seen from above. Must be non-zero.
+    """
+
+    rate: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+
+
+class VisionTrackingState(proto.Message):
+    r"""The active vision-based tracking mode.
+
+    The modes are mutually exclusive, which the oneof encodes: at
+    most one mode is set at a time, and no field set means no vision
+    tracking mode is active.
+
+    Each mode's message documents which degrees of freedom it
+    controls automatically; any degree of freedom not listed as
+    automatic remains under pilot control. Pilot input on an
+    automatically controlled degree of freedom is ignored while the
+    mode is active.
+
+    This message has `oneof`_ fields (mutually exclusive fields).
+    For each oneof, at most one member field can be set at the same time.
+    Setting any member of the oneof automatically clears all other
+    members.
+
+    .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
+
+    Attributes:
+        spotlight (blueye.protocol.types.SpotlightState):
+            Spotlight mode is active.
+
+            This field is a member of `oneof`_ ``mode``.
+        active_track (blueye.protocol.types.ActiveTrackState):
+            Active track mode is active.
+
+            This field is a member of `oneof`_ ``mode``.
+        orbit (blueye.protocol.types.OrbitState):
+            Orbit mode is active, at the reported angular
+            rate.
+
+            This field is a member of `oneof`_ ``mode``.
+    """
+
+    spotlight: 'SpotlightState' = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        oneof='mode',
+        message='SpotlightState',
+    )
+    active_track: 'ActiveTrackState' = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        oneof='mode',
+        message='ActiveTrackState',
+    )
+    orbit: 'OrbitState' = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        oneof='mode',
+        message='OrbitState',
+    )
+
+
 class ControlMode(proto.Message):
     r"""Control mode from drone supervisor
 
@@ -1858,6 +1969,9 @@ class ControlMode(proto.Message):
             If auto pilot surge yaw is enabled.
         auto_pilot_heave (bool):
             If auto pilot heave is enabled.
+        vision_tracking (blueye.protocol.types.VisionTrackingState):
+            The active vision-based tracking mode, if
+            any.
     """
 
     auto_depth: bool = proto.Field(
@@ -1887,6 +2001,11 @@ class ControlMode(proto.Message):
     auto_pilot_heave: bool = proto.Field(
         proto.BOOL,
         number=7,
+    )
+    vision_tracking: 'VisionTrackingState' = proto.Field(
+        proto.MESSAGE,
+        number=8,
+        message='VisionTrackingState',
     )
 
 
@@ -6793,8 +6912,11 @@ class OperatorInfo(proto.Message):
 
 
 class SotState(proto.Message):
-    r"""Single-object tracking (SOT) state reported by the computer
-    vision pipeline.
+    r"""Single-object tracking (SOT) state reported by the computer vision
+    pipeline.
+
+    The velocity fields are Kalman filter estimates expressed in the CV
+    frame coordinate space (image_width x image_height pixels).
 
     Attributes:
         state (blueye.protocol.types.SotState.State):
@@ -6806,6 +6928,21 @@ class SotState(proto.Message):
             Width of the source frame in pixels.
         image_height (int):
             Height of the source frame in pixels.
+        confidence (float):
+            Tracker confidence of the last model update
+            (0..1). 0 while coasting and when LOST.
+        vx (float):
+            Kalman velocity estimate of the bounding box
+            centre, horizontal (px/s).
+        vy (float):
+            Kalman velocity estimate of the bounding box
+            centre, vertical (px/s).
+        vs (float):
+            Kalman rate of change of the bounding box area, width \*
+            height (px²/s).
+        vr (float):
+            Kalman rate of change of the bounding box
+            aspect ratio, width / height (1/s).
     """
     class State(proto.Enum):
         r"""Current state of the SOT tracker.
@@ -6848,6 +6985,26 @@ class SotState(proto.Message):
     image_height: int = proto.Field(
         proto.UINT32,
         number=4,
+    )
+    confidence: float = proto.Field(
+        proto.FLOAT,
+        number=5,
+    )
+    vx: float = proto.Field(
+        proto.FLOAT,
+        number=6,
+    )
+    vy: float = proto.Field(
+        proto.FLOAT,
+        number=7,
+    )
+    vs: float = proto.Field(
+        proto.FLOAT,
+        number=8,
+    )
+    vr: float = proto.Field(
+        proto.FLOAT,
+        number=9,
     )
 
 
