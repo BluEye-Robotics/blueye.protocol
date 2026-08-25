@@ -908,6 +908,8 @@ class GuestPortDeviceID(proto.Enum):
             connector that converts its RS485 to RS232,
             letting it be used on drones with no RS485, such
             as the X7.
+        GUEST_PORT_DEVICE_ID_WATERLINKED_DVL_A100 (50):
+            Waterlinked DVL A100.
     """
     GUEST_PORT_DEVICE_ID_UNSPECIFIED = 0
     """Unspecified."""
@@ -1011,6 +1013,8 @@ class GuestPortDeviceID(proto.Enum):
     """Cygnus Mini ROV Thickness Gauge on a connector that converts
     its RS485 to RS232, letting it be used on drones with no RS485,
     such as the X7."""
+    GUEST_PORT_DEVICE_ID_WATERLINKED_DVL_A100 = 50
+    """Waterlinked DVL A100."""
 
 
 class GuestPortNumber(proto.Enum):
@@ -1109,6 +1113,8 @@ class NavigationSensorID(proto.Enum):
             Nortek DVL Nucleus 1000.
         NAVIGATION_SENSOR_ID_CERULEAN_TRACKER_650 (6):
             Cerulean Tracker 650.
+        NAVIGATION_SENSOR_ID_WATERLINKED_DVL_A100 (7):
+            Water Linked DVL A100.
     """
     NAVIGATION_SENSOR_ID_UNSPECIFIED = 0
     """Unspecified."""
@@ -1124,6 +1130,8 @@ class NavigationSensorID(proto.Enum):
     """Nortek DVL Nucleus 1000."""
     NAVIGATION_SENSOR_ID_CERULEAN_TRACKER_650 = 6
     """Cerulean Tracker 650."""
+    NAVIGATION_SENSOR_ID_WATERLINKED_DVL_A100 = 7
+    """Water Linked DVL A100."""
 
 
 class GuestPortDetachStatus(proto.Enum):
