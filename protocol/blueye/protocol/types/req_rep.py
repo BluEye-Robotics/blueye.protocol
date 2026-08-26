@@ -73,6 +73,10 @@ __protobuf__ = proto.module(
         'GetIperfStatusRep',
         'GetLogStreamingStatusReq',
         'GetLogStreamingStatusRep',
+        'SetCvModelStateReq',
+        'SetCvModelStateRep',
+        'GetCvModelsReq',
+        'GetCvModelsRep',
     },
 )
 
@@ -679,6 +683,70 @@ class GetLogStreamingStatusRep(proto.Message):
     enabled: bool = proto.Field(
         proto.BOOL,
         number=1,
+    )
+
+
+class SetCvModelStateReq(proto.Message):
+    r"""Request to start or stop a computer vision model.
+
+    The reply only acknowledges that the model exists and the
+    request was accepted. The model starts or stops asynchronously;
+    track progress through the state field of CvModelInfo in
+    DroneInfoTel or GetCvModelsRep.
+
+    Attributes:
+        package_id (str):
+            Identifies the model, from CvModelInfo.package_id.
+        running (bool):
+            Desired run state: true to start the model,
+            false to stop it.
+    """
+
+    package_id: str = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    running: bool = proto.Field(
+        proto.BOOL,
+        number=2,
+    )
+
+
+class SetCvModelStateRep(proto.Message):
+    r"""Response after accepting a SetCvModelStateReq.
+
+    Attributes:
+        accepted (bool):
+            True if the model exists and the request was
+            accepted for execution.
+    """
+
+    accepted: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+
+
+class GetCvModelsReq(proto.Message):
+    r"""Request the list of computer vision models installed on the
+    drone.
+
+    """
+
+
+class GetCvModelsRep(proto.Message):
+    r"""Response with the list of installed computer vision models.
+
+    Attributes:
+        cv_models (MutableSequence[blueye.protocol.types.CvModelInfo]):
+            All installed models, including models that
+            are not running.
+    """
+
+    cv_models: MutableSequence[message_formats.CvModelInfo] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.CvModelInfo,
     )
 
 

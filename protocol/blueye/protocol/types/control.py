@@ -77,6 +77,7 @@ __protobuf__ = proto.module(
         'StopLogStreamingCtrl',
         'SetSotTargetCtrl',
         'ClearSotTargetCtrl',
+        'RescanCvModelsCtrl',
         'AnnotationCtrl',
     },
 )
@@ -771,6 +772,16 @@ class SetSotTargetCtrl(proto.Message):
 class ClearSotTargetCtrl(proto.Message):
     r"""Issue a command to clear the single-object tracking (SOT)
     target (stop tracking).
+
+    """
+
+
+class RescanCvModelsCtrl(proto.Message):
+    r"""Issue a command to rescan the computer vision model packages
+    installed on the drone.
+    The drone rediscovers model packages on disk and publishes an
+    updated model list. Use after installing or removing a model
+    package without rebooting.
 
     """
 

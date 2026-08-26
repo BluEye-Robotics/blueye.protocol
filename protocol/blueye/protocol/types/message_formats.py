@@ -119,6 +119,7 @@ __protobuf__ = proto.module(
         'TiltAngle',
         'TiltVelocity',
         'CvModelInfo',
+        'CameraCalibration',
         'DroneInfo',
         'ErrorFlags',
         'CameraParameters',
@@ -4027,6 +4028,9 @@ class CvModelInfo(proto.Message):
             identifier.
         labels (MutableSequence[str]):
             Class names the model can detect (indexed by class_id).
+        state (blueye.protocol.types.CvModelInfo.State):
+            Runtime state. SOT models report
+            IDLE/TRACKING/LOST instead of RUNNING.
     """
     class ModelType(proto.Enum):
         r"""
@@ -4042,6 +4046,38 @@ class CvModelInfo(proto.Message):
         MODEL_TYPE_UNSPECIFIED = 0
         MODEL_TYPE_DETECTION = 1
         MODEL_TYPE_SOT = 2
+
+    class State(proto.Enum):
+        r"""Runtime state of a computer vision model.
+
+        Attributes:
+            STATE_UNSPECIFIED (0):
+                State unknown / not reported.
+            STATE_STOPPED (1):
+                The model is not running.
+            STATE_RUNNING (2):
+                The model is running (detection models).
+            STATE_IDLE (3):
+                The SOT model is running with no target
+                selected.
+            STATE_TRACKING (4):
+                The SOT model is actively tracking a target.
+            STATE_LOST (5):
+                The SOT model lost the target it was
+                tracking.
+        """
+        STATE_UNSPECIFIED = 0
+        """State unknown / not reported."""
+        STATE_STOPPED = 1
+        """The model is not running."""
+        STATE_RUNNING = 2
+        """The model is running (detection models)."""
+        STATE_IDLE = 3
+        """The SOT model is running with no target selected."""
+        STATE_TRACKING = 4
+        """The SOT model is actively tracking a target."""
+        STATE_LOST = 5
+        """The SOT model lost the target it was tracking."""
 
     name: str = proto.Field(
         proto.STRING,
@@ -4067,6 +4103,77 @@ class CvModelInfo(proto.Message):
     labels: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=6,
+    )
+    state: State = proto.Field(
+        proto.ENUM,
+        number=7,
+        enum=State,
+    )
+
+
+class CameraCalibration(proto.Message):
+    r"""Camera intrinsic calibration (pinhole model with OpenCV distortion
+    coefficients).
+
+    All values are in pixels at the calibration resolution (image_width
+    x image_height). When applying the calibration to an image of a
+    different resolution, scale fx and cx by the width ratio and fy and
+    cy by the height ratio; the distortion coefficients are resolution
+    independent.
+
+    Attributes:
+        fx (float):
+            Focal length x (pixels).
+        fy (float):
+            Focal length y (pixels).
+        cx (float):
+            Principal point x (pixels).
+        cy (float):
+            Principal point y (pixels).
+        distortion_coefficients (MutableSequence[float]):
+            OpenCV order: k1, k2, p1, p2, k3.
+        image_width (int):
+            Image width (pixels) the calibration was
+            computed at.
+        image_height (int):
+            Image height (pixels) the calibration was
+            computed at.
+        is_default (bool):
+            True when this is the built-in default, not a
+            per-drone calibration.
+    """
+
+    fx: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    fy: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    cx: float = proto.Field(
+        proto.FLOAT,
+        number=3,
+    )
+    cy: float = proto.Field(
+        proto.FLOAT,
+        number=4,
+    )
+    distortion_coefficients: MutableSequence[float] = proto.RepeatedField(
+        proto.FLOAT,
+        number=5,
+    )
+    image_width: int = proto.Field(
+        proto.UINT32,
+        number=6,
+    )
+    image_height: int = proto.Field(
+        proto.UINT32,
+        number=7,
+    )
+    is_default: bool = proto.Field(
+        proto.BOOL,
+        number=8,
     )
 
 
@@ -4100,9 +4207,13 @@ class DroneInfo(proto.Message):
             Type of depth sensor that is connected to the
             drone.
         cv_models (MutableSequence[blueye.protocol.types.CvModelInfo]):
-            List of loaded computer vision models.
+            Installed computer vision models, including
+            models that are not running.
         power_source (blueye.protocol.types.PowerSource):
             How the drone is powered.
+        main_camera_calibration (blueye.protocol.types.CameraCalibration):
+            Intrinsic calibration of the main camera.
+            Unset when unknown.
     """
 
     blunux_version: str = proto.Field(
@@ -4161,6 +4272,11 @@ class DroneInfo(proto.Message):
         proto.ENUM,
         number=13,
         enum='PowerSource',
+    )
+    main_camera_calibration: 'CameraCalibration' = proto.Field(
+        proto.MESSAGE,
+        number=14,
+        message='CameraCalibration',
     )
 
 

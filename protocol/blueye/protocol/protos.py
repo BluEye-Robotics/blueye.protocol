@@ -59,6 +59,7 @@ from .types.control import PauseMissionCtrl
 from .types.control import PilotGPSPositionCtrl
 from .types.control import PingerConfigurationCtrl
 from .types.control import RecordCtrl
+from .types.control import RescanCvModelsCtrl
 from .types.control import ResetOdometerCtrl
 from .types.control import ResetPositionCtrl
 from .types.control import RestartGuestPortsCtrl
@@ -96,6 +97,7 @@ from .types.message_formats import BatteryBQ40Z50
 from .types.message_formats import BinlogRecord
 from .types.message_formats import BoundingBox
 from .types.message_formats import CalibrationState
+from .types.message_formats import CameraCalibration
 from .types.message_formats import CameraPanTiltZoom
 from .types.message_formats import CameraParameters
 from .types.message_formats import CanisterHumidity
@@ -253,6 +255,8 @@ from .types.req_rep import GetBatteryRep
 from .types.req_rep import GetBatteryReq
 from .types.req_rep import GetCameraParametersRep
 from .types.req_rep import GetCameraParametersReq
+from .types.req_rep import GetCvModelsRep
+from .types.req_rep import GetCvModelsReq
 from .types.req_rep import GetIperfStatusRep
 from .types.req_rep import GetIperfStatusReq
 from .types.req_rep import GetLogStreamingStatusRep
@@ -269,6 +273,8 @@ from .types.req_rep import PingRep
 from .types.req_rep import PingReq
 from .types.req_rep import SetCameraParametersRep
 from .types.req_rep import SetCameraParametersReq
+from .types.req_rep import SetCvModelStateRep
+from .types.req_rep import SetCvModelStateReq
 from .types.req_rep import SetHeadingModeRep
 from .types.req_rep import SetHeadingModeReq
 from .types.req_rep import SetInstructionUpdateRep
@@ -411,6 +417,7 @@ __all__ = (
 'CalibrationStateTel',
 'Camera',
 'CameraAction',
+'CameraCalibration',
 'CameraCommand',
 'CameraPanTiltZoom',
 'CameraPanTiltZoomCtrl',
@@ -482,6 +489,8 @@ __all__ = (
 'GetBatteryReq',
 'GetCameraParametersRep',
 'GetCameraParametersReq',
+'GetCvModelsRep',
+'GetCvModelsReq',
 'GetIperfStatusRep',
 'GetIperfStatusReq',
 'GetLogStreamingStatusRep',
@@ -604,6 +613,7 @@ __all__ = (
 'RemovableStorageDevice',
 'RemovableStorageErrorFlags',
 'RemovableStorageTel',
+'RescanCvModelsCtrl',
 'ResetCoordinateSource',
 'ResetOdometerCtrl',
 'ResetPositionCtrl',
@@ -619,6 +629,8 @@ __all__ = (
 'SetCameraParametersRep',
 'SetCameraParametersReq',
 'SetColorCorrectionCtrl',
+'SetCvModelStateRep',
+'SetCvModelStateReq',
 'SetHeadingModeRep',
 'SetHeadingModeReq',
 'SetInstructionUpdateRep',
