@@ -6840,12 +6840,20 @@ class BoundingBox(proto.Message):
 
 
 class SegmentationMask(proto.Message):
-    r"""RLE-encoded binary segmentation mask relative to the bounding box.
+    r"""RLE-encoded binary segmentation mask with its own anchor box.
 
     The mask bitmap has dimensions (mask_width x mask_height) covering
-    the detection's bounding box area. The counts field stores
+    the mask_box region of the camera image. The counts field stores
     run-length encoded data as packed uint16 little-endian: alternating
-    background/foreground pixel runs starting with background.
+    background/foreground pixel runs starting with background. Runs
+    longer than 65535 pixels are split by inserting a zero-length run of
+    the opposite class (e.g. 70000 becomes 65535, 0, 4465), so decoders
+    need no special handling — a zero-length run just toggles the class.
+
+    Scale the mask to mask_box, not to the detection's bounding_box: the
+    bounding box may be smoothed by tracking, while mask_box is pinned
+    to the raw detection position, so the mask stays on the actual
+    object pixels.
 
     Attributes:
         mask_width (int):
@@ -6854,6 +6862,9 @@ class SegmentationMask(proto.Message):
             Height of the RLE bitmap.
         counts (bytes):
             RLE counts as packed uint16 little-endian.
+        mask_box (blueye.protocol.types.BoundingBox):
+            Image region the mask bitmap covers (raw
+            detection position, never smoothed).
     """
 
     mask_width: int = proto.Field(
@@ -6868,6 +6879,11 @@ class SegmentationMask(proto.Message):
         proto.BYTES,
         number=3,
     )
+    mask_box: 'BoundingBox' = proto.Field(
+        proto.MESSAGE,
+        number=4,
+        message='BoundingBox',
+    )
 
 
 class ObjectDetection(proto.Message):
@@ -6875,7 +6891,8 @@ class ObjectDetection(proto.Message):
 
     Attributes:
         bounding_box (blueye.protocol.types.BoundingBox):
-            Bounding box of the detected object.
+            Bounding box of the detected object (may be
+            smoothed by tracking).
         confidence (float):
             Detection confidence score (0..1).
         class_id (int):
