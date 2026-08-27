@@ -338,14 +338,27 @@ class GetBatteryReq(proto.Message):
 class GetBatteryRep(proto.Message):
     r"""Response with essential battery information.
 
+    On models with two batteries running in parallel (e.g. the X7),
+    second_battery holds the essential information for the second
+    battery. When only a single battery is used, second_battery is
+    undefined (not set).
+
     Attributes:
         battery (blueye.protocol.types.Battery):
             Essential battery information.
+        second_battery (blueye.protocol.types.Battery):
+            Second battery, when present. Not set if only
+            one battery is used.
     """
 
     battery: message_formats.Battery = proto.Field(
         proto.MESSAGE,
         number=1,
+        message=message_formats.Battery,
+    )
+    second_battery: message_formats.Battery = proto.Field(
+        proto.MESSAGE,
+        number=2,
         message=message_formats.Battery,
     )
 
