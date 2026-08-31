@@ -123,6 +123,8 @@ from .types.message_formats import ErrorFlags
 from .types.message_formats import FilterMessage
 from .types.message_formats import ForwardDistance
 from .types.message_formats import GenericServo
+from .types.message_formats import GnssSatellite
+from .types.message_formats import GnssStatus
 from .types.message_formats import GpuInfo
 from .types.message_formats import GripperVelocities
 from .types.message_formats import GuestPortConnectorInfo
@@ -196,6 +198,8 @@ from .types.message_formats import Camera
 from .types.message_formats import DepthUnit
 from .types.message_formats import FontSize
 from .types.message_formats import Framerate
+from .types.message_formats import GnssConstellation
+from .types.message_formats import GnssFixMode
 from .types.message_formats import GuestPortCapability
 from .types.message_formats import GuestPortDetachStatus
 from .types.message_formats import GuestPortDeviceID
@@ -326,6 +330,7 @@ from .types.telemetry import DvlVelocityTel
 from .types.telemetry import ErrorFlagsTel
 from .types.telemetry import ForwardDistanceTel
 from .types.telemetry import GenericServoTel
+from .types.telemetry import GnssStatusTel
 from .types.telemetry import GuestPortCurrentTel
 from .types.telemetry import GuestPortLightsTel
 from .types.telemetry import Imu1Tel
@@ -503,6 +508,11 @@ __all__ = (
 'GetPersistentStorageSettingsReq',
 'GetTelemetryRep',
 'GetTelemetryReq',
+'GnssConstellation',
+'GnssFixMode',
+'GnssSatellite',
+'GnssStatus',
+'GnssStatusTel',
 'GoToHomeCommand',
 'GoToSeabedCommand',
 'GoToSurfaceCommand',

@@ -44,6 +44,7 @@ __protobuf__ = proto.module(
         'GuestPortLightsTel',
         'LaserTel',
         'PilotGPSPositionTel',
+        'GnssStatusTel',
         'RecordStateTel',
         'TimeLapseStateTel',
         'BatteryTel',
@@ -365,6 +366,21 @@ class PilotGPSPositionTel(proto.Message):
         proto.MESSAGE,
         number=1,
         message=message_formats.LatLongPosition,
+    )
+
+
+class GnssStatusTel(proto.Message):
+    r"""Status of the onboard Blueye GNSS receiver and its driver.
+
+    Attributes:
+        gnss_status (blueye.protocol.types.GnssStatus):
+            Status of the Blueye GNSS receiver.
+    """
+
+    gnss_status: message_formats.GnssStatus = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.GnssStatus,
     )
 
 

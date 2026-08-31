@@ -52,6 +52,8 @@ __protobuf__ = proto.module(
         'GuestPortNumber',
         'GuestPortCapability',
         'NavigationSensorID',
+        'GnssFixMode',
+        'GnssConstellation',
         'GuestPortDetachStatus',
         'GuestPortError',
         'MultibeamFrequencyMode',
@@ -125,6 +127,8 @@ __protobuf__ = proto.module(
         'CameraParameters',
         'OverlayParameters',
         'NavigationSensorStatus',
+        'GnssSatellite',
+        'GnssStatus',
         'GuestPortDevice',
         'GuestPortDeviceList',
         'GuestPortConnectorInfo',
@@ -1133,6 +1137,56 @@ class NavigationSensorID(proto.Enum):
     """Cerulean Tracker 650."""
     NAVIGATION_SENSOR_ID_WATERLINKED_DVL_A100 = 7
     """Water Linked DVL A100."""
+
+
+class GnssFixMode(proto.Enum):
+    r"""Position fix mode reported by the NMEA GSA sentence.
+
+    Attributes:
+        GNSS_FIX_MODE_UNSPECIFIED (0):
+            No GSA sentence has been received.
+        GNSS_FIX_MODE_NO_FIX (1):
+            The receiver has no position fix.
+        GNSS_FIX_MODE_2D (2):
+            Horizontal fix only, no usable altitude.
+        GNSS_FIX_MODE_3D (3):
+            Full three dimensional fix.
+    """
+    GNSS_FIX_MODE_UNSPECIFIED = 0
+    """No GSA sentence has been received."""
+    GNSS_FIX_MODE_NO_FIX = 1
+    """The receiver has no position fix."""
+    GNSS_FIX_MODE_2D = 2
+    """Horizontal fix only, no usable altitude."""
+    GNSS_FIX_MODE_3D = 3
+    """Full three dimensional fix."""
+
+
+class GnssConstellation(proto.Enum):
+    r"""GNSS constellation a satellite belongs to.
+
+    Attributes:
+        GNSS_CONSTELLATION_UNSPECIFIED (0):
+            Unspecified.
+        GNSS_CONSTELLATION_GPS (1):
+            GPS.
+        GNSS_CONSTELLATION_GLONASS (2):
+            GLONASS.
+        GNSS_CONSTELLATION_GALILEO (3):
+            Galileo.
+        GNSS_CONSTELLATION_BEIDOU (4):
+            BeiDou.
+    """
+    GNSS_CONSTELLATION_UNSPECIFIED = 0
+    """Unspecified."""
+    GNSS_CONSTELLATION_GPS = 1
+    """GPS."""
+    GNSS_CONSTELLATION_GLONASS = 2
+    """GLONASS."""
+    GNSS_CONSTELLATION_GALILEO = 3
+    """Galileo."""
+    GNSS_CONSTELLATION_BEIDOU = 4
+    """BeiDou."""
 
 
 class GuestPortDetachStatus(proto.Enum):
@@ -5202,6 +5256,272 @@ class NavigationSensorStatus(proto.Message):
         proto.MESSAGE,
         number=8,
         message='LatLongPosition',
+    )
+
+
+class GnssSatellite(proto.Message):
+    r"""Satellite tracked by the Blueye GNSS receiver.
+
+    Attributes:
+        constellation (blueye.protocol.types.GnssConstellation):
+            Constellation the satellite belongs to.
+        satellite_id (int):
+            Satellite id within the constellation.
+        snr (int):
+            Carrier to noise ratio (dB-Hz).
+        elevation (int):
+            Elevation above the horizon (°, 0..90), or -1
+            when the receiver did not report it.
+        azimuth (int):
+            Azimuth clockwise from true north (°,
+            0..359), or -1 when the receiver did not report
+            it.
+        used_in_fix (bool):
+            Whether GSA lists the satellite as used in the fix. Only
+            meaningful if is_used_in_fix_valid.
+    """
+
+    constellation: 'GnssConstellation' = proto.Field(
+        proto.ENUM,
+        number=1,
+        enum='GnssConstellation',
+    )
+    satellite_id: int = proto.Field(
+        proto.UINT32,
+        number=2,
+    )
+    snr: int = proto.Field(
+        proto.UINT32,
+        number=3,
+    )
+    elevation: int = proto.Field(
+        proto.INT32,
+        number=4,
+    )
+    azimuth: int = proto.Field(
+        proto.INT32,
+        number=5,
+    )
+    used_in_fix: bool = proto.Field(
+        proto.BOOL,
+        number=6,
+    )
+
+
+class GnssStatus(proto.Message):
+    r"""Status of the onboard Blueye GNSS receiver and its driver.
+
+    Attributes:
+        receiver_connected (bool):
+            True when the receiver is connected and
+            producing NMEA sentences.
+        fix_quality (int):
+            NMEA GGA fix quality indicator (0 = no fix).
+        is_valid (bool):
+            True when the receiver reports a usable
+            position fix.
+        satellites_used (int):
+            Number of satellites used in the position
+            fix.
+        satellites_tracked (int):
+            Satellites in the satellites list: those with
+            a signal, seen within the last 30 s.
+        satellites_in_view (int):
+            Satellites the receiver reports in view,
+            summed over the constellations.
+        is_used_in_fix_valid (bool):
+            True when GSA could be attributed to a constellation, making
+            used_in_fix usable.
+        fix_mode (blueye.protocol.types.GnssFixMode):
+            Fix mode from GSA (2D/3D).
+        hdop (float):
+            Horizontal dilution of precision.
+        pdop (float):
+            Position (3D) dilution of precision, from
+            GSA.
+        vdop (float):
+            Vertical dilution of precision, from GSA.
+        global_position (blueye.protocol.types.LatLongPosition):
+            Reported global position.
+        altitude (float):
+            Altitude above mean sea level (m), from GGA.
+        stddev_latitude (float):
+            Standard deviation of the latitude (m). Meaningless unless
+            is_accuracy_valid.
+        stddev_longitude (float):
+            Standard deviation of the longitude (m). Meaningless unless
+            is_accuracy_valid.
+        stddev_altitude (float):
+            Standard deviation of the altitude (m). Meaningless unless
+            is_accuracy_valid.
+        stddev_semi_major (float):
+            Semi-major axis of the horizontal error
+            ellipse (m).
+        stddev_semi_minor (float):
+            Semi-minor axis of the horizontal error
+            ellipse (m).
+        error_ellipse_orientation (float):
+            Orientation of the semi-major axis, clockwise
+            from true north (°).
+        range_rms (float):
+            RMS of the range residuals (m), from GST.
+        is_accuracy_valid (bool):
+            True once the receiver has reported a GST
+            sentence to derive the deviations from.
+        course_over_ground (float):
+            Course over ground (°). Meaningless unless is_course_valid.
+        is_course_valid (bool):
+            True when the fix is valid and the receiver
+            actually reported a course.
+        speed_over_ground (float):
+            Speed over ground (m/s).
+        differential_age (float):
+            Age of the differential corrections (s), or
+            -1 without DGPS/RTK.
+        differential_station (int):
+            Id of the station supplying the differential
+            corrections, or -1 when absent.
+        baud_rate (int):
+            Serial baud rate in use (bit/s).
+        reconnect_count (int):
+            Times the driver has reconnected to the
+            receiver since boot.
+        receive_error_count (int):
+            Receive errors seen by the driver since boot.
+        time_since_last_sentence (float):
+            Time since the last NMEA sentence was
+            received (s).
+        satellites (MutableSequence[blueye.protocol.types.GnssSatellite]):
+            Satellites currently tracked with signal
+            strength.
+    """
+
+    receiver_connected: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    fix_quality: int = proto.Field(
+        proto.UINT32,
+        number=2,
+    )
+    is_valid: bool = proto.Field(
+        proto.BOOL,
+        number=3,
+    )
+    satellites_used: int = proto.Field(
+        proto.UINT32,
+        number=4,
+    )
+    satellites_tracked: int = proto.Field(
+        proto.UINT32,
+        number=5,
+    )
+    satellites_in_view: int = proto.Field(
+        proto.UINT32,
+        number=17,
+    )
+    is_used_in_fix_valid: bool = proto.Field(
+        proto.BOOL,
+        number=20,
+    )
+    fix_mode: 'GnssFixMode' = proto.Field(
+        proto.ENUM,
+        number=21,
+        enum='GnssFixMode',
+    )
+    hdop: float = proto.Field(
+        proto.FLOAT,
+        number=6,
+    )
+    pdop: float = proto.Field(
+        proto.FLOAT,
+        number=22,
+    )
+    vdop: float = proto.Field(
+        proto.FLOAT,
+        number=23,
+    )
+    global_position: 'LatLongPosition' = proto.Field(
+        proto.MESSAGE,
+        number=7,
+        message='LatLongPosition',
+    )
+    altitude: float = proto.Field(
+        proto.FLOAT,
+        number=24,
+    )
+    stddev_latitude: float = proto.Field(
+        proto.FLOAT,
+        number=8,
+    )
+    stddev_longitude: float = proto.Field(
+        proto.FLOAT,
+        number=9,
+    )
+    stddev_altitude: float = proto.Field(
+        proto.FLOAT,
+        number=25,
+    )
+    stddev_semi_major: float = proto.Field(
+        proto.FLOAT,
+        number=26,
+    )
+    stddev_semi_minor: float = proto.Field(
+        proto.FLOAT,
+        number=27,
+    )
+    error_ellipse_orientation: float = proto.Field(
+        proto.FLOAT,
+        number=28,
+    )
+    range_rms: float = proto.Field(
+        proto.FLOAT,
+        number=29,
+    )
+    is_accuracy_valid: bool = proto.Field(
+        proto.BOOL,
+        number=18,
+    )
+    course_over_ground: float = proto.Field(
+        proto.FLOAT,
+        number=10,
+    )
+    is_course_valid: bool = proto.Field(
+        proto.BOOL,
+        number=19,
+    )
+    speed_over_ground: float = proto.Field(
+        proto.FLOAT,
+        number=11,
+    )
+    differential_age: float = proto.Field(
+        proto.FLOAT,
+        number=30,
+    )
+    differential_station: int = proto.Field(
+        proto.INT32,
+        number=31,
+    )
+    baud_rate: int = proto.Field(
+        proto.UINT32,
+        number=12,
+    )
+    reconnect_count: int = proto.Field(
+        proto.UINT32,
+        number=13,
+    )
+    receive_error_count: int = proto.Field(
+        proto.UINT32,
+        number=14,
+    )
+    time_since_last_sentence: float = proto.Field(
+        proto.FLOAT,
+        number=15,
+    )
+    satellites: MutableSequence['GnssSatellite'] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=16,
+        message='GnssSatellite',
     )
 
 
