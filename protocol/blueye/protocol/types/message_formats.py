@@ -1536,8 +1536,8 @@ class MotionInput(proto.Message):
             Pitch down (negative) or up (positive).
             (-1..1).
         yaw (float):
-            Left (positive) and right (negative) movement
-            (-1..1).
+            Clockwise (positive) and counter-clockwise
+            (negative) rotation (-1..1).
         slow (float):
             Modifier used to reduce the speed of the
             motion (0..1).
