@@ -5325,10 +5325,10 @@ class GnssStatus(proto.Message):
             fix.
         satellites_tracked (int):
             Satellites in the satellites list: those with
-            a signal, seen within the last 30 s.
+            a signal in the latest GSV burst.
         satellites_in_view (int):
-            Satellites the receiver reports in view,
-            summed over the constellations.
+            Satellites predicted above the horizon, over
+            all constellations; needs no signal.
         is_used_in_fix_valid (bool):
             True when GSA could be attributed to a constellation, making
             used_in_fix usable.
