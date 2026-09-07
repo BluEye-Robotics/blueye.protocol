@@ -77,6 +77,10 @@ __protobuf__ = proto.module(
         'SetCvModelStateRep',
         'GetCvModelsReq',
         'GetCvModelsRep',
+        'SetMultibeamColorFilterReq',
+        'SetMultibeamColorFilterRep',
+        'GetMultibeamColorFilterReq',
+        'GetMultibeamColorFilterRep',
     },
 )
 
@@ -760,6 +764,50 @@ class GetCvModelsRep(proto.Message):
         proto.MESSAGE,
         number=1,
         message=message_formats.CvModelInfo,
+    )
+
+
+class SetMultibeamColorFilterReq(proto.Message):
+    r"""Request to set the color filter used to render the multibeam
+    sonar fan.
+
+    Attributes:
+        color_filter (blueye.protocol.types.MultibeamColorFilter):
+            The color filter to apply.
+    """
+
+    color_filter: message_formats.MultibeamColorFilter = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.MultibeamColorFilter,
+    )
+
+
+class SetMultibeamColorFilterRep(proto.Message):
+    r"""Response after setting the multibeam color filter.
+    """
+
+
+class GetMultibeamColorFilterReq(proto.Message):
+    r"""Request to get the color filter currently used to render the
+    multibeam sonar fan.
+
+    """
+
+
+class GetMultibeamColorFilterRep(proto.Message):
+    r"""Response with the current multibeam color filter.
+
+    Attributes:
+        color_filter (blueye.protocol.types.MultibeamColorFilter):
+            The current color filter. Empty rgb means
+            none is set (grayscale).
+    """
+
+    color_filter: message_formats.MultibeamColorFilter = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.MultibeamColorFilter,
     )
 
 

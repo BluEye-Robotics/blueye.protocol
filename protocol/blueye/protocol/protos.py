@@ -146,6 +146,7 @@ from .types.message_formats import MedusaSpectrometerData
 from .types.message_formats import MemoryInfo
 from .types.message_formats import ModelDetections
 from .types.message_formats import MotionInput
+from .types.message_formats import MultibeamColorFilter
 from .types.message_formats import MultibeamConfig
 from .types.message_formats import MultibeamDiscovery
 from .types.message_formats import MultibeamErrorFlags
@@ -267,6 +268,8 @@ from .types.req_rep import GetLogStreamingStatusRep
 from .types.req_rep import GetLogStreamingStatusReq
 from .types.req_rep import GetMissionRep
 from .types.req_rep import GetMissionReq
+from .types.req_rep import GetMultibeamColorFilterRep
+from .types.req_rep import GetMultibeamColorFilterReq
 from .types.req_rep import GetOverlayParametersRep
 from .types.req_rep import GetOverlayParametersReq
 from .types.req_rep import GetPersistentStorageSettingsRep
@@ -289,6 +292,8 @@ from .types.req_rep import SetLogFrequencyRep
 from .types.req_rep import SetLogFrequencyReq
 from .types.req_rep import SetMissionRep
 from .types.req_rep import SetMissionReq
+from .types.req_rep import SetMultibeamColorFilterRep
+from .types.req_rep import SetMultibeamColorFilterReq
 from .types.req_rep import SetOverlayParametersRep
 from .types.req_rep import SetOverlayParametersReq
 from .types.req_rep import SetPersistentStorageSettingsRep
@@ -502,6 +507,8 @@ __all__ = (
 'GetLogStreamingStatusReq',
 'GetMissionRep',
 'GetMissionReq',
+'GetMultibeamColorFilterRep',
+'GetMultibeamColorFilterReq',
 'GetOverlayParametersRep',
 'GetOverlayParametersReq',
 'GetPersistentStorageSettingsRep',
@@ -570,6 +577,7 @@ __all__ = (
 'ModelDetections',
 'MotionInput',
 'MotionInputCtrl',
+'MultibeamColorFilter',
 'MultibeamConfig',
 'MultibeamConfigTel',
 'MultibeamDiscovery',
@@ -651,6 +659,8 @@ __all__ = (
 'SetLogFrequencyReq',
 'SetMissionRep',
 'SetMissionReq',
+'SetMultibeamColorFilterRep',
+'SetMultibeamColorFilterReq',
 'SetMultibeamConfigCtrl',
 'SetOverlayParametersRep',
 'SetOverlayParametersReq',

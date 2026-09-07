@@ -145,6 +145,7 @@ __protobuf__ = proto.module(
         'MultibeamPing',
         'MultibeamConfig',
         'MultibeamDiscovery',
+        'MultibeamColorFilter',
         'MultibeamErrorFlags',
         'MultibeamFrameOffset',
         'MutltibeamRecordingIndex',
@@ -6382,6 +6383,26 @@ class MultibeamDiscovery(proto.Message):
         proto.MESSAGE,
         number=8,
         message='MultibeamErrorFlags',
+    )
+
+
+class MultibeamColorFilter(proto.Message):
+    r"""Color filter used to render the multibeam sonar fan.
+
+    The fan renderer maps each echo intensity (0..255) to a color
+    through this lookup table. The drone keeps the last filter
+    received in memory and applies it to the sonar RTSP stream;
+    grayscale is used until one is set.
+
+    Attributes:
+        rgb (bytes):
+            768 bytes: 256 consecutive R,G,B triplets,
+            indexed by echo intensity.
+    """
+
+    rgb: bytes = proto.Field(
+        proto.BYTES,
+        number=1,
     )
 
 
