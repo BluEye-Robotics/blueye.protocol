@@ -350,6 +350,9 @@ class NotificationType(proto.Enum):
             DVL thermal protection mode detected.
         NOTIFICATION_TYPE_VIDEO_PARTITION_NOT_MOUNTED (33):
             Video partition not mounted.
+        NOTIFICATION_TYPE_DVL_PROTOCOL_UNSUPPORTED (34):
+            DVL firmware speaks a protocol version Blunux
+            does not support.
     """
     NOTIFICATION_TYPE_UNSPECIFIED = 0
     """Unspecified."""
@@ -419,6 +422,9 @@ class NotificationType(proto.Enum):
     """DVL thermal protection mode detected."""
     NOTIFICATION_TYPE_VIDEO_PARTITION_NOT_MOUNTED = 33
     """Video partition not mounted."""
+    NOTIFICATION_TYPE_DVL_PROTOCOL_UNSUPPORTED = 34
+    """DVL firmware speaks a protocol version Blunux does not
+    support."""
 
 
 class NotificationLevel(proto.Enum):
@@ -4509,6 +4515,9 @@ class ErrorFlags(proto.Message):
         dvl_no_power (bool):
             GP protection has been triggered at boot or
             faulty DVL.
+        dvl_protocol_unsupported (bool):
+            DVL firmware speaks a protocol version Blunux
+            does not support.
         usb_disconnect (bool):
             USB disconnect.
         video_urb_error (bool):
@@ -4837,6 +4846,10 @@ class ErrorFlags(proto.Message):
     dvl_no_power: bool = proto.Field(
         proto.BOOL,
         number=44,
+    )
+    dvl_protocol_unsupported: bool = proto.Field(
+        proto.BOOL,
+        number=84,
     )
     usb_disconnect: bool = proto.Field(
         proto.BOOL,
