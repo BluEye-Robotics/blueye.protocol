@@ -94,6 +94,7 @@ __protobuf__ = proto.module(
         'CPUTemperature',
         'CanisterTemperature',
         'CanisterHumidity',
+        'PowerCanister',
         'Battery',
         'BatteryBQ40Z50',
         'Attitude',
@@ -2434,6 +2435,49 @@ class CanisterHumidity(proto.Message):
     humidity: float = proto.Field(
         proto.FLOAT,
         number=3,
+    )
+
+
+class PowerCanister(proto.Message):
+    r"""Sensor readings inside the X7 power canister.
+
+    Attributes:
+        front_esc (blueye.protocol.types.PowerCanister.Sensors):
+            Front ESC board; absent when no recent
+            reading is available.
+        rear_esc (blueye.protocol.types.PowerCanister.Sensors):
+            Rear ESC board; absent when no recent reading
+            is available.
+    """
+
+    class Sensors(proto.Message):
+        r"""Sensor readings from an ESC board.
+
+        Attributes:
+            temperature (float):
+                Temperature (°C).
+            humidity (float):
+                Relative humidity (%).
+        """
+
+        temperature: float = proto.Field(
+            proto.FLOAT,
+            number=1,
+        )
+        humidity: float = proto.Field(
+            proto.FLOAT,
+            number=2,
+        )
+
+    front_esc: Sensors = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=Sensors,
+    )
+    rear_esc: Sensors = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=Sensors,
     )
 
 

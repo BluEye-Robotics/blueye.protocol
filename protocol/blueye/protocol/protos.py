@@ -166,6 +166,7 @@ from .types.message_formats import PersistentStorageSettings
 from .types.message_formats import PingerConfiguration
 from .types.message_formats import Point2D
 from .types.message_formats import PositionEstimate
+from .types.message_formats import PowerCanister
 from .types.message_formats import RecordOn
 from .types.message_formats import RecordState
 from .types.message_formats import Reference
@@ -357,6 +358,7 @@ from .types.telemetry import NStreamersTel
 from .types.telemetry import ObjectDetectionsTel
 from .types.telemetry import PilotGPSPositionTel
 from .types.telemetry import PositionEstimateTel
+from .types.telemetry import PowerCanisterTel
 from .types.telemetry import RecordStateTel
 from .types.telemetry import ReferenceAutoPilotTel
 from .types.telemetry import ReferenceTel
@@ -617,6 +619,8 @@ __all__ = (
 'Point2D',
 'PositionEstimate',
 'PositionEstimateTel',
+'PowerCanister',
+'PowerCanisterTel',
 'PowerSource',
 'PressureSensorType',
 'RecordCtrl',

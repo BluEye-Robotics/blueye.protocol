@@ -55,6 +55,7 @@ __protobuf__ = proto.module(
         'CPUTemperatureTel',
         'CanisterBottomTemperatureTel',
         'CanisterBottomHumidityTel',
+        'PowerCanisterTel',
         'VideoStorageSpaceTel',
         'RemovableStorageTel',
         'DataStorageSpaceTel',
@@ -566,6 +567,21 @@ class CanisterBottomHumidityTel(proto.Message):
         proto.MESSAGE,
         number=1,
         message=message_formats.CanisterHumidity,
+    )
+
+
+class PowerCanisterTel(proto.Message):
+    r"""Receive sensor readings from the X7 power canister at 1 Hz.
+
+    Attributes:
+        power_canister (blueye.protocol.types.PowerCanister):
+            Front and rear ESC-board sensor readings.
+    """
+
+    power_canister: message_formats.PowerCanister = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.PowerCanister,
     )
 
 
