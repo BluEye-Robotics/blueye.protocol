@@ -923,6 +923,8 @@ class GuestPortDeviceID(proto.Enum):
             as the X7.
         GUEST_PORT_DEVICE_ID_WATERLINKED_DVL_A100 (50):
             Waterlinked DVL A100.
+        GUEST_PORT_DEVICE_ID_OUTLAND_TECHNOLOGY_MP200 (51):
+            Outland Technology MP-200 Manipulator.
     """
     GUEST_PORT_DEVICE_ID_UNSPECIFIED = 0
     """Unspecified."""
@@ -1028,6 +1030,8 @@ class GuestPortDeviceID(proto.Enum):
     such as the X7."""
     GUEST_PORT_DEVICE_ID_WATERLINKED_DVL_A100 = 50
     """Waterlinked DVL A100."""
+    GUEST_PORT_DEVICE_ID_OUTLAND_TECHNOLOGY_MP200 = 51
+    """Outland Technology MP-200 Manipulator."""
 
 
 class GuestPortNumber(proto.Enum):
