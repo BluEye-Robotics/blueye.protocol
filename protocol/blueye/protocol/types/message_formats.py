@@ -4574,6 +4574,15 @@ class ErrorFlags(proto.Message):
         hardware_not_supported (bool):
             Hardware not supported on current blunux
             version.
+        imu_1 (bool):
+            MPU 1 unavailable at observer startup.
+        imu_2 (bool):
+            MPU 2 unavailable at observer startup.
+        imu_hp (bool):
+            HP IMU unavailable on X3 Ultra or X7.
+        imu_attitude (bool):
+            No attitude source: manual body-frame control
+            only.
     """
 
     pmu_comm_ack: bool = proto.Field(
@@ -4911,6 +4920,22 @@ class ErrorFlags(proto.Message):
     hardware_not_supported: bool = proto.Field(
         proto.BOOL,
         number=47,
+    )
+    imu_1: bool = proto.Field(
+        proto.BOOL,
+        number=85,
+    )
+    imu_2: bool = proto.Field(
+        proto.BOOL,
+        number=86,
+    )
+    imu_hp: bool = proto.Field(
+        proto.BOOL,
+        number=87,
+    )
+    imu_attitude: bool = proto.Field(
+        proto.BOOL,
+        number=88,
     )
 
 
