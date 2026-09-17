@@ -2,26 +2,44 @@ name: Publish Release
 
 on:
   release:
-    types: [created]
+    types: [published]
 
 jobs:
   build-and-publish-package:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.1
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7.0.0
         with:
-          python-version-file: "pyproject.toml"
+          python-version: "3.13"
+
+      - name: Verify release version
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          python - <<'PYTHON'
+          import os
+          import tomllib
+          from pathlib import Path
+
+          version = tomllib.loads(Path("protocol/pyproject.toml").read_text())["project"]["version"]
+          expected = f"v{version}"
+          actual = os.environ["RELEASE_TAG"]
+          if actual != expected:
+              raise SystemExit(f"Release tag {actual!r} does not match package version {expected!r}")
+          PYTHON
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v10.1.0
         with:
-          version: "0.7.11"
-      - name: Build package with poetry
+          version: "0.12.15"
+      - name: Build package with uv
         run: uv build protocol
 
-      - name: Publish to PyPi
-        run: uv publish --username __token__ --password ${{ secrets.PYPI_TOKEN }} dist/blueye_protocol-*
+      - name: Publish to PyPI
+        env:
+          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        run: uv publish dist/blueye_protocol-*

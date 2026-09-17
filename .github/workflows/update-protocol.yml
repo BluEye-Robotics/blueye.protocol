@@ -6,23 +6,28 @@ jobs:
   Update:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
         with:
           submodules: true
           token: ${{ secrets.GIT_TOKEN }}
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7.0.0
         with:
-          python-version-file: "pyproject.toml"
+          python-version: "3.13"
       - name: Install uv
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v10.1.0
         with:
-          version: "0.7.11"
+          version: "0.12.15"
       - name: Install dependencies
-        run: uv sync --all-packages
+        run: uv sync --locked --all-packages
       - name: Update ProtocolDefinitions
         working-directory: ProtocolDefinitions
-        run: git fetch && git checkout ${{ github.event.client_payload.sha }}
+        env:
+          PROTOCOL_SHA: ${{ github.event.client_payload.sha }}
+        run: |
+          [[ "$PROTOCOL_SHA" =~ ^[0-9a-fA-F]{40}$ ]] || { echo "Expected a full protocol commit SHA"; exit 1; }
+          git fetch origin
+          git checkout --detach "$PROTOCOL_SHA"
       - name: Generate UDP protocol
         run: uv run invoke generate-udp
       - name: Generate TCP protocol
@@ -30,7 +35,7 @@ jobs:
       - name: Generate Protobuf protocol
         run: uv run invoke generate-proto
       - name: Add & Commit
-        uses: EndBug/add-and-commit@v9
+        uses: EndBug/add-and-commit@v11.1.1
         with:
           add: "protocol legacyprotocol ProtocolDefinitions"
           message: "Update ProtocolDefinitions"
