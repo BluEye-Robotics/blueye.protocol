@@ -780,7 +780,9 @@ class FontSize(proto.Enum):
 
     Attributes:
         FONT_SIZE_UNSPECIFIED (0):
-            Font size not specified.
+            Font size and margins derived from the
+            recording resolution (Blunux >= 5.2). Older
+            firmware defaults to 25px.
         FONT_SIZE_PX15 (1):
             15 px.
         FONT_SIZE_PX20 (2):
@@ -797,7 +799,8 @@ class FontSize(proto.Enum):
             50 px.
     """
     FONT_SIZE_UNSPECIFIED = 0
-    """Font size not specified."""
+    """Font size and margins derived from the recording resolution
+    (Blunux >= 5.2). Older firmware defaults to 25px."""
     FONT_SIZE_PX15 = 1
     """15 px."""
     FONT_SIZE_PX20 = 2
@@ -5172,11 +5175,15 @@ class OverlayParameters(proto.Message):
         timezone_offset (int):
             Timezone offset from UTC (min).
         margin_width (int):
-            Horizontal margins of text elements (px).
+            Horizontal margins of text elements (px). Ignored when
+            font_size is FONT_SIZE_UNSPECIFIED (Blunux >= 5.2).
         margin_height (int):
-            Vertical margins of text elements (px).
+            Vertical margins of text elements (px). Ignored when
+            font_size is FONT_SIZE_UNSPECIFIED (Blunux >= 5.2).
         font_size (blueye.protocol.types.FontSize):
-            Font size of text elements.
+            Font size of text elements. FONT_SIZE_UNSPECIFIED derives
+            font size and margins from the recording resolution (Blunux
+            >= 5.2). Older firmware defaults to 25px.
         title (str):
             Optional title.
         subtitle (str):
