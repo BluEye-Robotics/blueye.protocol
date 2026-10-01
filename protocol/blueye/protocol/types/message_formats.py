@@ -27,6 +27,8 @@ from google.protobuf import timestamp_pb2  # type: ignore
 __protobuf__ = proto.module(
     package='blueye.protocol',
     manifest={
+        'ManipulatorControlMode',
+        'ManipulatorPose',
         'IntervalType',
         'LocationSource',
         'HeadingSource',
@@ -84,6 +86,10 @@ __protobuf__ = proto.module(
         'TiltStabilizationState',
         'SystemTime',
         'GripperVelocities',
+        'CartesianManipulatorInput',
+        'CylindricalManipulatorInput',
+        'KnownPoseManipulatorInput',
+        'Gripper',
         'ClientInfo',
         'ConnectedClient',
         'RecordState',
@@ -173,6 +179,49 @@ __protobuf__ = proto.module(
         'Annotation',
     },
 )
+
+
+class ManipulatorControlMode(proto.Enum):
+    r"""How the arm input of the last command was read, as reported
+    in telemetry.
+
+    Attributes:
+        MANIPULATOR_CONTROL_MODE_UNSPECIFIED (0):
+            No arm input.
+        MANIPULATOR_CONTROL_MODE_CYLINDRICAL (1):
+            CylindricalManipulatorInput.
+        MANIPULATOR_CONTROL_MODE_CARTESIAN (2):
+            CartesianManipulatorInput.
+        MANIPULATOR_CONTROL_MODE_KNOWN_POSE (3):
+            KnownPoseManipulatorInput.
+    """
+    MANIPULATOR_CONTROL_MODE_UNSPECIFIED = 0
+    """No arm input."""
+    MANIPULATOR_CONTROL_MODE_CYLINDRICAL = 1
+    """CylindricalManipulatorInput."""
+    MANIPULATOR_CONTROL_MODE_CARTESIAN = 2
+    """CartesianManipulatorInput."""
+    MANIPULATOR_CONTROL_MODE_KNOWN_POSE = 3
+    """KnownPoseManipulatorInput."""
+
+
+class ManipulatorPose(proto.Enum):
+    r"""Named manipulator poses.
+
+    Attributes:
+        MANIPULATOR_POSE_UNSPECIFIED (0):
+            No pose.
+        MANIPULATOR_POSE_STOWED (1):
+            Folded for transport, launch and recovery.
+        MANIPULATOR_POSE_DEPLOYED (2):
+            Unfolded and ready to work.
+    """
+    MANIPULATOR_POSE_UNSPECIFIED = 0
+    """No pose."""
+    MANIPULATOR_POSE_STOWED = 1
+    """Folded for transport, launch and recovery."""
+    MANIPULATOR_POSE_DEPLOYED = 2
+    """Unfolded and ready to work."""
 
 
 class IntervalType(proto.Enum):
@@ -928,6 +977,8 @@ class GuestPortDeviceID(proto.Enum):
             Waterlinked DVL A100.
         GUEST_PORT_DEVICE_ID_OUTLAND_TECHNOLOGY_MP200 (51):
             Outland Technology MP-200 Manipulator.
+        GUEST_PORT_DEVICE_ID_REACH_ROBOTICS_REACH_ALPHA_5 (52):
+            Reach Robotics Reach Alpha 5 Manipulator.
     """
     GUEST_PORT_DEVICE_ID_UNSPECIFIED = 0
     """Unspecified."""
@@ -1035,6 +1086,8 @@ class GuestPortDeviceID(proto.Enum):
     """Waterlinked DVL A100."""
     GUEST_PORT_DEVICE_ID_OUTLAND_TECHNOLOGY_MP200 = 51
     """Outland Technology MP-200 Manipulator."""
+    GUEST_PORT_DEVICE_ID_REACH_ROBOTICS_REACH_ALPHA_5 = 52
+    """Reach Robotics Reach Alpha 5 Manipulator."""
 
 
 class GuestPortNumber(proto.Enum):
@@ -2138,6 +2191,157 @@ class GripperVelocities(proto.Message):
     rotate_velocity: float = proto.Field(
         proto.FLOAT,
         number=2,
+    )
+
+
+class CartesianManipulatorInput(proto.Message):
+    r"""Cartesian velocity of the end of a manipulator arm, in the
+    drone body frame.
+    Each value is normalized (-1.0..1.0) and scaled by the drone to
+    its configured maximum speed.
+
+    Attributes:
+        x (float):
+            Forward (positive) and backward (negative).
+        y (float):
+            Right (positive) and left (negative).
+        z (float):
+            Down (positive) and up (negative).
+    """
+
+    x: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    y: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    z: float = proto.Field(
+        proto.FLOAT,
+        number=3,
+    )
+
+
+class CylindricalManipulatorInput(proto.Message):
+    r"""Cylindrical velocity of the end of a manipulator arm, about
+    the axis of the arm's base joint.
+    Each value is normalized (-1.0..1.0) and scaled by the drone to
+    its configured maximum speed.
+
+    Attributes:
+        radial (float):
+            Out from the base axis (positive) and in
+            towards it (negative).
+        vertical (float):
+            Along the base axis: down (positive) and up
+            (negative), as in the drone body frame.
+        azimuth (float):
+            Swing about the base axis: clockwise seen
+            from above (positive).
+    """
+
+    radial: float = proto.Field(
+        proto.FLOAT,
+        number=1,
+    )
+    vertical: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    azimuth: float = proto.Field(
+        proto.FLOAT,
+        number=3,
+    )
+
+
+class KnownPoseManipulatorInput(proto.Message):
+    r"""Movement of a manipulator arm towards a named pose, along a
+    path the drone chooses.
+    Hold-to-run: the arm moves only while the velocity is above
+    zero, and resumes from wherever it stopped.
+
+    Attributes:
+        pose (blueye.protocol.types.ManipulatorPose):
+            The pose to move towards.
+        velocity (float):
+            Speed along the path (0.0..1.0): 0 holds the
+            arm where it is.
+    """
+
+    pose: 'ManipulatorPose' = proto.Field(
+        proto.ENUM,
+        number=1,
+        enum='ManipulatorPose',
+    )
+    velocity: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+
+
+class Gripper(proto.Message):
+    r"""Gripper state: of its arm too, when the gripper is a
+    manipulator arm.
+
+    Attributes:
+        mode (blueye.protocol.types.ManipulatorControlMode):
+            How the arm input of the last command was
+            read.
+        joint_positions (MutableSequence[float]):
+            Joint positions from the jaws to the base:
+            jaws opening (m), then joint angles (rad).
+        end_position (blueye.protocol.types.Vector3):
+            Position of the base of the jaws in the drone
+            body frame (m).
+        at_limit (bool):
+            A joint at the end of its range keeps the arm
+            from going further.
+        collision (bool):
+            The arm stopped itself short of an obstacle
+            or of itself.
+        holding (bool):
+            The jaws closed on something.
+        fault (bool):
+            A joint reports a hardware fault.
+        moving_to (blueye.protocol.types.ManipulatorPose):
+            Named pose the arm is moving towards, if any.
+    """
+
+    mode: 'ManipulatorControlMode' = proto.Field(
+        proto.ENUM,
+        number=1,
+        enum='ManipulatorControlMode',
+    )
+    joint_positions: MutableSequence[float] = proto.RepeatedField(
+        proto.FLOAT,
+        number=2,
+    )
+    end_position: 'Vector3' = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message='Vector3',
+    )
+    at_limit: bool = proto.Field(
+        proto.BOOL,
+        number=4,
+    )
+    collision: bool = proto.Field(
+        proto.BOOL,
+        number=5,
+    )
+    holding: bool = proto.Field(
+        proto.BOOL,
+        number=6,
+    )
+    fault: bool = proto.Field(
+        proto.BOOL,
+        number=7,
+    )
+    moving_to: 'ManipulatorPose' = proto.Field(
+        proto.ENUM,
+        number=8,
+        enum='ManipulatorPose',
     )
 
 

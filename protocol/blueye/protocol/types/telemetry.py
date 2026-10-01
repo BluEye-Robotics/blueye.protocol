@@ -75,6 +75,7 @@ __protobuf__ = proto.module(
         'ConnectedClientsTel',
         'GenericServoTel',
         'MultibeamServoTel',
+        'GripperTel',
         'GuestPortCurrentTel',
         'CalibratedImuTel',
         'Imu1Tel',
@@ -897,6 +898,21 @@ class MultibeamServoTel(proto.Message):
     set_point: float = proto.Field(
         proto.FLOAT,
         number=2,
+    )
+
+
+class GripperTel(proto.Message):
+    r"""State of a gripper, published while one is connected.
+
+    Attributes:
+        gripper (blueye.protocol.types.Gripper):
+            Gripper state.
+    """
+
+    gripper: message_formats.Gripper = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.Gripper,
     )
 
 

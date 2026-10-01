@@ -489,15 +489,67 @@ class SystemTimeCtrl(proto.Message):
 class GripperCtrl(proto.Message):
     r"""Issue a command to control the gripper.
 
+    On a manipulator arm the command can also move the arm. Each
+    command stands until the next one: the arm stops on a command
+    without arm input, or when the client watchdog (WatchdogCtrl)
+    lapses.
+
+    This message has `oneof`_ fields (mutually exclusive fields).
+    For each oneof, at most one member field can be set at the same time.
+    Setting any member of the oneof automatically clears all other
+    members.
+
+    .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
+
     Attributes:
         gripper_velocities (blueye.protocol.types.GripperVelocities):
             The desired gripping and rotation velocity.
+        cartesian (blueye.protocol.types.CartesianManipulatorInput):
+            In the drone body frame.
+
+            This field is a member of `oneof`_ ``arm_input``.
+        cylindrical (blueye.protocol.types.CylindricalManipulatorInput):
+            About the axis of the arm's base joint.
+
+            This field is a member of `oneof`_ ``arm_input``.
+        known_pose (blueye.protocol.types.KnownPoseManipulatorInput):
+            Towards a named pose, such as stowed or
+            deployed.
+
+            This field is a member of `oneof`_ ``arm_input``.
+        speed_modifier (float):
+            Speed of the arm input relative to the drone default
+            (-1.0..1.0): negative is slower, positive is faster, and 0
+            is the default speed. Scales arm_input only, not
+            gripper_velocities.
     """
 
     gripper_velocities: message_formats.GripperVelocities = proto.Field(
         proto.MESSAGE,
         number=1,
         message=message_formats.GripperVelocities,
+    )
+    cartesian: message_formats.CartesianManipulatorInput = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        oneof='arm_input',
+        message=message_formats.CartesianManipulatorInput,
+    )
+    cylindrical: message_formats.CylindricalManipulatorInput = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        oneof='arm_input',
+        message=message_formats.CylindricalManipulatorInput,
+    )
+    known_pose: message_formats.KnownPoseManipulatorInput = proto.Field(
+        proto.MESSAGE,
+        number=5,
+        oneof='arm_input',
+        message=message_formats.KnownPoseManipulatorInput,
+    )
+    speed_modifier: float = proto.Field(
+        proto.FLOAT,
+        number=4,
     )
 
 

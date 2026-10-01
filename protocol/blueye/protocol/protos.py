@@ -102,6 +102,7 @@ from .types.message_formats import CameraPanTiltZoom
 from .types.message_formats import CameraParameters
 from .types.message_formats import CanisterHumidity
 from .types.message_formats import CanisterTemperature
+from .types.message_formats import CartesianManipulatorInput
 from .types.message_formats import ClientInfo
 from .types.message_formats import ConnectedClient
 from .types.message_formats import ConnectionDuration
@@ -113,6 +114,7 @@ from .types.message_formats import CpuCoreLoad
 from .types.message_formats import CPUInfo
 from .types.message_formats import CPUTemperature
 from .types.message_formats import CvModelInfo
+from .types.message_formats import CylindricalManipulatorInput
 from .types.message_formats import Depth
 from .types.message_formats import DiveTime
 from .types.message_formats import DlaInfo
@@ -126,6 +128,7 @@ from .types.message_formats import GenericServo
 from .types.message_formats import GnssSatellite
 from .types.message_formats import GnssStatus
 from .types.message_formats import GpuInfo
+from .types.message_formats import Gripper
 from .types.message_formats import GripperVelocities
 from .types.message_formats import GuestPortConnectorInfo
 from .types.message_formats import GuestPortCurrent
@@ -136,6 +139,7 @@ from .types.message_formats import GuestPortRestartInfo
 from .types.message_formats import Imu
 from .types.message_formats import IperfStatus
 from .types.message_formats import KernelLogEntry
+from .types.message_formats import KnownPoseManipulatorInput
 from .types.message_formats import Laser
 from .types.message_formats import LaserDetection
 from .types.message_formats import LatLongPosition
@@ -212,6 +216,8 @@ from .types.message_formats import HeadingSource
 from .types.message_formats import IntervalType
 from .types.message_formats import LocationSource
 from .types.message_formats import LogoType
+from .types.message_formats import ManipulatorControlMode
+from .types.message_formats import ManipulatorPose
 from .types.message_formats import Model
 from .types.message_formats import MultibeamFrequencyMode
 from .types.message_formats import NavigationSensorID
@@ -337,6 +343,7 @@ from .types.telemetry import ErrorFlagsTel
 from .types.telemetry import ForwardDistanceTel
 from .types.telemetry import GenericServoTel
 from .types.telemetry import GnssStatusTel
+from .types.telemetry import GripperTel
 from .types.telemetry import GuestPortCurrentTel
 from .types.telemetry import GuestPortLightsTel
 from .types.telemetry import Imu1Tel
@@ -440,6 +447,7 @@ __all__ = (
 'CanisterBottomTemperatureTel',
 'CanisterHumidity',
 'CanisterTemperature',
+'CartesianManipulatorInput',
 'ClearMissionCtrl',
 'ClearSotTargetCtrl',
 'ClientInfo',
@@ -462,6 +470,7 @@ __all__ = (
 'CpProbeTel',
 'CpuCoreLoad',
 'CvModelInfo',
+'CylindricalManipulatorInput',
 'DataStorageSpaceTel',
 'DeactivateGuestPortsCtrl',
 'DeactivateMultibeamCtrl',
@@ -526,7 +535,9 @@ __all__ = (
 'GoToSeabedCommand',
 'GoToSurfaceCommand',
 'GpuInfo',
+'Gripper',
 'GripperCtrl',
+'GripperTel',
 'GripperVelocities',
 'GuestPortCapability',
 'GuestPortConnectorInfo',
@@ -554,6 +565,7 @@ __all__ = (
 'IperfStatus',
 'IperfTel',
 'KernelLogEntry',
+'KnownPoseManipulatorInput',
 'Laser',
 'LaserCtrl',
 'LaserDetection',
@@ -568,6 +580,8 @@ __all__ = (
 'LogoType',
 'MagneticDeclination',
 'MagneticDeclinationTel',
+'ManipulatorControlMode',
+'ManipulatorPose',
 'MedusaSpectrometerData',
 'MedusaSpectrometerDataTel',
 'MemoryInfo',
