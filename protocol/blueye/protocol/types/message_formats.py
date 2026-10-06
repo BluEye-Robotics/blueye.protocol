@@ -657,7 +657,7 @@ class Framerate(proto.Enum):
 
     If the requested frame rate is higher than what is supported at
     the current resolution, the frame rate will be reduced while the
-    resolution is respected.
+    resolution is respected: 60 to 30 and 50 to 25.
 
     Attributes:
         FRAMERATE_UNSPECIFIED (0):
@@ -665,10 +665,12 @@ class Framerate(proto.Enum):
         FRAMERATE_FPS_30 (1):
             30 frames per second.
         FRAMERATE_FPS_25 (2):
-            25 frames per second. (Only supported on
-            Pioneer/Pro/X1/X3)
+            25 frames per second.
         FRAMERATE_FPS_60 (3):
             60 frames per second. (Only supported on X3
+            Ultra at QHD, 1080p and 720p)
+        FRAMERATE_FPS_50 (4):
+            50 frames per second. (Only supported on X3
             Ultra at QHD, 1080p and 720p)
     """
     FRAMERATE_UNSPECIFIED = 0
@@ -676,9 +678,12 @@ class Framerate(proto.Enum):
     FRAMERATE_FPS_30 = 1
     """30 frames per second."""
     FRAMERATE_FPS_25 = 2
-    """25 frames per second. (Only supported on Pioneer/Pro/X1/X3)"""
+    """25 frames per second."""
     FRAMERATE_FPS_60 = 3
     """60 frames per second. (Only supported on X3 Ultra at QHD,
+    1080p and 720p)"""
+    FRAMERATE_FPS_50 = 4
+    """50 frames per second. (Only supported on X3 Ultra at QHD,
     1080p and 720p)"""
 
 
