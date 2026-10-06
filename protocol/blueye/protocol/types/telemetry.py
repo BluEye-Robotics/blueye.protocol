@@ -93,6 +93,7 @@ __protobuf__ = proto.module(
         'ObjectDetectionsTel',
         'TurbidityFilterTel',
         'ColorCorrectionTel',
+        'MarineSnowFilterTel',
         'CameraPanTiltZoomTel',
         'SotStateTel',
         'AnnotationTel',
@@ -1204,6 +1205,30 @@ class ColorCorrectionTel(proto.Message):
         proto.MESSAGE,
         number=1,
         message=message_formats.FilterMessage,
+    )
+
+
+class MarineSnowFilterTel(proto.Message):
+    r"""Marine snow filter settings telemetry message.
+
+    Message is published when the filter settings are changed.
+
+    Attributes:
+        marine_snow_filter (blueye.protocol.types.FilterMessage):
+            Marine snow filter settings.
+        frames (blueye.protocol.types.MarineSnowFilterFrames):
+            Frames that the filter compares with.
+    """
+
+    marine_snow_filter: message_formats.FilterMessage = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.FilterMessage,
+    )
+    frames: message_formats.MarineSnowFilterFrames = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=message_formats.MarineSnowFilterFrames,
     )
 
 

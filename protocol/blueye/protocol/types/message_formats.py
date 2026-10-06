@@ -173,6 +173,7 @@ __protobuf__ = proto.module(
         'ObjectDetection',
         'ModelDetections',
         'FilterMessage',
+        'MarineSnowFilterFrames',
         'CameraPanTiltZoom',
         'OperatorInfo',
         'SotState',
@@ -7631,6 +7632,27 @@ class FilterMessage(proto.Message):
     )
     intensity: float = proto.Field(
         proto.FLOAT,
+        number=2,
+    )
+
+
+class MarineSnowFilterFrames(proto.Message):
+    r"""Frames that the marine snow filter compares each frame with.
+
+    Attributes:
+        past_frames (int):
+            Past frames to compare with (1..4).
+        future_frames (int):
+            Future frames to compare with (0..2). Each
+            one delays the video by 33 to 40 ms.
+    """
+
+    past_frames: int = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    future_frames: int = proto.Field(
+        proto.UINT32,
         number=2,
     )
 

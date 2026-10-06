@@ -67,6 +67,7 @@ from .types.control import RunMissionCtrl
 from .types.control import SetAquaTrollConnectionStatusCtrl
 from .types.control import SetAquaTrollParameterUnitCtrl
 from .types.control import SetColorCorrectionCtrl
+from .types.control import SetMarineSnowFilterCtrl
 from .types.control import SetMultibeamConfigCtrl
 from .types.control import SetSotTargetCtrl
 from .types.control import SetTurbidityFilterCtrl
@@ -146,6 +147,7 @@ from .types.message_formats import LatLongPosition
 from .types.message_formats import Lights
 from .types.message_formats import LogEntry
 from .types.message_formats import MagneticDeclination
+from .types.message_formats import MarineSnowFilterFrames
 from .types.message_formats import MedusaSpectrometerData
 from .types.message_formats import MemoryInfo
 from .types.message_formats import ModelDetections
@@ -354,6 +356,7 @@ from .types.telemetry import LaserTel
 from .types.telemetry import LightsTel
 from .types.telemetry import LogEntryTel
 from .types.telemetry import MagneticDeclinationTel
+from .types.telemetry import MarineSnowFilterTel
 from .types.telemetry import MedusaSpectrometerDataTel
 from .types.telemetry import MissionStatusTel
 from .types.telemetry import MultibeamConfigTel
@@ -582,6 +585,8 @@ __all__ = (
 'MagneticDeclinationTel',
 'ManipulatorControlMode',
 'ManipulatorPose',
+'MarineSnowFilterFrames',
+'MarineSnowFilterTel',
 'MedusaSpectrometerData',
 'MedusaSpectrometerDataTel',
 'MemoryInfo',
@@ -675,6 +680,7 @@ __all__ = (
 'SetIperfStatusReq',
 'SetLogFrequencyRep',
 'SetLogFrequencyReq',
+'SetMarineSnowFilterCtrl',
 'SetMissionRep',
 'SetMissionReq',
 'SetMultibeamColorFilterRep',

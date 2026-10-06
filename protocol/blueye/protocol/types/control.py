@@ -72,6 +72,7 @@ __protobuf__ = proto.module(
         'FormatRemovableStorageDeviceCtrl',
         'SetTurbidityFilterCtrl',
         'SetColorCorrectionCtrl',
+        'SetMarineSnowFilterCtrl',
         'CameraPanTiltZoomCtrl',
         'StartLogStreamingCtrl',
         'StopLogStreamingCtrl',
@@ -758,6 +759,35 @@ class SetColorCorrectionCtrl(proto.Message):
         proto.MESSAGE,
         number=1,
         message=message_formats.FilterMessage,
+    )
+
+
+class SetMarineSnowFilterCtrl(proto.Message):
+    r"""Message sent when the user wants to set marine snow filter
+    settings. Removes bright particles, such as marine snow, from
+    the video. The intensity field sets how faint a particle can be
+    and still be removed (0.0 = only the brightest, 1.0 = faint
+    particles as well). Turn it off during laser detection. Only
+    supported on X3 Ultra.
+
+    Attributes:
+        marine_snow_filter (blueye.protocol.types.FilterMessage):
+            Message with the marine snow filter settings
+            to set.
+        frames (blueye.protocol.types.MarineSnowFilterFrames):
+            Frames to compare with. Leave it unset to
+            keep the current frames.
+    """
+
+    marine_snow_filter: message_formats.FilterMessage = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.FilterMessage,
+    )
+    frames: message_formats.MarineSnowFilterFrames = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=message_formats.MarineSnowFilterFrames,
     )
 
 
