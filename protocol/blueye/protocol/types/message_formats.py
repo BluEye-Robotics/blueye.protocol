@@ -90,6 +90,10 @@ __protobuf__ = proto.module(
         'CylindricalManipulatorInput',
         'KnownPoseManipulatorInput',
         'Gripper',
+        'ReachHardwareStatus',
+        'GripperDeviceDiagnostics',
+        'GripperInfo',
+        'GripperDiagnostics',
         'ClientInfo',
         'ConnectedClient',
         'RecordState',
@@ -2348,6 +2352,301 @@ class Gripper(proto.Message):
         proto.ENUM,
         number=8,
         enum='ManipulatorPose',
+    )
+
+
+class ReachHardwareStatus(proto.Message):
+    r"""Hardware status flags a device of a Reach Robotics gripper
+    raises about itself, named as Reach names them. A gripper of
+    another make would need flags of its own.
+
+    Attributes:
+        flash_failed_read (bool):
+            Reading the device's flash memory failed.
+        over_humidity (bool):
+            Humidity in the housing is too high: water
+            may have got in.
+        over_temperature (bool):
+            The housing is too hot.
+        comms_serial_error (bool):
+            Error on the serial line.
+        comms_crc_error (bool):
+            A packet failed its checksum.
+        motor_driver_fault (bool):
+            The motor driver reports a fault.
+        encoder_position_error (bool):
+            The position encoder reads an invalid
+            position.
+        encoder_not_detected (bool):
+            The position encoder is not detected.
+        device_axis_conflict (bool):
+            Another device has the same axis.
+        motor_not_connected (bool):
+            The motor is not connected.
+        motor_over_current (bool):
+            The motor draws too much current.
+        input_encoder_position_error (bool):
+            The input encoder reads an invalid position.
+        device_id_conflict (bool):
+            Another device has the same ID.
+        over_pressure (bool):
+            Pressure in the housing is too high: the seal
+            may have failed.
+        motor_driver_over_current_and_under_voltage (bool):
+            Over current or under voltage in the motor
+            driver.
+        motor_driver_over_temperature (bool):
+            The motor driver is too hot.
+        joint_service_due (bool):
+            The device is due for service.
+        encoder_fault (bool):
+            The position encoder reports a fault.
+        low_supply_voltage (bool):
+            The supply voltage is too low.
+        position_report_not_received (bool):
+            A position report the device waits for has
+            not arrived.
+    """
+
+    flash_failed_read: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    over_humidity: bool = proto.Field(
+        proto.BOOL,
+        number=2,
+    )
+    over_temperature: bool = proto.Field(
+        proto.BOOL,
+        number=3,
+    )
+    comms_serial_error: bool = proto.Field(
+        proto.BOOL,
+        number=4,
+    )
+    comms_crc_error: bool = proto.Field(
+        proto.BOOL,
+        number=5,
+    )
+    motor_driver_fault: bool = proto.Field(
+        proto.BOOL,
+        number=6,
+    )
+    encoder_position_error: bool = proto.Field(
+        proto.BOOL,
+        number=7,
+    )
+    encoder_not_detected: bool = proto.Field(
+        proto.BOOL,
+        number=8,
+    )
+    device_axis_conflict: bool = proto.Field(
+        proto.BOOL,
+        number=9,
+    )
+    motor_not_connected: bool = proto.Field(
+        proto.BOOL,
+        number=10,
+    )
+    motor_over_current: bool = proto.Field(
+        proto.BOOL,
+        number=11,
+    )
+    input_encoder_position_error: bool = proto.Field(
+        proto.BOOL,
+        number=12,
+    )
+    device_id_conflict: bool = proto.Field(
+        proto.BOOL,
+        number=13,
+    )
+    over_pressure: bool = proto.Field(
+        proto.BOOL,
+        number=14,
+    )
+    motor_driver_over_current_and_under_voltage: bool = proto.Field(
+        proto.BOOL,
+        number=15,
+    )
+    motor_driver_over_temperature: bool = proto.Field(
+        proto.BOOL,
+        number=16,
+    )
+    joint_service_due: bool = proto.Field(
+        proto.BOOL,
+        number=17,
+    )
+    encoder_fault: bool = proto.Field(
+        proto.BOOL,
+        number=18,
+    )
+    low_supply_voltage: bool = proto.Field(
+        proto.BOOL,
+        number=19,
+    )
+    position_report_not_received: bool = proto.Field(
+        proto.BOOL,
+        number=20,
+    )
+
+
+class GripperDeviceDiagnostics(proto.Message):
+    r"""Health of one device of a gripper: a joint, or a device of its own.
+
+    A value the device did not report is 0, with its is_*_valid false.
+
+    Attributes:
+        address (int):
+            Address of the device on the gripper's bus.
+            On a Reach Robotics arm, 1 is the jaws.
+        supply_voltage (float):
+            Supply voltage (V).
+        is_supply_voltage_valid (bool):
+            True when the device reported its supply
+            voltage.
+        temperature (float):
+            Temperature in the housing (°C).
+        is_temperature_valid (bool):
+            True when the device reported the temperature
+            in its housing.
+        humidity (float):
+            Relative humidity in the housing (%).
+        is_humidity_valid (bool):
+            True when the device reported the humidity in
+            its housing.
+        internal_pressure (float):
+            Absolute pressure in the housing (bar), a
+            partial vacuum: a rise can mean a leak.
+        is_internal_pressure_valid (bool):
+            True when the device reported the pressure in
+            its housing.
+        current (float):
+            Motor current (A).
+        is_current_valid (bool):
+            True when the device reported its motor
+            current.
+        hardware_status (blueye.protocol.types.ReachHardwareStatus):
+            Flags the device reported, and those it
+            raised since the last report. Not set if the
+            device sent no hardware status.
+    """
+
+    address: int = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    supply_voltage: float = proto.Field(
+        proto.FLOAT,
+        number=2,
+    )
+    is_supply_voltage_valid: bool = proto.Field(
+        proto.BOOL,
+        number=8,
+    )
+    temperature: float = proto.Field(
+        proto.FLOAT,
+        number=3,
+    )
+    is_temperature_valid: bool = proto.Field(
+        proto.BOOL,
+        number=9,
+    )
+    humidity: float = proto.Field(
+        proto.FLOAT,
+        number=4,
+    )
+    is_humidity_valid: bool = proto.Field(
+        proto.BOOL,
+        number=10,
+    )
+    internal_pressure: float = proto.Field(
+        proto.FLOAT,
+        number=5,
+    )
+    is_internal_pressure_valid: bool = proto.Field(
+        proto.BOOL,
+        number=11,
+    )
+    current: float = proto.Field(
+        proto.FLOAT,
+        number=6,
+    )
+    is_current_valid: bool = proto.Field(
+        proto.BOOL,
+        number=12,
+    )
+    hardware_status: 'ReachHardwareStatus' = proto.Field(
+        proto.MESSAGE,
+        number=7,
+        message='ReachHardwareStatus',
+    )
+
+
+class GripperInfo(proto.Message):
+    r"""Identity of a gripper: what it is, and what it reports of
+    itself.
+    A value the gripper does not report is empty.
+
+    Attributes:
+        guest_port_number (blueye.protocol.types.GuestPortNumber):
+            Guest port the gripper is on.
+        device_id (blueye.protocol.types.GuestPortDeviceID):
+            What the gripper is, as its guest-port
+            connector names it.
+        serial_number (str):
+            Serial number of the gripper, such as 5854.
+        model_number (str):
+            Model number of the gripper, such as 5001 for
+            a Reach Alpha 5 or 2130 for a Reach Alpha 2.
+        firmware_version (str):
+            Firmware version of the gripper, such as
+            5.2.0.
+    """
+
+    guest_port_number: 'GuestPortNumber' = proto.Field(
+        proto.ENUM,
+        number=1,
+        enum='GuestPortNumber',
+    )
+    device_id: 'GuestPortDeviceID' = proto.Field(
+        proto.ENUM,
+        number=2,
+        enum='GuestPortDeviceID',
+    )
+    serial_number: str = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    model_number: str = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    firmware_version: str = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+
+
+class GripperDiagnostics(proto.Message):
+    r"""Health of a gripper and its devices, for diagnostics.
+
+    Attributes:
+        devices (MutableSequence[blueye.protocol.types.GripperDeviceDiagnostics]):
+            One for each device of the gripper that
+            answered.
+        guest_port_number (blueye.protocol.types.GuestPortNumber):
+            Guest port the gripper is on.
+    """
+
+    devices: MutableSequence['GripperDeviceDiagnostics'] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
+        message='GripperDeviceDiagnostics',
+    )
+    guest_port_number: 'GuestPortNumber' = proto.Field(
+        proto.ENUM,
+        number=2,
+        enum='GuestPortNumber',
     )
 
 

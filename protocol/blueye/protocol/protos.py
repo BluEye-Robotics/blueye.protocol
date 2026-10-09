@@ -130,6 +130,9 @@ from .types.message_formats import GnssSatellite
 from .types.message_formats import GnssStatus
 from .types.message_formats import GpuInfo
 from .types.message_formats import Gripper
+from .types.message_formats import GripperDeviceDiagnostics
+from .types.message_formats import GripperDiagnostics
+from .types.message_formats import GripperInfo
 from .types.message_formats import GripperVelocities
 from .types.message_formats import GuestPortConnectorInfo
 from .types.message_formats import GuestPortCurrent
@@ -173,6 +176,7 @@ from .types.message_formats import PingerConfiguration
 from .types.message_formats import Point2D
 from .types.message_formats import PositionEstimate
 from .types.message_formats import PowerCanister
+from .types.message_formats import ReachHardwareStatus
 from .types.message_formats import RecordOn
 from .types.message_formats import RecordState
 from .types.message_formats import Reference
@@ -345,6 +349,8 @@ from .types.telemetry import ErrorFlagsTel
 from .types.telemetry import ForwardDistanceTel
 from .types.telemetry import GenericServoTel
 from .types.telemetry import GnssStatusTel
+from .types.telemetry import GripperDiagnosticsTel
+from .types.telemetry import GripperInfoTel
 from .types.telemetry import GripperTel
 from .types.telemetry import GuestPortCurrentTel
 from .types.telemetry import GuestPortLightsTel
@@ -540,6 +546,11 @@ __all__ = (
 'GpuInfo',
 'Gripper',
 'GripperCtrl',
+'GripperDeviceDiagnostics',
+'GripperDiagnostics',
+'GripperDiagnosticsTel',
+'GripperInfo',
+'GripperInfoTel',
 'GripperTel',
 'GripperVelocities',
 'GuestPortCapability',
@@ -642,6 +653,7 @@ __all__ = (
 'PowerCanisterTel',
 'PowerSource',
 'PressureSensorType',
+'ReachHardwareStatus',
 'RecordCtrl',
 'RecordOn',
 'RecordState',

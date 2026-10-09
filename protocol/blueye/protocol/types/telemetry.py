@@ -76,6 +76,8 @@ __protobuf__ = proto.module(
         'GenericServoTel',
         'MultibeamServoTel',
         'GripperTel',
+        'GripperInfoTel',
+        'GripperDiagnosticsTel',
         'GuestPortCurrentTel',
         'CalibratedImuTel',
         'Imu1Tel',
@@ -914,6 +916,41 @@ class GripperTel(proto.Message):
         proto.MESSAGE,
         number=1,
         message=message_formats.Gripper,
+    )
+
+
+class GripperInfoTel(proto.Message):
+    r"""Identity of a gripper, published every minute for each
+    connected gripper. With several grippers, GetTelemetryReq
+    returns the one that published last: its guest port tells which.
+
+    Attributes:
+        gripper_info (blueye.protocol.types.GripperInfo):
+            Gripper identity.
+    """
+
+    gripper_info: message_formats.GripperInfo = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.GripperInfo,
+    )
+
+
+class GripperDiagnosticsTel(proto.Message):
+    r"""Health of a gripper, published every few seconds for each
+    connected gripper that reports it. With several grippers,
+    GetTelemetryReq returns the one that published last: its guest
+    port tells which.
+
+    Attributes:
+        gripper_diagnostics (blueye.protocol.types.GripperDiagnostics):
+            Gripper diagnostics.
+    """
+
+    gripper_diagnostics: message_formats.GripperDiagnostics = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=message_formats.GripperDiagnostics,
     )
 
 
