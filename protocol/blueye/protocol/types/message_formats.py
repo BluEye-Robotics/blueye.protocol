@@ -989,6 +989,12 @@ class GuestPortDeviceID(proto.Enum):
             Outland Technology MP-200 Manipulator.
         GUEST_PORT_DEVICE_ID_REACH_ROBOTICS_REACH_ALPHA_5 (52):
             Reach Robotics Reach Alpha 5 Manipulator.
+        GUEST_PORT_DEVICE_ID_BLUEYE_MULTIBEAM_SERVO_V3 (53):
+            Blueye Multibeam Skid Servo V3.
+        GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_DETACHABLE_NEWTON_V2 (54):
+            Detachable Blue Robotics Newton V2.
+        GUEST_PORT_DEVICE_ID_BLUEYE_SCALING_LASER_V2 (55):
+            Blueye Scaling Laser V2.
     """
     GUEST_PORT_DEVICE_ID_UNSPECIFIED = 0
     """Unspecified."""
@@ -1098,6 +1104,12 @@ class GuestPortDeviceID(proto.Enum):
     """Outland Technology MP-200 Manipulator."""
     GUEST_PORT_DEVICE_ID_REACH_ROBOTICS_REACH_ALPHA_5 = 52
     """Reach Robotics Reach Alpha 5 Manipulator."""
+    GUEST_PORT_DEVICE_ID_BLUEYE_MULTIBEAM_SERVO_V3 = 53
+    """Blueye Multibeam Skid Servo V3."""
+    GUEST_PORT_DEVICE_ID_BLUE_ROBOTICS_DETACHABLE_NEWTON_V2 = 54
+    """Detachable Blue Robotics Newton V2."""
+    GUEST_PORT_DEVICE_ID_BLUEYE_SCALING_LASER_V2 = 55
+    """Blueye Scaling Laser V2."""
 
 
 class GuestPortNumber(proto.Enum):
@@ -1158,6 +1170,10 @@ class GuestPortCapability(proto.Enum):
             PWM.
         GUEST_PORT_CAPABILITY_ETHERNET_1G (7):
             Gigabit Ethernet.
+        GUEST_PORT_CAPABILITY_I2C_IO (8):
+            TCA9536 I/O expander.
+        GUEST_PORT_CAPABILITY_I2C_IO_V2 (9):
+            PCA9554A I/O expander.
     """
     GUEST_PORT_CAPABILITY_UNSPECIFIED = 0
     """Unspecified."""
@@ -1175,6 +1191,10 @@ class GuestPortCapability(proto.Enum):
     """PWM."""
     GUEST_PORT_CAPABILITY_ETHERNET_1G = 7
     """Gigabit Ethernet."""
+    GUEST_PORT_CAPABILITY_I2C_IO = 8
+    """TCA9536 I/O expander."""
+    GUEST_PORT_CAPABILITY_I2C_IO_V2 = 9
+    """PCA9554A I/O expander."""
 
 
 class NavigationSensorID(proto.Enum):
