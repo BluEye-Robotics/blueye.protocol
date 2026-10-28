@@ -4864,6 +4864,14 @@ class DroneInfo(proto.Message):
         main_camera_calibration (blueye.protocol.types.CameraCalibration):
             Intrinsic calibration of the main camera.
             Unset when unknown.
+        dive_number (int):
+            Dive number, the counter at the end of the
+            logfile name. 0 when unknown.
+        log_name (str):
+            Name of the dive logfile without extension (e.g.
+            BYEDP070012_ea9ac92e040aa9d4_00231). Unlike dive_number it
+            stays unique when the counter restarts, e.g. after the
+            storage is replaced.
     """
 
     blunux_version: str = proto.Field(
@@ -4927,6 +4935,14 @@ class DroneInfo(proto.Message):
         proto.MESSAGE,
         number=14,
         message='CameraCalibration',
+    )
+    dive_number: int = proto.Field(
+        proto.UINT32,
+        number=15,
+    )
+    log_name: str = proto.Field(
+        proto.STRING,
+        number=16,
     )
 
 
