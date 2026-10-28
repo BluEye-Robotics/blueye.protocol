@@ -1826,6 +1826,11 @@ class LaserDetection(proto.Message):
             Distance after lens undistortion (px).
         estimated_distance (float):
             Estimated subject distance (m).
+        frame_id (int):
+            Id of the camera frame the detection was
+            computed from, 0 if unknown. Matches the frame
+            id embedded in recorded video; ModelDetections
+            describes the format.
     """
 
     detected: bool = proto.Field(
@@ -1869,6 +1874,10 @@ class LaserDetection(proto.Message):
     estimated_distance: float = proto.Field(
         proto.FLOAT,
         number=10,
+    )
+    frame_id: int = proto.Field(
+        proto.UINT64,
+        number=11,
     )
 
 
@@ -7899,8 +7908,32 @@ class ObjectDetection(proto.Message):
 
 
 class ModelDetections(proto.Message):
-    r"""A list of object detections from a single model for a single
-    video frame.
+    r"""A list of object detections from a single model for a single video
+    frame.
+
+    frame_id matches detections to the exact frame of a recording. The
+    video pipeline on the X3 Ultra assigns an id to each camera frame
+    once, passes it to the computer vision models and the recorder, and
+    writes it into the recorded video. An id is never reused within one
+    boot of the drone, and stays below 2^53, so it is exact as a
+    JavaScript number. The models do not process every frame, so the ids
+    of successive results can skip.
+
+    Recorded video carries the id in a user_data_unregistered SEI
+    message (payload type 5), one per access unit, placed before the
+    first slice: NAL unit type 6 in H.264 and PREFIX_SEI_NUT (type 39)
+    in H.265. The payload is 32 bytes, counted after the emulation
+    prevention bytes are removed:
+
+    -  Bytes 0-15: UUID 6b1e2f0c-935d-4a8e-b17a-52d40e3c91f6, in the
+       byte order written.
+    -  Bytes 16-23: frame_id, uint64 big-endian.
+    -  Bytes 24-31: capture time of the frame in CLOCK_MONOTONIC on the
+       drone (ns), uint64 big-endian, 0 if unknown.
+
+    A frame that the recorder repeats to keep the frame rate carries the
+    id of the frame it repeats. Re-encoding the video drops the SEI, so
+    only the original recording carries the ids.
 
     Attributes:
         detections (MutableSequence[blueye.protocol.types.ObjectDetection]):
@@ -7914,6 +7947,11 @@ class ModelDetections(proto.Message):
         model_name (str):
             Name of the computer vision model that
             produced the detections.
+        frame_id (int):
+            Id of the camera frame the detections were
+            computed from, 0 if unknown. Matches the frame
+            id embedded in recorded video; the message
+            description gives the format.
     """
 
     detections: MutableSequence['ObjectDetection'] = proto.RepeatedField(
@@ -7937,6 +7975,10 @@ class ModelDetections(proto.Message):
     model_name: str = proto.Field(
         proto.STRING,
         number=5,
+    )
+    frame_id: int = proto.Field(
+        proto.UINT64,
+        number=6,
     )
 
 
@@ -8068,6 +8110,11 @@ class SotState(proto.Message):
         vr (float):
             Kalman rate of change of the bounding box
             aspect ratio, width / height (1/s).
+        frame_id (int):
+            Id of the camera frame the state was computed
+            from, 0 if unknown. Matches the frame id
+            embedded in recorded video; ModelDetections
+            describes the format.
     """
     class State(proto.Enum):
         r"""Current state of the SOT tracker.
@@ -8130,6 +8177,10 @@ class SotState(proto.Message):
     vr: float = proto.Field(
         proto.FLOAT,
         number=9,
+    )
+    frame_id: int = proto.Field(
+        proto.UINT64,
+        number=10,
     )
 
 
