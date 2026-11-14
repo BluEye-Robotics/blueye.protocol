@@ -174,8 +174,10 @@ from .types.message_formats import OverlayParameters
 from .types.message_formats import PersistentStorageSettings
 from .types.message_formats import PingerConfiguration
 from .types.message_formats import Point2D
+from .types.message_formats import PointCloud
 from .types.message_formats import PositionEstimate
 from .types.message_formats import PowerCanister
+from .types.message_formats import Quaternion
 from .types.message_formats import ReachHardwareStatus
 from .types.message_formats import RecordOn
 from .types.message_formats import RecordState
@@ -287,10 +289,18 @@ from .types.req_rep import GetOverlayParametersRep
 from .types.req_rep import GetOverlayParametersReq
 from .types.req_rep import GetPersistentStorageSettingsRep
 from .types.req_rep import GetPersistentStorageSettingsReq
+from .types.req_rep import GetSlamMapRep
+from .types.req_rep import GetSlamMapReq
 from .types.req_rep import GetTelemetryRep
 from .types.req_rep import GetTelemetryReq
 from .types.req_rep import PingRep
 from .types.req_rep import PingReq
+from .types.req_rep import ResetLogFrequencyRep
+from .types.req_rep import ResetLogFrequencyReq
+from .types.req_rep import ResetPubFrequencyRep
+from .types.req_rep import ResetPubFrequencyReq
+from .types.req_rep import ResetSlamRep
+from .types.req_rep import ResetSlamReq
 from .types.req_rep import SetCameraParametersRep
 from .types.req_rep import SetCameraParametersReq
 from .types.req_rep import SetCvModelStateRep
@@ -313,10 +323,39 @@ from .types.req_rep import SetPersistentStorageSettingsRep
 from .types.req_rep import SetPersistentStorageSettingsReq
 from .types.req_rep import SetPubFrequencyRep
 from .types.req_rep import SetPubFrequencyReq
+from .types.req_rep import SetSlamActiveRep
+from .types.req_rep import SetSlamActiveReq
+from .types.req_rep import SetSlamRecordingRep
+from .types.req_rep import SetSlamRecordingReq
+from .types.req_rep import SetSlamSensorSettingsRep
+from .types.req_rep import SetSlamSensorSettingsReq
 from .types.req_rep import SetThicknessGaugeParametersRep
 from .types.req_rep import SetThicknessGaugeParametersReq
 from .types.req_rep import SyncTimeRep
 from .types.req_rep import SyncTimeReq
+from .types.slam import SlamAiding
+from .types.slam import SlamKeyframe
+from .types.slam import SlamKeyframePoses
+from .types.slam import SlamLoopClosure
+from .types.slam import SlamMap
+from .types.slam import SlamMapFrame
+from .types.slam import SlamMapUpdate
+from .types.slam import SlamPose
+from .types.slam import SlamPoseEstimate
+from .types.slam import SlamRecordingState
+from .types.slam import SlamScan
+from .types.slam import SlamSensor
+from .types.slam import SlamSensorSettings
+from .types.slam import SlamSensorStatus
+from .types.slam import SlamSonar3dSettings
+from .types.slam import SlamSubmap
+from .types.slam import SlamHeadingReference
+from .types.slam import SlamOrientationSource
+from .types.slam import SlamPlatform
+from .types.slam import SlamRequestError
+from .types.slam import SlamSensorType
+from .types.slam import SlamState
+from .types.slam import Sonar3dFrequencyMode
 from .types.telemetry import AltitudeTel
 from .types.telemetry import AnnotationTel
 from .types.telemetry import AquaTrollProbeMetadataTel
@@ -379,6 +418,11 @@ from .types.telemetry import RecordStateTel
 from .types.telemetry import ReferenceAutoPilotTel
 from .types.telemetry import ReferenceTel
 from .types.telemetry import RemovableStorageTel
+from .types.telemetry import SlamMapTel
+from .types.telemetry import SlamMapUpdateTel
+from .types.telemetry import SlamPoseTel
+from .types.telemetry import SlamScanTel
+from .types.telemetry import SlamStatusTel
 from .types.telemetry import SotStateTel
 from .types.telemetry import SurfaceUnitTel
 from .types.telemetry import SystemPerformanceInfoTel
@@ -533,6 +577,8 @@ __all__ = (
 'GetOverlayParametersReq',
 'GetPersistentStorageSettingsRep',
 'GetPersistentStorageSettingsReq',
+'GetSlamMapRep',
+'GetSlamMapReq',
 'GetTelemetryRep',
 'GetTelemetryReq',
 'GnssConstellation',
@@ -647,12 +693,14 @@ __all__ = (
 'PingerConfiguration',
 'PingerConfigurationCtrl',
 'Point2D',
+'PointCloud',
 'PositionEstimate',
 'PositionEstimateTel',
 'PowerCanister',
 'PowerCanisterTel',
 'PowerSource',
 'PressureSensorType',
+'Quaternion',
 'ReachHardwareStatus',
 'RecordCtrl',
 'RecordOn',
@@ -668,9 +716,15 @@ __all__ = (
 'RemovableStorageTel',
 'RescanCvModelsCtrl',
 'ResetCoordinateSource',
+'ResetLogFrequencyRep',
+'ResetLogFrequencyReq',
 'ResetOdometerCtrl',
 'ResetPositionCtrl',
 'ResetPositionSettings',
+'ResetPubFrequencyRep',
+'ResetPubFrequencyReq',
+'ResetSlamRep',
+'ResetSlamReq',
 'Resolution',
 'RestartGuestPortsCtrl',
 'RunMissionCtrl',
@@ -704,10 +758,44 @@ __all__ = (
 'SetPersistentStorageSettingsReq',
 'SetPubFrequencyRep',
 'SetPubFrequencyReq',
+'SetSlamActiveRep',
+'SetSlamActiveReq',
+'SetSlamRecordingRep',
+'SetSlamRecordingReq',
+'SetSlamSensorSettingsRep',
+'SetSlamSensorSettingsReq',
 'SetSotTargetCtrl',
 'SetThicknessGaugeParametersRep',
 'SetThicknessGaugeParametersReq',
 'SetTurbidityFilterCtrl',
+'SlamAiding',
+'SlamHeadingReference',
+'SlamKeyframe',
+'SlamKeyframePoses',
+'SlamLoopClosure',
+'SlamMap',
+'SlamMapFrame',
+'SlamMapTel',
+'SlamMapUpdate',
+'SlamMapUpdateTel',
+'SlamOrientationSource',
+'SlamPlatform',
+'SlamPose',
+'SlamPoseEstimate',
+'SlamPoseTel',
+'SlamRecordingState',
+'SlamRequestError',
+'SlamScan',
+'SlamScanTel',
+'SlamSensor',
+'SlamSensorSettings',
+'SlamSensorStatus',
+'SlamSensorType',
+'SlamSonar3dSettings',
+'SlamState',
+'SlamStatusTel',
+'SlamSubmap',
+'Sonar3dFrequencyMode',
 'SotState',
 'SotStateTel',
 'SpotlightState',

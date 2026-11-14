@@ -182,6 +182,8 @@ __protobuf__ = proto.module(
         'OperatorInfo',
         'SotState',
         'Annotation',
+        'Quaternion',
+        'PointCloud',
     },
 )
 
@@ -4035,7 +4037,7 @@ class DvlVelocity(proto.Message):
             Figure of merit, a measure of the accuracy of
             the velocities (m/s).
         velocity (blueye.protocol.types.Vector3):
-            Velocity, x forward, y left, z down (m/s).
+            Velocity, x forward, y right, z down (m/s).
         is_water_tracking (bool):
             Water tracking status.
         transducers (MutableSequence[blueye.protocol.types.DvlTransducer]):
@@ -8275,6 +8277,77 @@ class Annotation(proto.Message):
         proto.ENUM,
         number=8,
         enum='AnnotationSource',
+    )
+
+
+class Quaternion(proto.Message):
+    r"""Unit quaternion describing a rotation (Hamilton convention: w
+    + xi + yj + zk).
+    Where it is a body's orientation, it rotates vectors from the
+    body's frame to the frame the body is placed in.
+
+    Attributes:
+        x (float):
+            X-component of the vector part.
+        y (float):
+            Y-component of the vector part.
+        z (float):
+            Z-component of the vector part.
+        w (float):
+            Scalar part.
+    """
+
+    x: float = proto.Field(
+        proto.DOUBLE,
+        number=1,
+    )
+    y: float = proto.Field(
+        proto.DOUBLE,
+        number=2,
+    )
+    z: float = proto.Field(
+        proto.DOUBLE,
+        number=3,
+    )
+    w: float = proto.Field(
+        proto.DOUBLE,
+        number=4,
+    )
+
+
+class PointCloud(proto.Message):
+    r"""Points packed for use as typed arrays without decoding them one by
+    one.
+
+    The frame the positions are in is the one the enclosing message
+    names.
+
+    count says how many points the bytes hold: positions is exactly
+    count \* 12 bytes, and intensities either empty or count bytes. A
+    cloud whose bytes disagree with count is malformed, and is not used.
+
+    Attributes:
+        count (int):
+            Number of points.
+        positions (bytes):
+            count x, y, z triplets of little-endian
+            float32 (m): 12 bytes per point.
+        intensities (bytes):
+            count signal strengths, one byte each (0 to
+            255), or empty when unknown.
+    """
+
+    count: int = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    positions: bytes = proto.Field(
+        proto.BYTES,
+        number=2,
+    )
+    intensities: bytes = proto.Field(
+        proto.BYTES,
+        number=3,
     )
 
 

@@ -21,6 +21,7 @@ import proto  # type: ignore
 
 from blueye.protocol.types import message_formats
 from blueye.protocol.types import mission_planning
+from blueye.protocol.types import slam
 from google.protobuf import any_pb2  # type: ignore
 
 
@@ -59,6 +60,10 @@ __protobuf__ = proto.module(
         'SetPubFrequencyRep',
         'SetLogFrequencyReq',
         'SetLogFrequencyRep',
+        'ResetPubFrequencyReq',
+        'ResetPubFrequencyRep',
+        'ResetLogFrequencyReq',
+        'ResetLogFrequencyRep',
         'GetTelemetryReq',
         'GetTelemetryRep',
         'SetPersistentStorageSettingsReq',
@@ -81,6 +86,16 @@ __protobuf__ = proto.module(
         'SetMultibeamColorFilterRep',
         'GetMultibeamColorFilterReq',
         'GetMultibeamColorFilterRep',
+        'GetSlamMapReq',
+        'GetSlamMapRep',
+        'ResetSlamReq',
+        'ResetSlamRep',
+        'SetSlamActiveReq',
+        'SetSlamActiveRep',
+        'SetSlamRecordingReq',
+        'SetSlamRecordingRep',
+        'SetSlamSensorSettingsReq',
+        'SetSlamSensorSettingsRep',
     },
 )
 
@@ -524,6 +539,68 @@ class SetLogFrequencyRep(proto.Message):
     )
 
 
+class ResetPubFrequencyReq(proto.Message):
+    r"""Request to reset the publishing frequency of a message to the
+    drone's default.
+
+    Attributes:
+        message_type (str):
+            Message name, f. ex. "AttitudeTel"; empty
+            resets every message.
+    """
+
+    message_type: str = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+
+
+class ResetPubFrequencyRep(proto.Message):
+    r"""Response after resetting the publishing frequency.
+
+    Attributes:
+        success (bool):
+            True if the message name was valid and its
+            frequency reset.
+    """
+
+    success: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+
+
+class ResetLogFrequencyReq(proto.Message):
+    r"""Request to reset the logging frequency of a message to the
+    drone's default.
+
+    Attributes:
+        message_type (str):
+            Message name, f. ex. "AttitudeTel"; empty
+            resets every message.
+    """
+
+    message_type: str = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+
+
+class ResetLogFrequencyRep(proto.Message):
+    r"""Response after resetting the logging frequency.
+
+    Attributes:
+        success (bool):
+            True if the message name was valid and its
+            frequency reset.
+    """
+
+    success: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+
+
 class GetTelemetryReq(proto.Message):
     r"""Request to get latest telemetry data
 
@@ -808,6 +885,329 @@ class GetMultibeamColorFilterRep(proto.Message):
         proto.MESSAGE,
         number=1,
         message=message_formats.MultibeamColorFilter,
+    )
+
+
+class GetSlamMapReq(proto.Message):
+    r"""Request to catch up on the SLAM map.
+
+    Nothing comes in the reply but what is coming: the SLAM publishes it
+    on its own publisher, to the clients subscribed there. The SLAM
+    keeps its latest map updates: when map_id is the current map and the
+    updates after have_sequence are still kept, it publishes those again
+    (SlamMapUpdateTel, as they were, so a client that has them already
+    skips them by their sequence); otherwise it publishes the whole map
+    (SlamMapTel, in parts when it is large).
+
+    Attributes:
+        map_id (int):
+            The map the client holds; 0 when it holds
+            none.
+        have_sequence (int):
+            The sequence of the last update the client
+            applied to that map.
+    """
+
+    map_id: int = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    have_sequence: int = proto.Field(
+        proto.UINT64,
+        number=2,
+    )
+
+
+class GetSlamMapRep(proto.Message):
+    r"""Response after asking to catch up on the SLAM map: what is
+    published for it.
+
+    This message has `oneof`_ fields (mutually exclusive fields).
+    For each oneof, at most one member field can be set at the same time.
+    Setting any member of the oneof automatically clears all other
+    members.
+
+    .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
+
+    Attributes:
+        available (bool):
+            True if the SLAM is running and answered.
+        map_id (int):
+            The current map (0 when the SLAM has no map).
+        sequence (int):
+            The client has the map at this sequence once
+            it has what is published. The whole map may be
+            one made earlier (its parts say their sequence):
+            the updates after it are published again after
+            it.
+        from_sequence (int):
+            The updates from from_sequence to sequence are published
+            again (none when from_sequence is past sequence: the client
+            has the map already).
+
+            This field is a member of `oneof`_ ``catch_up``.
+        part_count (int):
+            The whole map is published, in this many
+            SlamMapTel parts.
+
+            This field is a member of `oneof`_ ``catch_up``.
+    """
+
+    available: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    map_id: int = proto.Field(
+        proto.UINT32,
+        number=2,
+    )
+    sequence: int = proto.Field(
+        proto.UINT64,
+        number=3,
+    )
+    from_sequence: int = proto.Field(
+        proto.UINT64,
+        number=4,
+        oneof='catch_up',
+    )
+    part_count: int = proto.Field(
+        proto.UINT32,
+        number=5,
+        oneof='catch_up',
+    )
+
+
+class ResetSlamReq(proto.Message):
+    r"""Request to discard the SLAM map and start a new one from the
+    current pose.
+
+    Attributes:
+        map_id (int):
+            The map to discard: the SLAM resets only if
+            it is still the current map, so that two clients
+            asking at once start one new map, not two. 0
+            (map ids never are): only if the SLAM has no map
+            yet.
+    """
+
+    map_id: int = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+
+
+class ResetSlamRep(proto.Message):
+    r"""Response after resetting the SLAM map.
+
+    Attributes:
+        available (bool):
+            True if the SLAM is running and answered.
+        map_id (int):
+            Identifier of the map now (the new one, or the current one
+            when the request's map_id was not the current map's); 0 when
+            the SLAM has no map yet (it starts one with its next scan).
+        reset (bool):
+            True if the map was discarded.
+        error (blueye.protocol.types.SlamRequestError):
+            Why the map was not discarded, when it was
+            not.
+    """
+
+    available: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    map_id: int = proto.Field(
+        proto.UINT32,
+        number=2,
+    )
+    reset: bool = proto.Field(
+        proto.BOOL,
+        number=3,
+    )
+    error: slam.SlamRequestError = proto.Field(
+        proto.ENUM,
+        number=4,
+        enum=slam.SlamRequestError,
+    )
+
+
+class SetSlamActiveReq(proto.Message):
+    r"""Request to start or stop the SLAM.
+
+    Starting switches the sensor on (for a sonar, its acoustics) and
+    begins a new map from the current pose. Stopping switches the
+    sensor off and keeps the map, so it can still be viewed. Asking
+    for the state the SLAM is in already changes nothing
+    (ResetSlamReq begins a new map). The SLAM reports its state in
+    SlamStatusTel.
+
+    Attributes:
+        active (bool):
+            True to start the SLAM, false to stop it.
+    """
+
+    active: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+
+
+class SetSlamActiveRep(proto.Message):
+    r"""Response after starting or stopping the SLAM.
+
+    Attributes:
+        available (bool):
+            True if the SLAM is running and answered.
+        active (bool):
+            True if the SLAM is now mapping (false if its
+            sensor did not switch on).
+        error (blueye.protocol.types.SlamRequestError):
+            Why the SLAM is not in the state asked for,
+            when it is not.
+    """
+
+    available: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    active: bool = proto.Field(
+        proto.BOOL,
+        number=2,
+    )
+    error: slam.SlamRequestError = proto.Field(
+        proto.ENUM,
+        number=3,
+        enum=slam.SlamRequestError,
+    )
+
+
+class SetSlamRecordingReq(proto.Message):
+    r"""Request to start or stop recording the SLAM.
+
+    A recording needs the SLAM to be mapping, and stopping the SLAM
+    stops it. It is stored with the drone's other media (picture, video
+    and multibeam recordings). Like a multibeam recording it holds the
+    drone's DroneInfoTel, at its start and when it changes, which names
+    the dive log it belongs with (log_name). Asking for the state the
+    recording is in already changes nothing.
+
+    Attributes:
+        record (bool):
+            True to start recording, false to stop.
+        sensor_data (bool):
+            Also the sensor's raw data, and the dive log
+            faster, for running the SLAM offline.
+        storage_location (blueye.protocol.types.StorageLocation):
+            Where to store the recording.
+    """
+
+    record: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    sensor_data: bool = proto.Field(
+        proto.BOOL,
+        number=2,
+    )
+    storage_location: message_formats.StorageLocation = proto.Field(
+        proto.ENUM,
+        number=3,
+        enum=message_formats.StorageLocation,
+    )
+
+
+class SetSlamRecordingRep(proto.Message):
+    r"""Response after starting or stopping a SLAM recording.
+
+    Attributes:
+        available (bool):
+            True if the SLAM is running and answered.
+        recording (blueye.protocol.types.SlamRecordingState):
+            The recording after the request.
+        error (blueye.protocol.types.SlamRequestError):
+            Why the recording is not in the state asked
+            for, when it is not.
+    """
+
+    available: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    recording: slam.SlamRecordingState = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=slam.SlamRecordingState,
+    )
+    error: slam.SlamRequestError = proto.Field(
+        proto.ENUM,
+        number=3,
+        enum=slam.SlamRequestError,
+    )
+
+
+class SetSlamSensorSettingsReq(proto.Message):
+    r"""Request to change the settings of a SLAM sensor.
+
+    The settings go to the sensor named by sensor_id. Without one, they
+    go to the SLAM's sensor of their kind when it has exactly one; with
+    several, the request must name one
+    (SLAM_REQUEST_ERROR_NO_SUCH_SENSOR otherwise). Settings left
+    unspecified stay as they are. The map goes on at the resolution it
+    was made with; the next new map (a start, or ResetSlamReq) takes the
+    resolution the sensor's range then gives.
+
+    Attributes:
+        settings (blueye.protocol.types.SlamSensorSettings):
+            The settings to change.
+        sensor_id (str):
+            The sensor to change (SlamSensor.id); empty:
+            the SLAM's only sensor of the settings' kind.
+    """
+
+    settings: slam.SlamSensorSettings = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=slam.SlamSensorSettings,
+    )
+    sensor_id: str = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+
+
+class SetSlamSensorSettingsRep(proto.Message):
+    r"""Response after changing the settings of a SLAM sensor.
+
+    Attributes:
+        available (bool):
+            True if the SLAM is running and answered.
+        applied (bool):
+            True if the sensor took the settings.
+        settings (blueye.protocol.types.SlamSensorSettings):
+            The sensor's settings after the request.
+        error (blueye.protocol.types.SlamRequestError):
+            Why the settings were not applied, when they
+            were not.
+    """
+
+    available: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    applied: bool = proto.Field(
+        proto.BOOL,
+        number=2,
+    )
+    settings: slam.SlamSensorSettings = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=slam.SlamSensorSettings,
+    )
+    error: slam.SlamRequestError = proto.Field(
+        proto.ENUM,
+        number=4,
+        enum=slam.SlamRequestError,
     )
 
 

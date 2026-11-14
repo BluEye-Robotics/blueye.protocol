@@ -22,6 +22,7 @@ import proto  # type: ignore
 from blueye.protocol.types import aquatroll
 from blueye.protocol.types import message_formats
 from blueye.protocol.types import mission_planning
+from blueye.protocol.types import slam
 
 
 __protobuf__ = proto.module(
@@ -99,6 +100,11 @@ __protobuf__ = proto.module(
         'CameraPanTiltZoomTel',
         'SotStateTel',
         'AnnotationTel',
+        'SlamPoseTel',
+        'SlamMapUpdateTel',
+        'SlamScanTel',
+        'SlamMapTel',
+        'SlamStatusTel',
     },
 )
 
@@ -1325,6 +1331,172 @@ class AnnotationTel(proto.Message):
         proto.MESSAGE,
         number=1,
         message=message_formats.Annotation,
+    )
+
+
+class SlamPoseTel(proto.Message):
+    r"""SLAM estimate of its platform's pose (SlamMapFrame.platform:
+    the drone's, each sensor on it at its mount, which the estimate
+    carries; or, without a known mount, the sensor's own).
+
+    Published for every scan on the SLAM publisher, not the main
+    telemetry socket.
+
+    Attributes:
+        estimate (blueye.protocol.types.SlamPoseEstimate):
+            The pose estimate.
+    """
+
+    estimate: slam.SlamPoseEstimate = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=slam.SlamPoseEstimate,
+    )
+
+
+class SlamMapUpdateTel(proto.Message):
+    r"""A change to the SLAM map: new keyframes and points, or a
+    corrected trajectory.
+    Published on the SLAM publisher. A client applies the updates
+    that follow the map it holds (SlamMapTel); one it missed it asks
+    for again (GetSlamMapReq).
+
+    Attributes:
+        update (blueye.protocol.types.SlamMapUpdate):
+            The change.
+    """
+
+    update: slam.SlamMapUpdate = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=slam.SlamMapUpdate,
+    )
+
+
+class SlamScanTel(proto.Message):
+    r"""The latest scan placed in the SLAM map.
+
+    Published on the SLAM publisher for live display; not part of
+    the map.
+
+    Attributes:
+        scan (blueye.protocol.types.SlamScan):
+            The scan.
+    """
+
+    scan: slam.SlamScan = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=slam.SlamScan,
+    )
+
+
+class SlamMapTel(proto.Message):
+    r"""The whole SLAM map, or a part of it (SlamMap.part).
+
+    Published on the SLAM publisher when a client asks for it
+    (GetSlamMapReq). A client subscribes, asks, keeps the updates
+    that arrive meanwhile, and applies those that follow the map's
+    sequence once it has all of its parts (put together as SlamMap
+    says: repeated fields concatenated, every other field the first
+    part's). A SLAM recording has the map at its start, and ends
+    each map it holds with it.
+
+    Attributes:
+        map (blueye.protocol.types.SlamMap):
+            The map, or a part of it.
+    """
+
+    map: slam.SlamMap = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=slam.SlamMap,
+    )
+
+
+class SlamStatusTel(proto.Message):
+    r"""The SLAM's state.
+
+    Published on the SLAM publisher once a second, and when it
+    changes.
+
+    Attributes:
+        active (bool):
+            True while the SLAM is mapping: its sensors
+            are on and scans are placed.
+        map_id (int):
+            Identifier of the current map, 0 when the
+            SLAM has no map.
+        recording (blueye.protocol.types.SlamRecordingState):
+            The recording, when one runs or ran.
+        sensors (MutableSequence[blueye.protocol.types.SlamSensorStatus]):
+            The sensors that feed the SLAM.
+        map_full (bool):
+            True if the map holds as many points as it
+            may: it is placed in, but grows no more.
+        loop_closure (bool):
+            True if the SLAM corrects its trajectory with
+            loop closures (it has a back end).
+        frame (blueye.protocol.types.SlamMapFrame):
+            How the current map's frame lies in the world
+            (unset before its first scan).
+        sequence (int):
+            Sequence of the newest update of the current
+            map (SlamMapUpdate.sequence), 0 for none: a
+            client that has applied less of the current map
+            has missed one, and catches up (GetSlamMapReq).
+        aiding (blueye.protocol.types.SlamAiding):
+            What other than its sensors the estimate
+            rests on now.
+        backend_failed (bool):
+            True if the SLAM's back end failed and was
+            dropped: the current map has no more loop
+            closures.
+    """
+
+    active: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    map_id: int = proto.Field(
+        proto.UINT32,
+        number=2,
+    )
+    recording: slam.SlamRecordingState = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=slam.SlamRecordingState,
+    )
+    sensors: MutableSequence[slam.SlamSensorStatus] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=4,
+        message=slam.SlamSensorStatus,
+    )
+    map_full: bool = proto.Field(
+        proto.BOOL,
+        number=5,
+    )
+    loop_closure: bool = proto.Field(
+        proto.BOOL,
+        number=6,
+    )
+    frame: slam.SlamMapFrame = proto.Field(
+        proto.MESSAGE,
+        number=7,
+        message=slam.SlamMapFrame,
+    )
+    sequence: int = proto.Field(
+        proto.UINT64,
+        number=8,
+    )
+    aiding: slam.SlamAiding = proto.Field(
+        proto.MESSAGE,
+        number=9,
+        message=slam.SlamAiding,
+    )
+    backend_failed: bool = proto.Field(
+        proto.BOOL,
+        number=10,
     )
 
 
