@@ -41,7 +41,9 @@ from .types.control import AutoPilotSurgeYawCtrl
 from .types.control import CalibrateDvlGyroCtrl
 from .types.control import CameraPanTiltZoomCtrl
 from .types.control import CancelCalibrationCtrl
+from .types.control import CancelInstructionCtrl
 from .types.control import ClearMissionCtrl
+from .types.control import ClearMissionRulesCtrl
 from .types.control import ClearSotTargetCtrl
 from .types.control import DeactivateGuestPortsCtrl
 from .types.control import DeactivateMultibeamCtrl
@@ -63,6 +65,7 @@ from .types.control import RescanCvModelsCtrl
 from .types.control import ResetOdometerCtrl
 from .types.control import ResetPositionCtrl
 from .types.control import RestartGuestPortsCtrl
+from .types.control import RunInstructionCtrl
 from .types.control import RunMissionCtrl
 from .types.control import SetAquaTrollConnectionStatusCtrl
 from .types.control import SetAquaTrollParameterUnitCtrl
@@ -241,21 +244,44 @@ from .types.message_formats import StreamingProtocol
 from .types.message_formats import TemperatureUnit
 from .types.message_formats import ThermalZoneId
 from .types.message_formats import ThicknessUnit
+from .types.mission_planning import ActivateMultibeamCommand
+from .types.mission_planning import AltitudeTrigger
+from .types.mission_planning import AnnotationCommand
 from .types.mission_planning import CameraCommand
 from .types.mission_planning import ControlModeCommand
+from .types.mission_planning import CruiseSpeedCommand
+from .types.mission_planning import CvModelStateCommand
 from .types.mission_planning import DepthSetPoint
 from .types.mission_planning import DepthSetPointCommand
+from .types.mission_planning import DepthTrigger
+from .types.mission_planning import DetectionTrigger
 from .types.mission_planning import GoToHomeCommand
 from .types.mission_planning import GoToSeabedCommand
 from .types.mission_planning import GoToSurfaceCommand
+from .types.mission_planning import HeadingCommand
+from .types.mission_planning import InsertInstruction
 from .types.mission_planning import Instruction
+from .types.mission_planning import InstructionResult
+from .types.mission_planning import LaserCommand
+from .types.mission_planning import LightsCommand
+from .types.mission_planning import LocationTrigger
 from .types.mission_planning import Mission
+from .types.mission_planning import MissionOutcome
+from .types.mission_planning import MissionRule
+from .types.mission_planning import MissionRuleStatus
 from .types.mission_planning import MissionStatus
+from .types.mission_planning import MultibeamConfigCommand
 from .types.mission_planning import PathSegment
+from .types.mission_planning import RecordMultibeamCommand
 from .types.mission_planning import ReferenceAutoPilot
+from .types.mission_planning import RelativeDepthCommand
 from .types.mission_planning import SurveyCommand
 from .types.mission_planning import TiltMainCameraCommand
 from .types.mission_planning import TiltMultibeamCommand
+from .types.mission_planning import TiltStabilizationCommand
+from .types.mission_planning import TransectCommand
+from .types.mission_planning import Trigger
+from .types.mission_planning import TriggerStatus
 from .types.mission_planning import WaitForCommand
 from .types.mission_planning import Waypoint
 from .types.mission_planning import WaypointCommand
@@ -263,8 +289,14 @@ from .types.mission_planning import CameraAction
 from .types.mission_planning import ControlModeHorizontal
 from .types.mission_planning import ControlModeVertical
 from .types.mission_planning import DepthZeroReference
+from .types.mission_planning import InstructionResultState
 from .types.mission_planning import InstructionType
+from .types.mission_planning import LightTarget
+from .types.mission_planning import MissionAbortReason
+from .types.mission_planning import MissionResult
+from .types.mission_planning import MissionRuleState
 from .types.mission_planning import MissionState
+from .types.mission_planning import TriggerKind
 from .types.req_rep import ConnectClientRep
 from .types.req_rep import ConnectClientReq
 from .types.req_rep import DisconnectClientRep
@@ -283,6 +315,8 @@ from .types.req_rep import GetLogStreamingStatusRep
 from .types.req_rep import GetLogStreamingStatusReq
 from .types.req_rep import GetMissionRep
 from .types.req_rep import GetMissionReq
+from .types.req_rep import GetMissionRulesRep
+from .types.req_rep import GetMissionRulesReq
 from .types.req_rep import GetMultibeamColorFilterRep
 from .types.req_rep import GetMultibeamColorFilterReq
 from .types.req_rep import GetOverlayParametersRep
@@ -315,6 +349,8 @@ from .types.req_rep import SetLogFrequencyRep
 from .types.req_rep import SetLogFrequencyReq
 from .types.req_rep import SetMissionRep
 from .types.req_rep import SetMissionReq
+from .types.req_rep import SetMissionRulesRep
+from .types.req_rep import SetMissionRulesReq
 from .types.req_rep import SetMultibeamColorFilterRep
 from .types.req_rep import SetMultibeamColorFilterReq
 from .types.req_rep import SetOverlayParametersRep
@@ -396,6 +432,7 @@ from .types.telemetry import GuestPortLightsTel
 from .types.telemetry import Imu1Tel
 from .types.telemetry import Imu2Tel
 from .types.telemetry import ImuHpTel
+from .types.telemetry import InstructionResultTel
 from .types.telemetry import IperfTel
 from .types.telemetry import LaserTel
 from .types.telemetry import LightsTel
@@ -403,6 +440,7 @@ from .types.telemetry import LogEntryTel
 from .types.telemetry import MagneticDeclinationTel
 from .types.telemetry import MarineSnowFilterTel
 from .types.telemetry import MedusaSpectrometerDataTel
+from .types.telemetry import MissionRulesTel
 from .types.telemetry import MissionStatusTel
 from .types.telemetry import MultibeamConfigTel
 from .types.telemetry import MultibeamDiscoveryTel
@@ -436,11 +474,14 @@ from .types.telemetry import WaterTemperatureTel
 
 __all__ = (
 'ActivateGuestPortsCtrl',
+'ActivateMultibeamCommand',
 'ActivateMultibeamCtrl',
 'ActiveTrackState',
 'Altitude',
 'AltitudeTel',
+'AltitudeTrigger',
 'Annotation',
+'AnnotationCommand',
 'AnnotationCtrl',
 'AnnotationSource',
 'AnnotationTel',
@@ -496,12 +537,14 @@ __all__ = (
 'CameraPanTiltZoomTel',
 'CameraParameters',
 'CancelCalibrationCtrl',
+'CancelInstructionCtrl',
 'CanisterBottomHumidityTel',
 'CanisterBottomTemperatureTel',
 'CanisterHumidity',
 'CanisterTemperature',
 'CartesianManipulatorInput',
 'ClearMissionCtrl',
+'ClearMissionRulesCtrl',
 'ClearSotTargetCtrl',
 'ClientInfo',
 'ColorCorrectionTel',
@@ -522,7 +565,9 @@ __all__ = (
 'CpProbe',
 'CpProbeTel',
 'CpuCoreLoad',
+'CruiseSpeedCommand',
 'CvModelInfo',
+'CvModelStateCommand',
 'CylindricalManipulatorInput',
 'DataStorageSpaceTel',
 'DeactivateGuestPortsCtrl',
@@ -531,8 +576,10 @@ __all__ = (
 'DepthSetPoint',
 'DepthSetPointCommand',
 'DepthTel',
+'DepthTrigger',
 'DepthUnit',
 'DepthZeroReference',
+'DetectionTrigger',
 'DisconnectClientRep',
 'DisconnectClientReq',
 'DiveTime',
@@ -571,6 +618,8 @@ __all__ = (
 'GetLogStreamingStatusReq',
 'GetMissionRep',
 'GetMissionReq',
+'GetMissionRulesRep',
+'GetMissionRulesReq',
 'GetMultibeamColorFilterRep',
 'GetMultibeamColorFilterReq',
 'GetOverlayParametersRep',
@@ -613,13 +662,18 @@ __all__ = (
 'GuestPortNumber',
 'GuestPortRestartInfo',
 'GuestportLightsCtrl',
+'HeadingCommand',
 'HeadingMode',
 'HeadingSource',
 'Imu',
 'Imu1Tel',
 'Imu2Tel',
 'ImuHpTel',
+'InsertInstruction',
 'Instruction',
+'InstructionResult',
+'InstructionResultState',
+'InstructionResultTel',
 'InstructionType',
 'IntervalType',
 'IperfStatus',
@@ -627,14 +681,18 @@ __all__ = (
 'KernelLogEntry',
 'KnownPoseManipulatorInput',
 'Laser',
+'LaserCommand',
 'LaserCtrl',
 'LaserDetection',
 'LaserTel',
 'LatLongPosition',
+'LightTarget',
 'Lights',
+'LightsCommand',
 'LightsCtrl',
 'LightsTel',
 'LocationSource',
+'LocationTrigger',
 'LogEntry',
 'LogEntryTel',
 'LogoType',
@@ -648,6 +706,13 @@ __all__ = (
 'MedusaSpectrometerDataTel',
 'MemoryInfo',
 'Mission',
+'MissionAbortReason',
+'MissionOutcome',
+'MissionResult',
+'MissionRule',
+'MissionRuleState',
+'MissionRuleStatus',
+'MissionRulesTel',
 'MissionState',
 'MissionStatus',
 'MissionStatusTel',
@@ -657,6 +722,7 @@ __all__ = (
 'MotionInputCtrl',
 'MultibeamColorFilter',
 'MultibeamConfig',
+'MultibeamConfigCommand',
 'MultibeamConfigTel',
 'MultibeamDiscovery',
 'MultibeamDiscoveryTel',
@@ -703,6 +769,7 @@ __all__ = (
 'Quaternion',
 'ReachHardwareStatus',
 'RecordCtrl',
+'RecordMultibeamCommand',
 'RecordOn',
 'RecordState',
 'RecordStateTel',
@@ -711,6 +778,7 @@ __all__ = (
 'ReferenceAutoPilot',
 'ReferenceAutoPilotTel',
 'ReferenceTel',
+'RelativeDepthCommand',
 'RemovableStorageDevice',
 'RemovableStorageErrorFlags',
 'RemovableStorageTel',
@@ -727,6 +795,7 @@ __all__ = (
 'ResetSlamReq',
 'Resolution',
 'RestartGuestPortsCtrl',
+'RunInstructionCtrl',
 'RunMissionCtrl',
 'SegmentationMask',
 'SetAquaTrollConnectionStatus',
@@ -749,6 +818,8 @@ __all__ = (
 'SetMarineSnowFilterCtrl',
 'SetMissionRep',
 'SetMissionReq',
+'SetMissionRulesRep',
+'SetMissionRulesReq',
 'SetMultibeamColorFilterRep',
 'SetMultibeamColorFilterReq',
 'SetMultibeamConfigCtrl',
@@ -830,6 +901,7 @@ __all__ = (
 'TiltAngleTel',
 'TiltMainCameraCommand',
 'TiltMultibeamCommand',
+'TiltStabilizationCommand',
 'TiltStabilizationCtrl',
 'TiltStabilizationState',
 'TiltStabilizationTel',
@@ -837,6 +909,10 @@ __all__ = (
 'TiltVelocityCtrl',
 'TimeLapseState',
 'TimeLapseStateTel',
+'TransectCommand',
+'Trigger',
+'TriggerKind',
+'TriggerStatus',
 'TurbidityFilterTel',
 'Type',
 'Vector3',

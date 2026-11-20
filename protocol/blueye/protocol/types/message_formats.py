@@ -411,6 +411,27 @@ class NotificationType(proto.Enum):
         NOTIFICATION_TYPE_DVL_PROTOCOL_UNSUPPORTED (34):
             DVL firmware speaks a protocol version Blunux
             does not support.
+        NOTIFICATION_TYPE_INSTRUCTION_STARTED (35):
+            An instruction started; the value names it or
+            is its target.
+        NOTIFICATION_TYPE_MISSION_PAUSED_BY_INSTRUCTION (36):
+            Paused after the instruction whose id is the
+            value.
+        NOTIFICATION_TYPE_MISSION_UPDATED (37):
+            The loaded mission was changed; the value
+            says what changed.
+        NOTIFICATION_TYPE_MISSION_RULE_FIRED (38):
+            A mission rule fired; the value is its name.
+        NOTIFICATION_TYPE_MISSION_RULE_RELEASED (39):
+            A mission rule released; the value is its
+            name.
+        NOTIFICATION_TYPE_MULTIBEAM_SONAR_MISMATCH (40):
+            A multibeam instruction was made for a
+            different sonar than the one the multibeam
+            driver reports; the value is the instruction's
+            id. A MultibeamConfigCommand is skipped. An
+            ActivateMultibeamCommand still starts or stops
+            the driver, but without its configuration.
     """
     NOTIFICATION_TYPE_UNSPECIFIED = 0
     """Unspecified."""
@@ -483,6 +504,22 @@ class NotificationType(proto.Enum):
     NOTIFICATION_TYPE_DVL_PROTOCOL_UNSUPPORTED = 34
     """DVL firmware speaks a protocol version Blunux does not
     support."""
+    NOTIFICATION_TYPE_INSTRUCTION_STARTED = 35
+    """An instruction started; the value names it or is its target."""
+    NOTIFICATION_TYPE_MISSION_PAUSED_BY_INSTRUCTION = 36
+    """Paused after the instruction whose id is the value."""
+    NOTIFICATION_TYPE_MISSION_UPDATED = 37
+    """The loaded mission was changed; the value says what changed."""
+    NOTIFICATION_TYPE_MISSION_RULE_FIRED = 38
+    """A mission rule fired; the value is its name."""
+    NOTIFICATION_TYPE_MISSION_RULE_RELEASED = 39
+    """A mission rule released; the value is its name."""
+    NOTIFICATION_TYPE_MULTIBEAM_SONAR_MISMATCH = 40
+    """A multibeam instruction was made for a different sonar than
+    the one the multibeam driver reports; the value is the
+    instruction's id. A MultibeamConfigCommand is skipped. An
+    ActivateMultibeamCommand still starts or stops the driver, but
+    without its configuration."""
 
 
 class NotificationLevel(proto.Enum):

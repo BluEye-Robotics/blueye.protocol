@@ -54,6 +54,10 @@ __protobuf__ = proto.module(
         'GetMissionRep',
         'SetInstructionUpdateReq',
         'SetInstructionUpdateRep',
+        'SetMissionRulesReq',
+        'SetMissionRulesRep',
+        'GetMissionRulesReq',
+        'GetMissionRulesRep',
         'SetHeadingModeReq',
         'SetHeadingModeRep',
         'SetPubFrequencyReq',
@@ -400,7 +404,35 @@ class SetMissionReq(proto.Message):
 
 class SetMissionRep(proto.Message):
     r"""Response after setting a new mission.
+
+    Attributes:
+        accepted (bool):
+            True when the mission was loaded. Drones
+            without this field answer an empty message as
+            soon as they have received the mission, before
+            it is validated. Not accepted with no reason
+            therefore only confirms receipt: wait for
+            MissionStatusTel to show whether the mission
+            loaded.
+        reason (str):
+            Why the mission was refused.
+        load_id (int):
+            Mission.load_id the drone gave the mission, when it was
+            loaded.
     """
+
+    accepted: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    reason: str = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    load_id: int = proto.Field(
+        proto.UINT64,
+        number=3,
+    )
 
 
 class GetMissionReq(proto.Message):
@@ -426,19 +458,67 @@ class GetMissionRep(proto.Message):
 
 
 class SetInstructionUpdateReq(proto.Message):
-    r"""Updates an instruction in current mission with a new
-    instruction payload.
+    r"""Changes one instruction of the loaded mission. The mission is
+    validated and planned again as a whole and Mission.revision
+    increases. An instruction that has completed cannot be changed.
+    Replacing or removing the instruction that is running stops it; a
+    replacement starts from where the drone is.
+
+    The change applies only to the mission load and revision the client
+    edited. When load_id or revision differs from the loaded mission's,
+    because the mission was replaced or changed since, the drone refuses
+    it and changes nothing.
+
+    This message has `oneof`_ fields (mutually exclusive fields).
+    For each oneof, at most one member field can be set at the same time.
+    Setting any member of the oneof automatically clears all other
+    members.
+
+    .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
 
     Attributes:
-        instruction (blueye.protocol.types.Instruction):
-            instruction that will replace the desired
-            instruction.
+        replace (blueye.protocol.types.Instruction):
+            Replace the instruction that has the same id.
+
+            This field is a member of `oneof`_ ``operation``.
+        insert (blueye.protocol.types.InsertInstruction):
+            Add an instruction.
+
+            This field is a member of `oneof`_ ``operation``.
+        remove_id (int):
+            Remove the instruction with this id.
+
+            This field is a member of `oneof`_ ``operation``.
+        load_id (int):
+            Mission.load_id of the mission the client edited.
+        revision (int):
+            Mission.revision the client edited.
     """
 
-    instruction: mission_planning.Instruction = proto.Field(
+    replace: mission_planning.Instruction = proto.Field(
         proto.MESSAGE,
         number=1,
+        oneof='operation',
         message=mission_planning.Instruction,
+    )
+    insert: mission_planning.InsertInstruction = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        oneof='operation',
+        message=mission_planning.InsertInstruction,
+    )
+    remove_id: int = proto.Field(
+        proto.UINT32,
+        number=3,
+        oneof='operation',
+    )
+    load_id: int = proto.Field(
+        proto.UINT64,
+        number=4,
+    )
+    revision: int = proto.Field(
+        proto.UINT32,
+        number=5,
     )
 
 
@@ -446,7 +526,83 @@ class SetInstructionUpdateRep(proto.Message):
     r"""Response after updating an instruction in the current
     mission.
 
+    Attributes:
+        accepted (bool):
+            True when the mission was changed.
+        reason (str):
+            Why the change was refused.
+        revision (int):
+            Revision of the mission after the change.
     """
+
+    accepted: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    reason: str = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    revision: int = proto.Field(
+        proto.UINT32,
+        number=3,
+    )
+
+
+class SetMissionRulesReq(proto.Message):
+    r"""Replaces the mission rules. Rules run independently of
+    missions.
+
+    Attributes:
+        rules (MutableSequence[blueye.protocol.types.MissionRule]):
+            The rules to run; an empty list clears them.
+    """
+
+    rules: MutableSequence[mission_planning.MissionRule] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
+        message=mission_planning.MissionRule,
+    )
+
+
+class SetMissionRulesRep(proto.Message):
+    r"""Response after setting the mission rules.
+
+    Attributes:
+        accepted (bool):
+            True when the rules were set.
+        reason (str):
+            Why the rules were refused.
+    """
+
+    accepted: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    reason: str = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+
+
+class GetMissionRulesReq(proto.Message):
+    r"""Get the mission rules.
+    """
+
+
+class GetMissionRulesRep(proto.Message):
+    r"""The mission rules.
+
+    Attributes:
+        rules (MutableSequence[blueye.protocol.types.MissionRule]):
+            The rules currently set.
+    """
+
+    rules: MutableSequence[mission_planning.MissionRule] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
+        message=mission_planning.MissionRule,
+    )
 
 
 class SetHeadingModeReq(proto.Message):

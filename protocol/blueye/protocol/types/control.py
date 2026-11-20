@@ -21,6 +21,7 @@ import proto  # type: ignore
 
 from blueye.protocol.types import aquatroll
 from blueye.protocol.types import message_formats
+from blueye.protocol.types import mission_planning
 
 
 __protobuf__ = proto.module(
@@ -49,6 +50,9 @@ __protobuf__ = proto.module(
         'RunMissionCtrl',
         'PauseMissionCtrl',
         'ClearMissionCtrl',
+        'ClearMissionRulesCtrl',
+        'RunInstructionCtrl',
+        'CancelInstructionCtrl',
         'ResetPositionCtrl',
         'ResetOdometerCtrl',
         'CalibrateDvlGyroCtrl',
@@ -399,6 +403,56 @@ class PauseMissionCtrl(proto.Message):
 class ClearMissionCtrl(proto.Message):
     r"""Clear the loaded mission.
     """
+
+
+class ClearMissionRulesCtrl(proto.Message):
+    r"""Clears the mission rules.
+    """
+
+
+class RunInstructionCtrl(proto.Message):
+    r"""Run a single instruction right away, outside any mission.
+
+    Instructions that do not move the drone (camera, tilt, lights,
+    laser, multibeam, tilt stabilization, CV model, annotation, cruise
+    speed) run in any mission state, alongside a running mission.
+    Instructions that move the drone (waypoint, go to home, transect,
+    survey, depth set point, relative depth, go to surface or seabed,
+    control mode, heading) run only while no mission is running, one at
+    a time, and are rejected otherwise. A wait is rejected. The outcome
+    is reported in InstructionResultTel with the same request_id.
+
+    Attributes:
+        instruction (blueye.protocol.types.Instruction):
+            Instruction to execute.
+        request_id (int):
+            Client-chosen id, echoed in
+            InstructionResultTel.
+    """
+
+    instruction: mission_planning.Instruction = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=mission_planning.Instruction,
+    )
+    request_id: int = proto.Field(
+        proto.UINT32,
+        number=2,
+    )
+
+
+class CancelInstructionCtrl(proto.Message):
+    r"""Cancel an instruction started with RunInstructionCtrl.
+
+    Attributes:
+        request_id (int):
+            The request_id given to RunInstructionCtrl.
+    """
+
+    request_id: int = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
 
 
 class ResetPositionCtrl(proto.Message):

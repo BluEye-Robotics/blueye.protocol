@@ -39,6 +39,8 @@ __protobuf__ = proto.module(
         'ReferenceAutoPilotTel',
         'MissionStatusTel',
         'NotificationTel',
+        'InstructionResultTel',
+        'MissionRulesTel',
         'ControlForceTel',
         'ControllerHealthTel',
         'LightsTel',
@@ -277,6 +279,39 @@ class NotificationTel(proto.Message):
         proto.MESSAGE,
         number=1,
         message=message_formats.Notification,
+    )
+
+
+class InstructionResultTel(proto.Message):
+    r"""Result of an instruction started with RunInstructionCtrl.
+
+    Published when the instruction is accepted or rejected, and
+    again when it completes, fails or is cancelled.
+
+    Attributes:
+        result (blueye.protocol.types.InstructionResult):
+            Result of the instruction.
+    """
+
+    result: mission_planning.InstructionResult = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=mission_planning.InstructionResult,
+    )
+
+
+class MissionRulesTel(proto.Message):
+    r"""State of the mission rules.
+
+    Attributes:
+        rules (MutableSequence[blueye.protocol.types.MissionRuleStatus]):
+            One entry per rule.
+    """
+
+    rules: MutableSequence[mission_planning.MissionRuleStatus] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
+        message=mission_planning.MissionRuleStatus,
     )
 
 
