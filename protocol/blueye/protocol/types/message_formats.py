@@ -4149,6 +4149,12 @@ class Reference(proto.Message):
             based (°).
         altitude (float):
             Reference used in auto altitude mode (m).
+        roll (float):
+            Reference roll angle (°). Zero on drones
+            without roll control.
+        pitch (float):
+            Reference pitch angle (°). Zero on drones
+            without pitch control.
     """
 
     surge: float = proto.Field(
@@ -4178,6 +4184,14 @@ class Reference(proto.Message):
     altitude: float = proto.Field(
         proto.FLOAT,
         number=7,
+    )
+    roll: float = proto.Field(
+        proto.FLOAT,
+        number=8,
+    )
+    pitch: float = proto.Field(
+        proto.FLOAT,
+        number=9,
     )
 
 
@@ -4222,7 +4236,7 @@ class Notification(proto.Message):
 
 class ControlForce(proto.Message):
     r"""Control Force is used for showing the requested control force
-    in each direction in Newtons.
+    and moment in each degree of freedom.
 
     Attributes:
         surge (float):
@@ -4233,6 +4247,12 @@ class ControlForce(proto.Message):
             Force in heave (N).
         yaw (float):
             Moment in yaw (Nm).
+        roll (float):
+            Moment in roll (Nm). Zero on drones without
+            roll control.
+        pitch (float):
+            Moment in pitch (Nm). Zero on drones without
+            pitch control.
     """
 
     surge: float = proto.Field(
@@ -4250,6 +4270,14 @@ class ControlForce(proto.Message):
     yaw: float = proto.Field(
         proto.FLOAT,
         number=4,
+    )
+    roll: float = proto.Field(
+        proto.FLOAT,
+        number=5,
+    )
+    pitch: float = proto.Field(
+        proto.FLOAT,
+        number=6,
     )
 
 
