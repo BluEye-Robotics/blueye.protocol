@@ -361,6 +361,8 @@ from .types.req_rep import SetPubFrequencyRep
 from .types.req_rep import SetPubFrequencyReq
 from .types.req_rep import SetSlamActiveRep
 from .types.req_rep import SetSlamActiveReq
+from .types.req_rep import SetSlamBaseMapRep
+from .types.req_rep import SetSlamBaseMapReq
 from .types.req_rep import SetSlamRecordingRep
 from .types.req_rep import SetSlamRecordingReq
 from .types.req_rep import SetSlamSensorSettingsRep
@@ -370,14 +372,23 @@ from .types.req_rep import SetThicknessGaugeParametersReq
 from .types.req_rep import SyncTimeRep
 from .types.req_rep import SyncTimeReq
 from .types.slam import SlamAiding
+from .types.slam import SlamBaseMapClear
+from .types.slam import SlamBaseMapHint
+from .types.slam import SlamBaseMapLoad
+from .types.slam import SlamBaseMapReject
+from .types.slam import SlamBaseMapState
+from .types.slam import SlamGeoreference
 from .types.slam import SlamKeyframe
 from .types.slam import SlamKeyframePoses
 from .types.slam import SlamLoopClosure
 from .types.slam import SlamMap
 from .types.slam import SlamMapFrame
+from .types.slam import SlamMapSummary
 from .types.slam import SlamMapUpdate
+from .types.slam import SlamMultibeamSettings
 from .types.slam import SlamPose
 from .types.slam import SlamPoseEstimate
+from .types.slam import SlamRaster
 from .types.slam import SlamRecordingState
 from .types.slam import SlamScan
 from .types.slam import SlamSensor
@@ -385,9 +396,16 @@ from .types.slam import SlamSensorSettings
 from .types.slam import SlamSensorStatus
 from .types.slam import SlamSonar3dSettings
 from .types.slam import SlamSubmap
+from .types.slam import SlamBaseMapAction
+from .types.slam import SlamBaseMapMiss
+from .types.slam import SlamBaseMapStage
+from .types.slam import SlamGeoreferenceSource
 from .types.slam import SlamHeadingReference
+from .types.slam import SlamMultibeamMode
 from .types.slam import SlamOrientationSource
 from .types.slam import SlamPlatform
+from .types.slam import SlamRasterFormat
+from .types.slam import SlamRasterValue
 from .types.slam import SlamRequestError
 from .types.slam import SlamSensorType
 from .types.slam import SlamState
@@ -456,6 +474,7 @@ from .types.telemetry import RecordStateTel
 from .types.telemetry import ReferenceAutoPilotTel
 from .types.telemetry import ReferenceTel
 from .types.telemetry import RemovableStorageTel
+from .types.telemetry import SlamBaseMapTel
 from .types.telemetry import SlamMapTel
 from .types.telemetry import SlamMapUpdateTel
 from .types.telemetry import SlamPoseTel
@@ -831,6 +850,8 @@ __all__ = (
 'SetPubFrequencyReq',
 'SetSlamActiveRep',
 'SetSlamActiveReq',
+'SetSlamBaseMapRep',
+'SetSlamBaseMapReq',
 'SetSlamRecordingRep',
 'SetSlamRecordingReq',
 'SetSlamSensorSettingsRep',
@@ -840,20 +861,37 @@ __all__ = (
 'SetThicknessGaugeParametersReq',
 'SetTurbidityFilterCtrl',
 'SlamAiding',
+'SlamBaseMapAction',
+'SlamBaseMapClear',
+'SlamBaseMapHint',
+'SlamBaseMapLoad',
+'SlamBaseMapMiss',
+'SlamBaseMapReject',
+'SlamBaseMapStage',
+'SlamBaseMapState',
+'SlamBaseMapTel',
+'SlamGeoreference',
+'SlamGeoreferenceSource',
 'SlamHeadingReference',
 'SlamKeyframe',
 'SlamKeyframePoses',
 'SlamLoopClosure',
 'SlamMap',
 'SlamMapFrame',
+'SlamMapSummary',
 'SlamMapTel',
 'SlamMapUpdate',
 'SlamMapUpdateTel',
+'SlamMultibeamMode',
+'SlamMultibeamSettings',
 'SlamOrientationSource',
 'SlamPlatform',
 'SlamPose',
 'SlamPoseEstimate',
 'SlamPoseTel',
+'SlamRaster',
+'SlamRasterFormat',
+'SlamRasterValue',
 'SlamRecordingState',
 'SlamRequestError',
 'SlamScan',

@@ -107,6 +107,7 @@ __protobuf__ = proto.module(
         'SlamScanTel',
         'SlamMapTel',
         'SlamStatusTel',
+        'SlamBaseMapTel',
     },
 )
 
@@ -1390,8 +1391,8 @@ class SlamPoseTel(proto.Message):
 
 
 class SlamMapUpdateTel(proto.Message):
-    r"""A change to the SLAM map: new keyframes and points, or a
-    corrected trajectory.
+    r"""A change to the SLAM map: new keyframes and submap content,
+    or a corrected trajectory.
     Published on the SLAM publisher. A client applies the updates
     that follow the map it holds (SlamMapTel); one it missed it asks
     for again (GetSlamMapReq).
@@ -1487,6 +1488,10 @@ class SlamStatusTel(proto.Message):
             True if the SLAM's back end failed and was
             dropped: the current map has no more loop
             closures.
+        base_map (blueye.protocol.types.SlamBaseMapState):
+            The base map and where finding the map in it
+            stands; unset when the SLAM cannot localize in
+            one. Also published when it changes.
     """
 
     active: bool = proto.Field(
@@ -1532,6 +1537,39 @@ class SlamStatusTel(proto.Message):
     backend_failed: bool = proto.Field(
         proto.BOOL,
         number=10,
+    )
+    base_map: slam.SlamBaseMapState = proto.Field(
+        proto.MESSAGE,
+        number=11,
+        message=slam.SlamBaseMapState,
+    )
+
+
+class SlamBaseMapTel(proto.Message):
+    r"""The base map the SLAM localizes in (SlamStatusTel.base_map), whole
+    or a part of it (SlamMap.part, put together as SlamMapTel's).
+
+    Recorded, not published: a SLAM recording holds it once, when it is
+    loaded while recording, or when a recording starts with one loaded,
+    so that playing the recording back draws it where the status puts
+    it. A client reads the base map from its file
+    (SlamBaseMapState.name).
+
+    Attributes:
+        load_id (int):
+            The load it is (SlamBaseMapState.load_id).
+        map (blueye.protocol.types.SlamMap):
+            The base map, or a part of it.
+    """
+
+    load_id: int = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    map: slam.SlamMap = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=slam.SlamMap,
     )
 
 

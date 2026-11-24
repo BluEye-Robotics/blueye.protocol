@@ -100,6 +100,8 @@ __protobuf__ = proto.module(
         'SetSlamRecordingRep',
         'SetSlamSensorSettingsReq',
         'SetSlamSensorSettingsRep',
+        'SetSlamBaseMapReq',
+        'SetSlamBaseMapRep',
     },
 )
 
@@ -1363,6 +1365,103 @@ class SetSlamSensorSettingsRep(proto.Message):
     error: slam.SlamRequestError = proto.Field(
         proto.ENUM,
         number=4,
+        enum=slam.SlamRequestError,
+    )
+
+
+class SetSlamBaseMapReq(proto.Message):
+    r"""Request to change the SLAM's base map: load one, clear it, reject
+    the place found in it, or hint where the drone is in it
+    (SlamBaseMapState).
+
+    One request for every action, each a member of action, so that the
+    drone's request server passes on actions added later without knowing
+    them. A SLAM that does not know the action set (or none) answers
+    SLAM_REQUEST_ERROR_NOT_SUPPORTED; SlamBaseMapState.actions says
+    beforehand which it takes. Every action is answered at once: a load
+    goes on after the reply, and the status follows it.
+
+    This message has `oneof`_ fields (mutually exclusive fields).
+    For each oneof, at most one member field can be set at the same time.
+    Setting any member of the oneof automatically clears all other
+    members.
+
+    .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
+
+    Attributes:
+        load (blueye.protocol.types.SlamBaseMapLoad):
+            Load a base map, in place of any loaded
+            before.
+
+            This field is a member of `oneof`_ ``action``.
+        clear (blueye.protocol.types.SlamBaseMapClear):
+            Take the base map away.
+
+            This field is a member of `oneof`_ ``action``.
+        reject (blueye.protocol.types.SlamBaseMapReject):
+            The place found is wrong: search again
+            without it.
+
+            This field is a member of `oneof`_ ``action``.
+        hint (blueye.protocol.types.SlamBaseMapHint):
+            Where the drone is in the base map, roughly.
+
+            This field is a member of `oneof`_ ``action``.
+    """
+
+    load: slam.SlamBaseMapLoad = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        oneof='action',
+        message=slam.SlamBaseMapLoad,
+    )
+    clear: slam.SlamBaseMapClear = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        oneof='action',
+        message=slam.SlamBaseMapClear,
+    )
+    reject: slam.SlamBaseMapReject = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        oneof='action',
+        message=slam.SlamBaseMapReject,
+    )
+    hint: slam.SlamBaseMapHint = proto.Field(
+        proto.MESSAGE,
+        number=4,
+        oneof='action',
+        message=slam.SlamBaseMapHint,
+    )
+
+
+class SetSlamBaseMapRep(proto.Message):
+    r"""Response after changing the SLAM's base map.
+
+    Attributes:
+        available (bool):
+            True if the SLAM is running and answered.
+        base_map (blueye.protocol.types.SlamBaseMapState):
+            The base map after the request. Unset when
+            the SLAM cannot localize in one, and when
+            available is false (no SLAM answered, and the
+            drone's request server answered for it).
+        error (blueye.protocol.types.SlamRequestError):
+            Why the action was not done, when it was not.
+    """
+
+    available: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    base_map: slam.SlamBaseMapState = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=slam.SlamBaseMapState,
+    )
+    error: slam.SlamRequestError = proto.Field(
+        proto.ENUM,
+        number=3,
         enum=slam.SlamRequestError,
     )
 
