@@ -955,7 +955,11 @@ class Waypoint(proto.Message):
         speed_to_target (float):
             Desired speed over ground to waypoint (m/s).
         depth_set_point (blueye.protocol.types.DepthSetPoint):
-            Depth set point (optional).
+            Depth set point (optional). Left out, the
+            drone keeps its depth. A depth of 0 m from the
+            surface brings the drone to the surface and
+            holds it there; an altitude of 0 m counts as
+            left out.
     """
 
     id: int = proto.Field(
@@ -1218,9 +1222,9 @@ class MissionRule(proto.Message):
     its lists. A rule with no triggers never fires. Instructions
     that move the drone (waypoint, go to home, transect, survey,
     depth set point, relative depth, go to surface or seabed,
-    control mode, heading) and waits are refused in rules; camera,
-    tilt, lights, laser, multibeam, tilt stabilization, CV model,
-    annotation and cruise speed are allowed.
+    control mode, heading), waits and cruise speed are refused in
+    rules; camera, tilt, lights, laser, multibeam, tilt
+    stabilization, CV model and annotation are allowed.
 
     Attributes:
         id (int):
@@ -1231,10 +1235,6 @@ class MissionRule(proto.Message):
         disabled (bool):
             A disabled rule never fires. Rules run unless
             this is set.
-        enter_instructions (MutableSequence[blueye.protocol.types.Instruction]):
-            Run when the rule fires.
-        exit_instructions (MutableSequence[blueye.protocol.types.Instruction]):
-            Run when the rule releases.
         triggers (MutableSequence[blueye.protocol.types.Trigger]):
             Conditions that must all be satisfied at once
             for the rule to fire.
@@ -1247,6 +1247,10 @@ class MissionRule(proto.Message):
         cooldown_duration (google.protobuf.duration_pb2.Duration):
             Time after a release before the rule can fire
             again. At most an hour.
+        enter_instructions (MutableSequence[blueye.protocol.types.Instruction]):
+            Run when the rule fires.
+        exit_instructions (MutableSequence[blueye.protocol.types.Instruction]):
+            Run when the rule releases.
     """
 
     id: int = proto.Field(
@@ -1261,35 +1265,35 @@ class MissionRule(proto.Message):
         proto.BOOL,
         number=3,
     )
-    enter_instructions: MutableSequence['Instruction'] = proto.RepeatedField(
-        proto.MESSAGE,
-        number=5,
-        message='Instruction',
-    )
-    exit_instructions: MutableSequence['Instruction'] = proto.RepeatedField(
-        proto.MESSAGE,
-        number=6,
-        message='Instruction',
-    )
     triggers: MutableSequence['Trigger'] = proto.RepeatedField(
         proto.MESSAGE,
-        number=7,
+        number=4,
         message='Trigger',
     )
     hold_duration: duration_pb2.Duration = proto.Field(
         proto.MESSAGE,
-        number=8,
+        number=5,
         message=duration_pb2.Duration,
     )
     release_duration: duration_pb2.Duration = proto.Field(
         proto.MESSAGE,
-        number=9,
+        number=6,
         message=duration_pb2.Duration,
     )
     cooldown_duration: duration_pb2.Duration = proto.Field(
         proto.MESSAGE,
-        number=10,
+        number=7,
         message=duration_pb2.Duration,
+    )
+    enter_instructions: MutableSequence['Instruction'] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=8,
+        message='Instruction',
+    )
+    exit_instructions: MutableSequence['Instruction'] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=9,
+        message='Instruction',
     )
 
 
@@ -1820,7 +1824,9 @@ class TransectCommand(proto.Message):
             default when 0.
         depth_set_point (blueye.protocol.types.DepthSetPoint):
             Optional depth or altitude to hold along the
-            line.
+            line. Left out, the drone keeps its depth. A
+            depth of 0 m from the surface holds the surface;
+            an altitude of 0 m counts as left out.
         circle_of_acceptance (float):
             Radius of acceptance at the end of the line
             (m). The mission default when 0.
@@ -1927,8 +1933,10 @@ class SurveyCommand(proto.Message):
             Radius of acceptance circle for generated
             waypoints (m).
         depth_set_point (blueye.protocol.types.DepthSetPoint):
-            Optional depth set point for all generated
-            waypoints.
+            Optional depth set point for the generated
+            waypoints that carry none, which they then hold
+            as a waypoint's own depth set point. Left out,
+            the drone keeps its depth.
         reverse (bool):
             The planner generated the pattern in reverse,
             from its last scan line to its first. The
